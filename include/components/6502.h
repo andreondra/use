@@ -8,7 +8,9 @@
 #include <cstdint>
 #include <string>
 #include <functional>
+#include <map>
 #include "Component.h"
+#include "Types.h"
 
 class MOS6502 : public Component{
 
@@ -111,14 +113,23 @@ private:
     // Helpers.
     std::string buildInstrString(instruction_t instr) const;
 
+    DataInterface mainBus;
+
+    void hardReset();
+
+
 public:
 
     // Constructor with bindings to bus via function pointers.
-    MOS6502(std::function<uint8_t(uint16_t)> const& busReadFn, std::function<void(uint16_t, uint8_t)> const& busWriteFn);
-    ~MOS6502();
+    MOS6502();
+    ~MOS6502() override;
 
-    void hardReset();
+    void init() override;
+
+    void renderGUI() override;
+
     void softReset();
+
 
     /**
      * 6502 interrupt input pin.

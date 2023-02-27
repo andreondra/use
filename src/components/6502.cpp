@@ -5,8 +5,8 @@
 #include "components/6502.h"
 #include <sstream>
 
-MOS6502::MOS6502(std::function<uint8_t(uint16_t)> const& busReadFn, std::function<void(uint16_t, uint8_t)> const& busWriteFn)
-        : busRead(busReadFn), busWrite(busWriteFn), addrAbs(0), addrRel(0), cycles(0), cycleCount(0), accOperation(false),
+MOS6502::MOS6502()
+        : addrAbs(0), addrRel(0), cycles(0), cycleCount(0), accOperation(false),
           m_currentInstruction(lookup[0xEA]) {
 
     hardReset();
@@ -64,7 +64,7 @@ std::string MOS6502::buildInstrString(instruction_t instr) const{
     return instrStr.str();
 }
 
-void MOS6502::hardReset(){
+void MOS6502::hardReset() {}(){
 
     // Initial status NVxBDIZC = 0x34
     registers.status.c = 0;
@@ -1127,3 +1127,9 @@ uint8_t MOS6502::JAM(){
     registers.pc--; //Decreases the PC to the itself, effectively stopping the execution process.
     return 0;
 }
+
+void MOS6502::init() {
+    hardReset();
+}
+
+
