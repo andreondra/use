@@ -16,13 +16,28 @@ message("Included source files: ${projectSources}")
 ##########################################################
 # Dependencies setup
 ##########################################################
-# Download Elements library.
+# Download imgui_bundle
+Set(FETCHCONTENT_QUIET FALSE)
 FetchContent_Declare(
-        dep_elements
-        GIT_REPOSITORY https://github.com/andreondra/elements.git
+        imgui_bundle
+        GIT_REPOSITORY https://github.com/pthom/imgui_bundle.git
         GIT_PROGRESS TRUE
-        GIT_TAG master
+        # Enter the desired git tag below
+        GIT_TAG main
 )
-FetchContent_MakeAvailable(dep_elements)
+FetchContent_MakeAvailable(imgui_bundle)
+# Make cmake function `imgui_bundle_add_app` available
+list(APPEND CMAKE_MODULE_PATH ${IMGUIBUNDLE_CMAKE_PATH})
+include(imgui_bundle_add_app)
+
+# Download imgui memory editor.
+FetchContent_Declare(
+        imgui_memedit
+        GIT_REPOSITORY https://github.com/ocornut/imgui_club.git
+        GIT_PROGRESS TRUE
+        GIT_TAG main
+)
+FetchContent_MakeAvailable(imgui_memedit)
+include_directories(${imgui_memedit_SOURCE_DIR}/imgui_memory_editor)
 
 imgui_bundle_add_app(use ${projectSources})
