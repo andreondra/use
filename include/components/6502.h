@@ -117,16 +117,18 @@ private:
 
     void hardReset();
 
+    DataPort m_mainBus;
+
 
 public:
 
     // Constructor with bindings to bus via function pointers.
-    MOS6502();
+    explicit MOS6502();
     ~MOS6502() override;
 
     void init() override;
 
-    //void renderGUI() override;
+    void renderGUI() override;
 
     void softReset();
 

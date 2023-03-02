@@ -23,7 +23,6 @@ private:
     /// Data lane width.
     int m_dataWidth;
 
-
 //    /**
 //     * Read data from devices on the bus. There's a simple arbitration based on a device priority.
 //     * If multiple devices respond to the address and have a same priority, the selection method is not defined.

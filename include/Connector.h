@@ -24,14 +24,17 @@ public:
     Connector(Connector & src) = delete;
     Connector & operator=(const Connector & src) = delete;
 
-    Connector(DataInterface interface);
-    Connector(SignalInterface interface);
+    Connector() = default;
+    explicit Connector(DataInterface interface);
+    explicit Connector(SignalInterface interface);
 
     [[nodiscard]] bool hasDataInterface() const;
     [[nodiscard]] bool hasSignalInterface()  const;
 
-    DataInterface & getDataInterface();
-    SignalInterface  & getSignalInterface();
+    const DataInterface & getDataInterface();
+    const SignalInterface  & getSignalInterface();
+    void setInterface(DataInterface interface);
+    void setInterface(SignalInterface interface);
 };
 
 /*

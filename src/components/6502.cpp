@@ -9,6 +9,8 @@ MOS6502::MOS6502()
         : addrAbs(0), addrRel(0), cycles(0), cycleCount(0), accOperation(false),
           m_currentInstruction(lookup[0xEA]) {
 
+    m_ports["mainBus"] = &m_mainBus;
+
     hardReset();
 }
 
@@ -257,6 +259,10 @@ uint64_t MOS6502::getCycleCount() const{
 
 uint8_t MOS6502::getRemainingCycles() const{
     return cycles;
+}
+
+void MOS6502::renderGUI() {
+    return;
 }
 
 // =========================================================================================

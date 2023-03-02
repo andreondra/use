@@ -30,4 +30,14 @@ struct SignalInterface {
     std::function<void(void)> send;
 };
 
+struct AddressRange {
+
+    uint32_t from;
+    uint32_t to;
+
+    [[nodiscard]] bool has(const uint32_t & value) const {
+        return (from <= value) && (value <= to);
+    }
+};
+
 #endif //USE_TYPES_H

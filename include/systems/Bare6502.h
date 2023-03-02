@@ -13,10 +13,10 @@ private:
     MOS6502 cpu;
     
 public:
-    Bare6502() = default;
+    Bare6502();
+    ~Bare6502() override;
 
     void init() override;
-    void reset() override;
 
     void doClocks(int count) override;
     void doSteps(int count) override;

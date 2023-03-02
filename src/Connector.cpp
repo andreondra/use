@@ -20,10 +20,19 @@ bool Connector::hasSignalInterface() const {
     return std::holds_alternative<SignalInterface>(m_interface);
 }
 
-DataInterface & Connector::getDataInterface() {
+const DataInterface & Connector::getDataInterface() {
     return std::get<DataInterface>(m_interface);
 }
 
-SignalInterface & Connector::getSignalInterface() {
+const SignalInterface & Connector::getSignalInterface() {
     return std::get<SignalInterface>(m_interface);
 }
+
+void Connector::setInterface(DataInterface interface) {
+    m_interface = std::move(interface);
+}
+
+void Connector::setInterface(SignalInterface interface) {
+    m_interface = std::move(interface);
+}
+

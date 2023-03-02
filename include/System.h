@@ -11,9 +11,9 @@ private:
 
 public:
     System() = default;
+    virtual ~System() = default;
 
     virtual void init()     = 0;
-    virtual void reset()    = 0;
 
     virtual void doClocks(int count)        = 0;
     virtual void doSteps(int count)         = 0;
