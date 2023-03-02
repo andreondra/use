@@ -9,21 +9,22 @@
 #include <string>
 #include <map>
 #include <set>
+#include <memory>
 #include "Types.h"
+#include "Connector.h"
+#include "Port.h"
 
 class Component{
 
 protected:
-    static std::string m_deviceName;
-    std::map<std::string, DataInterface> m_dataConnectors;
-    std::map<std::string, DataInterface> m_dataPorts;
-    std::map<std::string, std::function<void(void)>> m_pinConnectors;
-    std::map<std::string, std::function<void(void)>> m_pinPorts;
+    std::string m_deviceName;
+    std::map<std::string, std::weak_ptr<Connector>> m_connectors;
+    std::map<std::string, Port *> m_ports;
 
 public:
 
     Component() = default;
-    virtual ~Component() = 0;
+    virtual ~Component() = default;
     /**
      * Initialize a component to a default power-on state (hard reset).
      * */
@@ -42,25 +43,17 @@ public:
      * */
     [[nodiscard]] virtual std::string getDeviceName() const;
 
-    // ========================================================================
-    // Data bus handling.
-    // ========================================================================
-    [[nodiscard]] virtual std::vector<std::string> listDataPorts() const;
-    virtual void connectData(const std::string & portName, DataInterface connector);
-    virtual void disconnectData(const std::string & portName);
-    [[nodiscard]] virtual std::vector<std::string> listDataConnectors() const;
-    virtual DataInterface getDataConnector(const std::string & connectorName);
+    virtual void connect(const std::string & toPort, std::weak_ptr<Connector> connector);
+    virtual void disconnect(const std::string & fromPort);
+    virtual std::weak_ptr<Connector> getConnector(const std::string & name);
 
-    // ========================================================================
-    // Pin I/O handling.
-    // ========================================================================
-    [[nodiscard]] virtual std::vector<std::string> listPinPorts() const;
-    virtual void connectPin(const std::string & portName, std::function<void(void)> connector);
-    virtual void disconnectPin(const std::string & portName);
-    [[nodiscard]] virtual std::vector<std::string> listPinConnectors() const;
-    virtual std::function<void(void)> getPinConnector(const std::string & pinName);
+    [[nodiscard]] virtual std::vector<std::string> listConnectors() const;
+    [[nodiscard]] virtual std::vector<std::string> listPorts() const;
 
     virtual void renderGUI() = 0;
+
+    // maybe provide default implementation using listConnectors...?
+    //virtual void renderNode();
 
     // virtual bool supportsDynamicDataPorts();
     // virtual void addDataPort(const std::string & name);

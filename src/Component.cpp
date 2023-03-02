@@ -15,81 +15,43 @@ std::string Component::getDeviceName() const {
     return m_deviceName;
 }
 
-std::vector<std::string> Component::listDataPorts() const {
+void Component::connect(const std::string &toPort, std::weak_ptr<Connector> connector) {
 
-    auto names = std::views::keys(m_dataPorts);
+    if(!m_ports.contains(toPort)) {
+        throw std::invalid_argument("Specified port not exists.");
+    }
+
+    m_ports[toPort]->connect(std::move(connector));
+}
+
+void Component::disconnect(const std::string &fromPort) {
+
+    if(!m_ports.contains(fromPort)) {
+        throw std::invalid_argument("Specified port not exists.");
+    }
+
+    m_ports[fromPort]->disconnect();
+}
+
+
+std::weak_ptr<Connector> Component::getConnector(const std::string & name) {
+
+    if(!m_connectors.contains(name)) {
+        throw std::invalid_argument("Specified connector not exists.");
+    }
+
+    return m_connectors[name];
+}
+
+std::vector<std::string> Component::listConnectors() const {
+
+    auto names = std::views::keys(m_connectors);
     return {names.begin(), names.end()};
 }
 
 
-void Component::connectData(const std::string &portName, DataInterface connector) {
+std::vector<std::string> Component::listPorts() const {
 
-    if(m_dataPorts.find(portName) == m_dataPorts.end()) {
-        throw std::invalid_argument("Specified interface not available.");
-    }
-
-    m_dataPorts[portName] = std::move(connector);
-}
-
-void Component::disconnectData(const std::string &portName) {
-
-    if(m_dataPorts.find(portName) == m_dataPorts.end()) {
-        throw std::invalid_argument("Specified interface not available.");
-    }
-
-    m_dataPorts[portName].beDummy();
-}
-
-std::vector<std::string> Component::listDataConnectors() const {
-
-    auto names = std::views::keys(m_dataConnectors);
+    auto names = std::views::keys(m_ports);
     return {names.begin(), names.end()};
-}
-
-DataInterface Component::getDataConnector(const std::string &connectorName) {
-
-    if(m_dataConnectors.find(connectorName) == m_dataConnectors.end()) {
-        throw std::invalid_argument("Specified interface not available.");
-    }
-
-    return m_dataConnectors[connectorName];
-}
-
-std::vector<std::string> Component::listPinPorts() const {
-
-    auto names = std::views::keys(m_pinPorts);
-    return {names.begin(), names.end()}
-}
-
-void Component::connectPin(const std::string &portName, std::function<void(void)> connector) {
-
-    if(m_pinPorts.find(portName) == m_pinPorts.end()) {
-        throw std::invalid_argument("Specified interface not available.");
-    }
-
-    m_pinPorts[portName] = std::move(connector);
-}
-
-void Component::disconnectPin(const std::string &portName) {
-
-    if(m_dataPorts.find(portName) == m_dataPorts.end()) {
-        throw std::invalid_argument("Specified interface not available.");
-    }
-
-    m_pinPorts[portName] = [](){};
-}
-
-std::vector<std::string> Component::listPinConnectors() const {
-
-    auto names = std::views::keys(m_pinConnectors);
-    return {names.begin(), names.end()}
-}
-
-std::function<void(void)> Component::getPinConnector(const std::string &pinName) {
-
-    if(m_dataConnectors.find(pinName) == m_dataConnectors.end()) {
-        throw std::invalid_argument("Specified interface not available.");
-    }
-
-    return m_pinConnectors[pinName];
 }

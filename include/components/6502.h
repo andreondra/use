@@ -126,7 +126,7 @@ public:
 
     void init() override;
 
-    void renderGUI() override;
+    //void renderGUI() override;
 
     void softReset();
 

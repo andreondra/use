@@ -64,7 +64,7 @@ std::string MOS6502::buildInstrString(instruction_t instr) const{
     return instrStr.str();
 }
 
-void MOS6502::hardReset() {}(){
+void MOS6502::hardReset() {
 
     // Initial status NVxBDIZC = 0x34
     registers.status.c = 0;
