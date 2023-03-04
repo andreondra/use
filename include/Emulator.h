@@ -8,10 +8,14 @@
 class Emulator{
 
 private:
+    void guiStatusBar();
+    void guiToolbar();
+    void guiMenuItems();
+    void setup();
+    void mainLoop();
 
 public:
     Emulator() = default;
-
     int run();
 };
 

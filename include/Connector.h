@@ -18,11 +18,11 @@
 class Connector {
 
 private:
-    std::variant<DataInterface, SignalInterface> m_interface;
+    std::variant<std::monostate, DataInterface, SignalInterface> m_interface;
 
 public:
-    Connector(Connector & src) = delete;
-    Connector & operator=(const Connector & src) = delete;
+//    Connector(Connector & src) = delete;
+//    Connector & operator=(const Connector & src) = delete;
 
     Connector() = default;
     explicit Connector(DataInterface interface);

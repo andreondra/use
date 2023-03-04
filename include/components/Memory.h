@@ -6,25 +6,27 @@
 #define USE_MEMORY_H
 
 #include <cstdint>
+#include <memory>
 #include "Component.h"
 #include "Types.h"
 
-template<uint32_t size>
 class Memory : public Component{
 
 private:
-    std::array<uint8_t, size> m_data;
-    Connector m_dataConnector;
+    std::vector<uint8_t> m_data;
     AddressRange m_addressRange;
     uint8_t m_defaultValue;
 
+    void memoryInit();
+
 public:
-    explicit Memory(
+    Memory(
+        size_t size,
         AddressRange addressRange,
         uint8_t defaultValue = 0x0);
 
     void init() override;
-    void renderGUI() override;
+    std::vector<std::function<void(void)>> getGUIs() override;
 };
 
 #endif //USE_MEMORY_H

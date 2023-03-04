@@ -16,7 +16,7 @@ struct DataInterface {
      * @param address Address to read from.
      * @return Data read from the address.
      * */
-    std::function<uint32_t(uint32_t address)> read;
+    std::function<bool(uint32_t address, uint32_t & buffer)> read;
 
     /**
      * Write data to the device.

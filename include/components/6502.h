@@ -128,7 +128,7 @@ public:
 
     void init() override;
 
-    void renderGUI() override;
+    std::vector<std::function<void(void)>> getGUIs() override;
 
     void softReset();
 

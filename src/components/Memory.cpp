@@ -4,38 +4,48 @@
 
 #include "components/Memory.h"
 
-template<uint32_t size>
-Memory<size>::Memory(
+Memory::Memory(
+    size_t size,
     AddressRange addressRange,
     uint8_t defaultValue)
 
-    : m_addressRange(addressRange),
+    : m_data(size),
+      m_addressRange(addressRange),
       m_defaultValue(defaultValue) {
 
-    m_dataConnector.setInterface(
+    Connector dataConnector(
         DataInterface{
-             .read = [&](uint32_t address) {
+             .read = [&](uint32_t address, uint32_t & buffer) {
 
-                 if(m_addressRange.has(address))
-                     return m_data[(address % size) + m_addressRange.from];
+                 if(m_addressRange.has(address)) {
+                     buffer = m_data[(address - m_addressRange.from) % m_data.size()];
+                     return true;
+                 } else {
+                     return false;
+                 }
+
              },
 
              .write = [&](uint32_t address, uint32_t data){
                  if(m_addressRange.has(address))
-                     m_data[(address % size) + m_addressRange.from] = data;
-            }
+                     m_data[(address - m_addressRange.from) % m_data.size()] = data;
+             }
      });
 
-    m_connectors["data"] = &m_dataConnector;
+    m_connectors["data"] = std::make_shared<Connector>(dataConnector);
+
+    memoryInit();
 }
 
-template<uint32_t size>
-void Memory<size>::init() {
-    m_data.fill(m_defaultValue);
+void Memory::memoryInit() {
+    std::fill(m_data.begin(), m_data.end(), m_defaultValue);
 }
 
-template<uint32_t size>
-void Memory<size>::renderGUI() {
+void Memory::init() {
+    memoryInit();
+}
 
+std::vector<std::function<void(void)>> Memory::getGUIs() {
+    return std::vector<std::function<void(void)>>();
 }
 

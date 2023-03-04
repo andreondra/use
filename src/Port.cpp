@@ -20,7 +20,7 @@ void Port::disconnect() {
 
 void DataPort::connect(std::weak_ptr<Connector> connector) {
 
-    if(empty())
+    if(connector.expired())
         throw std::invalid_argument("Provided connector is empty.");
     if(!connector.lock()->hasDataInterface())
         throw std::invalid_argument("Provided connector doesn't have a data interface.");
@@ -28,12 +28,12 @@ void DataPort::connect(std::weak_ptr<Connector> connector) {
     m_connector.swap(connector);
 }
 
-uint32_t DataPort::read(uint32_t address) {
+bool DataPort::read(uint32_t address, uint32_t & buffer) {
 
     if(empty())
-        return 0;
+        return false;
     else
-        return m_connector.lock()->getDataInterface().read(address);
+        return m_connector.lock()->getDataInterface().read(address, buffer);
 }
 
 void DataPort::write(uint32_t address, uint32_t data) {
@@ -46,7 +46,7 @@ void DataPort::write(uint32_t address, uint32_t data) {
 
 void SignalPort::connect(std::weak_ptr<Connector> connector) {
 
-    if(empty())
+    if(connector.expired())
         throw std::invalid_argument("Provided connector is empty.");
     if(!connector.lock()->hasSignalInterface())
         throw std::invalid_argument("Provided connector doesn't have a signal interface.");

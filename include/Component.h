@@ -18,7 +18,7 @@ class Component{
 
 protected:
     std::string m_deviceName;
-    std::map<std::string, std::weak_ptr<Connector>> m_connectors;
+    std::map<std::string, std::shared_ptr<Connector>> m_connectors;
     std::map<std::string, Port *> m_ports;
 
 public:
@@ -50,7 +50,7 @@ public:
     [[nodiscard]] virtual std::vector<std::string> listConnectors() const;
     [[nodiscard]] virtual std::vector<std::string> listPorts() const;
 
-    virtual void renderGUI() = 0;
+    virtual std::vector<std::function<void(void)>> getGUIs() = 0;
 
     // maybe provide default implementation using listConnectors...?
     //virtual void renderNode();

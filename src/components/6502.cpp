@@ -261,10 +261,9 @@ uint8_t MOS6502::getRemainingCycles() const{
     return cycles;
 }
 
-void MOS6502::renderGUI() {
-    return;
-}
+std::vector<std::function<void(void)>> MOS6502::getGUIs() {
 
+}
 // =========================================================================================
 //Addressing modes.
 uint8_t MOS6502::ACC(){

@@ -31,7 +31,7 @@ public:
     ~DataPort() override = default;
 
     void connect(std::weak_ptr<Connector> connector) override;
-    uint32_t read(uint32_t address);
+    bool read(uint32_t address, uint32_t & buffer);
     void write(uint32_t address, uint32_t data);
 };
 

@@ -10,7 +10,7 @@ project(use)
 # Including headers.
 include_directories(include)
 # Including sources.
-file(GLOB projectSources main.cpp src/* src/**/*)
+file(GLOB projectSources src/* src/**/*)
 message("Included source files: ${projectSources}")
 
 ##########################################################
@@ -40,4 +40,30 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(imgui_memedit)
 include_directories(${imgui_memedit_SOURCE_DIR}/imgui_memory_editor)
 
-imgui_bundle_add_app(use ${projectSources})
+# Download googletest
+include(FetchContent)
+FetchContent_Declare(
+        googletest
+        GIT_REPOSITORY https://github.com/google/googletest.git
+        GIT_PROGRESS TRUE
+        GIT_TAG main
+)
+# For Windows: Prevent overriding the parent project's compiler/linker settings
+set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+FetchContent_MakeAvailable(googletest)
+enable_testing()
+
+##########################################################
+# Build setup
+##########################################################
+imgui_bundle_add_app(use main.cpp ${projectSources})
+
+##########################################################
+# Tests setup
+##########################################################
+file(GLOB unitTests tests/unit/*)
+imgui_bundle_add_app(UnitTests ${unitTests} ${projectSources})
+target_link_libraries(UnitTests PRIVATE GTest::gtest_main)
+
+include(GoogleTest)
+gtest_discover_tests(UnitTests)

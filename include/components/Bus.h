@@ -9,39 +9,32 @@
 #include <cstdint>
 #include <stdexcept>
 #include <cstdint>
+#include <memory>
 #include "Types.h"
 #include "Component.h"
 
 /**
- * A simple bus abstraction class with a primitive arbitration mechanism.
+ * @brief A simple bus abstraction class with a primitive arbitration mechanism.
+ *
+ * Available ports: "slot x" where x is in range [0, portCount].
+ *
+ * Available connectors: "master" to access all devices on the bus.
  * */
 class Bus : public Component{
 
 private:
-    /// Address lane width.
-    int m_addrWidth;
-    /// Data lane width.
-    int m_dataWidth;
-
-//    /**
-//     * Read data from devices on the bus. There's a simple arbitration based on a device priority.
-//     * If multiple devices respond to the address and have a same priority, the selection method is not defined.
-//     * However, usually only one device respond to a particular address.
-//     *
-//     * @param address Address to read from.
-//     * @return Data read.
-//     * */
-//    uint32_t busRead(uint32_t address);
-//
-//    /**
-//     * Write data to all devices on the bus. It is up to the device to process or ignore the data written.
-//     * @param address Address to write to.
-//     * @param data Data to write.
-//     * */
-//    void busWrite(uint32_t address, uint32_t data);
+    /// Address lane mask.
+    uint32_t m_addrMask;
+    /// Data lane mask.
+    uint32_t m_dataMask;
+    /// Data connections to the devices on the bus.
+    std::vector<DataPort> m_devices;
 
 public:
-    Bus(int addrWidth, int dataWidth);
+    Bus(int portCount, int addrWidth, int dataWidth);
+
+    void init() override;
+    std::vector<std::function<void(void)>> getGUIs() override;
 };
 
 #endif //USE_BUS_H
