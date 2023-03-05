@@ -31,7 +31,7 @@ void DataPort::connect(std::weak_ptr<Connector> connector) {
 uint32_t DataPort::read(uint32_t address) {
 
     if(empty()) {
-        return false;
+        return 0;
     } else {
         uint32_t buffer;
         if(m_connector.lock()->getDataInterface().read(address, buffer)) {
