@@ -11,7 +11,7 @@
 #include "components/Bus.h"
 
 class Bare6502 : public System{
-private:
+protected:
     MOS6502 m_cpu;
     Memory m_RAM{0x800, {0x0000, 0x1FFF}, 0xFF};
     Bus m_bus{2, 8, 16};

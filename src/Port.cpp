@@ -28,7 +28,21 @@ void DataPort::connect(std::weak_ptr<Connector> connector) {
     m_connector.swap(connector);
 }
 
-bool DataPort::read(uint32_t address, uint32_t & buffer) {
+uint32_t DataPort::read(uint32_t address) {
+
+    if(empty()) {
+        return false;
+    } else {
+        uint32_t buffer;
+        if(m_connector.lock()->getDataInterface().read(address, buffer)) {
+            return buffer;
+        } else {
+            return 0;
+        }
+    }
+}
+
+bool DataPort::readConfirmed(uint32_t address, uint32_t &buffer) {
 
     if(empty())
         return false;
