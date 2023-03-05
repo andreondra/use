@@ -13,62 +13,14 @@
 #include "Types.h"
 
 class MOS6502 : public Component{
+protected:
+    // ===========================================
+    // CPU internals
+    // ===========================================
+    /// 6502 default stack position.
+    static const uint16_t stackPos = 0x0100;
 
-private:
-    //Status register flags. Not using bit fields to ease external manipulation.
-    typedef struct {
-        bool c; //Carry.
-        bool z; //Zero.
-        bool i; //IRQ disable.
-        bool d; //Decimal mode.
-        bool b; //BRK command.
-        bool x; //Not an official register. Accumulator operation flag.
-        bool v; //Overflow.
-        bool n; //Negative.
-
-        uint8_t getByte(){
-            return c | z << 1 | i << 2 | d << 3 | b << 4 | x << 5 | v << 6 | n << 7;
-        }
-    }status_flags_t;
-
-    //Registers.
-    typedef struct {
-        uint8_t x = 0x00;           //Index register X.
-        uint8_t y = 0x00;           //Index register Y.
-        status_flags_t status{};    //Status register.
-        uint8_t acc = 0x00;         //Accumulator.
-        uint8_t sp = 0x00;          //Stack pointer. The stack is a descending type.
-        uint16_t pc = 0x0000;       //Program counter.
-    } registers_t;
-
-    /**
-     * Handy constants.
-    */
-    static const uint16_t stackPos = 0x0100; //6502 hardcoded value;
-
-    /**
-     * System bus I/O.
-     */
-    std::function<uint8_t(uint16_t)> busRead;
-    std::function<void(uint16_t, uint8_t)> busWrite;
-
-    // Emulation internal variables.
-    uint16_t addrAbs;
-    uint16_t addrRel;
-    uint8_t cycles;
-    uint64_t cycleCount;
-    bool accOperation;
-
-    // Signalizes a non-maskable interrupt.
-    bool nmiPending;
-    bool m_hijackPending = false;
-
-    // Signalizes that some device sent an interrupt request.
-    bool irqPending;
-    // Signalizes if the request is eligible to process.
-    bool irqEligible;
-
-    // Single instruction.
+    /// Single instruction.
     typedef struct {
         char mnemonic[4]; // ASM mnemonic.
         uint8_t (MOS6502::*addrMode)(void); // Pointer to the address mode function.
@@ -76,8 +28,6 @@ private:
         uint8_t instrLen; // Instruction length in bytes.
         uint8_t cycles; // Machine cycles count.
     } instruction_t;
-
-    registers_t registers;
 
     using m = MOS6502;
     /**
@@ -104,54 +54,80 @@ private:
                     /*F*/{"BEQ", &m::REL, &m::BEQ, 2, 2}, {"SBC", &m::IDY, &m::SBC, 2, 5}, {"JAM", &m::IMP, &m::JAM, 1, 1}, {"ISB", &m::IDY, &m::ISB, 2, 8}, {"NOP", &m::ZPX, &m::NOP, 2, 4}, {"SBC", &m::ZPX, &m::SBC, 2, 4}, {"INC", &m::ZPX, &m::INC, 2, 6}, {"ISB", &m::ZPX, &m::ISB, 2, 6}, {"SED", &m::IMP, &m::SED, 1, 2}, {"SBC", &m::ABY, &m::SBC, 3, 4}, {"NOP", &m::IMP, &m::NOP, 1, 2}, {"ISB", &m::ABY, &m::ISB, 3, 7}, {"NOP", &m::ABX, &m::NOP, 3, 4}, {"SBC", &m::ABX, &m::SBC, 3, 4}, {"INC", &m::ABX, &m::INC, 3, 7}, {"ISB", &m::ABX, &m::ISB, 3, 7}
             };
 
-    instruction_t m_currentInstruction; //Initialized to NOP.
+    /// Status register flags. Not using bit fields to ease external manipulation.
+    typedef struct {
+        bool c; //Carry.
+        bool z; //Zero.
+        bool i; //IRQ disable.
+        bool d; //Decimal mode.
+        bool b; //BRK command.
+        bool x; //Not an official register. Accumulator operation flag.
+        bool v; //Overflow.
+        bool n; //Negative.
+
+        uint8_t getByte(){
+            return c | z << 1 | i << 2 | d << 3 | b << 4 | x << 5 | v << 6 | n << 7;
+        }
+    } status_flags_t;
+
+    /// Registers.
+    struct {
+        uint8_t x = 0x00;           //Index register X.
+        uint8_t y = 0x00;           //Index register Y.
+        status_flags_t status{};    //Status register.
+        uint8_t acc = 0x00;         //Accumulator.
+        uint8_t sp = 0x00;          //Stack pointer. The stack is a descending type.
+        uint16_t pc = 0x0000;       //Program counter.
+    } m_registers;
+
+    // ===========================================
+    // Emulation helper variables
+    // ===========================================
+    uint16_t addrAbs;
+    uint16_t addrRel;
+    uint8_t cycles;
+    uint64_t cycleCount;
+    bool accOperation;
+
+    /// Signalizes a non-maskable interrupt.
+    bool nmiPending;
+    /// Signalizes that some device sent an interrupt request.
+    bool irqPending;
+    /// Signalizes if the request is eligible to process.
+    bool irqEligible;
+    /// Initialized to NOP.
+    instruction_t m_currentInstruction;
     uint8_t m_currentOpcode;
 
-    // Pseudoinstructions.
-    void branch(bool condition);
-
-    // Helpers.
-    std::string buildInstrString(instruction_t instr) const;
-
-    DataInterface mainBus;
-
+    // ===========================================
+    // Emulator internal functions
+    // ===========================================
+    std::string buildInstrString(instruction_t instr);
+    void irqHandler();
+    void nmiHandler();
     void hardReset();
 
+    // ===========================================
+    // I/O
+    // ===========================================
     DataPort m_mainBus;
+    DataInterface mainBus;
 
-
-public:
-
-    // Constructor with bindings to bus via function pointers.
-    explicit MOS6502();
-    ~MOS6502() override;
-
-    void init() override;
-
-    std::vector<std::function<void(void)>> getGUIs() override;
-
-    void softReset();
-
-
-    /**
-     * 6502 interrupt input pin.
-    */
+    /// Interrupt request signal.
     void IRQ();
-    void irqHandler();
+    /// Non-maskable interrupt signal.
     void NMI();
-    void nmiHandler();
-    void clk();
-    bool instrFinished();
-    registers_t* getRegisters();
-    const char * currentMnemonic() const;
-    std::string currentInstruction() const;
-    std::string nextInstruction() const;
-    std::string nextOpcode() const;
-    uint64_t getCycleCount() const;
-    uint8_t getRemainingCycles() const;
+    /// Master clock.
+    void CLK();
 
-protected:
+    // ===========================================
+    // Pseudoinstructions
+    // ===========================================
+    void branch(bool condition);
 
+    // ===========================================
+    // Addressing modes
+    // ===========================================
     /** @defgroup addrModes Addressing modes.
      * Addressing mode functions.
      * Some instruction have variants according to different addresing modes.
@@ -180,7 +156,9 @@ protected:
     uint8_t IDY(); // (Indirect),Y.
     /** @} */
 
-    //Instructions.
+    // ===========================================
+    // Instructions modes
+    // ===========================================
     uint8_t ADC(); //!< Add with carry.
     uint8_t AND(); //!< Logical AND.
     uint8_t ASL(); //!< Arithmetic shift left.
@@ -259,6 +237,26 @@ protected:
     uint8_t SRE(); //!< (LSE) LSR ; EOR.
     uint8_t TAS(); //!< (XAS, SHS) A AND X -> SP, A AND X AND (H+1) -> M. Unstable, see SHA.
     uint8_t JAM(); //!< (KIL, HLT) Jams the CPU.
+
+public:
+
+    // Constructor with bindings to bus via function pointers.
+    explicit MOS6502();
+    ~MOS6502() override;
+
+    void init() override;
+
+    std::vector<std::function<void(void)>> getGUIs() override;
+
+    void softReset();
+
+    bool instrFinished();
+    const char * currentMnemonic() const;
+    std::string currentInstruction();
+    std::string nextInstruction();
+    std::string nextOpcode();
+    uint64_t getCycleCount() const;
+    uint8_t getRemainingCycles() const;
 };
 
 #endif //USE_6502_H

@@ -7,16 +7,16 @@
 
 TEST(Test6502, Basic) {
 
-//    class SUT : public Bare6502{
-//    public:
-//        bool test() {
+    class SUT : public Bare6502{
+    public:
+        bool test() {
+            return true;
+        }
+    };
 
-//        }
-//    };
-//
-//    SUT sut;
+    SUT sut;
 
-//    while(!sut.test()) {
-//        sut.doClocks(1);
-//    }
+    while(!sut.test()) {
+        sut.doClocks(1);
+    }
 }
