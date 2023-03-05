@@ -21,7 +21,7 @@ Bus::Bus(int portCount, int addrWidth, int dataWidth) : m_devices(portCount) {
             .read = [&](uint32_t address, uint32_t & buffer) {
 
                 for(auto & device : m_devices)
-                    if(device.read(address & m_addrMask, buffer)) {
+                    if(device.readConfirmed(address & m_addrMask, buffer)) {
                         buffer &= m_dataMask;
                         return true;
                     }
