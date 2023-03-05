@@ -15,7 +15,6 @@
 #include "Port.h"
 
 class Component{
-
 protected:
     std::string m_deviceName;
     std::map<std::string, std::shared_ptr<Connector>> m_connectors;
