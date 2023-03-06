@@ -61,6 +61,7 @@ imgui_bundle_add_app(use main.cpp ${projectSources})
 ##########################################################
 # Tests setup
 ##########################################################
+file(COPY tests/testfiles DESTINATION .)
 file(GLOB unitTests tests/unit/* tests/integration/*)
 imgui_bundle_add_app(UnitTests ${unitTests} ${projectSources})
 target_link_libraries(UnitTests PRIVATE GTest::gtest_main)

@@ -3,6 +3,7 @@
 //
 
 #include "components/Memory.h"
+#include <fstream>
 
 Memory::Memory(
     size_t size,
@@ -47,5 +48,14 @@ void Memory::init() {
 
 std::vector<std::function<void(void)>> Memory::getGUIs() {
     return std::vector<std::function<void(void)>>();
+}
+
+void Memory::load(uint32_t startOffset, std::ifstream & src) {
+
+    if(startOffset > m_data.size()) {
+        throw std::invalid_argument("Offset is bigger than the memory size.");
+    }
+
+    src.read((char *)(m_data.data() + startOffset), m_data.size() - startOffset);
 }
 

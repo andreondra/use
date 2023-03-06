@@ -27,6 +27,8 @@ public:
 
     void init() override;
     std::vector<std::function<void(void)>> getGUIs() override;
+
+    void load(uint32_t from, std::ifstream & src);
 };
 
 #endif //USE_MEMORY_H
