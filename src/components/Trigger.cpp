@@ -4,7 +4,8 @@
 
 #include "components/Trigger.h"
 
-Trigger::Trigger(uint32_t address, uint32_t value) : m_triggerAddress(address), m_triggerValue(value) {
+Trigger::Trigger(uint32_t address, uint32_t value, uint32_t mask)
+    : m_triggerAddress(address), m_triggerValue(value), m_mask(mask) {
 
     Connector triggerConnector(
             DataInterface{
@@ -13,7 +14,7 @@ Trigger::Trigger(uint32_t address, uint32_t value) : m_triggerAddress(address), 
                     },
 
                     .write = [&](uint32_t address, uint32_t data) {
-                        if(address == m_triggerAddress && data == m_triggerValue)
+                        if(address == m_triggerAddress && (data & m_mask) == m_triggerValue)
                             m_target.send();
                     }
             });

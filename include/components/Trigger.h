@@ -9,12 +9,13 @@
 
 class Trigger : public Component {
 protected:
-    uint32_t m_triggerAddress, m_triggerValue;
+    uint32_t m_triggerAddress, m_triggerValue, m_mask;
     SignalPort m_target;
 
 public:
-    Trigger(uint32_t address,
-            uint32_t value = 0x1);
+    explicit Trigger(uint32_t address,
+                     uint32_t value = 0x1,
+                     uint32_t mask = ~0x0);
 
     void init() override;
     std::vector<std::function<void(void)>> getGUIs() override;
