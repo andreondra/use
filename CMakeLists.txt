@@ -61,10 +61,32 @@ imgui_bundle_add_app(use main.cpp ${projectSources})
 ##########################################################
 # Tests setup
 ##########################################################
+# Download test binaries
+message("Downloading 6502 test binaries...")
+file(
+        DOWNLOAD
+        https://github.com/andreondra/use-tests-6502-65C02/releases/download/latest/6502_functional_test.bin
+        ${CMAKE_CURRENT_BINARY_DIR}/testfiles/6502_functional_test.bin
+        SHOW_PROGRESS
+)
+file(
+        DOWNLOAD
+        https://github.com/andreondra/use-tests-6502-65C02/releases/download/latest/6502_interrupt_test.bin
+        ${CMAKE_CURRENT_BINARY_DIR}/testfiles/6502_interrupt_test.bin
+        SHOW_PROGRESS
+)
+
+# Copy test assets to build.
 file(COPY tests/testfiles DESTINATION .)
-file(GLOB unitTests tests/unit/* tests/integration/*)
+
+file(GLOB unitTests tests/unit/*)
 imgui_bundle_add_app(UnitTests ${unitTests} ${projectSources})
 target_link_libraries(UnitTests PRIVATE GTest::gtest_main)
 
+file(GLOB integrationTests tests/integration/*)
+imgui_bundle_add_app(IntegrationTests ${integrationTests} ${projectSources})
+target_link_libraries(IntegrationTests PRIVATE GTest::gtest_main)
+
 include(GoogleTest)
 gtest_discover_tests(UnitTests)
+gtest_discover_tests(IntegrationTests)
