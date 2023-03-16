@@ -33,3 +33,11 @@ void Bare6502::doFrames(int count) {
 void Bare6502::doRun(int updateFrequency) {
 
 }
+
+std::vector<EmulatorWindow> Bare6502::getGUIs() {
+
+    std::vector<EmulatorWindow> guis;
+
+
+    return guis;
+}

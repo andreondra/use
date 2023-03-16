@@ -47,6 +47,7 @@ void Bus::init() {
 
 }
 
-std::vector<std::function<void(void)>> Bus::getGUIs() {
-    return std::vector<std::function<void(void)>>();
+std::vector<EmulatorWindow> Bus::getGUIs() {
+
+    return {};
 }

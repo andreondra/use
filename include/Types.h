@@ -8,6 +8,7 @@
 
 #include <cstdint>
 #include <functional>
+#include <string>
 
 struct DataInterface {
 
@@ -40,4 +41,35 @@ struct AddressRange {
     }
 };
 
+/**
+ * List of available dock spaces.
+ * */
+enum class DockSpace{
+    MAIN,
+    LEFT,
+    BOTTOM,
+    RIGHT
+};
+
+/**
+ * Helper type to construct dockable window.
+ * */
+struct EmulatorWindow{
+
+    /**
+     * Window title
+     * @warning This should be emulator-wide unique, otherwise the GUI elements will be merged to an existing window
+     * of a same name. */
+    std::string title = "Default Window";
+
+    /**
+     * Dock space to use. Non-docked windows are not allowed to maintain clear UI.
+     * */
+    DockSpace dock    = DockSpace::MAIN;
+
+    /**
+     * GUI rendering function.
+     * */
+    std::function<void(void)> guiFunction = [](){};
+};
 #endif //USE_TYPES_H

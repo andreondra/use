@@ -27,6 +27,7 @@ public:
     void doFrames(int count) override;
     void doRun(int updateFrequency) override;
 
+    std::vector<EmulatorWindow> getGUIs() override;
 };
 
 #endif //USE_BARE6502_H

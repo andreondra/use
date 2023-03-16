@@ -42,6 +42,8 @@ public:
      * */
     [[nodiscard]] virtual std::string getDeviceName() const;
 
+    virtual void setDeviceName(const std::string & newName);
+
     virtual void connect(const std::string & toPort, std::weak_ptr<Connector> connector);
     virtual void disconnect(const std::string & fromPort);
     virtual std::weak_ptr<Connector> getConnector(const std::string & name);
@@ -49,7 +51,7 @@ public:
     [[nodiscard]] virtual std::vector<std::string> listConnectors() const;
     [[nodiscard]] virtual std::vector<std::string> listPorts() const;
 
-    virtual std::vector<std::function<void(void)>> getGUIs() = 0;
+    virtual std::vector<EmulatorWindow> getGUIs() = 0;
 
     // maybe provide default implementation using listConnectors...?
     //virtual void renderNode();

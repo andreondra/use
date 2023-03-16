@@ -276,8 +276,9 @@ uint8_t MOS6502::getRemainingCycles() const{
     return cycles;
 }
 
-std::vector<std::function<void(void)>> MOS6502::getGUIs() {
+std::vector<EmulatorWindow> MOS6502::getGUIs() {
 
+    return {};
 }
 // =========================================================================================
 //Addressing modes.

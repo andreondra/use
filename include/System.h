@@ -5,9 +5,10 @@
 #ifndef USE_SYSTEM_H
 #define USE_SYSTEM_H
 
-class System{
+#include <vector>
+#include "Types.h"
 
-private:
+class System{
 
 public:
     System() = default;
@@ -19,6 +20,13 @@ public:
     virtual void doSteps(int count)         = 0;
     virtual void doFrames(int count)        = 0;
     virtual void doRun(int updateFrequency) = 0;
+
+    /**
+     * Get all the GUI elements created by the System and underlying Component(s).
+     *
+     * @return Vector of dockable windows.
+     * */
+    virtual std::vector<EmulatorWindow> getGUIs() = 0;
 };
 
 #endif //USE_SYSTEM_H
