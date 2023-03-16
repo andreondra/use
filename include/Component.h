@@ -1,6 +1,7 @@
-//
-// Created by golas on 21.2.23.
-//
+/**
+ * @file Component.h
+ * Abstract Component interface.
+ * */
 
 #ifndef USE_COMPONENT_H
 #define USE_COMPONENT_H
@@ -14,16 +15,31 @@
 #include "Connector.h"
 #include "Port.h"
 
+/**
+ * The Component is an abstraction mechanism for interfacing with generic emulated Component.
+ * The class is used to provide an unified interface for node editors and similar tools.
+ *
+ * The Components interface with each other using Ports and Connectors; no other means shall be used, to
+ * make the Component as universal as possible.
+ *
+ * See documentation for creating a custom component.
+ * */
 class Component{
 protected:
+    /// Components' name.
     std::string m_deviceName;
+
+    /// Exposed connectors by name.
     std::map<std::string, std::shared_ptr<Connector>> m_connectors;
+
+    /// Available ports by name.
     std::map<std::string, Port *> m_ports;
 
 public:
 
     Component() = default;
     virtual ~Component() = default;
+
     /**
      * Initialize a component to a default power-on state (hard reset).
      * */
@@ -42,6 +58,8 @@ public:
      * */
     [[nodiscard]] virtual std::string getDeviceName() const;
 
+    /**
+     * Connect */
     virtual void connect(const std::string & toPort, std::weak_ptr<Connector> connector);
     virtual void disconnect(const std::string & fromPort);
     virtual std::weak_ptr<Connector> getConnector(const std::string & name);

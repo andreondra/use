@@ -9,6 +9,10 @@
 #include <cstdint>
 #include <functional>
 
+/**
+ * Abstract R/W data interface, which can read and send data at specified address.
+ * Used in Components to interface with ports.
+ * */
 struct DataInterface {
 
     /**
@@ -26,15 +30,33 @@ struct DataInterface {
     std::function<void(uint32_t address, uint32_t data)> write;
 };
 
+/**
+ * Abstract signal interface, which can trigger a remote action (usually used to trigger a signal
+ * in a different component).
+ * */
 struct SignalInterface {
+
+    /**
+     * Send a signal to connected device.
+     * */
     std::function<void(void)> send;
 };
 
+/**
+ * Universal address range type.
+ * */
 struct AddressRange {
 
+    /// Start address.
     uint32_t from;
+    /// End address.
     uint32_t to;
 
+    /**
+     * Check if the specified value is in the address range.
+     * @param value Value to be checked.
+     * @return true If the value is in the range, otherwise false.
+     * */
     [[nodiscard]] bool has(const uint32_t & value) const {
         return (from <= value) && (value <= to);
     }
