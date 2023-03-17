@@ -3,3 +3,6 @@
 
 # IDE folders
 /.idea
+
+# Docs build
+/docs/_build
