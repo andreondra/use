@@ -1,7 +1,3 @@
-//
-// Created by golas on 1.3.23.
-//
-
 #include "Port.h"
 
 bool Port::empty() const {
