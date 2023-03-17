@@ -27,7 +27,7 @@
 class Component{
 protected:
     /// Components' name.
-    std::string m_deviceName;
+    std::string m_deviceName = "Default Component";
 
     /// Exposed connectors by name.
     std::map<std::string, std::shared_ptr<Connector>> m_connectors;
@@ -58,6 +58,8 @@ public:
      * */
     [[nodiscard]] virtual std::string getDeviceName() const;
 
+    virtual void setDeviceName(const std::string & newName);
+
     /**
      * Connect */
     virtual void connect(const std::string & toPort, std::weak_ptr<Connector> connector);
@@ -67,7 +69,7 @@ public:
     [[nodiscard]] virtual std::vector<std::string> listConnectors() const;
     [[nodiscard]] virtual std::vector<std::string> listPorts() const;
 
-    virtual std::vector<std::function<void(void)>> getGUIs() = 0;
+    virtual std::vector<EmulatorWindow> getGUIs() = 0;
 
     // maybe provide default implementation using listConnectors...?
     //virtual void renderNode();

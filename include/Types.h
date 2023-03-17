@@ -8,6 +8,7 @@
 
 #include <cstdint>
 #include <functional>
+#include <string>
 
 /**
  * Abstract R/W data interface, which can read and send data at specified address.
@@ -62,4 +63,41 @@ struct AddressRange {
     }
 };
 
+/**
+ * List of available dock spaces.
+ * */
+enum class DockSpace{
+    MAIN,
+    LEFT,
+    BOTTOM,
+    RIGHT
+};
+
+/**
+ * Helper type to construct dockable window.
+ * */
+struct EmulatorWindow{
+
+    std::string category;
+    /**
+     * Window title
+     * @warning This should be emulator-wide unique, otherwise the GUI elements will be merged to an existing window
+     * of a same name. */
+    std::string title = "Default Window";
+
+    /**
+     * Unique window ID.
+     * */
+    uintptr_t id = 0;
+
+    /**
+     * Dock space to use. Non-docked windows are not allowed to maintain clear UI.
+     * */
+    DockSpace dock    = DockSpace::MAIN;
+
+    /**
+     * GUI rendering function.
+     * */
+    std::function<void(void)> guiFunction = [](){};
+};
 #endif //USE_TYPES_H

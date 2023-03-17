@@ -15,6 +15,10 @@ std::string Component::getDeviceName() const {
     return m_deviceName;
 }
 
+void Component::setDeviceName(const std::string &newName) {
+    m_deviceName = newName;
+}
+
 void Component::connect(const std::string &toPort, std::weak_ptr<Connector> connector) {
 
     if(!m_ports.contains(toPort)) {

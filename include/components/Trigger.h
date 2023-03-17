@@ -18,7 +18,7 @@ public:
                      uint32_t mask = ~0x0);
 
     void init() override;
-    std::vector<std::function<void(void)>> getGUIs() override;
+    std::vector<EmulatorWindow> getGUIs() override;
 };
 
 #endif //USE_TRIGGER_H

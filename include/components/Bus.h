@@ -34,7 +34,7 @@ public:
     Bus(int portCount, int addrWidth, int dataWidth);
 
     void init() override;
-    std::vector<std::function<void(void)>> getGUIs() override;
+    std::vector<EmulatorWindow> getGUIs() override;
 };
 
 #endif //USE_BUS_H

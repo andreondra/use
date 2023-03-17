@@ -2,30 +2,102 @@
 // Created by golas on 21.2.23.
 //
 
+#include <memory>
 #include "immapp/immapp.h"
 #include "imgui.h"
 #include "Emulator.h"
+#include "systems/Bare6502.h"
+#include "Types.h"
+
+std::string Emulator::dockSpaceToString(DockSpace dockSpace) {
+
+    switch(dockSpace) {
+        case DockSpace::MAIN:   return "MainDockSpace";
+        case DockSpace::LEFT:   return "LeftSpace";
+        case DockSpace::RIGHT:  return "RightSpace";
+        case DockSpace::BOTTOM: return "BottomSpace";
+        default:                return "";
+    }
+}
+
+void Emulator::loadSystem(std::unique_ptr<System> system) {
+
+    // todo something to stop running system
+
+    // Get app state.
+    HelloImGui::RunnerParams *params;
+    params = HelloImGui::GetRunnerParams();
+
+    // Remove existing debugging windows.
+    params->dockingParams.dockableWindows.clear();
+
+    // Change and init system.
+    m_system.swap(system);
+    m_system->init();
+
+    // Add debugging windows from the new System.
+    for(auto & windowConfig : m_system->getGUIs()) {
+
+        // Add Window category to label.
+        std::string newLabel = (!windowConfig.category.empty()) ? "[" + windowConfig.category + "] " : "";
+        // Add Window title.
+        newLabel += windowConfig.title;
+        // Add unique ID.
+        newLabel += "###" + std::to_string(windowConfig.id);
+
+        HelloImGui::DockableWindow window;
+        window.label = newLabel;
+        window.dockSpaceName = dockSpaceToString(windowConfig.dock);
+        window.GuiFunction = windowConfig.guiFunction;
+
+        // Add new windows.
+        params->dockingParams.dockableWindows.push_back(window);
+        // Reset the layout, so the windows are properly docked.
+        params->dockingParams.layoutReset = true;
+    }
+}
 
 void Emulator::guiStatusBar() {
+
+    // todo info about running state
+
     ImGui::Text("Ready");
 }
 
 void Emulator::guiToolbar() {
 
+    if(ImGui::BeginMenu("Run")) {
+
+        if(m_system) {
+            if(ImGui::MenuItem("Clock")) m_system->doClocks(1);
+            if(ImGui::MenuItem("Step"))  m_system->doSteps(1);
+            if(ImGui::MenuItem("Frame")) m_system->doFrames(1);
+            //ImGui::Separator();
+            //ImGui::MenuItem("Run...");
+        } else {
+            ImGui::Text("Please select a system");
+        }
+
+        ImGui::EndMenu();
+    }
 }
 
 void Emulator::guiMenuItems() {
 
-    ImGui::MenuItem("Systems");
-}
+    if(ImGui::BeginMenu("Select System")) {
 
-void Emulator::mainLoop() {
+        if(ImGui::MenuItem("None", nullptr, m_systemID == SYSTEMS::NONE)) {
 
-}
+            m_system.reset();
+            m_systemID = SYSTEMS::NONE;
+        } else if(ImGui::MenuItem("Bare 6502", nullptr, m_systemID == SYSTEMS::BARE6502)) {
 
-void Emulator::setup() {
+            loadSystem(std::make_unique<Bare6502>());
+            m_systemID = SYSTEMS::BARE6502;
+        }
 
-
+        ImGui::EndMenu();
+    }
 }
 
 int Emulator::run() {
@@ -36,7 +108,6 @@ int Emulator::run() {
     HelloImGui::RunnerParams par;
     par.appWindowParams.windowTitle = "USE: Universal System Emulator";
     par.appWindowParams.windowGeometry.size = {640, 480};
-    par.imGuiWindowParams.showMenuBar = false;
     par.appWindowParams.restorePreviousGeometry = false;
 
     // ===============================================
@@ -61,39 +132,27 @@ int Emulator::run() {
     par.dockingParams.layoutCondition = HelloImGui::DockingLayoutCondition::ApplicationStart;
 
     HelloImGui::DockingSplit splitLeft;
-    splitLeft.initialDock = "MainDockSpace";
-    splitLeft.newDock = "LeftSpace";
+    splitLeft.initialDock = dockSpaceToString(DockSpace::MAIN);
+    splitLeft.newDock = dockSpaceToString(DockSpace::LEFT);
     splitLeft.direction = ImGuiDir_Left;
     splitLeft.ratio = 0.25f;
     par.dockingParams.dockingSplits.push_back(splitLeft);
 
     HelloImGui::DockingSplit splitBottom;
-    splitBottom.initialDock = "MainDockSpace";
-    splitBottom.newDock = "BottomSpace";
+    splitBottom.initialDock = dockSpaceToString(DockSpace::MAIN);
+    splitBottom.newDock = dockSpaceToString(DockSpace::BOTTOM);
     splitBottom.direction = ImGuiDir_Down;
     splitBottom.ratio = 0.25f;
     par.dockingParams.dockingSplits.push_back(splitBottom);
 
     HelloImGui::DockingSplit splitRight;
-    splitRight.initialDock = "MainDockSpace";
-    splitRight.newDock = "RightSpace";
+    splitRight.initialDock = dockSpaceToString(DockSpace::MAIN);
+    splitRight.newDock = dockSpaceToString(DockSpace::RIGHT);
     splitRight.direction = ImGuiDir_Right;
     splitRight.ratio = 0.25f;
     par.dockingParams.dockingSplits.push_back(splitRight);
 
-    // ===============================================
-    // Dockable windows setup
-    // ===============================================
-
-//    for(auto & pkg : mPackages) {
-//
-//        HelloImGui::DockableWindow window;
-//        window.label = pkg.getName();
-//        window.dockSpaceName = dockNames[static_cast<int>(pkg.getDefaultDock())];
-//        window.GuiFunction = [&](){pkg.render();};
-//
-//        par.dockingParams.dockableWindows.push_back(window);
-//    }
+    // Note: debugger dockable windows are set up during System change.
 
     ImmApp::Run(par);
 

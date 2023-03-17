@@ -26,7 +26,7 @@ public:
         uint8_t defaultValue = 0x0);
 
     void init() override;
-    std::vector<std::function<void(void)>> getGUIs() override;
+    std::vector<EmulatorWindow> getGUIs() override;
 
     void load(uint32_t from, std::ifstream & src);
 };

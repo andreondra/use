@@ -8,10 +8,10 @@ Bare6502::Bare6502() {
 
     m_bus.connect("slot 1", m_RAM.getConnector("data"));
     m_cpu.connect("mainBus", m_bus.getConnector("master"));
-}
 
-Bare6502::~Bare6502() {
-
+    m_components.push_back(&m_bus);
+    m_components.push_back(&m_RAM);
+    m_components.push_back(&m_cpu);
 }
 
 void Bare6502::init() {

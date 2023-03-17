@@ -4,6 +4,8 @@
 
 #include "components/Memory.h"
 #include <fstream>
+#include "imgui.h"
+#include "imgui_memory_editor.h"
 
 Memory::Memory(
     size_t size,
@@ -13,6 +15,8 @@ Memory::Memory(
     : m_data(size),
       m_addressRange(addressRange),
       m_defaultValue(defaultValue) {
+
+    m_deviceName = "Memory";
 
     Connector dataConnector(
         DataInterface{
@@ -46,8 +50,29 @@ void Memory::init() {
     memoryInit();
 }
 
-std::vector<std::function<void(void)>> Memory::getGUIs() {
-    return std::vector<std::function<void(void)>>();
+std::vector<EmulatorWindow> Memory::getGUIs() {
+
+    std::function<void(void)> renderContents = [this](){
+
+        ImGui::Text("Load");
+        ImGui::Separator();
+        ImGui::Text("Size: %lu", m_data.size());
+        ImGui::Text("At addresses: %x to %x", m_addressRange.from, m_addressRange.to);
+        ImGui::Separator();
+        ImGui::Text("Contents:");
+        static MemoryEditor memoryEditor;
+        memoryEditor.DrawContents(m_data.data(), m_data.size());
+    };
+
+    return {
+        EmulatorWindow{
+            .category = m_deviceName,
+            .title = "Debugger",
+            .id    = getDeviceID(),
+            .dock  = DockSpace::BOTTOM,
+            .guiFunction = renderContents
+        }
+    };
 }
 
 void Memory::load(uint32_t startOffset, std::ifstream & src) {

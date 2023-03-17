@@ -18,7 +18,7 @@ protected:
 
 public:
     Bare6502();
-    ~Bare6502() override;
+    ~Bare6502() override = default;
 
     void init() override;
 
@@ -27,6 +27,7 @@ public:
     void doFrames(int count) override;
     void doRun(int updateFrequency) override;
 
+//    std::vector<EmulatorWindow> getGUIs() override;
 };
 
 #endif //USE_BARE6502_H

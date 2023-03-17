@@ -25,6 +25,8 @@ Trigger::Trigger(uint32_t address, uint32_t value, uint32_t mask)
 
 void Trigger::init() { }
 
-std::vector<std::function<void(void)>> Trigger::getGUIs() {
-    return std::vector<std::function<void(void)>>();
+std::vector<EmulatorWindow> Trigger::getGUIs() {
+
+    // This Component doesn't render any window.
+    return {};
 }
