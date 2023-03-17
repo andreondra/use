@@ -16,7 +16,7 @@
 
 class Component{
 protected:
-    std::string m_deviceName;
+    std::string m_deviceName = "Default Component";
     std::map<std::string, std::shared_ptr<Connector>> m_connectors;
     std::map<std::string, Port *> m_ports;
 

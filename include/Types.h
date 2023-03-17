@@ -56,11 +56,17 @@ enum class DockSpace{
  * */
 struct EmulatorWindow{
 
+    std::string category;
     /**
      * Window title
      * @warning This should be emulator-wide unique, otherwise the GUI elements will be merged to an existing window
      * of a same name. */
     std::string title = "Default Window";
+
+    /**
+     * Unique window ID.
+     * */
+    uintptr_t id = 0;
 
     /**
      * Dock space to use. Non-docked windows are not allowed to maintain clear UI.

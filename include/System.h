@@ -7,8 +7,12 @@
 
 #include <vector>
 #include "Types.h"
+#include "Component.h"
 
-class System{
+class System {
+
+protected:
+    std::vector<Component *> m_components;
 
 public:
     System() = default;
@@ -26,7 +30,7 @@ public:
      *
      * @return Vector of dockable windows.
      * */
-    virtual std::vector<EmulatorWindow> getGUIs() = 0;
+    virtual std::vector<EmulatorWindow> getGUIs();
 };
 
 #endif //USE_SYSTEM_H

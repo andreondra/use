@@ -16,6 +16,7 @@ std::string Emulator::dockSpaceToString(DockSpace dockSpace) {
         case DockSpace::LEFT:   return "LeftSpace";
         case DockSpace::RIGHT:  return "RightSpace";
         case DockSpace::BOTTOM: return "BottomSpace";
+        default:                return "";
     }
 }
 
@@ -37,12 +38,22 @@ void Emulator::loadSystem(std::unique_ptr<System> system) {
     // Add debugging windows from the new System.
     for(auto & windowConfig : m_system->getGUIs()) {
 
+        // Add Window category to label.
+        std::string newLabel = (!windowConfig.category.empty()) ? "[" + windowConfig.category + "] " : "";
+        // Add Window title.
+        newLabel += windowConfig.title;
+        // Add unique ID.
+        newLabel += "###" + std::to_string(windowConfig.id);
+
         HelloImGui::DockableWindow window;
-        window.label = windowConfig.title;
+        window.label = newLabel;
         window.dockSpaceName = dockSpaceToString(windowConfig.dock);
         window.GuiFunction = windowConfig.guiFunction;
 
+        // Add new windows.
         params->dockingParams.dockableWindows.push_back(window);
+        // Reset the layout, so the windows are properly docked.
+        params->dockingParams.layoutReset = true;
     }
 }
 

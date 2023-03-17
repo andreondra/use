@@ -16,6 +16,8 @@ Memory::Memory(
       m_addressRange(addressRange),
       m_defaultValue(defaultValue) {
 
+    m_deviceName = "Memory";
+
     Connector dataConnector(
         DataInterface{
              .read = [&](uint32_t address, uint32_t & buffer) {
@@ -52,7 +54,8 @@ std::vector<EmulatorWindow> Memory::getGUIs() {
 
     std::function<void(void)> renderContents = [this](){
 
-        ImGui::Text("Parameters:");
+        ImGui::Text("Load");
+        ImGui::Separator();
         ImGui::Text("Size: %lu", m_data.size());
         ImGui::Text("At addresses: %x to %x", m_addressRange.from, m_addressRange.to);
         ImGui::Separator();
@@ -63,7 +66,9 @@ std::vector<EmulatorWindow> Memory::getGUIs() {
 
     return {
         EmulatorWindow{
-            .title = m_deviceName,
+            .category = m_deviceName,
+            .title = "Debugger",
+            .id    = getDeviceID(),
             .dock  = DockSpace::BOTTOM,
             .guiFunction = renderContents
         }

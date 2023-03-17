@@ -8,10 +8,10 @@ Bare6502::Bare6502() {
 
     m_bus.connect("slot 1", m_RAM.getConnector("data"));
     m_cpu.connect("mainBus", m_bus.getConnector("master"));
-}
 
-Bare6502::~Bare6502() {
-
+    m_components.push_back(&m_bus);
+    m_components.push_back(&m_RAM);
+    m_components.push_back(&m_cpu);
 }
 
 void Bare6502::init() {
@@ -32,12 +32,4 @@ void Bare6502::doFrames(int count) {
 
 void Bare6502::doRun(int updateFrequency) {
 
-}
-
-std::vector<EmulatorWindow> Bare6502::getGUIs() {
-
-    std::vector<EmulatorWindow> guis;
-
-
-    return guis;
 }
