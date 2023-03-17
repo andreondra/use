@@ -4,7 +4,7 @@
 
 #include "Emulator.h"
 
-int main() {
+int main(int, char**) {
 
     Emulator emu;
     return emu.run();
