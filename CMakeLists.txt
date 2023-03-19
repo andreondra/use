@@ -85,6 +85,8 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(imgui_filedialog)
 include_directories(${imgui_filedialog_SOURCE_DIR})
+file(GLOB imgui_filedialog_sources ${imgui_filedialog_SOURCE_DIR}/*.cpp)
+list(APPEND projectSources ${imgui_filedialog_sources})
 
 ##########################################################
 # Build setup
