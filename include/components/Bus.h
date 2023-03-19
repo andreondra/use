@@ -30,6 +30,13 @@ private:
     /// Data connections to the devices on the bus.
     std::vector<DataPort> m_devices;
 
+    /// Last access type.
+    enum class lastAccess {NONE, READ, WRITE} m_lastAccess = lastAccess::NONE;
+    /// Last address accessed (debug info).
+    uint32_t m_lastAddress = 0x00;
+    /// Last data read/written.
+    uint32_t m_lastData = 0x00;
+
 public:
     Bus(int portCount, int addrWidth, int dataWidth);
 
