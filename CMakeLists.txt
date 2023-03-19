@@ -65,7 +65,6 @@ FetchContent_MakeAvailable(imgui_memedit)
 include_directories(${imgui_memedit_SOURCE_DIR}/imgui_memory_editor)
 
 # Download googletest
-include(FetchContent)
 FetchContent_Declare(
         googletest
         GIT_REPOSITORY https://github.com/google/googletest.git
@@ -76,6 +75,18 @@ FetchContent_Declare(
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 enable_testing()
+
+# Download ImGuiFileDialog
+FetchContent_Declare(
+        imgui_filedialog
+        GIT_REPOSITORY https://github.com/aiekick/ImGuiFileDialog
+        GIT_PROGRESS TRUE
+        GIT_TAG Lib_Only
+)
+FetchContent_MakeAvailable(imgui_filedialog)
+include_directories(${imgui_filedialog_SOURCE_DIR})
+file(GLOB imgui_filedialog_sources ${imgui_filedialog_SOURCE_DIR}/*.cpp)
+list(APPEND projectSources ${imgui_filedialog_sources})
 
 ##########################################################
 # Build setup
