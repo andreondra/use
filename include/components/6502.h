@@ -1,6 +1,10 @@
-//
-// Created by golas on 21.2.23.
-//
+/**
+ * @file 6502.h
+ * @author Ondrej Golasowski (golasowski.o@gmail.com)
+ * @brief MOS6502 CPU software implementation.
+ * @copyright Copyright (c) 2022 Ondrej Golasowski
+ *
+ */
 
 #ifndef USE_6502_H
 #define USE_6502_H
@@ -58,7 +62,7 @@ protected:
     typedef struct {
         bool c; //Carry.
         bool z; //Zero.
-        bool i; //IRQ disable.
+        bool i; //IRQ mask.
         bool d; //Decimal mode.
         bool b; //BRK command.
         bool x; //Not an official register. Accumulator operation flag.
@@ -89,12 +93,27 @@ protected:
     uint64_t cycleCount;
     bool accOperation;
 
-    /// Signalizes a non-maskable interrupt.
-    bool nmiPending;
-    /// Signalizes that some device sent an interrupt request.
-    bool irqPending;
-    /// Signalizes if the request is eligible to process.
-    bool irqEligible;
+    /// Next CPU mode.
+    enum class nextMode_t {
+        /// Fetch next instruction.
+        INSTRUCTION,
+        /// Jump to NMI ISR.
+        IRQ_ISR,
+        /// Jump to IRQ ISR.
+        NMI_ISR
+    } m_next;
+
+    /// NMI pin state.
+    bool m_nmi = false;
+    /// NMI pending state.
+    bool m_nmiPending = false;
+    /// IRQ pin state.
+    bool m_irq = false;
+    /// IRQ pending state.
+    bool m_irqPending = false;
+    /// Previous interrupt mask flag state.
+    bool m_oldInterruptMask = false;
+
     /// Initialized to NOP.
     instruction_t m_currentInstruction;
     uint8_t m_currentOpcode;
@@ -114,7 +133,7 @@ protected:
     DataInterface mainBus;
 
     /// Interrupt request signal.
-    void IRQ();
+    void IRQ(bool active);
     /// Non-maskable interrupt signal.
     void NMI();
     /// Master clock.
