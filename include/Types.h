@@ -38,9 +38,15 @@ struct DataInterface {
 struct SignalInterface {
 
     /**
-     * Send a signal to connected device.
+     * Send a signal pulse to connected device.
      * */
     std::function<void(void)> send;
+
+    /**
+     * Set a signal state. This function does not care if active is low or high.
+     * When the active is true, the signal should be considered in its active state.
+     */
+    std::function<void(bool active)> set;
 };
 
 /**
