@@ -60,9 +60,13 @@ TEST(TestConnector, Data) {
 TEST(TestConnector, Signal) {
 
     bool called = false;
+    bool val = false;
     SignalInterface s{
-        [& called](){
+        .send = [& called](){
             called = true;
+        },
+        .set  = [& val](bool active){
+            val = active;
         }
     };
 
@@ -72,6 +76,12 @@ TEST(TestConnector, Signal) {
 
     c.getSignalInterface().send();
     EXPECT_TRUE(called);
+
+    EXPECT_FALSE(val);
+    c.getSignalInterface().set(true);
+    EXPECT_TRUE(val);
+    c.getSignalInterface().set(false);
+    EXPECT_FALSE(val);
 }
 
 /// Test re-assignments of interfaces.

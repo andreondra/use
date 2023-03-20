@@ -69,3 +69,8 @@ void SignalPort::send() {
     if(!empty())
         m_connector.lock()->getSignalInterface().send();
 }
+
+void SignalPort::set(bool active) {
+    if(!empty())
+        m_connector.lock()->getSignalInterface().set(active);
+}

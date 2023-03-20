@@ -24,8 +24,8 @@ MOS6502::MOS6502()
     });
 
     m_connectors["IRQ"] = std::make_shared<Connector>(SignalInterface{
-        .send = [this](){
-            IRQ();
+        .set = [this](bool active) {
+            IRQ(active);
         }
     });
 
@@ -119,9 +119,11 @@ void MOS6502::hardReset() {
     addrAbs = addrRel = accOperation = 0;
     cycles = 7;
     cycleCount = 0;
-    irqEligible = false;
-    irqPending = false;
-    nmiPending = false;
+
+    m_nmi = false;
+    m_nmiPending = false;
+    m_irq = false;
+    m_irqPending = false;
 
     m_currentOpcode = 0xEA;
     m_currentInstruction = lookup[m_currentOpcode];
@@ -142,9 +144,8 @@ void MOS6502::softReset(){
     m_currentInstruction = lookup[0xEA];
 }
 
-void MOS6502::IRQ(){
-
-    irqPending = true;
+void MOS6502::IRQ(bool active){
+    m_irq = active;
 }
 
 void MOS6502::irqHandler(){
@@ -173,7 +174,7 @@ void MOS6502::irqHandler(){
 }
 
 void MOS6502::NMI(){
-    nmiPending = true;
+    m_nmi = true;
 }
 
 void MOS6502::nmiHandler(){
@@ -203,43 +204,92 @@ void MOS6502::nmiHandler(){
 
 void MOS6502::CLK(){
 
+    // ---------------------------------------------------------------
+    // During the final clock of the instruction the interrupt state is checked.
+    // If the interrupt is pending, the ISR is executed instead of the
+    // next instruction.
+    if(cycles == 1) {
+
+        // NMI has the highest priority. IRQ is cancelled.
+        if (m_nmiPending) {
+
+            m_next = nextMode_t::NMI_ISR;
+            m_irqPending = m_nmiPending = false;
+
+        // IRQ has the second-highest priority.
+        } else if (m_irqPending) {
+
+            bool interruptMask;
+
+            // All two-cycle instruction poll interrupts after changing the flags,
+            // so we need to check the old value.
+            if (
+                    m_currentOpcode == 0x78 || // SEI
+                    m_currentOpcode == 0x58 || // CLI
+                    m_currentOpcode == 0x28    // PLP
+                    ) {
+                interruptMask = m_oldInterruptMask;
+            } else {
+                interruptMask = m_registers.status.i;
+            }
+
+            if (!interruptMask) m_next = nextMode_t::IRQ_ISR;
+            else                m_next = nextMode_t::INSTRUCTION;
+
+            m_irqPending = false;
+
+        // No interrupt, next instruction will be executed.
+        } else {
+            m_next = nextMode_t::INSTRUCTION;
+        }
+    }
+    // ---------------------------------------------------------------
+    // When no clocks are remaining, fetch and execute the next instruction
+    // or the ISR.
     if(cycles == 0){
 
-        irqEligible = !m_registers.status.i;
+        // Decide upon what will be executed next.
+        // The most important is the value of the program counter register.
+        // The handlers themselves do not poll for interrupts, so at least
+        // one instruction is always executed before next interrupt.
+        switch(m_next) {
 
-        m_currentOpcode = m_mainBus.read(m_registers.pc++);
-        m_currentInstruction = lookup[m_currentOpcode];
-        uint8_t addrRet = (this->*(m_currentInstruction.addrMode))();
-        uint8_t instrRet = (this->*(m_currentInstruction.instrCode))();
-
-        if(
-            //opcode == 0x40  // RTI
-
-                m_currentOpcode != 0x78 && // SEI
-                m_currentOpcode != 0x58 && // CLI
-                m_currentOpcode != 0x28    // PLP
-                ){
-            irqEligible = !m_registers.status.i;
-        }
-
-        if(nmiPending){
-
-            if(m_currentOpcode == 0x00)
-                m_registers.pc = m_mainBus.read(0xFFFA) | ((uint16_t)m_mainBus.read(0xFFFB) << 8);
-            else
+            case nextMode_t::INSTRUCTION:
+                // Nothing to do. Use current PC value.
+                break;
+            case nextMode_t::NMI_ISR:
+                // Backup PC + status and get a new PC from vector at 0xFFFA.
                 nmiHandler();
-
-            nmiPending = false;
-            irqPending = false;
-        } else if(irqPending && irqEligible) {
-
-            irqHandler();
-            irqPending = irqEligible = false;
+                break;
+            case nextMode_t::IRQ_ISR:
+                // Backup PC + status and get a new PC from vector at 0xFFFE.
+                irqHandler();
+                break;
         }
 
-        cycles += m_currentInstruction.cycles;
+        m_oldInterruptMask      = m_registers.status.i;
+        m_currentOpcode         = m_mainBus.read(m_registers.pc++);
+        m_currentInstruction    = lookup[m_currentOpcode];
+        uint8_t addrRet         = (this->*(m_currentInstruction.addrMode))();
+        uint8_t instrRet        = (this->*(m_currentInstruction.instrCode))();
+        cycles                  += m_currentInstruction.cycles;
         if (addrRet && instrRet) cycles++;
     }
+
+    // ---------------------------------------------------------------
+    // A state of the interrupt pins is checked on every clock.
+    // (The current detected state is valid during the next clock.)
+    // The state is checked by the edge/level detectors and sent to
+    // an internal signal for further processing.
+    if(m_nmi) {
+        m_nmiPending = true;
+        m_nmi = false;
+    }
+
+    if(m_irq) {
+        m_irqPending = true;
+    }
+    // ---------------------------------------------------------------
 
     cycles--;
     cycleCount++;

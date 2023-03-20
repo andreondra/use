@@ -106,6 +106,16 @@ public:
 
     /// Send a signal to the controlled component.
     void send();
+
+    /**
+     * Set a signal state.
+     *
+     * @note This functions abstracts the meaning of active, so if the parameter active is true (log 1),
+     * the signal is active, even if the real component considers active state as low.
+     *
+     * @param active If true, the signal should be considered active, otherwise inactive.
+     */
+    void set(bool active);
 };
 
 #endif //USE_PORT_H

@@ -101,8 +101,8 @@ TEST(Test6502, Interrupt) {
         void triggerNMI() {
             NMI();
         }
-        void triggerIRQ() {
-            IRQ();
+        void setIRQ(bool active) {
+            IRQ(active);
         }
     };
 
@@ -119,12 +119,8 @@ TEST(Test6502, Interrupt) {
                     .write = [&memory, &cpu, FEEDBACK_REG, NMI_MASK, IRQ_MASK](uint32_t address, uint32_t data){
                         memory.at(address) = data;
                         if(address == FEEDBACK_REG) {
-                            if(!(data & NMI_MASK)) {
-                                cpu.triggerNMI();
-                            }
-                            if(!(data & IRQ_MASK)) {
-                                cpu.triggerIRQ();
-                            }
+                            if(!(data & NMI_MASK)) cpu.triggerNMI();
+                            cpu.setIRQ(!(data & IRQ_MASK));
                         }
                     }
             }
