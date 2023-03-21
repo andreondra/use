@@ -22,13 +22,17 @@ protected:
     // CPU internals
     // ===========================================
     /// 6502 default stack position.
-    static const uint16_t stackPos = 0x0100;
+    static constexpr uint16_t STACK_POSITION = 0x0100;
+    static constexpr uint16_t VECTOR_NMI = 0x0FFA;
+    static constexpr uint16_t VECTOR_RST = 0x0FFC;
+    static constexpr uint16_t VECTOR_IRQ = 0x0FFE;
 
-    /// Single instruction.
+
+    /// A single instruction.
     typedef struct {
         char mnemonic[4]; // ASM mnemonic.
-        uint8_t (MOS6502::*addrMode)(void); // Pointer to the address mode function.
-        uint8_t (MOS6502::*instrCode)(void); // Pointer to the instruction code.
+        uint8_t (MOS6502::*addrMode)(); // Pointer to the address mode function.
+        uint8_t (MOS6502::*instrCode)(); // Pointer to the instruction code.
         uint8_t instrLen; // Instruction length in bytes.
         uint8_t cycles; // Machine cycles count.
     } instruction_t;
@@ -59,20 +63,16 @@ protected:
             };
 
     /// Status register flags. Not using bit fields to ease external manipulation.
-    typedef struct {
-        bool c; //Carry.
-        bool z; //Zero.
-        bool i; //IRQ mask.
-        bool d; //Decimal mode.
-        bool b; //BRK command.
-        bool x; //Not an official register. Accumulator operation flag.
-        bool v; //Overflow.
-        bool n; //Negative.
-
-        uint8_t getByte(){
-            return c | z << 1 | i << 2 | d << 3 | b << 4 | x << 5 | v << 6 | n << 7;
-        }
-    } status_flags_t;
+    struct status_flags_t {
+        bool c; // Carry.
+        bool z; // Zero.
+        bool i; // IRQ mask.
+        bool d; // Decimal mode.
+        bool b; // BRK command.
+        bool x; // Not an official register.
+        bool v; // Overflow.
+        bool n; // Negative.
+    };
 
     /// Registers.
     struct {
@@ -121,7 +121,7 @@ protected:
     // ===========================================
     // Emulator internal functions
     // ===========================================
-    std::string buildInstrString(instruction_t instr);
+    std::string getCurrentAddressString();
     void irqHandler();
     void nmiHandler();
     void hardReset();
@@ -269,13 +269,7 @@ public:
 
     void softReset();
 
-    bool instrFinished();
-    const char * currentMnemonic() const;
-    std::string currentInstruction();
-    std::string nextInstruction();
-    std::string nextOpcode();
-    uint64_t getCycleCount() const;
-    uint8_t getRemainingCycles() const;
+    [[nodiscard]] bool instrFinished() const;
 };
 
 #endif //USE_6502_H

@@ -4,6 +4,7 @@
 
 #include "components/6502.h"
 #include "Connector.h"
+#include "imgui.h"
 #include <memory>
 #include <sstream>
 
@@ -49,39 +50,38 @@ void MOS6502::branch(bool condition){
     }
 }
 
-std::string MOS6502::buildInstrString(instruction_t instr) {
+std::string MOS6502::getCurrentAddressString() {
 
     std::stringstream instrStr;
-    instrStr << instr.mnemonic;
 
-    if(instr.addrMode == &MOS6502::ACC)
-        instrStr << " A";
-    else if(instr.addrMode == &MOS6502::IMM)
-        instrStr << " #$" << std::hex << (int)m_mainBus.read(m_registers.pc - 1) << " (IMM)";
-    else if(instr.addrMode == &MOS6502::ABS)
-        instrStr << " $" << std::hex << addrAbs << " (ABS)";
-    else if(instr.addrMode == &MOS6502::ZP0)
-        instrStr << " $" << std::hex << addrAbs << " (ZP0)";
-    else if(instr.addrMode == &MOS6502::REL)
-        instrStr << " $" << std::hex << addrRel << " (REL)";
-    else if(instr.addrMode == &MOS6502::ID0)
-        instrStr << " ($" << std::hex <<  addrAbs << ")" << " (ID0)";
-    else if(instr.addrMode == &MOS6502::ABX)
-        instrStr << " $" << std::hex << addrAbs << ",X" << " (ABX)";
-    else if(instr.addrMode == &MOS6502::ABY)
-        instrStr << " $" << std::hex << addrAbs << ",Y" << " (ABY)";
-    else if(instr.addrMode == &MOS6502::ZPX)
-        instrStr << " $" << std::hex << addrAbs << ",X" << " (ZPX)";
-    else if(instr.addrMode == &MOS6502::ZPY)
-        instrStr << " $" << std::hex << addrAbs << ",Y" << " (ZPY)";
-    else if(instr.addrMode == &MOS6502::IDX)
-        instrStr << " ($" << std::hex << addrAbs << ",X)" << " (IDX)";
-    else if(instr.addrMode == &MOS6502::IDY)
-        instrStr << " ($" << std::hex << addrAbs << "),Y" << " (IDY)";
-    else if(instr.addrMode == &MOS6502::IMP)
-        instrStr << " (IMP)";
+    if(m_currentInstruction.addrMode == &MOS6502::ACC)
+        instrStr << "A";
+    else if(m_currentInstruction.addrMode == &MOS6502::IMM)
+        instrStr << "#$" << std::hex << (int)m_mainBus.read(m_registers.pc - 1) << " (IMM)";
+    else if(m_currentInstruction.addrMode == &MOS6502::ABS)
+        instrStr << "$" << std::hex << addrAbs << " (ABS)";
+    else if(m_currentInstruction.addrMode == &MOS6502::ZP0)
+        instrStr << "$" << std::hex << addrAbs << " (ZP0)";
+    else if(m_currentInstruction.addrMode == &MOS6502::REL)
+        instrStr << "$" << std::hex << addrRel << " (REL)";
+    else if(m_currentInstruction.addrMode == &MOS6502::ID0)
+        instrStr << "($" << std::hex <<  addrAbs << ")" << " (ID0)";
+    else if(m_currentInstruction.addrMode == &MOS6502::ABX)
+        instrStr << "$" << std::hex << addrAbs << ",X" << " (ABX)";
+    else if(m_currentInstruction.addrMode == &MOS6502::ABY)
+        instrStr << "$" << std::hex << addrAbs << ",Y" << " (ABY)";
+    else if(m_currentInstruction.addrMode == &MOS6502::ZPX)
+        instrStr << "$" << std::hex << addrAbs << ",X" << " (ZPX)";
+    else if(m_currentInstruction.addrMode == &MOS6502::ZPY)
+        instrStr << "$" << std::hex << addrAbs << ",Y" << " (ZPY)";
+    else if(m_currentInstruction.addrMode == &MOS6502::IDX)
+        instrStr << "($" << std::hex << addrAbs << ",X)" << " (IDX)";
+    else if(m_currentInstruction.addrMode == &MOS6502::IDY)
+        instrStr << "($" << std::hex << addrAbs << "),Y" << " (IDY)";
+    else if(m_currentInstruction.addrMode == &MOS6502::IMP)
+        instrStr << "(IMP)";
     else
-        instrStr << " (\?\?\?)";
+        instrStr << "none";
 
     return instrStr.str();
 }
@@ -89,14 +89,14 @@ std::string MOS6502::buildInstrString(instruction_t instr) {
 void MOS6502::hardReset() {
 
     // Initial status NVxBDIZC = 0x34
-    m_registers.status.c = 0;
-    m_registers.status.z = 0;
-    m_registers.status.i = 1;
-    m_registers.status.d = 0;
-    m_registers.status.b = 1;
-    m_registers.status.x = 1;
-    m_registers.status.n = 0;
-    m_registers.status.v = 0;
+    m_registers.status.c = false;
+    m_registers.status.z = false;
+    m_registers.status.i = true;
+    m_registers.status.d = false;
+    m_registers.status.b = true;
+    m_registers.status.x = true;
+    m_registers.status.n = false;
+    m_registers.status.v = false;
 
     m_registers.acc = 0;
     m_registers.x = 0;
@@ -109,14 +109,15 @@ void MOS6502::hardReset() {
     for(uint16_t i = 0; i <= 0xF; i++){
         m_mainBus.write(0x4000 + i, 0x00);
     }
-    uint16_t addrToClean[] = {0x4017, 0x4015, 0x4010, 0x4011, 0x4012, 0x4013};
-    for(uint16_t i = 0; i < 6; i++){
-        m_mainBus.write(addrToClean[i], 0x00);
+
+    for(uint16_t i : {0x4017, 0x4015, 0x4010, 0x4011, 0x4012, 0x4013}){
+        m_mainBus.write(i, 0x00);
     }
 
-    m_registers.pc = m_mainBus.read(0xFFFC) | ((uint16_t)m_mainBus.read(0xFFFD) << 8);
+    m_registers.pc = m_mainBus.read(VECTOR_RST) | ((uint16_t)m_mainBus.read(VECTOR_RST + 1) << 8);
 
-    addrAbs = addrRel = accOperation = 0;
+    addrAbs = addrRel = 0;
+    accOperation = false;
     cycles = 7;
     cycleCount = 0;
 
@@ -132,12 +133,13 @@ void MOS6502::hardReset() {
 void MOS6502::softReset(){
 
     m_registers.sp -= 3;
-    m_registers.status.i = 1;
+    m_registers.status.i = true;
     m_mainBus.write(0x4015, 0x00);
 
     m_registers.pc = m_mainBus.read(0xFFFC) | ((uint16_t)m_mainBus.read(0xFFFD) << 8);
 
-    addrAbs = addrRel = accOperation = 0;
+    addrAbs = addrRel = 0;
+    accOperation = false;
     cycles = 7;
     cycleCount = 0;
 
@@ -150,9 +152,9 @@ void MOS6502::IRQ(bool active){
 
 void MOS6502::irqHandler(){
 
-    m_mainBus.write(stackPos + m_registers.sp, (uint8_t)((m_registers.pc & 0xFF00) >> 8));
+    m_mainBus.write(STACK_POSITION + m_registers.sp, (uint8_t)((m_registers.pc & 0xFF00) >> 8));
     m_registers.sp--;
-    m_mainBus.write(stackPos + m_registers.sp, (uint8_t)(m_registers.pc & 0xFF));
+    m_mainBus.write(STACK_POSITION + m_registers.sp, (uint8_t)(m_registers.pc & 0xFF));
     m_registers.sp--;
 
     uint8_t status = m_registers.status.c;
@@ -163,12 +165,12 @@ void MOS6502::irqHandler(){
     status |= 0x1 << 5; //Status 5 always 1.
     status |= m_registers.status.v << 6;
     status |= m_registers.status.n << 7;
-    m_mainBus.write(stackPos + m_registers.sp, status);
+    m_mainBus.write(STACK_POSITION + m_registers.sp, status);
     m_registers.sp--;
 
-    m_registers.pc = m_mainBus.read(0xFFFE) | ((uint16_t)m_mainBus.read(0xFFFF) << 8);
+    m_registers.pc = m_mainBus.read(VECTOR_IRQ) | ((uint16_t)m_mainBus.read(VECTOR_IRQ + 1) << 8);
 
-    m_registers.status.i = 1;
+    m_registers.status.i = true;
 
     cycles += 7;
 }
@@ -179,9 +181,9 @@ void MOS6502::NMI(){
 
 void MOS6502::nmiHandler(){
 
-    m_mainBus.write(stackPos + m_registers.sp, (uint8_t)((m_registers.pc & 0xFF00) >> 8));
+    m_mainBus.write(STACK_POSITION + m_registers.sp, (uint8_t)((m_registers.pc & 0xFF00) >> 8));
     m_registers.sp--;
-    m_mainBus.write(stackPos + m_registers.sp, (uint8_t)(m_registers.pc & 0xFF));
+    m_mainBus.write(STACK_POSITION + m_registers.sp, (uint8_t)(m_registers.pc & 0xFF));
     m_registers.sp--;
 
     uint8_t status = m_registers.status.c;
@@ -192,12 +194,12 @@ void MOS6502::nmiHandler(){
     status |= 0x1 << 5; //Status 5 always 1.
     status |= m_registers.status.v << 6;
     status |= m_registers.status.n << 7;
-    m_mainBus.write(stackPos + m_registers.sp, status);
+    m_mainBus.write(STACK_POSITION + m_registers.sp, status);
     m_registers.sp--;
 
-    m_registers.pc = m_mainBus.read(0xFFFA) | ((uint16_t)m_mainBus.read(0xFFFB) << 8);
+    m_registers.pc = m_mainBus.read(VECTOR_NMI) | ((uint16_t)m_mainBus.read(VECTOR_NMI + 1) << 8);
 
-    m_registers.status.i = 1;
+    m_registers.status.i = true;
 
     cycles += 7;
 }
@@ -295,40 +297,72 @@ void MOS6502::CLK(){
     cycleCount++;
 }
 
-bool MOS6502::instrFinished(){
+bool MOS6502::instrFinished() const {
     return cycles == 0;
-}
-
-const char * MOS6502::currentMnemonic() const{
-    return m_currentInstruction.mnemonic;
-}
-
-std::string MOS6502::currentInstruction() {
-
-    return buildInstrString(m_currentInstruction);
-}
-
-std::string MOS6502::nextInstruction() {
-
-    uint8_t opcode = m_mainBus.read(m_registers.pc);
-    return buildInstrString(lookup[opcode]);
-}
-
-std::string MOS6502::nextOpcode() {
-    return lookup[m_mainBus.read(m_registers.pc)].mnemonic;
-}
-
-uint64_t MOS6502::getCycleCount() const{
-    return cycleCount;
-}
-
-uint8_t MOS6502::getRemainingCycles() const{
-    return cycles;
 }
 
 std::vector<EmulatorWindow> MOS6502::getGUIs() {
 
-    return {};
+    std::function<void(void)> debugger = [this](){
+
+        // Window contents
+        // ===================================================================
+        ImGui::SeparatorText("Current instruction");
+        ImGui::Text("Mnemonic: %s", m_currentInstruction.mnemonic);
+        ImGui::Text("Cycles: %u/%u", cycles, m_currentInstruction.cycles);
+        ImGui::Text("Size: %u B", m_currentInstruction.instrLen);
+        ImGui::Text("Address mode: %s", getCurrentAddressString().c_str());
+        ImGui::Text("Remaining cycles: %u", cycles);
+
+        ImGui::SeparatorText("Registers");
+        ImGui::InputScalar("PC", ImGuiDataType_U16, &m_registers.x, nullptr, nullptr, "%x", ImGuiInputTextFlags_CharsHexadecimal);
+        ImGui::InputScalar("SP", ImGuiDataType_U8, &m_registers.x, nullptr, nullptr, "%x", ImGuiInputTextFlags_CharsHexadecimal);
+        ImGui::InputScalar("ACC", ImGuiDataType_U8, &m_registers.x, nullptr, nullptr, "%x", ImGuiInputTextFlags_CharsHexadecimal);
+        ImGui::InputScalar("X", ImGuiDataType_U8, &m_registers.x, nullptr, nullptr, "%x", ImGuiInputTextFlags_CharsHexadecimal);
+        ImGui::InputScalar("Y", ImGuiDataType_U8, &m_registers.x, nullptr, nullptr, "%x", ImGuiInputTextFlags_CharsHexadecimal);
+
+        ImGui::SeparatorText("Status flags");
+        ImGui::Checkbox("C", &m_registers.status.c);
+        ImGui::SameLine();
+        ImGui::Checkbox("Z", &m_registers.status.z);
+        ImGui::SameLine();
+        ImGui::Checkbox("I", &m_registers.status.i);
+        ImGui::SameLine();
+        ImGui::Checkbox("D", &m_registers.status.d);
+        ImGui::Checkbox("B", &m_registers.status.b);
+        ImGui::SameLine();
+        ImGui::Checkbox("X", &m_registers.status.x);
+        ImGui::SameLine();
+        ImGui::Checkbox("V", &m_registers.status.v);
+        ImGui::SameLine();
+        ImGui::Checkbox("N", &m_registers.status.n);
+
+
+        ImGui::SeparatorText("Interrupt vectors");
+        ImGui::Text("NMI at: 0x%x", VECTOR_NMI);
+        ImGui::Text("RESET at: 0x%x", VECTOR_RST);
+        ImGui::Text("IRQ/BRK at: 0x%x", VECTOR_IRQ);
+        ImGui::SeparatorText("Interrupt status");
+        ImGui::BeginDisabled();
+        ImGui::Checkbox("NMI signal active", &m_nmi);
+        ImGui::Checkbox("NMI pending", &m_nmiPending);
+        ImGui::Checkbox("IRQ signal active", &m_nmi);
+        ImGui::Checkbox("IRQ pending", &m_nmiPending);
+        ImGui::EndDisabled();
+
+        ImGui::SeparatorText("Stack");
+        ImGui::Text("Stack position: 0x%x", STACK_POSITION);
+    };
+
+    return {
+            EmulatorWindow{
+                    .category = m_deviceName,
+                    .title = "Debugger",
+                    .id    = getDeviceID(),
+                    .dock  = DockSpace::LEFT,
+                    .guiFunction = debugger
+            }
+    };
 }
 // =========================================================================================
 //Addressing modes.
@@ -471,7 +505,7 @@ uint8_t MOS6502::ADC(){
     m_registers.status.n = (result & 0x80) == 0x80;
 
     if(memoryNegative != accNegative)
-        m_registers.status.v = 0;
+        m_registers.status.v = false;
     else
         m_registers.status.v = memoryNegative == accNegative && memoryNegative != m_registers.status.n;
 
@@ -562,9 +596,9 @@ uint8_t MOS6502::BRK(){
 
     m_registers.pc++;
 
-    m_mainBus.write(stackPos + m_registers.sp, (m_registers.pc & 0xFF00) >> 8);
+    m_mainBus.write(STACK_POSITION + m_registers.sp, (m_registers.pc & 0xFF00) >> 8);
     m_registers.sp--;
-    m_mainBus.write(stackPos + m_registers.sp, m_registers.pc & 0xFF);
+    m_mainBus.write(STACK_POSITION + m_registers.sp, m_registers.pc & 0xFF);
     m_registers.sp--;
 
     uint8_t status = m_registers.status.c;
@@ -575,12 +609,12 @@ uint8_t MOS6502::BRK(){
     status |= 0x1 << 5; //Status 5 always 1.
     status |= m_registers.status.v << 6;
     status |= m_registers.status.n << 7;
-    m_mainBus.write(stackPos + m_registers.sp, status);
+    m_mainBus.write(STACK_POSITION + m_registers.sp, status);
     m_registers.sp--;
 
-    m_registers.status.i = 1;
+    m_registers.status.i = true;
 
-    m_registers.pc = m_mainBus.read(0xFFFE) | ((uint16_t)m_mainBus.read(0xFFFF) << 8);
+    m_registers.pc = m_mainBus.read(VECTOR_IRQ) | ((uint16_t)m_mainBus.read(VECTOR_IRQ) << 8);
 
     return 0;
 }
@@ -599,25 +633,25 @@ uint8_t MOS6502::BVS(){
 
 uint8_t MOS6502::CLC(){
 
-    m_registers.status.c = 0;
+    m_registers.status.c = false;
     return 0;
 }
 
 uint8_t MOS6502::CLD(){
 
-    m_registers.status.d = 0;
+    m_registers.status.d = false;
     return 0;
 }
 
 uint8_t MOS6502::CLI(){
 
-    m_registers.status.i = 0;
+    m_registers.status.i = false;
     return 0;
 }
 
 uint8_t MOS6502::CLV(){
 
-    m_registers.status.v = 0;
+    m_registers.status.v = false;
     return 0;
 }
 
@@ -728,9 +762,9 @@ uint8_t MOS6502::JSR(){
 
     m_registers.pc--;
 
-    m_mainBus.write(stackPos + m_registers.sp, (m_registers.pc >> 8) & 0x00FF);
+    m_mainBus.write(STACK_POSITION + m_registers.sp, (m_registers.pc >> 8) & 0x00FF);
     m_registers.sp--;
-    m_mainBus.write(stackPos + m_registers.sp, m_registers.pc & 0x00FF);
+    m_mainBus.write(STACK_POSITION + m_registers.sp, m_registers.pc & 0x00FF);
     m_registers.sp--;
 
     m_registers.pc = addrAbs;
@@ -802,7 +836,7 @@ uint8_t MOS6502::ORA(){
 
 uint8_t MOS6502::PHA(){
 
-    m_mainBus.write(stackPos + m_registers.sp, m_registers.acc);
+    m_mainBus.write(STACK_POSITION + m_registers.sp, m_registers.acc);
     m_registers.sp--;
     return 0;
 }
@@ -818,7 +852,7 @@ uint8_t MOS6502::PHP(){
     status |= m_registers.status.v << 6;
     status |= m_registers.status.n << 7;
 
-    m_mainBus.write(stackPos + m_registers.sp, status);
+    m_mainBus.write(STACK_POSITION + m_registers.sp, status);
     m_registers.sp--;
     return 0;
 }
@@ -826,7 +860,7 @@ uint8_t MOS6502::PHP(){
 uint8_t MOS6502::PLA(){
 
     m_registers.sp++;
-    m_registers.acc = m_mainBus.read(stackPos + m_registers.sp);
+    m_registers.acc = m_mainBus.read(STACK_POSITION + m_registers.sp);
     m_registers.status.z = m_registers.acc == 0;
     m_registers.status.n = (m_registers.acc & 0x80) == 0x80;
 
@@ -836,7 +870,7 @@ uint8_t MOS6502::PLA(){
 uint8_t MOS6502::PLP(){
 
     m_registers.sp++;
-    uint8_t status = m_mainBus.read(stackPos + m_registers.sp);
+    uint8_t status = m_mainBus.read(STACK_POSITION + m_registers.sp);
     m_registers.status.c = status & 0x1;
     m_registers.status.z = (status & 0x2) >> 1;
     m_registers.status.i = (status & 0x4) >> 2;
@@ -912,17 +946,17 @@ uint8_t MOS6502::ROR(){
 uint8_t MOS6502::RTI(){
 
     m_registers.sp++;
-    uint8_t flags = m_mainBus.read(stackPos + m_registers.sp);
+    uint8_t flags = m_mainBus.read(STACK_POSITION + m_registers.sp);
     m_registers.sp++;
-    m_registers.pc = m_mainBus.read(stackPos + m_registers.sp) | (m_mainBus.read(stackPos + m_registers.sp + 1) << 8);
+    m_registers.pc = m_mainBus.read(STACK_POSITION + m_registers.sp) | (m_mainBus.read(STACK_POSITION + m_registers.sp + 1) << 8);
     m_registers.sp++;
 
     m_registers.status.c = flags & 0x1;
     m_registers.status.z = (flags & 0x2) >> 1;
     m_registers.status.i = (flags & 0x4) >> 2;
     m_registers.status.d = (flags & 0x8) >> 3;
-    m_registers.status.b = 0;
-    m_registers.status.x = 0;
+    m_registers.status.b = false;
+    m_registers.status.x = false;
     m_registers.status.v = (flags & 0x40) >> 6;
     m_registers.status.n = (flags & 0x80) >> 7;
 
@@ -932,7 +966,7 @@ uint8_t MOS6502::RTI(){
 uint8_t MOS6502::RTS(){
 
     m_registers.sp++;
-    m_registers.pc = ((m_mainBus.read(stackPos + m_registers.sp) | ((uint16_t)m_mainBus.read(stackPos + m_registers.sp + 1) << 8))) + 1;
+    m_registers.pc = ((m_mainBus.read(STACK_POSITION + m_registers.sp) | ((uint16_t)m_mainBus.read(STACK_POSITION + m_registers.sp + 1) << 8))) + 1;
     m_registers.sp++;
 
     return 0;
@@ -956,19 +990,19 @@ uint8_t MOS6502::SBC(){
 
 uint8_t MOS6502::SEC(){
 
-    m_registers.status.c = 1;
+    m_registers.status.c = true;
     return 0;
 }
 
 uint8_t MOS6502::SED(){
 
-    m_registers.status.d = 1;
+    m_registers.status.d = true;
     return 0;
 }
 
 uint8_t MOS6502::SEI(){
 
-    m_registers.status.i = 1;
+    m_registers.status.i = true;
     return 0;
 }
 
