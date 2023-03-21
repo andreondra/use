@@ -23,9 +23,12 @@ protected:
     // ===========================================
     /// 6502 default stack position.
     static constexpr uint16_t STACK_POSITION = 0x0100;
-    static constexpr uint16_t VECTOR_NMI = 0x0FFA;
-    static constexpr uint16_t VECTOR_RST = 0x0FFC;
-    static constexpr uint16_t VECTOR_IRQ = 0x0FFE;
+    /// NMI vector position.
+    static constexpr uint16_t VECTOR_NMI = 0xFFFA;
+    /// Reset vector position.
+    static constexpr uint16_t VECTOR_RST = 0xFFFC;
+    /// IRQ vector position.
+    static constexpr uint16_t VECTOR_IRQ = 0xFFFE;
 
 
     /// A single instruction.
@@ -64,14 +67,22 @@ protected:
 
     /// Status register flags. Not using bit fields to ease external manipulation.
     struct status_flags_t {
-        bool c; // Carry.
-        bool z; // Zero.
-        bool i; // IRQ mask.
-        bool d; // Decimal mode.
-        bool b; // BRK command.
-        bool x; // Not an official register.
-        bool v; // Overflow.
-        bool n; // Negative.
+        /// Carry.
+        bool c = false;
+        /// Zero.
+        bool z = false;
+        /// IRQ mask.
+        bool i = false;
+        /// Decimal mode.
+        bool d = false;
+        /// BRK command.
+        bool b = false;
+        /// Unused.
+        bool x = false;
+        /// Overflow.
+        bool v = false;
+        /// Negative.
+        bool n = false;
     };
 
     /// Registers.
@@ -87,11 +98,16 @@ protected:
     // ===========================================
     // Emulation helper variables
     // ===========================================
-    uint16_t addrAbs;
-    uint16_t addrRel;
-    uint8_t cycles;
-    uint64_t cycleCount;
-    bool accOperation;
+    /// Absolute address.
+    uint16_t m_addrAbs = false;
+    /// Relative address.
+    uint16_t m_addrRel = false;
+    /// Currently remaining cycles.
+    uint8_t m_cycles   = 0;
+    /// All cycles.
+    uint64_t m_cycleCount = 0;
+    /// Signalizes accumulator operation address mode.
+    bool m_accOperation = false;
 
     /// Next CPU mode.
     enum class nextMode_t {
@@ -101,7 +117,7 @@ protected:
         IRQ_ISR,
         /// Jump to IRQ ISR.
         NMI_ISR
-    } m_next;
+    } m_next = nextMode_t::INSTRUCTION;
 
     /// NMI pin state.
     bool m_nmi = false;
@@ -114,23 +130,35 @@ protected:
     /// Previous interrupt mask flag state.
     bool m_oldInterruptMask = false;
 
-    /// Initialized to NOP.
+    /// Current instruction, initialized to NOP.
     instruction_t m_currentInstruction;
-    uint8_t m_currentOpcode;
+    /// Current opcode (instruction index).
+    uint8_t m_currentOpcode = 0xEA;
 
     // ===========================================
     // Emulator internal functions
     // ===========================================
+    /// Get current address mode description.
     std::string getCurrentAddressString();
+    /**
+     * Process an IRQ.
+     */
     void irqHandler();
+    /**
+     * Process a NMI.
+     * */
     void nmiHandler();
+    /**
+     * Do a hard reset.
+     * This function sets the CPU to a default power-on state.
+     * */
     void hardReset();
 
     // ===========================================
     // I/O
     // ===========================================
+    /// Connection to the main system bus.
     DataPort m_mainBus;
-    DataInterface mainBus;
 
     /// Interrupt request signal.
     void IRQ(bool active);
@@ -142,6 +170,9 @@ protected:
     // ===========================================
     // Pseudoinstructions
     // ===========================================
+    /**
+     * This function does common operation for all branching instructions.
+     * */
     void branch(bool condition);
 
     // ===========================================
@@ -192,34 +223,34 @@ protected:
     uint8_t BVC(); //!< Branch if overflow clear.
     uint8_t BVS(); //!< Branch if overflow set.
     uint8_t CLC(); //!< Clear carry flag.
-    uint8_t CLD(); // Clear decimal mode flag.
-    uint8_t CLI(); // Clear interrupt disable flag.
-    uint8_t CLV(); // Clear overflow flag.
-    uint8_t CMP(); // Compare.
-    uint8_t CPX(); // Compare X register.
-    uint8_t CPY(); // Compare Y register.
-    uint8_t DEC(); // Decrement memory.
-    uint8_t DEX(); // Decrement X register.
-    uint8_t DEY(); // Decrement Y register.
-    uint8_t EOR(); // Exclusive OR.
-    uint8_t INC(); // Increment memory.
-    uint8_t INX(); // Increment X register.
-    uint8_t INY(); // Increment Y register.
-    uint8_t JMP(); // Modify the pc.
-    uint8_t JSR(); // Jump to subroutine.
-    uint8_t LDA(); // Load accumulator.
-    uint8_t LDX(); // Load X register.
-    uint8_t LDY(); // Load Y register.
-    uint8_t LSR(); // Logical shift right.
-    uint8_t NOP(); // No operation.
-    uint8_t ORA(); // Logical inclusive OR.
-    uint8_t PHA(); // Push accumulator.
-    uint8_t PHP(); // Push processor status.
-    uint8_t PLA(); // Pull accumulator.
-    uint8_t PLP(); // Pull processor status.
-    uint8_t ROL(); // Rotate left.
-    uint8_t ROR(); // Rotate right.
-    uint8_t RTI(); // Return from interrupt.
+    uint8_t CLD(); //!< Clear decimal mode flag.
+    uint8_t CLI(); //!< Clear interrupt disable flag.
+    uint8_t CLV(); //!< Clear overflow flag.
+    uint8_t CMP(); //!< Compare.
+    uint8_t CPX(); //!< Compare X register.
+    uint8_t CPY(); //!< Compare Y register.
+    uint8_t DEC(); //!< Decrement memory.
+    uint8_t DEX(); //!< Decrement X register.
+    uint8_t DEY(); //!< Decrement Y register.
+    uint8_t EOR(); //!< Exclusive OR.
+    uint8_t INC(); //!< Increment memory.
+    uint8_t INX(); //!< Increment X register.
+    uint8_t INY(); //!< Increment Y register.
+    uint8_t JMP(); //!< Modify the pc.
+    uint8_t JSR(); //!< Jump to subroutine.
+    uint8_t LDA(); //!< Load accumulator.
+    uint8_t LDX(); //!< Load X register.
+    uint8_t LDY(); //!< Load Y register.
+    uint8_t LSR(); //!< Logical shift right.
+    uint8_t NOP(); //!< No operation.
+    uint8_t ORA(); //!< Logical inclusive OR.
+    uint8_t PHA(); //!< Push accumulator.
+    uint8_t PHP(); //!< Push processor status.
+    uint8_t PLA(); //!< Pull accumulator.
+    uint8_t PLP(); //!< Pull processor status.
+    uint8_t ROL(); //!< Rotate left.
+    uint8_t ROR(); //!< Rotate right.
+    uint8_t RTI(); //!< Return from interrupt.
     uint8_t RTS(); //!< Return from subroutine.
     uint8_t SBC(); //!< Subtract with carry.
     uint8_t SEC(); //!< Set carry flag.
@@ -259,7 +290,6 @@ protected:
 
 public:
 
-    // Constructor with bindings to bus via function pointers.
     explicit MOS6502();
     ~MOS6502() override;
 
