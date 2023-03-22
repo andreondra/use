@@ -3,8 +3,6 @@
 //
 
 #include "components/Gamepak/Gamepak.h"
-#include <fstream>
-#include <iostream>
 #include <string>
 #include "imgui.h"
 
@@ -99,7 +97,7 @@ void Gamepak::load(std::ifstream & ifs){
     if(!ifs || ifs.gcount() != 4) throw std::runtime_error("File I/O error.");
     // Expected signature is "NES" in ASCII followed by MS-DOS EOF.
     if(buffer != std::vector<char>({0x4E, 0x45, 0x53, 0x1A}))
-        throw std::invalid_argument("File has malformed header.")
+        throw std::invalid_argument("File has malformed header.");
 
     // Load PRG (program) and CHR (character) ROM size.
     // ============================================================
@@ -344,6 +342,8 @@ uint8_t Gamepak::CIRAMRead(uint16_t address) {
     } else if(m_params.mirroringType == mirroringType_t::SINGLE_HI){
         return m_CIRAM[0x400 + (address & 0x3FF)];
     }
+
+    return 0x00;
 }
 
 void Gamepak::CIRAMWrite(uint16_t address, uint8_t data) {
@@ -356,7 +356,7 @@ void Gamepak::CIRAMWrite(uint16_t address, uint8_t data) {
         if(address >= 0x000 && address <= 0x3FF)
             m_CIRAM[address & 0x3FF] = data;
         else if(address >= 0x400 && address <= 0x7FF)
-            m_CIRAM[addr & 0x3FF] = data;
+            m_CIRAM[address & 0x3FF] = data;
         else if(address >= 0x800 && address <= 0xBFF)
             m_CIRAM[0x400 + (address & 0x3FF)] = data;
         else if(address >= 0xC00 && address <= 0xFFF)
