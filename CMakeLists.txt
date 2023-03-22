@@ -34,7 +34,7 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake_src")
 include_directories(${PROJECT_INCLUDE_DIR})
 
 # Including sources.
-file(GLOB projectSources src/* src/**/*)
+file(GLOB projectSources src/*.cpp src/*/*.cpp src/*/*/*.cpp)
 message("Included source files: ${projectSources}")
 
 ##########################################################
