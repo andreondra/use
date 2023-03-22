@@ -1,6 +1,10 @@
-//
-// Created by golas on 21.3.23.
-//
+/**
+ * @file Gamepak.cpp
+ * @author Ondrej Golasowski (golasowski.o@gmail.com)
+ * @brief NES Gamepak emulation implementation.
+ * @copyright Copyright (c) 2022 Ondrej Golasowski
+ *
+ */
 
 #include "components/Gamepak/Gamepak.h"
 #include <string>
