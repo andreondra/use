@@ -36,7 +36,7 @@ void Mapper000::init() {
 }
 
 bool Mapper000::useCIRAM() {
-    return false;
+    return true;
 }
 
 bool Mapper000::cpuRead(uint16_t addr, uint8_t &data) {
