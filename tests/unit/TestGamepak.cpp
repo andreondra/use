@@ -16,7 +16,7 @@ TEST(TestGamepak, InitialValues) {
         void initTest() {
             EXPECT_EQ(m_params.PRGROMsize, 0);
             EXPECT_EQ(m_params.CHRROMsize, 0);
-            EXPECT_EQ(m_params.mirroringType, mirroringType_t::HORIZONTAL);
+            EXPECT_EQ(m_params.mirroringType, Mapper::mirroringType_t::HORIZONTAL);
             EXPECT_EQ(m_params.fileFormat, fileFormat_t::INES);
             EXPECT_EQ(m_params.hasPersistentMemory, false);
             EXPECT_EQ(m_params.hasTrainer, false);
@@ -48,7 +48,7 @@ TEST(TestGamepak, FileLoad) {
         void test(std::vector<uint8_t> & rawPRGData, std::vector<uint8_t> & rawCHRData) {
             EXPECT_EQ(m_params.PRGROMsize, 0x4000);
             EXPECT_EQ(m_params.CHRROMsize, 0x2000);
-            EXPECT_EQ(m_params.mirroringType, mirroringType_t::HORIZONTAL);
+            EXPECT_EQ(m_params.mirroringType, Mapper::mirroringType_t::HORIZONTAL);
             EXPECT_EQ(m_params.fileFormat, fileFormat_t::INES);
             EXPECT_EQ(m_params.hasPersistentMemory, false);
             EXPECT_EQ(m_params.hasTrainer, false);
@@ -96,10 +96,10 @@ TEST(TestGamepak, CIRAM) {
         // Fake mirroring to test various CIRAM modes.
         void setMirroring(int mode) {
             switch (mode) {
-                case 0: m_params.mirroringType = mirroringType_t::HORIZONTAL; break;
-                case 1: m_params.mirroringType = mirroringType_t::VERTICAL; break;
-                case 2: m_params.mirroringType = mirroringType_t::SINGLE_LO; break;
-                case 3: m_params.mirroringType = mirroringType_t::SINGLE_HI; break;
+                case 0: m_params.mirroringType = Mapper::mirroringType_t::HORIZONTAL; break;
+                case 1: m_params.mirroringType = Mapper::mirroringType_t::VERTICAL; break;
+                case 2: m_params.mirroringType = Mapper::mirroringType_t::SINGLE_LO; break;
+                case 3: m_params.mirroringType = Mapper::mirroringType_t::SINGLE_HI; break;
             }
         }
     } gamepak;
