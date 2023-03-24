@@ -40,8 +40,6 @@ protected:
     // ===========================================
     // Types
     // ===========================================
-    /// Type of CIRAM mirroring.
-    enum class mirroringType_t {HORIZONTAL, VERTICAL, FOURSCREEN, SINGLE_LO, SINGLE_HI};
     /// Type of file format.
     enum class fileFormat_t {NES20, INES, ARCHAICINES};
     /// Console type.
@@ -61,7 +59,7 @@ protected:
         /// Absolute size of CHR ROM.
         size_t CHRROMsize;
         /// Mirroring type.
-        mirroringType_t mirroringType;
+        Mapper::mirroringType_t mirroringType;
         /// File format.
         fileFormat_t fileFormat;
         /// Whether the gamepak contains any persistent memory.
@@ -97,7 +95,7 @@ protected:
         void init() {
             PRGROMsize = 0;
             CHRROMsize = 0;
-            mirroringType = mirroringType_t::HORIZONTAL;
+            mirroringType = Mapper::mirroringType_t::HORIZONTAL;
             fileFormat = fileFormat_t::INES;
             hasPersistentMemory = false;
             hasTrainer = false;
@@ -132,28 +130,6 @@ protected:
     // ===========================================
     /// Gamepak's mapper.
     std::unique_ptr<Mapper> m_mapper;
-
-    // ===========================================
-    // CIRAM handling
-    // ===========================================
-    /// PPU's built-in video memory (VRAM/CIRAM) emulation.
-
-    std::array<uint8_t, 0x800> m_CIRAM {0x00};
-    /**
-     * Write to CIRAM if used.
-     *
-     * @param address Address to write to.
-     * @param data Data to write.
-     * */
-    void CIRAMWrite(uint16_t address, uint8_t data);
-
-    /**
-     * Read from CIRAM if used.
-     *
-     * @param address Address to read from.
-     * @return Read data.
-     * */
-    uint8_t CIRAMRead(uint16_t address);
 
 public:
     Gamepak();

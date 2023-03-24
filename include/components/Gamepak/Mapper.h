@@ -21,8 +21,41 @@
  * There is a lot of mappers, this class is only a unified interface. A mapper can provide additional
  * storage (e.g. RAM) and functions, but of course needs access to standard data blocks (PRG and CHR).
  * This is emulated by a pointer to the Gamepak class.
+ *
+ * This class only provides CIRAM. CIRAM is originally located in the PPU and provides
+ * a kind of built-in VRAM. Mapper can choose to:
+ * a) use CIRAM with fixed mirroring mode (the mode is specified in the header of ROM dump),
+ * b) use CIRAM and handle mirroring mode change itself (the mode in ROM dump is then ignored),
+ * c) not use CIRAM and handle VRAM itself altogether.
 */
 class Mapper {
+public:
+    /// Type of CIRAM mirroring.
+    enum class mirroringType_t {HORIZONTAL, VERTICAL, FOURSCREEN, SINGLE_LO, SINGLE_HI};
+
+protected:
+    // ===========================================
+    // CIRAM handling
+    // ===========================================
+    mirroringType_t m_mirroringType = mirroringType_t::HORIZONTAL;
+    /// PPU's built-in video memory (VRAM/CIRAM) emulation.
+    std::array<uint8_t, 0x800> m_CIRAM {0x00};
+    /**
+     * Write to CIRAM if used.
+     *
+     * @param address Address to write to.
+     * @param data Data to write.
+     * */
+    virtual void CIRAMWrite(uint16_t address, uint8_t data);
+
+    /**
+     * Read from CIRAM if used.
+     *
+     * @param address Address to read from.
+     * @return Read data.
+     * */
+    virtual uint8_t CIRAMRead(uint16_t address);
+
 public:
     Mapper() = default;
     virtual ~Mapper() = default;
@@ -30,13 +63,7 @@ public:
     /**
      * Initialize mapper to the power-up state = clean all volatile memories.
      * */
-    virtual void init()                                 = 0;
-
-    /**
-     * Whether to use PPU's built in video memory.
-     * @return true If the mapper wants to use CIRAM.
-     * */
-    virtual bool useCIRAM()                             = 0;
+    virtual void init();
 
     /**
      * CPU read interface.

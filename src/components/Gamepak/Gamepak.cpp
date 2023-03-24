@@ -42,28 +42,19 @@ Gamepak::Gamepak() {
 
                 if(m_mapper) {
 
-                    if(address >= 0x2000 && address <= 0x3EFF && m_mapper->useCIRAM()) {
-                        buffer = CIRAMRead(address);
-                        return true;
-                    } else {
+                    uint8_t mapperResult;
+                    bool mapperState = m_mapper->ppuRead(static_cast<uint16_t>(address), mapperResult);
+                    buffer = mapperResult;
+                    return mapperState;
 
-                        uint8_t mapperResult;
-                        bool mapperState = m_mapper->ppuRead(static_cast<uint16_t>(address), mapperResult);
-                        buffer = mapperResult;
-                        return mapperState;
-                    }
-
-                } else
+                } else {
                     return false;
+                }
             },
 
             .write = [&](uint32_t address, uint32_t data) {
                 if(m_mapper) {
-
-                    if(address >= 0x2000 && address <= 0x3EFF && m_mapper->useCIRAM())
-                        CIRAMWrite(address, data);
-                    else
-                        m_mapper->ppuWrite(static_cast<uint16_t>(address), static_cast<uint8_t>(data));
+                    m_mapper->ppuWrite(static_cast<uint16_t>(address), static_cast<uint8_t>(data));
                 }
             }
     });
@@ -76,7 +67,6 @@ Gamepak::~Gamepak() = default;
 
 void Gamepak::init(){
 
-    m_CIRAM.fill(0x00);
     if(m_mapper)
         m_mapper->init();
 }
@@ -88,7 +78,6 @@ void Gamepak::load(std::ifstream & ifs){
     m_trainer.clear();
     m_PRGROM.clear();
     m_CHRROM.clear();
-    m_CIRAM.fill(0x00);
 
     // Init metadata to values common for all iNES file types.
     m_params.init();
@@ -133,10 +122,10 @@ void Gamepak::load(std::ifstream & ifs){
     // Choosing mirroring type.
     bool ignoreMirroring = flags6 & 0x8;
     if(ignoreMirroring) {
-        m_params.mirroringType = mirroringType_t::FOURSCREEN;
+        m_params.mirroringType = Mapper::mirroringType_t::FOURSCREEN;
     } else {
         bool mirroring = flags6 & 0x01;
-        m_params.mirroringType = (mirroring) ? mirroringType_t::VERTICAL : mirroringType_t::HORIZONTAL;
+        m_params.mirroringType = (mirroring) ? Mapper::mirroringType_t::VERTICAL : Mapper::mirroringType_t::HORIZONTAL;
     }
 
     m_params.hasPersistentMemory = flags6 & 0x2;
@@ -256,10 +245,15 @@ void Gamepak::load(std::ifstream & ifs){
     // ============================================================
     switch(m_params.mapperNumber){
 
-        case 0x0000: m_mapper = std::make_unique<Mapper000>(m_PRGROM, m_CHRROM); break;
+        case 0x0000: m_mapper = std::make_unique<Mapper000>(m_PRGROM, m_CHRROM, m_params.mirroringType); break;
         // case 0x0001: m_mapper.reset(new Mapper001(&m_meta, &m_PRGROM, &m_CHRROM)); break;
         default: throw std::invalid_argument("Mapper not supported.");
     }
+
+    // Get mapper's VRAM mode.
+    // a) use CIRAM with fixed mirroring (soldered pad on original HW)
+    // b) use CIRAM with switchable mirroring
+    // c) use own VRAM
 }
 
 std::vector<EmulatorWindow> Gamepak::getGUIs() {
@@ -287,105 +281,4 @@ std::vector<EmulatorWindow> Gamepak::getGUIs() {
                     .guiFunction = gamepakGUI
             }
     };
-}
-
-uint8_t Gamepak::CIRAMRead(uint16_t address) {
-
-    // We are interested in the bottom 12 bits, because the nametable addr range is (partially) mirrored.
-    // 0x2000 - 0x23FF = NT 1
-    // 0x2400 - 0x27FF = NT 2
-    // 0x2800 - 0x2BFF = NT 3
-    // 0x2C00 - 0x2FFF = NT 4
-    // 0x3000 - 0x3EFF = Mirrors of 0x2000 - 0x2EFF.
-    //
-    // NT indexes:
-    // 1 | 2
-    // --+--
-    // 3 | 4
-    address &= 0xFFF;
-
-    // Horizontal mirroring
-    // A | A
-    // --+--
-    // B | B
-    if(m_params.mirroringType == mirroringType_t::HORIZONTAL){
-
-        if(address >= 0x000 && address <= 0x3FF)
-            return m_CIRAM[address & 0x3FF];
-        else if(address >= 0x400 && address <= 0x7FF)
-            return m_CIRAM[address & 0x3FF];
-        else if(address >= 0x800 && address <= 0xBFF)
-            return m_CIRAM[0x400 + (address & 0x3FF)];
-        else if(address >= 0xC00 && address <= 0xFFF)
-            return m_CIRAM[0x400 + (address & 0x3FF)];
-
-    // Vertical mirroring
-    // A | B
-    // --+--
-    // A | B
-    } else if(m_params.mirroringType == mirroringType_t::VERTICAL) {
-
-        if(address >= 0x000 && address <= 0x3FF)
-            return m_CIRAM[address & 0x3FF];
-        else if(address >= 0x400 && address <= 0x7FF)
-            return m_CIRAM[0x400 + (address & 0x3FF)];
-        else if(address >= 0x800 && address <= 0xBFF)
-            return m_CIRAM[address & 0x3FF];
-        else if(address >= 0xC00 && address <= 0xFFF)
-            return m_CIRAM[0x400 + (address & 0x3FF)];
-
-    // One screen low.
-    // A | A
-    // --+--
-    // A | A
-    } else if(m_params.mirroringType == mirroringType_t::SINGLE_LO){
-        return m_CIRAM[address & 0x3FF];
-
-    // One screen high.
-    // B | B
-    // --+--
-    // B | B
-    } else if(m_params.mirroringType == mirroringType_t::SINGLE_HI){
-        return m_CIRAM[0x400 + (address & 0x3FF)];
-    }
-
-    return 0x00;
-}
-
-void Gamepak::CIRAMWrite(uint16_t address, uint8_t data) {
-
-    address &= 0xFFF;
-
-    // Horizontal mirroring.
-    if(m_params.mirroringType == mirroringType_t::HORIZONTAL){
-
-        if(address >= 0x000 && address <= 0x3FF)
-            m_CIRAM[address & 0x3FF] = data;
-        else if(address >= 0x400 && address <= 0x7FF)
-            m_CIRAM[address & 0x3FF] = data;
-        else if(address >= 0x800 && address <= 0xBFF)
-            m_CIRAM[0x400 + (address & 0x3FF)] = data;
-        else if(address >= 0xC00 && address <= 0xFFF)
-            m_CIRAM[0x400 + (address & 0x3FF)]  = data;
-
-    // Vertical mirroring.
-    } else if(m_params.mirroringType == mirroringType_t::VERTICAL) {
-
-        if(address >= 0x000 && address <= 0x3FF)
-            m_CIRAM[address & 0x3FF] = data;
-        else if(address >= 0x400 && address <= 0x7FF)
-            m_CIRAM[0x400 + (address & 0x3FF)] = data;
-        else if(address >= 0x800 && address <= 0xBFF)
-            m_CIRAM[address & 0x3FF] = data;
-        else if(address >= 0xC00 && address <= 0xFFF)
-            m_CIRAM[0x400 + (address & 0x3FF)] = data;
-
-    // Only low NT used.
-    } else if(m_params.mirroringType == mirroringType_t::SINGLE_LO){
-        m_CIRAM[address & 0x3FF] = data;
-
-    // Only high NT used.
-    } else if(m_params.mirroringType == mirroringType_t::SINGLE_HI){
-        m_CIRAM[0x400 + (address & 0x3FF)] = data;
-    }
 }
