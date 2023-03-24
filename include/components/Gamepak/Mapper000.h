@@ -35,16 +35,17 @@ protected:
 
 public:
     /**
-     * Construct Mapper 000.
+     * Construct Mapper 000. This mapper has a fixed mirroring mode
+     * depending on hardware configuration (soldered pad), this information
+     * is contained in the ROM dump and passed to the mapper via mirroringType parameter.
      *
      * @throw std::invalid_argument If PRGROM has invalid size (not 0x4000 nor 0x8000).
      * @throw std::invalid_argument If CHRROM has invalid size (not 0x8000).
      * */
-    Mapper000(std::vector<uint8_t> & PRGROM, std::vector<uint8_t> & CHRROM);
+    Mapper000(std::vector<uint8_t> & PRGROM, std::vector<uint8_t> & CHRROM, mirroringType_t mirroringType);
     ~Mapper000() override = default;
 
     void init() override;
-    bool useCIRAM() override;
     bool cpuRead(uint16_t addr, uint8_t & data) override;
     bool cpuWrite(uint16_t addr, uint8_t data)  override;
     bool ppuRead(uint16_t addr, uint8_t & data) override;

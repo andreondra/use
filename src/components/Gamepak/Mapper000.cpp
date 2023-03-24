@@ -10,8 +10,10 @@
 #include "imgui.h"
 #include "components/Gamepak/Mapper000.h"
 
-Mapper000::Mapper000(std::vector<uint8_t> &PRGROM, std::vector<uint8_t> &CHRROM)
+Mapper000::Mapper000(std::vector<uint8_t> &PRGROM, std::vector<uint8_t> &CHRROM, mirroringType_t mirroringType)
     : m_PRGROM(PRGROM), m_CHRROM(CHRROM) {
+
+    m_mirroringType = mirroringType;
 
     // Only 16 KiB or 32 KiB allowed.
     if(
@@ -31,12 +33,11 @@ Mapper000::Mapper000(std::vector<uint8_t> &PRGROM, std::vector<uint8_t> &CHRROM)
 }
 
 void Mapper000::init() {
+
+    Mapper::init();
+
     m_PRGRAM.fill(0x00);
     std::fill(m_CHRRAM.begin(), m_CHRRAM.end(), 0x0);
-}
-
-bool Mapper000::useCIRAM() {
-    return true;
 }
 
 bool Mapper000::cpuRead(uint16_t addr, uint8_t &data) {
@@ -76,6 +77,10 @@ bool Mapper000::ppuRead(uint16_t addr, uint8_t &data) {
             data = m_CHRROM[addr];
 
         return true;
+    } else if (addr >= 0x2000 && addr <= 0x3EFF) {
+
+        CIRAMRead(addr);
+        return true;
     }
 
     return false;
@@ -92,6 +97,10 @@ bool Mapper000::ppuWrite(uint16_t addr, uint8_t data) {
             m_CHRROM[addr] = data;
 
         return true;
+    } else if (addr >= 0x2000 && addr <= 0x3EFF) {
+
+        CIRAMWrite(addr, data);
+        return  true;
     }
 
     return false;
