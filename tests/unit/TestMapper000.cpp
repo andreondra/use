@@ -12,16 +12,16 @@ TEST(TestMapper000, Construction) {
     std::vector<uint8_t> CHRROM;
 
     // Empty ROMs.
-    EXPECT_THROW(Mapper000(PRGROM, CHRROM), std::invalid_argument);
+    EXPECT_THROW(Mapper000(PRGROM, CHRROM, Mapper::mirroringType_t::HORIZONTAL), std::invalid_argument);
 
     // Empty PRG ROM.
     PRGROM.resize(0x4000);
-    EXPECT_NO_THROW(Mapper000(PRGROM, CHRROM));
+    EXPECT_NO_THROW(Mapper000(PRGROM, CHRROM, Mapper::mirroringType_t::HORIZONTAL));
 
     // Invalid sized CHR ROM.
     PRGROM.resize(0x4000);
     CHRROM.resize(0x1000);
-    EXPECT_THROW(Mapper000(PRGROM, CHRROM), std::invalid_argument);
+    EXPECT_THROW(Mapper000(PRGROM, CHRROM, Mapper::mirroringType_t::HORIZONTAL), std::invalid_argument);
 
     // Invalid sized PRG ROM.
     PRGROM.clear();
@@ -30,20 +30,11 @@ TEST(TestMapper000, Construction) {
     // Correctly sized ROMs.
     CHRROM.resize(0x2000);
     PRGROM.resize(0x4000);
-    EXPECT_NO_THROW(Mapper000(PRGROM, CHRROM));
+    EXPECT_NO_THROW(Mapper000(PRGROM, CHRROM, Mapper::mirroringType_t::HORIZONTAL));
 
     CHRROM.resize(0x0);
     PRGROM.resize(0x8000);
-    EXPECT_NO_THROW(Mapper000(PRGROM, CHRROM));
-}
-
-TEST(TestMapper000, CIRAM) {
-
-    std::vector<uint8_t> PRGROM(0x4000, 0x00);
-    std::vector<uint8_t> CHRROM;
-
-    Mapper000 m(PRGROM, CHRROM);
-    EXPECT_TRUE(m.useCIRAM());
+    EXPECT_NO_THROW(Mapper000(PRGROM, CHRROM, Mapper::mirroringType_t::HORIZONTAL));
 }
 
 TEST(TestMapper000, CPUIO) {
@@ -64,7 +55,7 @@ TEST(TestMapper000, CPUIO) {
         PRGExpected.push_back(ran);
     }
 
-    Mapper000 m(PRGROM, CHRROM);
+    Mapper000 m(PRGROM, CHRROM, Mapper::mirroringType_t::HORIZONTAL);
     uint8_t buffer;
 
     // Non mapped areas test.
@@ -132,7 +123,7 @@ TEST(TestMapper000, PPUIO) {
         CHRExpected.push_back(ran);
     }
 
-    Mapper000 m(PRGROM, CHRROM);
+    Mapper000 m(PRGROM, CHRROM, Mapper::mirroringType_t::HORIZONTAL);
     uint8_t buffer;
 
     // Non mapped areas test.
