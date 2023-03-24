@@ -7,11 +7,13 @@
  */
 
 #include "components/Gamepak/Gamepak.h"
+#include <memory>
 #include <string>
 #include "imgui.h"
 
 #include "Connector.h"
 #include "components/Gamepak/Mapper.h"
+#include "components/Gamepak/Mapper000.h"
 
 Gamepak::Gamepak() {
 
@@ -254,7 +256,7 @@ void Gamepak::load(std::ifstream & ifs){
     // ============================================================
     switch(m_params.mapperNumber){
 
-        // case 0x0000: m_mapper.reset(new Mapper000(&m_meta, &m_PRGROM, &m_CHRROM)); break;
+        case 0x0000: m_mapper = std::make_unique<Mapper000>(m_PRGROM, m_CHRROM); break;
         // case 0x0001: m_mapper.reset(new Mapper001(&m_meta, &m_PRGROM, &m_CHRROM)); break;
         default: throw std::invalid_argument("Mapper not supported.");
     }
@@ -290,10 +292,10 @@ std::vector<EmulatorWindow> Gamepak::getGUIs() {
 uint8_t Gamepak::CIRAMRead(uint16_t address) {
 
     // We are interested in the bottom 12 bits, because the nametable addr range is (partially) mirrored.
-    // 0x2000 - 0x23FF = NT 0
-    // 0x2400 - 0x27FF = NT 1
-    // 0x2800 - 0x2BFF = NT 2
-    // 0x2C00 - 0x2FFF = NT 3
+    // 0x2000 - 0x23FF = NT 1
+    // 0x2400 - 0x27FF = NT 2
+    // 0x2800 - 0x2BFF = NT 3
+    // 0x2C00 - 0x2FFF = NT 4
     // 0x3000 - 0x3EFF = Mirrors of 0x2000 - 0x2EFF.
     //
     // NT indexes:

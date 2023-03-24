@@ -26,7 +26,7 @@
 */
 class Gamepak : public Component {
 
-private:
+protected:
     // ===========================================
     // Constants
     // ===========================================
