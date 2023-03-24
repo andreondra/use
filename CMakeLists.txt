@@ -111,6 +111,15 @@ file(
         SHOW_PROGRESS
 )
 
+# Download test binaries
+message("Downloading NES test binaries...")
+file(
+        DOWNLOAD
+        http://nickmass.com/images/nestest.nes
+        ${CMAKE_CURRENT_BINARY_DIR}/testfiles/nestest.nes
+        SHOW_PROGRESS
+)
+
 # Copy test assets to build.
 file(COPY tests/testfiles DESTINATION .)
 
