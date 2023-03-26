@@ -22,6 +22,8 @@
  * PRG ROM: 16 or 32 KiB.
  * PRG RAM: 2 or 4 KiB, this implementation provides always 8 KiB for compatibility.
  * CHR ROM: 8 KiB
+ * If no CHR ROM present (0 KiB), m_CHRRAM will be mapped to CHR ROM and 8 KiB of memory provided.
+ *
  * Mirroring settings: via solder pads.
  * This mapper has no bankswitching support.
  * */
@@ -32,6 +34,7 @@ protected:
 
     std::array<uint8_t, 0x2000> m_PRGRAM{0x00};
     std::vector<uint8_t> m_CHRRAM;
+    bool m_CHRWritable = false;
 
 public:
     /**

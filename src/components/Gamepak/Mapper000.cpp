@@ -13,6 +13,9 @@
 Mapper000::Mapper000(std::vector<uint8_t> &PRGROM, std::vector<uint8_t> &CHRROM, mirroringType_t mirroringType)
     : m_PRGROM(PRGROM), m_CHRROM(CHRROM) {
 
+    if(mirroringType != mirroringType_t::HORIZONTAL && mirroringType != mirroringType_t::VERTICAL)
+        throw std::invalid_argument("NROM supports H or V mirroring only.");
+
     m_mirroringType = mirroringType;
 
     // Only 16 KiB or 32 KiB allowed.
@@ -26,6 +29,8 @@ Mapper000::Mapper000(std::vector<uint8_t> &PRGROM, std::vector<uint8_t> &CHRROM,
     // Empty CHR ROM = there is no ROM, use CHR RAM.
     if(m_CHRROM.empty()) {
         m_CHRRAM.resize(0x2000, 0x0);
+        m_CHRROM = m_CHRRAM;
+        m_CHRWritable = true;
     // If there is CHR ROM, its size has to be 0x2000.
     } else if (m_CHRROM.size() != 0x2000) {
         throw std::invalid_argument("NROM expects 8 KiB of character ROM.");
@@ -59,8 +64,8 @@ bool Mapper000::cpuWrite(uint16_t addr, uint8_t data) {
         m_PRGRAM[addr & (m_PRGRAM.size() - 1)] = data;
         return true;
     } else if(addr >= 0x8000 && addr <= 0xFFFF){
-        m_PRGROM[addr & (m_PRGROM.size() - 1)] = data;
-        return true;
+        // PRG ROM not writable.
+        return false;
     }
 
     return false;
@@ -70,16 +75,11 @@ bool Mapper000::ppuRead(uint16_t addr, uint8_t &data) {
 
     if(addr >= 0x0000 && addr <= 0x1FFF) {
 
-        // No ROM, use built-in RAM.
-        if(m_CHRROM.empty())
-            data = m_CHRRAM[addr];
-        else
-            data = m_CHRROM[addr];
-
+        data = m_CHRROM[addr];
         return true;
     } else if (addr >= 0x2000 && addr <= 0x3EFF) {
 
-        CIRAMRead(addr);
+        data = CIRAMRead(addr);
         return true;
     }
 
@@ -88,14 +88,9 @@ bool Mapper000::ppuRead(uint16_t addr, uint8_t &data) {
 
 bool Mapper000::ppuWrite(uint16_t addr, uint8_t data) {
 
-    if(addr >= 0x0000 && addr <= 0x1FFF) {
+    if(m_CHRWritable && addr >= 0x0000 && addr <= 0x1FFF) {
 
-        // No ROM, use built-in RAM.
-        if(m_CHRROM.empty())
-            m_CHRRAM[addr] = data;
-        else
-            m_CHRROM[addr] = data;
-
+        m_CHRROM[addr] = data;
         return true;
     } else if (addr >= 0x2000 && addr <= 0x3EFF) {
 
