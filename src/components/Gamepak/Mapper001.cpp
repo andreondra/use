@@ -1,16 +1,41 @@
 #include "components/Gamepak/Mapper001.h"
 #include "Types.h"
+#include <stdexcept>
 
-Mapper001::Mapper001(std::vector<uint8_t> & PRGROM, std::vector<uint8_t> & CHRROM)
+Mapper001::Mapper001(std::vector<uint8_t> & PRGROM, std::vector<uint8_t> & CHRROM, size_t PRGRAMSize)
         : m_PRGROM(PRGROM), m_CHRROM(CHRROM) {
+
+    // Check PRG ROM size.
+    if(m_PRGROM.size() != 0x40000 && m_PRGROM.size() != 0x80000) {
+        throw std::invalid_argument("PRG ROM invalid size: has to be 256 or 512 KiB");
+    }
+
+    // Check CHR ROM size
+    if(m_CHRROM.empty()) {
+        m_CHRRAM.resize(0x2000, 0x0);
+        m_CHRROM = m_CHRRAM;
+        m_CHRWritable = true;
+    } else if(m_CHRROM.size() > 0x20000) {
+        throw std::invalid_argument("CHR ROM invalid size: allowed max 128 KiB");
+    }
+
+    // Check PRG RAM size
+    if(PRGRAMSize < 0x2000 || PRGRAMSize > 0x8000) {
+        throw std::invalid_argument("PRG RAM invalid size: allowed 0x2000-0x8000.");
+    }
+
+    Mapper::init();
+    m_PRGRAM.resize(PRGRAMSize, 0x00);
+    m_registers.init();
 }
 
 void Mapper001::setMirroring(uint8_t rawValue) {
     switch(rawValue) {
-        case 0: m_mirroringType = mirroringType_t::SINGLE_LO;
-        case 1: m_mirroringType = mirroringType_t::SINGLE_HI;
-        case 2: m_mirroringType = mirroringType_t::VERTICAL;
-        case 3: m_mirroringType = mirroringType_t::HORIZONTAL;
+        case 0: m_mirroringType = mirroringType_t::SINGLE_LO; break;
+        case 1: m_mirroringType = mirroringType_t::SINGLE_HI; break;
+        case 2: m_mirroringType = mirroringType_t::VERTICAL; break;
+        case 3: m_mirroringType = mirroringType_t::HORIZONTAL; break;
+        default: break;
     }
 }
 
@@ -18,7 +43,7 @@ void Mapper001::init(){
 
     Mapper::init();
     m_registers.init();
-    m_PRGRAM.fill(0x00);
+    std::fill(m_PRGRAM.begin(), m_PRGRAM.end(), 0x00);
 
     m_loadRegister = 0;
     m_writeCounter = 0;
@@ -28,40 +53,50 @@ bool Mapper001::cpuRead(uint16_t addr, uint8_t & data) {
 
     // PRG RAM bank.
     if(addr >= 0x6000 && addr <= 0x7FFF){
-
-        data = m_PRGRAM.at(addr & 0x1FFF);
+        data = m_PRGRAM[(m_registers.PRGRAMSelect << 13) | (addr & 0x1FFF)];
         return true;
-        // PRG ROM bank 0.
+
+    // PRG ROM bank 0.
     } else if(addr >= 0x8000 && addr <= 0xBFFF) {
 
-        // Switch 32 KB, ignore low bit of PRG bank number.
-        if(m_registers.m_control.PRGmode == 0 || m_registers.m_control.PRGmode == 1){
-            data = m_PRGROM->at(addr - 0x8000 + (m_registers.m_PRGbank.select & 0x1E) * 16384);
+        addr &= 0x3FFF;
 
-            // Fixed to the first bank.
-        } else if(m_registers.m_control.PRGmode == 2){
-            data = m_PRGROM->at(addr - 0x8000);
-
-            // Switch 16 KB.
-        } else if(m_registers.m_control.PRGmode == 3){
-            data = m_PRGROM->at((addr & 0x3FFF) + m_registers.m_PRGbank.select * 16384);
+        switch(m_registers.PRGMode) {
+            case PRGMode_t::SWITCH_BOTH0:
+            [[fallthrough]];
+            case PRGMode_t::SWITCH_BOTH1:
+                data = m_PRGROM[addr | ((m_registers.PRGROMSelect & 0x1E) << 14)];
+                break;
+            case PRGMode_t::FIX_LOW_SWITCH_HIGH:
+                data = m_PRGROM[addr];
+                break;
+            case PRGMode_t::SWITCH_LOW_FIX_HIGH:
+                data = m_PRGROM[addr | (m_registers.PRGROMSelect << 14)];
+                break;
         }
 
         return true;
+
     } else if(addr >= 0xC000 && addr <= 0xFFFF) {
 
-        // Switch 32 KB, ignore low bit of PRG bank number.
-        if(m_registers.m_control.PRGmode == 0 || m_registers.m_control.PRGmode == 1){
-            data = m_PRGROM->at(addr - 0x8000 + (m_registers.m_PRGbank.select & 0x1E) * 16384);
+        addr &= 0x7FFF;
 
-            // Switch 16 KB.
-        } else if(m_registers.m_control.PRGmode == 2){
-            data = m_PRGROM->at((addr & 0x3FFF) + m_registers.m_PRGbank.select * 16384);
-
-            // Fixed to the last bank.
-        } else if(m_registers.m_control.PRGmode == 3){
-            data = m_PRGROM->at((addr & 0x3FFF) + (m_meta->PRGROMunits - 1) * 16384);
+        switch(m_registers.PRGMode) {
+            case PRGMode_t::SWITCH_BOTH0:
+                [[fallthrough]];
+            case PRGMode_t::SWITCH_BOTH1:
+                data = m_PRGROM[addr | ((m_registers.PRGROMSelect & 0x1E) << 14)];
+                break;
+            case PRGMode_t::FIX_LOW_SWITCH_HIGH:
+                addr &= 0x3FFF;
+                data = m_PRGROM[addr | (m_registers.PRGROMSelect << 14)];
+                break;
+            case PRGMode_t::SWITCH_LOW_FIX_HIGH:
+                addr &= 0x3FFF;
+                data = m_PRGROM[addr | (((m_PRGROM.size() / 0x4000) - 1) << 14)];
+                break;
         }
+
         return true;
     }
 
@@ -106,7 +141,7 @@ bool Mapper001::cpuWrite(uint16_t addr, uint8_t data){
 
             m_writeCounter = 0;
             m_loadRegister = 0;
-            m_registers.m_control.PRGmode = 3;
+            m_registers.PRGMode = PRGMode_t::SWITCH_LOW_FIX_HIGH;
         } else {
 
             m_loadRegister = (m_loadRegister >> 1) | ((data & 0x1) << 4);
@@ -125,41 +160,57 @@ bool Mapper001::cpuWrite(uint16_t addr, uint8_t data){
                         m_registers.CHRMode = static_cast<CHRMode_t>((m_loadRegister & 0x10) >> 4);
                         break;
 
-                    // CHR 0 bank.
+                    // CHR 0 control register.
                     case 1:
-                        m_registers.CHRROMSelectLow = m_loadRegister & 0x1F;
+                        m_registers.CHRROMLoSelect = m_loadRegister & 0x1F;
 
-                        m_registers.m_CHR0bank.PRGRAMselect = (m_loadRegister & 0xC) >> 2;
-                        m_registers.m_PRGbank.select &= 0xF;
-                        m_registers.m_PRGbank.select |= m_loadRegister & 0x10;
+                        // For 32 KB PRG RAM both bits are used.
+                        if(m_PRGRAM.size() == 0x4000)
+                            m_registers.PRGRAMSelect = (m_loadRegister & 0xC) >> 0x2;
+                        // For 16 KB PRG RAM only high bit is used.
+                        else
+                            m_registers.PRGRAMSelect = (m_loadRegister & 0x8) >> 0x3;
                         break;
 
-                        // CHR 1 bank.
-                    case 2:
-                        m_registers.CHRROMSelectHigh = m_loadRegister & 0x1F;
-
-                        m_registers.m_CHR1bank.PRGRAMselect = (m_loadRegister & 0xC) >> 2;
-                        if(m_registers.m_control.CHRmode == 0){
-                            m_registers.m_PRGbank.select &= 0xF;
-                            m_registers.m_PRGbank.select |= m_loadRegister & 0x10;
+                        if(m_PRGROM.size() == 0x80000) {
+                            m_registers.PRGROMSelect &= 0xF;
+                            m_registers.PRGROMSelect |= m_loadRegister & 0x10;
                         }
+
+                    // CHR 1 control register.
+                    case 2:
+                        m_registers.CHRROMHiSelect = m_loadRegister & 0x1F;
+
+                        // For 32 KB PRG RAM both bits are used.
+                        if(m_PRGRAM.size() == 0x4000)
+                            m_registers.PRGRAMSelect = (m_loadRegister & 0xC) >> 0x2;
+                        // For 16 KB PRG RAM only high bit is used.
+                        else
+                            m_registers.PRGRAMSelect = (m_loadRegister & 0x8) >> 0x3;
                         break;
 
-                        // PRG bank.
+                        if(m_PRGROM.size() == 0x80000) {
+                            m_registers.PRGROMSelect &= 0xF;
+                            m_registers.PRGROMSelect |= m_loadRegister & 0x10;
+                        }
+
+                    // PRG control register.
                     case 3:
-                        m_registers.m_PRGbank.select &= 0x10;
-                        m_registers.m_PRGbank.select |= m_loadRegister & 0xF;
-                        m_registers.m_PRGbank.enableRAM = m_loadRegister & 0x10;
+                        m_registers.PRGROMSelect &= 0x10;
+                        m_registers.PRGROMSelect |= m_loadRegister & 0xF;
+                        m_registers.enablePRGRAM = !(m_loadRegister & 0x10);
                         break;
                 }
 
                 // Avoiding index overflow in a case of a bad program.
-                m_registers.m_PRGbank.select %= m_meta->PRGROMunits;
-
-                if(m_meta->CHRROMunits > 0){
-                    m_registers.m_CHR0bank.CHRROMselect %= m_meta->CHRROMunits;
-                    m_registers.m_CHR1bank.CHRROMselect %= m_meta->CHRROMunits;
-                }
+                // Calculate a count of units.
+                // A14-A18 = Select 16 KB bank
+                m_registers.PRGROMSelect %= m_PRGROM.size() / 0x4000;
+                // A13-A14 = Select 8 KB bank
+                m_registers.PRGRAMSelect %= m_PRGRAM.size() / 0x2000;
+                // A12-A16 = Select 4 KB bank.
+                m_registers.CHRROMLoSelect %= m_CHRROM.size() / 0x1000;
+                m_registers.CHRROMHiSelect %= m_CHRROM.size() / 0x1000;
 
                 m_writeCounter = 0;
                 m_loadRegister = 0;
@@ -175,38 +226,25 @@ bool Mapper001::cpuWrite(uint16_t addr, uint8_t data){
 
 bool Mapper001::ppuRead(uint16_t addr, uint8_t & data){
 
-    if(m_meta->CHRROMunits == 0){
+    if(addr >= 0x0000 && addr <= 0x0FFF){
 
-        if(addr >= 0x0000 && addr <= 0x1FFF){
-            data = m_CHRRAM.at(addr);
-            return true;
+        if(m_registers.CHRMode == CHRMode_t::SWITCH4KB){
+            data = m_CHRROM[addr | (m_registers.CHRROMLoSelect << 12)];
+        } else {
+            data = m_CHRROM[addr | ((m_registers.CHRROMLoSelect & 0x1E) << 12)];
         }
 
-    } else {
+        return true;
 
-        if(addr >= 0x0000 && addr <= 0x0FFF){
+    } else if(addr >= 0x1000 && addr <= 0x1FFF){
 
-            // Switch two separate 4 KB banks.
-            if(m_registers.m_control.CHRmode == 1){
-
-                data = m_CHRROM->at(addr + m_registers.m_CHR0bank.CHRROMselect * 4096);
-                // Switch 8 KB.
-            } else {
-                data = m_CHRROM->at(addr + (m_registers.m_CHR0bank.CHRROMselect & 0x1E) * 8192);
-            }
-            return true;
-        } else if(addr >= 0x1000 && addr <= 0x1FFF){
-
-            // Switch two separate 4 KB banks.
-            if(m_registers.m_control.CHRmode == 1){
-
-                data = m_CHRROM->at((addr & 0xFFF) + m_registers.m_CHR1bank.CHRROMselect * 4096);
-                // Switch 8 KB.
-            } else {
-                data = m_CHRROM->at(addr + (m_registers.m_CHR0bank.CHRROMselect & 0x1E) * 8192);
-            }
-            return true;
+        if(m_registers.CHRMode == CHRMode_t::SWITCH4KB){
+            data = m_CHRROM[(addr & 0xFFF) | (m_registers.CHRROMHiSelect << 12)];
+        } else {
+            data = m_CHRROM[addr | ((m_registers.CHRROMHiSelect & 0x1E) << 12)];
         }
+
+        return true;
     }
 
     return false;
@@ -214,13 +252,14 @@ bool Mapper001::ppuRead(uint16_t addr, uint8_t & data){
 
 bool Mapper001::ppuWrite(uint16_t addr, uint8_t data){
 
-    if(m_meta->CHRROMunits == 0){
-
-        if(addr >= 0x0000 && addr <= 0x1FFF){
-            m_CHRRAM.at(addr) = data;
-            return true;
-        }
-
+    if(m_CHRWritable && addr >= 0x0000 && addr <= 0x1FFF){
+        m_CHRROM[addr] = data;
+        return true;
     }
+
     return false;
+}
+
+void Mapper001::drawGUI() {
+
 }

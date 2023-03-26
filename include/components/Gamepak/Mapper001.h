@@ -1,12 +1,29 @@
-//
-// Created by golas on 23.3.23.
-//
+/**
+ * @file Mapper001.h
+ * @author Ondrej Golasowski (golasowski.o@gmail.com)
+ * @brief iNES Mapper 001.
+ * This mapper is used in boards SKROM, SLROM, SNROM...
+ * @copyright Copyright (c) 2023 Ondrej Golasowski
+ */
+
 
 #ifndef USE_MAPPER001_H
 #define USE_MAPPER001_H
 
 #include "Mapper.h"
 
+/**
+ * iNES mapper 001.
+ *
+ * PRG ROM: 256 or 512 KiB.
+ * PRG RAM: 8-32 KiB (default 32 KiB, selectable only with NES 2.0 dumps).
+ * CHR ROM: 8-128 KiB
+ *
+ * If no CHR ROM present (0 KiB), m_CHRRAM will be mapped to CHR ROM and 8 KiB of memory provided.
+ *
+ * Mirroring settings: H, V, single or switchable.
+ * Both PRG and CHR ROMs support banking.
+ * */
 class Mapper001 : public Mapper{
 
 private:
@@ -34,16 +51,21 @@ private:
         SWITCH8KB = 0,
         /// Switch by 4 KB
         SWITCH4KB = 1
-    } CHRMode;
+    };
 
-    std::vector<uint8_t> m_CHRROM, m_PRGROM;
-    /// Use 32 KB for compatibility among different boards.
-    std::array<uint8_t, 0x8000> m_PRGRAM;
+    std::vector<uint8_t> & m_CHRROM;
+    std::vector<uint8_t> & m_PRGROM;
+    std::vector<uint8_t> m_CHRRAM;
+    bool m_CHRWritable = false;
+
+    std::vector<uint8_t> m_PRGRAM;
+    /// Shift register accessible via serial port at $8000-$FFFF.
     uint8_t m_loadRegister = 0;
+    /// Count of writes to the shift register.
     uint8_t m_writeCounter = 0;
 
     /**
-     * MMC1 internal registers.
+     * Mapper config registers.
     */
     struct {
 
@@ -55,26 +77,25 @@ private:
         /// CHR switching mode.
         CHRMode_t CHRMode;
         /// Select low CHR bank.
-        uint8_t CHRROMSelectLow;
+        uint8_t CHRROMLoSelect;
         /// Select high CHR bank.
-        uint8_t CHRROMSelectHigh;
+        uint8_t CHRROMHiSelect;
 
         /// Enable program RAM.
         bool enablePRGRAM;
-        /// Bypass fixed bank mode.
-        bool bypassFixedBankLogic;
+        /// PRG RAM bank select (A13 for 16 KB version; A14-A13 for 32 KB version).
+        uint8_t PRGRAMSelect;
 
-
+        /// Initialize mapper to the power-on state.
         void init(){
 
             /// Default power-on state on most MMC1 mappers. See https://www.nesdev.org/wiki/MMC1.
             PRGMode = PRGMode_t::SWITCH_LOW_FIX_HIGH;
             PRGROMSelect = 0;
             CHRMode = CHRMode_t::SWITCH8KB;
-            CHRROMSelectLow = 0;
-            CHRROMSelectHigh = 0;
+            CHRROMLoSelect = 0;
+            CHRROMHiSelect = 0;
             enablePRGRAM = true;
-            bypassFixedBankLogic = false;
         };
 
     } m_registers;
@@ -82,14 +103,22 @@ private:
     void setMirroring(uint8_t rawValue);
 
 public:
-    Mapper001(std::vector<uint8_t> & PRGROM, std::vector<uint8_t> & CHRROM);
-    ~Mapper001() = default;
+    /**
+     * Create instance of Mapper 001.
+     *
+     * PRG RAM size can be selected in NES 2.0 headers, default of 32 KiB is provided for
+     * backwards compatibility.
+     * */
+    Mapper001(std::vector<uint8_t> & PRGROM, std::vector<uint8_t> & CHRROM, size_t PRGRAMSize = 0x8000);
+    ~Mapper001() override = default;
 
     void init() override;
     bool cpuRead(uint16_t addr, uint8_t & data) override;
     bool cpuWrite(uint16_t addr, uint8_t data)  override;
     bool ppuRead(uint16_t addr, uint8_t & data) override;
     bool ppuWrite(uint16_t addr, uint8_t data)  override;
+
+    void drawGUI() override;
 };
 
 #endif //USE_MAPPER001_H
