@@ -41,10 +41,10 @@ uint8_t Mapper::CIRAMRead(uint16_t address) {
         else if(address >= 0xC00 && address <= 0xFFF)
             return m_CIRAM[0x400 + (address & 0x3FF)];
 
-        // Vertical mirroring
-        // A | B
-        // --+--
-        // A | B
+    // Vertical mirroring
+    // A | B
+    // --+--
+    // A | B
     } else if(m_mirroringType == mirroringType_t::VERTICAL) {
 
         if(address >= 0x000 && address <= 0x3FF)
@@ -56,17 +56,17 @@ uint8_t Mapper::CIRAMRead(uint16_t address) {
         else if(address >= 0xC00 && address <= 0xFFF)
             return m_CIRAM[0x400 + (address & 0x3FF)];
 
-        // One screen low.
-        // A | A
-        // --+--
-        // A | A
+    // One screen low.
+    // A | A
+    // --+--
+    // A | A
     } else if(m_mirroringType == mirroringType_t::SINGLE_LO){
         return m_CIRAM[address & 0x3FF];
 
-        // One screen high.
-        // B | B
-        // --+--
-        // B | B
+    // One screen high.
+    // B | B
+    // --+--
+    // B | B
     } else if(m_mirroringType == mirroringType_t::SINGLE_HI){
         return m_CIRAM[0x400 + (address & 0x3FF)];
     }
@@ -90,7 +90,7 @@ void Mapper::CIRAMWrite(uint16_t address, uint8_t data) {
         else if(address >= 0xC00 && address <= 0xFFF)
             m_CIRAM[0x400 + (address & 0x3FF)]  = data;
 
-        // Vertical mirroring.
+    // Vertical mirroring.
     } else if(m_mirroringType == mirroringType_t::VERTICAL) {
 
         if(address >= 0x000 && address <= 0x3FF)
@@ -102,11 +102,11 @@ void Mapper::CIRAMWrite(uint16_t address, uint8_t data) {
         else if(address >= 0xC00 && address <= 0xFFF)
             m_CIRAM[0x400 + (address & 0x3FF)] = data;
 
-        // Only low NT used.
+    // Only low NT used.
     } else if(m_mirroringType == mirroringType_t::SINGLE_LO){
         m_CIRAM[address & 0x3FF] = data;
 
-        // Only high NT used.
+    // Only high NT used.
     } else if(m_mirroringType == mirroringType_t::SINGLE_HI){
         m_CIRAM[0x400 + (address & 0x3FF)] = data;
     }
