@@ -245,6 +245,10 @@ bool Mapper001::ppuRead(uint16_t addr, uint8_t & data){
         }
 
         return true;
+    } else if (addr >= 0x2000 && addr <= 0x3EFF) {
+
+        data = CIRAMRead(addr);
+        return true;
     }
 
     return false;
@@ -255,6 +259,10 @@ bool Mapper001::ppuWrite(uint16_t addr, uint8_t data){
     if(m_CHRWritable && addr >= 0x0000 && addr <= 0x1FFF){
         m_CHRROM[addr] = data;
         return true;
+    } else if (addr >= 0x2000 && addr <= 0x3EFF) {
+
+        CIRAMWrite(addr, data);
+        return  true;
     }
 
     return false;
