@@ -5,10 +5,8 @@
 Mapper001::Mapper001(std::vector<uint8_t> & PRGROM, std::vector<uint8_t> & CHRROM, size_t PRGRAMSize)
         : m_PRGROM(PRGROM), m_CHRROM(CHRROM) {
 
-    // Check PRG ROM size.
-    if(m_PRGROM.size() != 0x40000 && m_PRGROM.size() != 0x80000) {
-        throw std::invalid_argument("PRG ROM invalid size: has to be 256 or 512 KiB");
-    }
+    if(m_PRGROM.empty())
+        throw std::invalid_argument("PRG ROM can't be empty.");
 
     // Check CHR ROM size
     if(m_CHRROM.empty()) {
@@ -114,7 +112,7 @@ bool Mapper001::cpuWrite(uint16_t addr, uint8_t data){
     // Built-in PRG RAM area.
     if(addr >= 0x6000 && addr <= 0x7FFF){
 
-        m_PRGRAM[addr & 0x1FFF] = data;
+        m_PRGRAM[(m_registers.PRGRAMSelect << 13) | (addr & 0x1FFF)] = data;
         return true;
 
     // Switchable PRG ROM bank.
@@ -165,7 +163,7 @@ bool Mapper001::cpuWrite(uint16_t addr, uint8_t data){
                         m_registers.CHRROMLoSelect = m_loadRegister & 0x1F;
 
                         // For 32 KB PRG RAM both bits are used.
-                        if(m_PRGRAM.size() == 0x4000)
+                        if(m_PRGRAM.size() == 0x8000)
                             m_registers.PRGRAMSelect = (m_loadRegister & 0xC) >> 0x2;
                         // For 16 KB PRG RAM only high bit is used.
                         else
