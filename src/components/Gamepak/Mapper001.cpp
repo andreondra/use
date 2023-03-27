@@ -239,7 +239,7 @@ bool Mapper001::ppuRead(uint16_t addr, uint8_t & data){
         if(m_registers.CHRMode == CHRMode_t::SWITCH4KB){
             data = m_CHRROM[(addr & 0xFFF) | (m_registers.CHRROMHiSelect << 12)];
         } else {
-            data = m_CHRROM[addr | ((m_registers.CHRROMHiSelect & 0x1E) << 12)];
+            data = m_CHRROM[addr | ((m_registers.CHRROMLoSelect & 0x1E) << 12)];
         }
 
         return true;

@@ -5,6 +5,7 @@
 #include <random>
 #include "gtest/gtest.h"
 #include "components/Gamepak/Mapper001.h"
+#include "components/Gamepak/Mapper.h"
 
 /// Helper function used to write 5-bit data to the Mapper 001's serial port.
 static void serialWrite(Mapper001 & m, uint16_t address, uint8_t data) {
@@ -177,4 +178,122 @@ TEST(TestMapper001, CPUIOROM) {
     // ================================================
     for(int i = 0; i < 4; i++)
         test(i);
+}
+
+// Test PPU IO (CHR ROM) including bankswitching.
+TEST(TestMapper001, PPUIO) {
+
+    // Common test routine.
+    auto test = [](int mode){
+
+        constexpr int bankCount = 0x20;
+        uint8_t buffer;
+        std::random_device dev;
+        std::mt19937 rng(dev());
+        std::uniform_int_distribution<std::mt19937::result_type> randByte(0, 255);
+
+        std::vector<uint8_t> PRGROM(0x40000, 0x00);
+        std::vector<uint8_t> CHRROM(0x1000 * bankCount, 0x00);
+        std::vector<uint8_t> CHRExpected;
+
+        Mapper001 m(PRGROM, CHRROM);
+
+        // Fill CHR ROM with random data.
+        for(auto & byte : CHRROM) {
+            CHRExpected.push_back(randByte(rng));
+            byte = CHRExpected.back();
+        }
+
+        // Set CHR switching mode.
+        serialWrite(m, 0x8000, mode << 4);
+
+        // 8 KiB mode.
+        if(mode == 0) {
+
+            // Low bit ignored in 8 KiB mode.
+            for(int bank = 0; bank < bankCount; bank++) {
+
+                // Switch banks. Only CHR 0 register active in 8 KiB mode.
+                serialWrite(m, 0xA000, bank);
+
+                for (uint32_t addr = 0x0; addr < 0x2000; addr++) {
+                    ASSERT_TRUE(m.ppuRead(addr, buffer));
+                    ASSERT_EQ(buffer, CHRExpected.at(((bank & (~0x1)) << 12) | (addr & 0x1FFF))) << "Failed on bank " << (int) bank << " address: " << std::hex << addr;
+                }
+            }
+
+        // 4 KiB mode.
+        } else {
+
+            for(int bank = 0; bank < bankCount; bank++) {
+
+                // Switch banks. In 4 KiB mode, both banks are independently switchable.
+                serialWrite(m, 0xA000, bank);
+                serialWrite(m, 0xC000, bank);
+
+                for (uint32_t addr = 0x0; addr < 0x2000; addr++) {
+                    ASSERT_TRUE(m.ppuRead(addr, buffer));
+                    ASSERT_EQ(buffer, CHRExpected.at((bank << 12) | (addr & 0xFFF))) << "Failed on bank " << (int) bank << " address: " << std::hex << addr;
+                }
+            }
+
+        }
+    };
+
+    // All modes test.
+    // ================================================
+    for(int i = 0; i < 2; i++)
+        test(i);
+}
+
+// Test mirroring mode switching. White-box test.
+TEST(TestMapper001, MirroringSwitching) {
+
+    std::vector<uint8_t> PRGROM(0x40000, 0x00);
+    std::vector<uint8_t> CHRROM(0x10000, 0x00);
+
+    class DUT : public Mapper001 {
+    public:
+        DUT(std::vector<uint8_t> & PRGROM, std::vector<uint8_t> & CHRROM) : Mapper001(PRGROM, CHRROM) {}
+
+        mirroringType_t getMirroringType() {
+            return m_mirroringType;
+        }
+    } m(PRGROM, CHRROM);
+
+    serialWrite(m, 0x8000, 0);
+    ASSERT_TRUE(m.getMirroringType() == Mapper::mirroringType_t::SINGLE_LO);
+
+    serialWrite(m, 0x8000, 1);
+    ASSERT_TRUE(m.getMirroringType() == Mapper::mirroringType_t::SINGLE_HI);
+
+    serialWrite(m, 0x8000, 2);
+    ASSERT_TRUE(m.getMirroringType() == Mapper::mirroringType_t::VERTICAL);
+
+    serialWrite(m, 0x8000, 3);
+    ASSERT_TRUE(m.getMirroringType() == Mapper::mirroringType_t::HORIZONTAL);
+}
+
+// Test whether the CIRAM is mapped correctly.
+TEST(TestMapper001, CIRAM) {
+
+    const uint8_t fillValue = 0x55;
+    std::vector<uint8_t> PRGROM(0x40000, 0x00);
+    std::vector<uint8_t> CHRROM(0x10000, 0x00);
+    Mapper001 m(PRGROM, CHRROM);
+
+    uint8_t buffer;
+
+    // CIRAM test.
+    // ================================================
+    // Fill with fixed value.
+    for(uint32_t i = 0x2000; i < 0x3000; i++) {
+        EXPECT_TRUE(m.ppuWrite(i, fillValue));
+    }
+
+    // Test whether all values were written correctly.
+    for(uint32_t i = 0x2000; i < 0x3000; i++) {
+        EXPECT_TRUE(m.ppuRead(i, buffer));
+        EXPECT_EQ(buffer, fillValue) << "Error at address: " << std::hex << i;
+    }
 }
