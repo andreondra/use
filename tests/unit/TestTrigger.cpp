@@ -1,6 +1,6 @@
-//
-// Created by golas on 6.3.23.
-//
+/**
+ * @file TestTrigger.cpp Trigger tests.
+ * */
 
 #include "gtest/gtest.h"
 #include "components/Trigger.h"
