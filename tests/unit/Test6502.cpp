@@ -1,6 +1,6 @@
-//
-// Created by golas on 5.3.23.
-//
+/**
+ * @file Test6502.cpp 6502 CPU tests.
+ * */
 
 #include <fstream>
 #include "gtest/gtest.h"
