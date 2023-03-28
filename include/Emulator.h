@@ -12,10 +12,12 @@
 class Emulator{
 
 private:
-    enum class SYSTEMS{ NONE, BARE6502 } m_systemID = SYSTEMS::NONE;
+    enum class SYSTEMS{ NONE, BARE6502, NES } m_systemID = SYSTEMS::NONE;
     std::unique_ptr<System> m_system;
 
-    // Helpers ==================================
+    // ===========================================
+    // Helpers
+    // ===========================================
     /**
      * This function maps DockSpace enum to string, which is used by ImGui docking feature.
      *
@@ -27,14 +29,20 @@ private:
      * */
     static std::string dockSpaceToString(DockSpace dockSpace);
 
-    // System handling ==========================
+    // ===========================================
+    // System handling
+    // ===========================================
     /**
      * Load a System to the emulator, initialize and load the debugging GUI of the system.
      * @param system A system to load.
      * */
+    bool m_runEnabled = false;
     void loadSystem(std::unique_ptr<System> system);
+    void runSystem();
 
-    // GUI - windows ============================
+    // ===========================================
+    // GUI callbacks
+    // ===========================================
     void guiStatusBar();
     void guiToolbar();
     void guiMenuItems();

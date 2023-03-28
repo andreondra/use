@@ -3,10 +3,12 @@
 //
 
 #include <memory>
+#include <thread>
 #include "immapp/immapp.h"
 #include "imgui.h"
 #include "Emulator.h"
 #include "systems/Bare6502.h"
+#include "systems/NES.h"
 #include "Types.h"
 
 std::string Emulator::dockSpaceToString(DockSpace dockSpace) {
@@ -57,11 +59,22 @@ void Emulator::loadSystem(std::unique_ptr<System> system) {
     }
 }
 
+void Emulator::runSystem() {
+
+    if(m_runEnabled && m_system) {
+        m_system->doRun(30);
+    }
+}
+
 void Emulator::guiStatusBar() {
 
     // todo info about running state
 
-    ImGui::Text("Ready");
+    if(m_runEnabled) {
+        ImGui::Text("Running");
+    } else {
+        ImGui::Text("Ready");
+    }
 }
 
 void Emulator::guiToolbar() {
@@ -69,11 +82,16 @@ void Emulator::guiToolbar() {
     if(ImGui::BeginMenu("Run")) {
 
         if(m_system) {
-            if(ImGui::MenuItem("Clock")) m_system->doClocks(1);
-            if(ImGui::MenuItem("Step"))  m_system->doSteps(1);
-            if(ImGui::MenuItem("Frame")) m_system->doFrames(1);
-            //ImGui::Separator();
-            //ImGui::MenuItem("Run...");
+
+            if(m_runEnabled) {
+                if(ImGui::MenuItem("Stop")) m_runEnabled = false;
+            } else {
+                if(ImGui::MenuItem("Clock")) m_system->doClocks(1);
+                if(ImGui::MenuItem("Step"))  m_system->doSteps(1);
+                if(ImGui::MenuItem("Frame")) m_system->doFrames(1);
+                ImGui::Separator();
+                if(ImGui::MenuItem("Run...")) m_runEnabled = true;
+            }
         } else {
             ImGui::Text("Please select a system");
         }
@@ -94,6 +112,10 @@ void Emulator::guiMenuItems() {
 
             loadSystem(std::make_unique<Bare6502>());
             m_systemID = SYSTEMS::BARE6502;
+        } else if(ImGui::MenuItem("NES", nullptr, m_systemID == SYSTEMS::NES)) {
+
+            loadSystem(std::make_unique<NES>());
+            m_systemID = SYSTEMS::NES;
         }
 
         ImGui::EndMenu();
@@ -152,8 +174,10 @@ int Emulator::run() {
     splitRight.ratio = 0.25f;
     par.dockingParams.dockingSplits.push_back(splitRight);
 
-    // Note: debugger dockable windows are set up during System change.
+    // Run emulation if enabled.
+    par.callbacks.PreNewFrame = [this](){runSystem();};
 
+    // Note: debugger dockable windows are set up during System change.
     ImmApp::Run(par);
 
     return 0;
