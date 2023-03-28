@@ -51,10 +51,6 @@ public:
     static const uint16_t NESSCREENWIDTH = 256;
     static const uint16_t NESSCREENHEIGHT = 240;
 
-    /**
-     * Non-maskable interrupt flag.
-    */
-    bool m_nmi = false;
     uint8_t m_dataBuffer = 0x00;
 
     /**
@@ -402,6 +398,8 @@ private:
     // ===========================================
     // Connection to the PPU bus (controlled by the PPU).
     DataPort m_ppuBus;
+    // Interrupt generator. Normally connected to the 6502's NMI pin.
+    SignalPort m_INT;
 
 public:
 
@@ -420,7 +418,7 @@ public:
     /**
      * Reset the PPU.
     */
-    void reset();
+    void init();
 
     /**
      * Proceed one clock further in emulation.
@@ -430,19 +428,6 @@ public:
     void clock();
 
     // ===============================================
-    // Main bus I/O
-    /**
-     * Read PPU registers status.
-     * @param addr Address of the register.
-     * @return Register value.
-    */
-    uint8_t read(uint16_t addr);
-    /**
-     * Write a value to the PPU register.
-     * @param addr Address of the register.
-     * @param data A value to be written.
-    */
-    void write(uint16_t addr, uint8_t data);
     /**
      * PPU OAM DMA.
      * Used to write to the OAM during DMA proccess.
@@ -472,6 +457,8 @@ public:
      * @return true if scanline index >= 261
     */
     bool frameFinished() const;
+
+    std::vector<EmulatorWindow> getGUIs() override;
 
 };
 

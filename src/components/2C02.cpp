@@ -121,7 +121,7 @@ R2C02::R2C02() {
                                 !m_registers.ppuctrl.bits.nmi &&
                                 m_registers.ppustatus.bits.vBlank
                                 )
-                            m_nmi = true;
+                            m_INT.send();
 
                         m_registers.ppuctrl.data = data;
                         m_internalRegisters.t.bits.nameX = m_registers.ppuctrl.bits.nameX;
@@ -220,14 +220,19 @@ R2C02::R2C02() {
             }
     });
 
-    m_ports["ppuBus"] = &m_ppuBus;
+    m_connectors["CLK"] = std::make_shared<Connector>(SignalInterface{
+        .send = [&](){
+            clock();
+        }
+    });
 
-    reset();
+    m_ports["ppuBus"] = &m_ppuBus;
+    m_ports["INT"] = &m_INT;
 }
 
 // ===============================================
 
-void R2C02::reset(){
+void R2C02::init(){
 
     m_clock = 0;
     m_scanline = 0;
@@ -687,7 +692,7 @@ void R2C02::clock(){
         if(!m_blockNMI){
             m_registers.ppustatus.bits.vBlank = 1;
             if(m_registers.ppuctrl.bits.nmi){
-                m_nmi = true;
+                m_INT.send();
             }
         }
         m_blockNMI = false;
@@ -1029,4 +1034,8 @@ bool R2C02::scanlineFinished() const{
 
 bool R2C02::frameFinished() const{
     return m_frameReady;
+}
+
+std::vector<EmulatorWindow> R2C02::getGUIs() {
+    return {};
 }
