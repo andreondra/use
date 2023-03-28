@@ -29,6 +29,8 @@ private:
      * */
     static std::string dockSpaceToString(DockSpace dockSpace);
 
+    void setIdling(bool enabled);
+
     // ===========================================
     // System handling
     // ===========================================

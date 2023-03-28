@@ -22,6 +22,10 @@ std::string Emulator::dockSpaceToString(DockSpace dockSpace) {
     }
 }
 
+void Emulator::setIdling(bool enabled) {
+    HelloImGui::GetRunnerParams()->fpsIdling.fpsIdle = enabled ? 9 : 0;
+}
+
 void Emulator::loadSystem(std::unique_ptr<System> system) {
 
     // todo something to stop running system
@@ -84,13 +88,19 @@ void Emulator::guiToolbar() {
         if(m_system) {
 
             if(m_runEnabled) {
-                if(ImGui::MenuItem("Stop")) m_runEnabled = false;
+                if(ImGui::MenuItem("Stop")) {
+                    setIdling(true);
+                    m_runEnabled = false;
+                }
             } else {
                 if(ImGui::MenuItem("Clock")) m_system->doClocks(1);
                 if(ImGui::MenuItem("Step"))  m_system->doSteps(1);
                 if(ImGui::MenuItem("Frame")) m_system->doFrames(1);
                 ImGui::Separator();
-                if(ImGui::MenuItem("Run...")) m_runEnabled = true;
+                if(ImGui::MenuItem("Run...")) {
+                    setIdling(false);
+                    m_runEnabled = true;
+                }
             }
         } else {
             ImGui::Text("Please select a system");
