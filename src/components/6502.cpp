@@ -29,6 +29,7 @@ MOS6502::MOS6502() : m_currentInstruction(lookup[0xEA]) {
     });
 
     m_ports["mainBus"] = &m_mainBus;
+    m_deviceName = "6502 CPU";
 
     hardReset();
 }
