@@ -59,8 +59,8 @@ Gamepak::Gamepak() {
             }
     });
 
-    m_connectors["cpu"] = std::make_shared<Connector>(cpuConnector);
-    m_connectors["ppu"] = std::make_shared<Connector>(ppuConnector);
+    m_connectors["cpuBus"] = std::make_shared<Connector>(cpuConnector);
+    m_connectors["ppuBus"] = std::make_shared<Connector>(ppuConnector);
 }
 
 Gamepak::~Gamepak() = default;
