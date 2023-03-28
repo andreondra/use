@@ -22,10 +22,10 @@ public:
 
     void init() override;
 
-    void doClocks(int count) override;
-    void doSteps(int count) override;
-    void doFrames(int count) override;
-    void doRun(int updateFrequency) override;
+    void doClocks(unsigned int count) override;
+    void doSteps(unsigned int count) override;
+    void doFrames(unsigned int count) override;
+    void doRun(unsigned int updateFrequency) override;
 
 //    std::vector<EmulatorWindow> getGUIs() override;
 };

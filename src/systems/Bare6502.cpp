@@ -18,18 +18,18 @@ void Bare6502::init() {
 
 }
 
-void Bare6502::doClocks(int count) {
+void Bare6502::doClocks(unsigned int count) {
 
 }
 
-void Bare6502::doSteps(int count) {
+void Bare6502::doSteps(unsigned int count) {
 
 }
 
-void Bare6502::doFrames(int count) {
+void Bare6502::doFrames(unsigned int count) {
 
 }
 
-void Bare6502::doRun(int updateFrequency) {
+void Bare6502::doRun(unsigned int updateFrequency) {
 
 }
