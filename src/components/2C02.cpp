@@ -8,6 +8,7 @@
 
 #include "components/2C02.h"
 #include <cstring>
+#include "imgui.h"
 
 R2C02::R2C02() {
 
@@ -1037,5 +1038,47 @@ bool R2C02::frameFinished() const{
 }
 
 std::vector<EmulatorWindow> R2C02::getGUIs() {
-    return {};
+
+
+    std::function<void(void)> screen = [this](){
+
+        static float scale = 1.0f;
+
+        // Window contents
+        // ===================================================================
+        ImGui::SliderFloat("Scale", &scale, 1.0, 10.0);
+        ImDrawList * dl = ImGui::GetWindowDrawList();
+        const ImVec2 defaultScreenPos = ImGui::GetCursorScreenPos();
+
+        for(size_t imageX = 0; imageX < NESSCREENHEIGHT; imageX++) {
+            for(size_t imageY = 0; imageY < NESSCREENWIDTH; imageY++) {
+
+                ImColor color = ImColor(
+                        m_screen[imageY][imageX].red,
+                        m_screen[imageY][imageX].green,
+                        m_screen[imageY][imageX].blue,
+                        255
+                );
+
+                float screenX = defaultScreenPos.x + scale * static_cast<float>(imageX);
+                float screenY = defaultScreenPos.y + scale * static_cast<float>(imageY);
+                dl->AddRectFilled({screenX, screenY}, {screenX + scale, screenY + scale}, color);
+            }
+        }
+
+        float dummyWidth = scale * static_cast<float>(NESSCREENWIDTH);
+        float dummyHeight = scale * static_cast<float>(NESSCREENHEIGHT);
+        // Dummy widget is needed for scrollbars to work and to allow to place more elements below correctly.
+        ImGui::Dummy({dummyWidth, dummyHeight});
+    };
+
+    return {
+            EmulatorWindow{
+                    .category = m_deviceName,
+                    .title = " Screen",
+                    .id    = getDeviceID(),
+                    .dock  = DockSpace::MAIN,
+                    .guiFunction = screen
+            }
+    };
 }
