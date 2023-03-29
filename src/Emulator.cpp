@@ -139,7 +139,7 @@ int Emulator::run() {
     // ===============================================
     HelloImGui::RunnerParams par;
     par.appWindowParams.windowTitle = "USE: Universal System Emulator";
-    par.appWindowParams.windowGeometry.size = {640, 480};
+    par.appWindowParams.windowGeometry.size = {1280, 720};
     par.appWindowParams.restorePreviousGeometry = false;
 
     // ===============================================
