@@ -20,10 +20,34 @@ public:
 
     virtual void init();
 
-    virtual void doClocks(unsigned int count)        = 0;
-    virtual void doSteps(unsigned  int count)         = 0;
-    virtual void doFrames(unsigned int count)        = 0;
-    virtual void doRun(unsigned int updateFrequency) = 0;
+    /**
+     * Proceed specified number of system clocks.
+     * @param count Number of clock to process.
+     * */
+    virtual void doClocks(unsigned int count)           = 0;
+
+    /**
+     * Proceed specified number of CPU instructions.
+     * @param count Number of instructions to process.
+     * */
+    virtual void doSteps(unsigned  int count)           = 0;
+
+    /**
+     * Proceed specified number of rendered frames.
+     * @param count Number of frames to process.
+     * */
+    virtual void doFrames(unsigned int count)           = 0;
+
+    /**
+     * Run system in real-time.
+     * @param updateFrequency Frequency in which the function is called to match the clock speed.
+     * */
+    virtual void doRun(unsigned int updateFrequency)    = 0;
+
+    /**
+     * Callback that is called on every new frame.
+     * */
+    virtual void onRefresh();
 
     /**
      * Get all the GUI elements created by the System and underlying Component(s).

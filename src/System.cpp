@@ -19,3 +19,13 @@ std::vector<EmulatorWindow> System::getGUIs() {
 
     return mergedGUIs;
 }
+
+void System::onRefresh() {
+
+    for(auto & component : m_components) {
+        if(component->initRequested()) {
+            init();
+            break;
+        }
+    }
+}
