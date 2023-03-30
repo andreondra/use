@@ -28,7 +28,7 @@ void Emulator::setIdling(bool enabled) {
 
 void Emulator::loadSystem(std::unique_ptr<System> system) {
 
-    // todo something to stop running system
+    m_runEnabled = false;
 
     // Get app state.
     HelloImGui::RunnerParams *params;
