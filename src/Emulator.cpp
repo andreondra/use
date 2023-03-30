@@ -66,7 +66,7 @@ void Emulator::loadSystem(std::unique_ptr<System> system) {
 void Emulator::runSystem() {
 
     if(m_runEnabled && m_system) {
-        m_system->doRun(30);
+        m_system->doRun(60);
     }
 }
 
