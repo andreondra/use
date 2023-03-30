@@ -116,6 +116,13 @@ void Emulator::guiMenuItems() {
 
         if(ImGui::MenuItem("None", nullptr, m_systemID == SYSTEMS::NONE)) {
 
+            // Get app state.
+            HelloImGui::RunnerParams *params;
+            params = HelloImGui::GetRunnerParams();
+
+            // Remove existing debugging windows.
+            params->dockingParams.dockableWindows.clear();
+
             m_system.reset();
             m_systemID = SYSTEMS::NONE;
         } else if(ImGui::MenuItem("Bare 6502", nullptr, m_systemID == SYSTEMS::BARE6502)) {
