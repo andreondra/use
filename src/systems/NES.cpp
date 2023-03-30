@@ -25,6 +25,7 @@ NES::NES() {
     // Load components to make base class "aware" of the components
     // to show GUI, correctly initialize the system etc.
     m_components.push_back(&m_cpuBus);
+    m_components.push_back(&m_ppuBus);
     m_components.push_back(&m_cpu);
     m_components.push_back(&m_RAM);
     m_components.push_back(&m_ppu);
