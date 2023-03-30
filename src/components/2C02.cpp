@@ -9,8 +9,13 @@
 #include "components/2C02.h"
 #include <cstring>
 #include "imgui.h"
+#include "imgui_memory_editor.h"
+#include "Types.h"
+#include "Tools.h"
 
 R2C02::R2C02() {
+
+    m_deviceName = "2C02";
 
     m_connectors["cpuBus"] = std::make_shared<Connector>(DataInterface{
 
@@ -22,6 +27,9 @@ R2C02::R2C02() {
                     // Halt CPU
                     // Copy from specified memory
                 // 8 remaining registers are mirrored across the whole space -> ANDing with 0x7.
+                    buffer = 0x00;
+                    return true;
+
                 } else if(address >= 0x2000 && address <= 0x3FFF) {
                     address &= 0x7;
                 // Not mappped.
@@ -261,7 +269,13 @@ void R2C02::init(){
     memset(m_palettes, 0, 32);
     memset(m_palettes, 0, sizeof(m_palettes) / sizeof(m_palettes[0]));
     memset(m_nametables, 0, sizeof(m_nametables) / sizeof(m_nametables[0]));
-    memset(m_screen, 0, NESSCREENHEIGHT * NESSCREENWIDTH * sizeof(m_screen[0][0]));
+
+    for(auto & row : m_screen) {
+        for(auto & pixel : row) {
+            pixel = {0, 0, 0};
+        }
+    }
+
     m_spriteData.clear();
 }
 
@@ -777,13 +791,13 @@ void R2C02::clock(){
 
         // Both pixels transparent = render 0x3F00.
         if(fgPixel == 0 && bgPixel == 0)
-            m_screen[m_clock][m_scanline] = m_colors[ppuBusRead(0x3F00) & 0x3F];
+            m_screen[m_scanline][m_clock] = m_colors[ppuBusRead(0x3F00) & 0x3F];
             // Background transparent, sprite not = render sprite.
-        else if(bgPixel == 0 && fgPixel > 0)
-            m_screen[m_clock][m_scanline] = getPixelColor(fgAttr, fgPixel);
+        else if(m_settingsEnableForeground && bgPixel == 0 && fgPixel > 0)
+            ;//m_screen[m_scanline][m_clock] = getPixelColor(fgAttr, fgPixel);
             // Sprite transparent, background not = render background.
-        else if(bgPixel > 0 && fgPixel == 0)
-            m_screen[m_clock][m_scanline] = getPixelColor(bgAttr, bgPixel);
+        else if(m_settingsEnableBackground && bgPixel > 0 && fgPixel == 0)
+            m_screen[m_scanline][m_clock] = getPixelColor(bgAttr, bgPixel);
         else if(bgPixel > 0 && fgPixel > 0){
 
             if(
@@ -797,11 +811,11 @@ void R2C02::clock(){
             }
 
             // 1 = background priority = render bg.
-            if(priorityBit)
-                m_screen[m_clock][m_scanline] = getPixelColor(bgAttr, bgPixel);
+            if(m_settingsEnableBackground && priorityBit)
+                m_screen[m_scanline][m_clock] = getPixelColor(bgAttr, bgPixel);
                 // 0 = sprite priority = render sprite.
-            else
-                m_screen[m_clock][m_scanline] = getPixelColor(fgAttr, fgPixel);
+            else if(m_settingsEnableForeground)
+                m_screen[m_scanline][m_clock] = getPixelColor(fgAttr, fgPixel);
         }
     }
 
@@ -892,9 +906,9 @@ void R2C02::OAMDMA(uint8_t addr, uint8_t data){
 }
 
 // ===============================================
-R2C02::RGB_t R2C02::getPixelColor(uint8_t paletteId, uint8_t pixel){
+RGBPixel R2C02::getPixelColor(uint8_t paletteId, uint8_t pixel){
 
-    RGB_t color = m_colors[ppuBusRead(0x3F00 + paletteId * 4 + pixel) & 0x3F];
+    RGBPixel color = m_colors[ppuBusRead(0x3F00 + paletteId * 4 + pixel) & 0x3F];
 
     // Color emphasis.
     if(
@@ -922,6 +936,51 @@ R2C02::RGB_t R2C02::getPixelColor(uint8_t paletteId, uint8_t pixel){
     return color;
 }
 
+RGBPixel R2C02::getColorFromPalette(uint8_t bgFg, uint8_t paletteNumber, uint8_t pixelValue) {
+
+    // Calculate an offset to palette memory.
+    // 43210
+    // |||||
+    // |||++- Pixel value from tile data
+    // |++--- Palette number from attribute table or OAM
+    // +----- Background/Sprite select
+    // See https://www.nesdev.org/wiki/PPU_palettes.
+    uint16_t paletteOffset = ADDR_PALETTE_RAM.from | ((bgFg & 0x1) << 4) | ((paletteNumber & 0x2) << 2) | (pixelValue & 0x3);
+
+    // Get color index from palette memory.
+    uint8_t colorIndex = ppuBusRead(paletteOffset);
+
+    return m_colors[colorIndex];
+}
+
+RGBPixel R2C02::applyPixelEffects(RGBPixel pixel) const {
+
+    // Color emphasis.
+    if(
+        m_registers.ppumask.bits.eRed &&
+        m_registers.ppumask.bits.eGreen &&
+        m_registers.ppumask.bits.eBlue
+    ){
+        desaturate(pixel.blue, 50);
+        desaturate(pixel.green, 50);
+        desaturate(pixel.red, 50);
+    }else if(m_registers.ppumask.bits.eBlue){
+        saturate(pixel.blue, 50);
+        desaturate(pixel.green, 50);
+        desaturate(pixel.red, 50);
+    } else if(m_registers.ppumask.bits.eGreen){
+        desaturate(pixel.blue, 50);
+        saturate(pixel.green, 50);
+        desaturate(pixel.red, 50);
+    } else if(m_registers.ppumask.bits.eRed){
+        desaturate(pixel.blue, 50);
+        desaturate(pixel.green, 50);
+        saturate(pixel.red, 50);
+    }
+
+    return pixel;
+}
+
 // http://locklessinc.com/articles/sat_arithmetic/
 uint8_t R2C02::saturate(uint8_t x, uint8_t y){
 
@@ -939,9 +998,9 @@ uint8_t R2C02::desaturate(uint8_t x, uint8_t y){
 }
 
 // ===============================================
-std::vector<R2C02::RGB_t> R2C02::getPalette(uint8_t paletteId){
+std::vector<RGBPixel> R2C02::getPalette(uint8_t paletteId){
 
-    std::vector<RGB_t> palette;
+    std::vector<RGBPixel> palette;
 
     for(uint8_t i = 0; i < 4; i++){
         palette.push_back(getPixelColor(paletteId, i));
@@ -955,12 +1014,68 @@ uint8_t *R2C02::getPaletteRAM(){
     return m_palettes;
 }
 
-std::vector<R2C02::RGB_t> R2C02::getPatternTable(uint8_t paletteId, uint8_t index){
+std::vector<std::vector<RGBPixel>> R2C02::getPatternTable(uint8_t bgFg, uint8_t paletteId, uint8_t tableId, bool applyEffects){
 
+    std::vector<std::vector<RGBPixel>> result;
+
+    uint8_t tileLoByte;
+    uint8_t tileHiByte;
+
+    // Tile accesses can be easily calculated using binary arithmetic:
+    //
+    // There are two pattern tables in CHR ROM (RAM) address range 0x0000-0x1FFF.
+    // Each has a size of 4 KiB, thus pattern table index is represented by the bit 12.
+    //
+    // A pattern table consists of 16 rows, each contains 16 tiles.
+    // 16 possible addresses can be indexed by 4 bits, so row addresses are represented by bits 11-8 and
+    // column addresses by bits 7-4.
+    //
+    // This leaves 4 usable bits for inter-tile addressing. Each tile consists of two planes.
+    // Plane index thus can be represented by single bit (two planes, two choices) and
+    // this leaves 3 bits for inter-plane indexing, which is enough, because every plane is 8 byte long.
+    //
+    // First plane represents low bit, second plane represents high bit, creating o 2 bit number.
+
+    for(uint16_t row = 0; row < PATTERN_TABLE_TILE_ROW_COUNT; row++) {
+
+        for(uint16_t tileByte = 0; tileByte < PATTERN_TABLE_PLANE_SIZE; tileByte++) {
+
+            std::vector<RGBPixel> columnData;
+            for(uint16_t col = 0; col < PATTERN_TABLE_TILE_COLUMN_COUNT; col++) {
+
+                tileLoByte = ppuBusRead(
+                        ADDR_PATTERN_TABLES.from | (tableId << 12) | (row << 8) | (col << 4) | tileByte
+                );
+
+                tileHiByte = ppuBusRead(
+                        ADDR_PATTERN_TABLES.from | (tableId << 12) | (row << 8) | (col << 4) | (1 << 3) | tileByte
+                );
+
+                for(uint8_t tileBit = 0; tileBit < 8; tileBit++) {
+
+                    uint8_t pixel = ((tileHiByte & 0x80) >> 6) | ((tileLoByte & 0x80) >> 7);
+                    columnData.push_back(
+                            applyEffects
+                            ?
+                            applyPixelEffects(getColorFromPalette(bgFg, paletteId, pixel))
+                            :
+                            getColorFromPalette(bgFg, paletteId, pixel)
+                    );
+                    tileLoByte <<= 1;
+                    tileHiByte <<= 1;
+                }
+            }
+
+            result.push_back(columnData);
+        }
+
+    }
+
+    /*
     const int tileSize = 16;
     const int rowSize = 256;
     const int tableSize = 4096;
-    std::vector<RGB_t> result;
+    std::vector<RGBPixel> result;
     result.resize(16384);
 
     for(uint8_t y = 0; y < 16; y++){
@@ -983,12 +1098,12 @@ std::vector<R2C02::RGB_t> R2C02::getPatternTable(uint8_t paletteId, uint8_t inde
                 }
             }
         }
-    }
+    }*/
 
     return result;
 }
 
-std::vector<R2C02::RGB_t> R2C02::getScreen(){
+std::vector<RGBPixel> R2C02::getScreen(){
 
     /*
     for(size_t x = 0; x < 32; x++){
@@ -1015,14 +1130,14 @@ std::vector<R2C02::RGB_t> R2C02::getScreen(){
     }
     */
 
-    std::vector<RGB_t> screen;
-    screen.resize(NESSCREENHEIGHT * NESSCREENWIDTH);
+    std::vector<RGBPixel> screen;
+    screen.resize(OUTPUT_BITMAP_HEIGHT * OUTPUT_BITMAP_WIDTH);
 
-    for(uint16_t y = 0; y < NESSCREENHEIGHT; y++){
+    for(uint16_t y = 0; y < OUTPUT_BITMAP_HEIGHT; y++){
 
-        for(uint16_t x = 0; x < NESSCREENWIDTH; x++){
+        for(uint16_t x = 0; x < OUTPUT_BITMAP_WIDTH; x++){
 
-            screen.at(x + y * NESSCREENWIDTH) = m_screen[x][y];
+            screen.at(x + y * OUTPUT_BITMAP_WIDTH) = m_screen[y][x];
         }
     }
 
@@ -1039,46 +1154,121 @@ bool R2C02::frameFinished() const{
 
 std::vector<EmulatorWindow> R2C02::getGUIs() {
 
-
+    // Render PPU output (NES TV screen).
     std::function<void(void)> screen = [this](){
 
         static float scale = 1.0f;
 
         // Window contents
         // ===================================================================
-        ImGui::SliderFloat("Scale", &scale, 1.0, 10.0);
-        ImDrawList * dl = ImGui::GetWindowDrawList();
-        const ImVec2 defaultScreenPos = ImGui::GetCursorScreenPos();
+        ImGui::SliderFloat("Scale", &scale, 1.0, 5.0);
+        USETools::renderScalableBitmap(m_screen, scale);
+    };
 
-        for(size_t imageX = 0; imageX < NESSCREENHEIGHT; imageX++) {
-            for(size_t imageY = 0; imageY < NESSCREENWIDTH; imageY++) {
+    // Rendering settings
+    std::function<void(void)> settings = [this](){
 
-                ImColor color = ImColor(
-                        m_screen[imageY][imageX].red,
-                        m_screen[imageY][imageX].green,
-                        m_screen[imageY][imageX].blue,
-                        255
+
+        // Window contents
+        // ===================================================================
+        ImGui::SeparatorText("Rendering options");
+        ImGui::Checkbox("Foreground rendering (sprites)", &m_settingsEnableForeground);
+        ImGui::Checkbox("Background rendering", &m_settingsEnableBackground);
+
+    };
+
+    // Render internal bitmap data (pattern tables - CHR ROM/RAM, palettes).
+    std::function<void(void)> bitmaps = [this](){
+
+        // Local data
+        // ===================================================================
+        static float scale = 1.0f;
+        static int bgFg = 0;
+        static int paletteId = 0;
+        static bool applyEffects = false;
+
+        // Window contents
+        // ===================================================================
+        ImGui::SeparatorText("Palettes");
+
+        ImGui::ColorButton(
+                "Background",
+                ImColor (
+                        getColorFromPalette(0, 0, 0).red,
+                        getColorFromPalette(0, 0, 0).green,
+                        getColorFromPalette(0, 0, 0).blue
+                ).Value
+        );
+        ImGui::SameLine();
+        ImGui::Text("Universal background");
+
+        for(int pal = 0; pal < 4; pal++) {
+            for(int val = 1; val < 4; val++) {
+                ImGui::ColorButton(
+                        "Background",
+                        ImColor (
+                        getColorFromPalette(0, pal, val).red,
+                        getColorFromPalette(0, pal, val).green,
+                        getColorFromPalette(0, pal, val).blue
+                        ).Value
                 );
-
-                float screenX = defaultScreenPos.x + scale * static_cast<float>(imageX);
-                float screenY = defaultScreenPos.y + scale * static_cast<float>(imageY);
-                dl->AddRectFilled({screenX, screenY}, {screenX + scale, screenY + scale}, color);
+                ImGui::SameLine();
             }
+            ImGui::Text("Background #%d", pal);
         }
 
-        float dummyWidth = scale * static_cast<float>(NESSCREENWIDTH);
-        float dummyHeight = scale * static_cast<float>(NESSCREENHEIGHT);
-        // Dummy widget is needed for scrollbars to work and to allow to place more elements below correctly.
-        ImGui::Dummy({dummyWidth, dummyHeight});
+        for(int pal = 0; pal < 4; pal++) {
+            for(int val = 1; val < 4; val++) {
+                ImGui::ColorButton(
+                        "Sprite",
+                        ImColor (
+                                getColorFromPalette(1, pal, val).red,
+                                getColorFromPalette(1, pal, val).green,
+                                getColorFromPalette(1, pal, val).blue
+                        ).Value
+                );
+                ImGui::SameLine();
+            }
+            ImGui::Text("Sprite #%d", pal);
+        }
+
+        ImGui::SeparatorText("Pattern tables");
+        ImGui::SliderFloat("Scale", &scale, 1.0, 10.0);
+        ImGui::Separator();
+        ImGui::RadioButton("Background palette", &bgFg, 0);
+        ImGui::RadioButton("Foreground palette", &bgFg, 1);
+        ImGui::Separator();
+        ImGui::Checkbox("Apply pixel effects", &applyEffects);
+        ImGui::SliderInt("Palette #", &paletteId, 0, 3);
+
+        USETools::renderScalableBitmap(getPatternTable(bgFg, paletteId, 0, applyEffects), scale);
+        ImGui::SameLine();
+        USETools::renderScalableBitmap(getPatternTable(bgFg, paletteId, 1, applyEffects), scale);
     };
 
     return {
             EmulatorWindow{
                     .category = m_deviceName,
-                    .title = " Screen",
+                    .title = "Screen",
                     .id    = getDeviceID(),
                     .dock  = DockSpace::MAIN,
                     .guiFunction = screen
+            },
+            EmulatorWindow{
+                    .category = m_deviceName,
+                    .title = "Bitmaps",
+                    .id    = getDeviceID(),
+                    .dock  = DockSpace::MAIN,
+                    .guiFunction = bitmaps
+            },
+            EmulatorWindow{
+                    .category = m_deviceName,
+                    .title = "Settings",
+                    .id    = getDeviceID(),
+                    .dock  = DockSpace::LEFT,
+                    .guiFunction = settings
             }
     };
 }
+
+

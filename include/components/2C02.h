@@ -14,6 +14,7 @@
 #include <vector>
 #include "Port.h"
 #include "Component.h"
+#include "Types.h"
 
 /**
  *
@@ -36,20 +37,25 @@ class R2C02 : public Component {
  * @ = visible screen
  * - = invisible screen
 */
+protected:
 
+    // ===========================================
+    // PPU memory addresses
+    // ===========================================
+    constexpr static AddressRange ADDR_PATTERN_TABLES{0x0000, 0x1FFF};
+    constexpr static AddressRange ADDR_NAMETABLES{0x2000, 0x2FFF};
+    constexpr static AddressRange ADDR_PALETTE_RAM{0x3F00, 0x3FFF};
 
-public:
-    /**
-     * Utility struct to carry RGB values.
-    */
-    struct RGB_t{
-        uint8_t red;
-        uint8_t green;
-        uint8_t blue;
-    };
+    // ===========================================
+    // Sizes
+    // ===========================================
+    static const uint16_t OUTPUT_BITMAP_WIDTH = 256;
+    static const uint16_t OUTPUT_BITMAP_HEIGHT = 240;
 
-    static const uint16_t NESSCREENWIDTH = 256;
-    static const uint16_t NESSCREENHEIGHT = 240;
+    static const uint16_t PATTERN_TABLE_COUNT = 2;
+    static const uint16_t PATTERN_TABLE_TILE_ROW_COUNT = 16;
+    static const uint16_t PATTERN_TABLE_TILE_COLUMN_COUNT = 16;
+    static const uint16_t PATTERN_TABLE_PLANE_SIZE = 8;
 
     uint8_t m_dataBuffer = 0x00;
 
@@ -250,12 +256,11 @@ public:
 
     uint8_t m_nametables[2048];
     int m_clock, m_scanline;
-
-private:
-
     bool m_scanlineReady = false;
     bool m_frameReady = false;
     bool m_oddScan = false;
+    bool m_settingsEnableForeground = true;
+    bool m_settingsEnableBackground = true;
 
     /**
      * Suppress NMI generation and NMI flag setting.
@@ -268,7 +273,7 @@ private:
     /**
      * Default 2C02 color pallete.
     */
-    const RGB_t m_colors2C02[64] = {
+    const RGBPixel m_colors2C02[64] = {
 
             {84, 84, 84},
             {0, 30, 116},
@@ -339,7 +344,7 @@ private:
     //External PPU colors.
 
     // Current PPU rendering colors.
-    const RGB_t *m_colors = m_colors2C02;
+    const RGBPixel *m_colors = m_colors2C02;
 
     // ===============================================
     // Background rendering procedures.
@@ -373,7 +378,8 @@ private:
     //int m_clock, m_scanline; // public
     // ===============================================
     // NES screen.
-    RGB_t m_screen[NESSCREENWIDTH][NESSCREENHEIGHT] = {0,0,0};
+    //RGBPixel m_screen[NESSCREENWIDTH][NESSCREENHEIGHT] = {0,0,0};
+    std::vector<std::vector<RGBPixel>> m_screen{OUTPUT_BITMAP_HEIGHT, {OUTPUT_BITMAP_WIDTH, {0, 0, 0}}};
 
     // Internal PPU bus I/O.
     /**
@@ -389,9 +395,15 @@ private:
     */
     void ppuBusWrite(uint16_t addr, uint8_t data);
     // ===============================================
-    RGB_t getPixelColor(uint8_t paletteId, uint8_t pixel);
-    uint8_t saturate(uint8_t x, uint8_t y);
-    uint8_t desaturate(uint8_t x, uint8_t y);
+
+    // ===========================================
+    // Helpers
+    // ===========================================
+    RGBPixel getPixelColor(uint8_t paletteId, uint8_t pixel);
+    RGBPixel getColorFromPalette(uint8_t bgFg, uint8_t paletteNumber, uint8_t pixelValue);
+    RGBPixel applyPixelEffects(RGBPixel pixel) const;
+    static uint8_t saturate(uint8_t x, uint8_t y);
+    static uint8_t desaturate(uint8_t x, uint8_t y);
 
     // ===========================================
     // I/O
@@ -437,16 +449,16 @@ public:
     void OAMDMA(uint8_t addr, uint8_t data);
     // ===============================================
     // Output
-    std::vector<RGB_t> getPalette(uint8_t paletteId);
+    std::vector<RGBPixel> getPalette(uint8_t paletteId);
     uint8_t *getPaletteRAM();
     /**
      * Get a pattern table.
     */
-    std::vector<RGB_t> getPatternTable(uint8_t paletteId, uint8_t index);
+    std::vector<std::vector<RGBPixel>> getPatternTable(uint8_t colorType, uint8_t paletteId, uint8_t index, bool applyEffects = false);
     /**
      * Get a NES screen.
     */
-    std::vector<RGB_t> getScreen();
+    std::vector<RGBPixel> getScreen();
     /**
      * Is a scanline finished?
      * @return true if clock index >= 341
