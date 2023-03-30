@@ -9,7 +9,7 @@
 #define USE_NES_H
 
 #include "System.h"
-#include "components/6502.h"
+#include "components/2A03.h"
 #include "components/2C02.h"
 #include "components/Bus.h"
 #include "components/Memory.h"
@@ -26,7 +26,7 @@ protected:
     // ===========================================
     // System components
     // ===========================================
-    MOS6502 m_cpu;
+    RP2A03 m_cpu;
     R2C02 m_ppu;
     Memory m_RAM{0x800, {.from = 0x0000, .to = 0x1FFF}, 0xFF};
     Gamepak m_cart;
