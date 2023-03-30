@@ -6,11 +6,12 @@
  *
  */
 
-#include "components/Gamepak/Gamepak.h"
 #include <memory>
 #include <string>
 #include "imgui.h"
+#include "ImGuiFileDialog.h"
 
+#include "components/Gamepak/Gamepak.h"
 #include "Connector.h"
 #include "components/Gamepak/Mapper.h"
 #include "components/Gamepak/Mapper000.h"
@@ -262,9 +263,42 @@ std::vector<EmulatorWindow> Gamepak::getGUIs() {
 
     std::function<void(void)> gamepakGUI = [this](){
 
+        // Local data
+        // ===================================================================
+
         // Window contents
         // ===================================================================
-        // TODO
+        ImGui::SeparatorText("Load from file");
+        if(ImGui::Button("Select file")) {
+            ImGuiFileDialog::Instance()->OpenDialog("ChooseGamepakFileLoad", "Choose File", ".nes", ".");
+        }
+
+        // Dialogs
+        // ===================================================================
+        if(ImGuiFileDialog::Instance()->Display("ChooseGamepakFileLoad")) {
+
+            if(ImGuiFileDialog::Instance()->IsOk()) {
+
+                std::string filePath = ImGuiFileDialog::Instance()->GetFilePathName();
+
+                std::ifstream file(filePath, std::ios_base::binary);
+                if(!file) {
+                    ImGui::OpenPopup(std::string(m_deviceName + ": File error").data());
+                } else {
+                    load( file);
+                }
+            }
+
+            ImGuiFileDialog::Instance()->Close();
+        }
+
+        if(ImGui::BeginPopupModal(std::string(m_deviceName + ": File error").data(), nullptr, ImGuiWindowFlags_AlwaysAutoResize)) {
+            ImGui::Text("Specified file couldn't be opened!");
+            ImGui::Separator();
+            if (ImGui::Button("OK")) { ImGui::CloseCurrentPopup(); }
+            ImGui::SetItemDefaultFocus();
+            ImGui::EndPopup();
+        }
 
         // Draw additional mapper's GUI if available.
         if(m_mapper) {
