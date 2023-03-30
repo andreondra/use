@@ -35,6 +35,9 @@ protected:
     /// Available ports by name.
     std::map<std::string, Port *> m_ports;
 
+    /// Request init of the whole system. Used mainly by ROM on load to properly load reset vectors.
+    bool m_initRequested = false;
+
 public:
 
     Component() = default;
@@ -70,6 +73,8 @@ public:
     [[nodiscard]] virtual std::vector<std::string> listPorts() const;
 
     virtual std::vector<EmulatorWindow> getGUIs() = 0;
+
+    [[nodiscard]] virtual bool initRequested();
 
     // maybe provide default implementation using listConnectors...?
     //virtual void renderNode();

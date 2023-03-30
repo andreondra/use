@@ -59,3 +59,11 @@ std::vector<std::string> Component::listPorts() const {
     auto names = std::views::keys(m_ports);
     return {names.begin(), names.end()};
 }
+
+bool Component::initRequested() {
+
+    bool prevValue = m_initRequested;
+    m_initRequested = false;
+
+    return prevValue;
+}
