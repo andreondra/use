@@ -4,6 +4,11 @@
 
 #include "System.h"
 
+void System::init() {
+    for(auto & component : m_components)
+        component->init();
+}
+
 std::vector<EmulatorWindow> System::getGUIs() {
 
     std::vector<EmulatorWindow> mergedGUIs;

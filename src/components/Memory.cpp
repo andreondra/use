@@ -66,7 +66,7 @@ std::vector<EmulatorWindow> Memory::getGUIs() {
         // Window contents
         // ===================================================================
         ImGui::Text("Parameters");
-        ImGui::Text("Size: %lu (0x%x) B", m_data.size());
+        ImGui::Text("Size: %lu (0x%x) B", m_data.size(), m_data.size());
         ImGui::Text("At addresses: 0x%x to 0x%x", m_addressRange.from, m_addressRange.to);
         ImGui::Separator();
 

@@ -18,12 +18,12 @@ public:
     System() = default;
     virtual ~System() = default;
 
-    virtual void init()     = 0;
+    virtual void init();
 
-    virtual void doClocks(int count)        = 0;
-    virtual void doSteps(int count)         = 0;
-    virtual void doFrames(int count)        = 0;
-    virtual void doRun(int updateFrequency) = 0;
+    virtual void doClocks(unsigned int count)        = 0;
+    virtual void doSteps(unsigned  int count)         = 0;
+    virtual void doFrames(unsigned int count)        = 0;
+    virtual void doRun(unsigned int updateFrequency) = 0;
 
     /**
      * Get all the GUI elements created by the System and underlying Component(s).

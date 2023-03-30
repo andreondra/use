@@ -3,10 +3,12 @@
 //
 
 #include <memory>
+#include <thread>
 #include "immapp/immapp.h"
 #include "imgui.h"
 #include "Emulator.h"
 #include "systems/Bare6502.h"
+#include "systems/NES.h"
 #include "Types.h"
 
 std::string Emulator::dockSpaceToString(DockSpace dockSpace) {
@@ -20,9 +22,13 @@ std::string Emulator::dockSpaceToString(DockSpace dockSpace) {
     }
 }
 
+void Emulator::setIdling(bool enabled) {
+    HelloImGui::GetRunnerParams()->fpsIdling.fpsIdle = enabled ? 9 : 0;
+}
+
 void Emulator::loadSystem(std::unique_ptr<System> system) {
 
-    // todo something to stop running system
+    m_runEnabled = false;
 
     // Get app state.
     HelloImGui::RunnerParams *params;
@@ -57,11 +63,22 @@ void Emulator::loadSystem(std::unique_ptr<System> system) {
     }
 }
 
+void Emulator::runSystem() {
+
+    if(m_runEnabled && m_system) {
+        m_system->doRun(60);
+    }
+}
+
 void Emulator::guiStatusBar() {
 
     // todo info about running state
 
-    ImGui::Text("Ready");
+    if(m_runEnabled) {
+        ImGui::Text("Running");
+    } else {
+        ImGui::Text("Ready");
+    }
 }
 
 void Emulator::guiToolbar() {
@@ -69,16 +86,31 @@ void Emulator::guiToolbar() {
     if(ImGui::BeginMenu("Run")) {
 
         if(m_system) {
-            if(ImGui::MenuItem("Clock")) m_system->doClocks(1);
-            if(ImGui::MenuItem("Step"))  m_system->doSteps(1);
-            if(ImGui::MenuItem("Frame")) m_system->doFrames(1);
-            //ImGui::Separator();
-            //ImGui::MenuItem("Run...");
+
+            if(m_runEnabled) {
+                if(ImGui::MenuItem("Stop")) {
+                    setIdling(true);
+                    m_runEnabled = false;
+                }
+            } else {
+                if(ImGui::MenuItem("Clock")) m_system->doClocks(1);
+                if(ImGui::MenuItem("Step"))  m_system->doSteps(1);
+                if(ImGui::MenuItem("Frame")) m_system->doFrames(1);
+                ImGui::Separator();
+                if(ImGui::MenuItem("Run...")) {
+                    setIdling(false);
+                    m_runEnabled = true;
+                }
+            }
         } else {
             ImGui::Text("Please select a system");
         }
 
         ImGui::EndMenu();
+    }
+
+    if(ImGui::Button("Reset") && m_system) {
+        m_system->init();
     }
 }
 
@@ -88,12 +120,23 @@ void Emulator::guiMenuItems() {
 
         if(ImGui::MenuItem("None", nullptr, m_systemID == SYSTEMS::NONE)) {
 
+            // Get app state.
+            HelloImGui::RunnerParams *params;
+            params = HelloImGui::GetRunnerParams();
+
+            // Remove existing debugging windows.
+            params->dockingParams.dockableWindows.clear();
+
             m_system.reset();
             m_systemID = SYSTEMS::NONE;
         } else if(ImGui::MenuItem("Bare 6502", nullptr, m_systemID == SYSTEMS::BARE6502)) {
 
             loadSystem(std::make_unique<Bare6502>());
             m_systemID = SYSTEMS::BARE6502;
+        } else if(ImGui::MenuItem("NES", nullptr, m_systemID == SYSTEMS::NES)) {
+
+            loadSystem(std::make_unique<NES>());
+            m_systemID = SYSTEMS::NES;
         }
 
         ImGui::EndMenu();
@@ -107,7 +150,7 @@ int Emulator::run() {
     // ===============================================
     HelloImGui::RunnerParams par;
     par.appWindowParams.windowTitle = "USE: Universal System Emulator";
-    par.appWindowParams.windowGeometry.size = {640, 480};
+    par.appWindowParams.windowGeometry.size = {1280, 720};
     par.appWindowParams.restorePreviousGeometry = false;
 
     // ===============================================
@@ -152,8 +195,10 @@ int Emulator::run() {
     splitRight.ratio = 0.25f;
     par.dockingParams.dockingSplits.push_back(splitRight);
 
-    // Note: debugger dockable windows are set up during System change.
+    // Run emulation if enabled.
+    par.callbacks.PreNewFrame = [this](){runSystem();};
 
+    // Note: debugger dockable windows are set up during System change.
     ImmApp::Run(par);
 
     return 0;

@@ -29,6 +29,7 @@ MOS6502::MOS6502() : m_currentInstruction(lookup[0xEA]) {
     });
 
     m_ports["mainBus"] = &m_mainBus;
+    m_deviceName = "6502 CPU";
 
     hardReset();
 }
@@ -313,11 +314,11 @@ std::vector<EmulatorWindow> MOS6502::getGUIs() {
         ImGui::Text("Remaining cycles: %u", m_cycles);
 
         ImGui::SeparatorText("Registers");
-        ImGui::InputScalar("PC", ImGuiDataType_U16, &m_registers.x, nullptr, nullptr, "%x", ImGuiInputTextFlags_CharsHexadecimal);
-        ImGui::InputScalar("SP", ImGuiDataType_U8, &m_registers.x, nullptr, nullptr, "%x", ImGuiInputTextFlags_CharsHexadecimal);
-        ImGui::InputScalar("ACC", ImGuiDataType_U8, &m_registers.x, nullptr, nullptr, "%x", ImGuiInputTextFlags_CharsHexadecimal);
+        ImGui::InputScalar("PC", ImGuiDataType_U16, &m_registers.pc, nullptr, nullptr, "%x", ImGuiInputTextFlags_CharsHexadecimal);
+        ImGui::InputScalar("SP", ImGuiDataType_U8, &m_registers.sp, nullptr, nullptr, "%x", ImGuiInputTextFlags_CharsHexadecimal);
+        ImGui::InputScalar("ACC", ImGuiDataType_U8, &m_registers.acc, nullptr, nullptr, "%x", ImGuiInputTextFlags_CharsHexadecimal);
         ImGui::InputScalar("X", ImGuiDataType_U8, &m_registers.x, nullptr, nullptr, "%x", ImGuiInputTextFlags_CharsHexadecimal);
-        ImGui::InputScalar("Y", ImGuiDataType_U8, &m_registers.x, nullptr, nullptr, "%x", ImGuiInputTextFlags_CharsHexadecimal);
+        ImGui::InputScalar("Y", ImGuiDataType_U8, &m_registers.y, nullptr, nullptr, "%x", ImGuiInputTextFlags_CharsHexadecimal);
 
         ImGui::SeparatorText("Status flags");
         ImGui::Checkbox("C", &m_registers.status.c);
@@ -350,6 +351,8 @@ std::vector<EmulatorWindow> MOS6502::getGUIs() {
 
         ImGui::SeparatorText("Stack");
         ImGui::Text("Stack position: 0x%x", STACK_POSITION);
+        ImGui::SeparatorText("Stats");
+        ImGui::Text("All cycles: %llu", m_cycleCount);
     };
 
     return {
