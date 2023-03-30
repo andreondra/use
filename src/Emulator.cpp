@@ -101,16 +101,14 @@ void Emulator::guiToolbar() {
                     setIdling(false);
                     m_runEnabled = true;
                 }
+                ImGui::Separator();
+                if(ImGui::MenuItem("Hard reset")) m_system->init();
             }
         } else {
             ImGui::Text("Please select a system");
         }
 
         ImGui::EndMenu();
-    }
-
-    if(ImGui::Button("Reset") && m_system) {
-        m_system->init();
     }
 }
 
