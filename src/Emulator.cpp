@@ -108,6 +108,10 @@ void Emulator::guiToolbar() {
 
         ImGui::EndMenu();
     }
+
+    if(ImGui::Button("Reset") && m_system) {
+        m_system->init();
+    }
 }
 
 void Emulator::guiMenuItems() {
