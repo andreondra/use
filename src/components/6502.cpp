@@ -101,18 +101,6 @@ void MOS6502::hardReset() {
     m_registers.x = 0;
     m_registers.y = 0;
     m_registers.sp = 0xFD;
-
-    for(uint16_t i = 0; i <= 0x7FF; i++){
-        m_mainBus.write(i, 0x00);
-    }
-    for(uint16_t i = 0; i <= 0xF; i++){
-        m_mainBus.write(0x4000 + i, 0x00);
-    }
-
-    for(uint16_t i : {0x4017, 0x4015, 0x4010, 0x4011, 0x4012, 0x4013}){
-        m_mainBus.write(i, 0x00);
-    }
-
     m_registers.pc = m_mainBus.read(VECTOR_RST) | ((uint16_t)m_mainBus.read(VECTOR_RST + 1) << 8);
 
     m_addrAbs = m_addrRel = 0;
