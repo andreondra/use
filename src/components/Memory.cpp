@@ -48,7 +48,7 @@ void Memory::memoryInit() {
 }
 
 void Memory::init() {
-
+    memoryInit();
 }
 
 std::vector<EmulatorWindow> Memory::getGUIs() {
