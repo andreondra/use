@@ -265,6 +265,7 @@ std::vector<EmulatorWindow> Gamepak::getGUIs() {
 
         // Local data
         // ===================================================================
+        std::string modalText;
 
         // Window contents
         // ===================================================================
@@ -283,17 +284,32 @@ std::vector<EmulatorWindow> Gamepak::getGUIs() {
 
                 std::ifstream file(filePath, std::ios_base::binary);
                 if(!file) {
-                    ImGui::OpenPopup(std::string(m_deviceName + ": File error").data());
+                    modalText = "Specified file couldn't be opened!";
+                    ImGui::OpenPopup(std::string(m_deviceName + ": Error").data());
                 } else {
-                    load( file);
+
+                    try {
+                        load( file);
+                    } catch (std::invalid_argument & e) {
+                        modalText = "Specified file is malformed: " + std::string(e.what() ? e.what() : "");
+                        ImGui::OpenPopup(std::string(m_deviceName + ": Error").data());
+                    } catch (std::runtime_error & e) {
+                        modalText = "Specified file couldn't be opened: " + std::string(e.what() ? e.what() : "");
+                        ImGui::OpenPopup(std::string(m_deviceName + ": Error").data());
+                    } catch (...) {
+                        modalText = "Other error loading the file.";
+                        ImGui::OpenPopup(std::string(m_deviceName + ": Error").data());
+                    }
+
+                    m_initRequested = true;
                 }
             }
 
             ImGuiFileDialog::Instance()->Close();
         }
 
-        if(ImGui::BeginPopupModal(std::string(m_deviceName + ": File error").data(), nullptr, ImGuiWindowFlags_AlwaysAutoResize)) {
-            ImGui::Text("Specified file couldn't be opened!");
+        if(ImGui::BeginPopupModal(std::string(m_deviceName + ": Error").data(), nullptr, ImGuiWindowFlags_AlwaysAutoResize)) {
+            ImGui::Text("%s", modalText.c_str());
             ImGui::Separator();
             if (ImGui::Button("OK")) { ImGui::CloseCurrentPopup(); }
             ImGui::SetItemDefaultFocus();
