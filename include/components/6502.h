@@ -105,7 +105,7 @@ protected:
     /// Currently remaining cycles.
     uint8_t m_cycles   = 0;
     /// All cycles.
-    uint64_t m_cycleCount = 0;
+    unsigned long long m_cycleCount = 0;
     /// Signalizes accumulator operation address mode.
     bool m_accOperation = false;
 
