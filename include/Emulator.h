@@ -12,6 +12,8 @@
 class Emulator{
 
 private:
+    static const int DEFAULT_IMGUI_REFRESH_HZ = 60;
+
     enum class SYSTEMS{ NONE, BARE6502, NES } m_systemID = SYSTEMS::NONE;
     std::unique_ptr<System> m_system;
 

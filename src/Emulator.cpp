@@ -66,7 +66,7 @@ void Emulator::loadSystem(std::unique_ptr<System> system) {
 void Emulator::runSystem() {
 
     if(m_runEnabled && m_system) {
-        m_system->doRun(60);
+        m_system->doRun(DEFAULT_IMGUI_REFRESH_HZ);
     }
 }
 
@@ -74,10 +74,14 @@ void Emulator::guiStatusBar() {
 
     // todo info about running state
 
-    if(m_runEnabled) {
-        ImGui::Text("Running");
+    if(m_system) {
+        if(m_runEnabled) {
+            ImGui::Text("Running...");
+        } else {
+            ImGui::Text("System loaded: xxx");
+        }
     } else {
-        ImGui::Text("Ready");
+        ImGui::Text("Ready to load a system");
     }
 }
 
@@ -194,7 +198,10 @@ int Emulator::run() {
     par.dockingParams.dockingSplits.push_back(splitRight);
 
     // Run emulation if enabled.
-    par.callbacks.PreNewFrame = [this](){runSystem();};
+    par.callbacks.PreNewFrame = [this](){
+        runSystem();
+        if(m_system) m_system->onRefresh();
+    };
 
     // Note: debugger dockable windows are set up during System change.
     ImmApp::Run(par);
