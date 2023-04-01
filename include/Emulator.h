@@ -19,6 +19,8 @@ private:
     std::unique_ptr<System> m_system;
     Sound m_sound;
 
+    enum class STATE{ STOPPED, RUNNING, RUNNING_SOUND } m_runState = STATE::STOPPED;
+
     // ===========================================
     // Helpers
     // ===========================================
@@ -42,7 +44,6 @@ private:
      * Load a System to the emulator, initialize and load the debugging GUI of the system.
      * @param system A system to load.
      * */
-    bool m_runEnabled = false;
     void loadSystem(std::unique_ptr<System> system);
     void runSystem();
 
