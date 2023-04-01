@@ -29,3 +29,16 @@ void System::onRefresh() {
         }
     }
 }
+
+SoundConfig System::getSoundConfig() {
+
+    SoundConfig config;
+    config.systemClockSpeed = m_systemClockRate;
+    config.systemClock = [this](){doClocks(1);};
+
+    for(auto & component : m_components)
+        for(auto & source : component->getSoundSampleSources())
+            config.sampleSources.push_back(source);
+
+    return config;
+}

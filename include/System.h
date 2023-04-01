@@ -13,6 +13,7 @@ class System {
 
 protected:
     std::vector<Component *> m_components;
+    unsigned long m_systemClockRate = 0;
 
 public:
     System() = default;
@@ -55,6 +56,8 @@ public:
      * @return Vector of dockable windows.
      * */
     virtual std::vector<EmulatorWindow> getGUIs();
+
+    virtual SoundConfig getSoundConfig();
 };
 
 #endif //USE_SYSTEM_H
