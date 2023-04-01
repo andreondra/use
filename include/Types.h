@@ -118,11 +118,13 @@ struct SoundStereoFrame {
     float right;
 };
 
+typedef std::vector<std::function<SoundStereoFrame(void)>> SoundSampleSources;
+
 struct SoundConfig{
 
     unsigned long systemClockSpeed;
     std::function<void(void)> systemClock;
-    std::vector<std::function<SoundStereoFrame(void)>> sampleSources;
+    SoundSampleSources sampleSources;
 };
 
 #endif //USE_TYPES_H
