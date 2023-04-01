@@ -2,6 +2,8 @@
 
 NES::NES() {
 
+    m_systemClockRate = PPU_CLOCK_HZ;
+
     // Connect CPU to the main system bus as master.
     m_cpu.connect("mainBus", m_cpuBus.getConnector("master"));
 
