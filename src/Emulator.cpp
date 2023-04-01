@@ -41,6 +41,20 @@ void Emulator::loadSystem(std::unique_ptr<System> system) {
     m_system.swap(system);
     m_system->init();
 
+    // Configure sound.
+    m_sound.configureSound({
+        .systemClockSpeed = 21477272 / 4,
+        .systemClock = [&](){m_system->doClocks(1);},
+        .sampleSources = {
+                []() ->SoundStereoFrame {
+
+                    float noise = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
+                    noise -= 0.5;
+                    return {noise, noise};
+                }
+        }
+    });
+
     // Add debugging windows from the new System.
     for(auto & windowConfig : m_system->getGUIs()) {
 
@@ -104,6 +118,10 @@ void Emulator::guiToolbar() {
                 if(ImGui::MenuItem("Run...")) {
                     setIdling(false);
                     m_runEnabled = true;
+                }
+                if(ImGui::MenuItem("Run with sound...")) {
+                    setIdling(false);
+                    m_sound.start();
                 }
                 ImGui::Separator();
                 if(ImGui::MenuItem("Hard reset")) m_system->init();

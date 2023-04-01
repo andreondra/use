@@ -7,6 +7,7 @@
 
 #include <memory>
 #include <map>
+#include "Sound.h"
 #include "System.h"
 
 class Emulator{
@@ -16,6 +17,7 @@ private:
 
     enum class SYSTEMS{ NONE, BARE6502, NES } m_systemID = SYSTEMS::NONE;
     std::unique_ptr<System> m_system;
+    Sound m_sound;
 
     // ===========================================
     // Helpers
