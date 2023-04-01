@@ -78,6 +78,8 @@ void Sound::dataCallback(ma_device *pDevice, void *pOutput, const void *pInput, 
 
 void Sound::configureSound(SoundConfig cfg) {
 
+    stop();
+
     m_systemClockFunction = std::move(cfg.systemClock);
     m_expectedClockRate = cfg.systemClockSpeed;
 
@@ -96,8 +98,8 @@ void Sound::configureSound(SoundConfig cfg) {
                 // log, todo
             } else {
 
-//                ma_node_attach_output_bus(m_maNodesDataSource.back().get(), 0, &m_maNodeLpf, 0);
-                ma_node_attach_output_bus(m_maNodesDataSource.back().get(), 0, ma_node_graph_get_endpoint(m_maNodeGraph.get()), 0);
+                ma_node_attach_output_bus(m_maNodesDataSource.back().get(), 0, m_maNodeLpf.get(), 0);
+                //ma_node_attach_output_bus(m_maNodesDataSource.back().get(), 0, ma_node_graph_get_endpoint(m_maNodeGraph.get()), 0);
             }
         }
     }
@@ -106,6 +108,8 @@ void Sound::configureSound(SoundConfig cfg) {
 }
 
 void Sound::unloadConfig() {
+
+    stop();
 
     // First clean the nodes, then the data sources which were encapsulated by the nodes.
     m_maNodesDataSource.clear();

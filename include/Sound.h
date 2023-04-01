@@ -33,7 +33,7 @@ private:
     const int CHANNEL_COUNT = 2;
 
     // Low Pass Filter parameters.
-    const int   LPF_CUTOFF_FREQ   = 45000;
+    const int   LPF_CUTOFF_FREQ   = 20000;
     const int   LPF_ORDER           = 8;
     //const float LPF_BIAS            = 0.9f;
 
