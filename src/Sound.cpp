@@ -83,28 +83,33 @@ void Sound::configureSound(SoundConfig cfg) {
     m_systemClockFunction = std::move(cfg.systemClock);
     m_expectedClockRate = cfg.systemClockSpeed;
 
-    for(auto & source : cfg.sampleSources) {
+    if(cfg.sampleSources.empty()) {
+        m_configured = false;
+    } else {
+        for(auto & source : cfg.sampleSources) {
 
-        m_maDataSources.emplace_back(new callbackDataSource_t, &callBackDataSourceUninit);
-        if(callBackDataSourceInit(m_maDataSources.back().get(), std::move(source)) != MA_SUCCESS) {
-            // Log. Todo.
-        } else {
-
-            ma_data_source_node_config nodeConfig = ma_data_source_node_config_init(m_maDataSources.back().get());
-            m_maNodesDataSource.emplace_back(new ma_data_source_node, &deleteDataNode);
-
-            if(ma_data_source_node_init(m_maNodeGraph.get(), &nodeConfig, nullptr, m_maNodesDataSource.back().get()) != MA_SUCCESS) {
-                m_maDataSources.pop_back();
-                // log, todo
+            m_maDataSources.emplace_back(new callbackDataSource_t, &callBackDataSourceUninit);
+            if(callBackDataSourceInit(m_maDataSources.back().get(), std::move(source)) != MA_SUCCESS) {
+                // Log. Todo.
             } else {
 
-                ma_node_attach_output_bus(m_maNodesDataSource.back().get(), 0, m_maNodeLpf.get(), 0);
-                //ma_node_attach_output_bus(m_maNodesDataSource.back().get(), 0, ma_node_graph_get_endpoint(m_maNodeGraph.get()), 0);
+                ma_data_source_node_config nodeConfig = ma_data_source_node_config_init(m_maDataSources.back().get());
+                m_maNodesDataSource.emplace_back(new ma_data_source_node, &deleteDataNode);
+
+                if(ma_data_source_node_init(m_maNodeGraph.get(), &nodeConfig, nullptr, m_maNodesDataSource.back().get()) != MA_SUCCESS) {
+                    m_maDataSources.pop_back();
+                    // log, todo
+                } else {
+
+                    ma_node_attach_output_bus(m_maNodesDataSource.back().get(), 0, m_maNodeLpf.get(), 0);
+                    //ma_node_attach_output_bus(m_maNodesDataSource.back().get(), 0, ma_node_graph_get_endpoint(m_maNodeGraph.get()), 0);
+                }
             }
         }
+
+        m_configured = true;
     }
 
-    m_configured = true;
 }
 
 void Sound::unloadConfig() {
