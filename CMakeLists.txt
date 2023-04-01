@@ -91,6 +91,16 @@ include_directories(${imgui_filedialog_SOURCE_DIR})
 file(GLOB imgui_filedialog_sources ${imgui_filedialog_SOURCE_DIR}/*.cpp)
 list(APPEND projectSources ${imgui_filedialog_sources})
 
+# Download miniaudio.
+FetchContent_Declare(
+        miniaudio
+        GIT_REPOSITORY https://github.com/mackron/miniaudio.git
+        GIT_PROGRESS TRUE
+        GIT_TAG master
+)
+FetchContent_MakeAvailable(miniaudio)
+include_directories(${miniaudio_SOURCE_DIR})
+
 ##########################################################
 # Build setup
 ##########################################################
