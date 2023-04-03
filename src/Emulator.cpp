@@ -42,7 +42,7 @@ void Emulator::loadSystem(std::unique_ptr<System> system) {
     m_system->init();
 
     // Configure sound.
-    m_sound.configureSound(m_system->getSoundConfig());
+    m_sound = std::make_unique<Sound>(m_system->soundOutputCount());
 
     // Add debugging windows from the new System.
     for(auto & windowConfig : m_system->getGUIs()) {
@@ -69,7 +69,19 @@ void Emulator::loadSystem(std::unique_ptr<System> system) {
 void Emulator::runSystem() {
 
     if(m_runState == STATE::RUNNING && m_system) {
-        m_system->doRun(DEFAULT_IMGUI_REFRESH_HZ);
+
+        unsigned long remainingClocks = m_system->getClockRate() / DEFAULT_IMGUI_REFRESH_HZ;
+
+        while(remainingClocks) {
+
+            if(remainingClocks % m_sound->getSampleRate()) {
+                //m_sound->writeFrame(0, )
+                // flush all frames to all outputs - probably new function in sound.h
+            }
+
+            m_system->doClocks(1);
+            remainingClocks--;
+        }
     }
 }
 
@@ -79,9 +91,6 @@ void Emulator::guiStatusBar() {
         switch(m_runState) {
             case STATE::RUNNING:
                 ImGui::Text("Running...");
-                break;
-            case STATE::RUNNING_SOUND:
-                ImGui::Text("Running with sound...");
                 break;
             case STATE::STOPPED:
                 ImGui::Text("Stopped.");
@@ -108,24 +117,12 @@ void Emulator::guiToolbar() {
                         setIdling(false);
                         m_runState = STATE::RUNNING;
                     }
-                    if (m_sound.soundAvailable() && ImGui::MenuItem("Run with sound...")) {
-                        setIdling(false);
-                        m_sound.start();
-                        m_runState = STATE::RUNNING_SOUND;
-                    }
                     ImGui::Separator();
                     if (ImGui::MenuItem("Hard reset")) m_system->init();
                     break;
                 case STATE::RUNNING:
                     if (ImGui::MenuItem("Stop")) {
                         setIdling(true);
-                        m_runState = STATE::STOPPED;
-                    }
-                    break;
-                case STATE::RUNNING_SOUND:
-                    if (ImGui::MenuItem("Stop")) {
-                        setIdling(true);
-                        m_sound.stop();
                         m_runState = STATE::STOPPED;
                     }
                     break;

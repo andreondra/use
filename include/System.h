@@ -8,15 +8,18 @@
 #include <vector>
 #include "Types.h"
 #include "Component.h"
+#include "Sound.h"
 
 class System {
 
 protected:
     std::vector<Component *> m_components;
     unsigned long m_systemClockRate = 0;
+    SoundSampleSources m_sampleSources;
+    Sound *m_soundOutput;
 
 public:
-    System() = default;
+    System();
     virtual ~System() = default;
 
     virtual void init();
@@ -57,7 +60,11 @@ public:
      * */
     virtual std::vector<EmulatorWindow> getGUIs();
 
-    virtual SoundConfig getSoundConfig();
+    [[nodiscard]] virtual unsigned long getClockRate() const;
+
+    [[nodiscard]] virtual size_t soundOutputCount() const;
+
+    [[nodiscard]] virtual SoundStereoFrame getAudioFrame(size_t index) const;
 };
 
 #endif //USE_SYSTEM_H

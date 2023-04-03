@@ -17,7 +17,7 @@
 #include "Types.h"
 
 class MOS6502 : public Component{
-protected:
+public:
     // ===========================================
     // CPU internals
     // ===========================================

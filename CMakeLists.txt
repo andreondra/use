@@ -2,8 +2,7 @@ cmake_minimum_required(VERSION 3.24)
 include(FetchContent)
 set(CMAKE_CXX_STANDARD 20)
 
-#set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O2")
-#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O2")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O2 ")
 
 ##########################################################
 # Global project setup
@@ -100,6 +99,16 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(miniaudio)
 include_directories(${miniaudio_SOURCE_DIR})
+
+# Download Ring Buffer
+FetchContent_Declare(
+        ring_buffer
+        GIT_REPOSITORY https://github.com/jnk0le/Ring-Buffer.git
+        GIT_PROGRESS TRUE
+        GIT_TAG master
+)
+FetchContent_MakeAvailable(ring_buffer)
+include_directories(${ring_buffer_SOURCE_DIR})
 
 ##########################################################
 # Build setup

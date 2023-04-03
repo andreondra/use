@@ -10,6 +10,7 @@
 
 #include "System.h"
 #include "components/2A03.h"
+#include "components/APU.h"
 #include "components/2C02.h"
 #include "components/Bus.h"
 #include "components/Memory.h"
@@ -27,13 +28,14 @@ protected:
     // System components
     // ===========================================
     RP2A03 m_cpu;
+    APU m_apu;
     R2C02 m_ppu;
     Memory m_RAM{0x800, {.from = 0x0000, .to = 0x1FFF}, 0xFF};
     Gamepak m_cart;
-    Bus m_cpuBus{3, 16, 8};
+    Bus m_cpuBus{4, 16, 8};
     Bus m_ppuBus{1, 14, 8};
 
-    SignalPort m_cpuClock, m_ppuClock;
+    SignalPort m_cpuClock, m_ppuClock, m_apuClock;
 
     // ===========================================
     // Emulation helper data

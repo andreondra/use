@@ -4,6 +4,15 @@
 
 #include "System.h"
 
+System::System() {
+
+    // Get audio output of all components.
+
+    for(auto & component : m_components)
+        for(auto & source : component->getSoundSampleSources())
+            m_sampleSources.push_back(source);
+}
+
 void System::init() {
     for(auto & component : m_components)
         component->init();
@@ -30,15 +39,19 @@ void System::onRefresh() {
     }
 }
 
-SoundConfig System::getSoundConfig() {
-
-    SoundConfig config;
-    config.systemClockSpeed = m_systemClockRate;
-    config.systemClock = [this](){doClocks(1);};
-
-    for(auto & component : m_components)
-        for(auto & source : component->getSoundSampleSources())
-            config.sampleSources.push_back(source);
-
-    return config;
+unsigned long System::getClockRate() const {
+    return m_systemClockRate;
 }
+
+size_t System::soundOutputCount() const {
+    return m_sampleSources.size();
+}
+
+SoundStereoFrame System::getAudioFrame(size_t outputIndex) const {
+
+    if(outputIndex > m_sampleSources.size())
+        throw std::invalid_argument("Invalid audio output index!");
+
+    return m_sampleSources[outputIndex]();
+}
+

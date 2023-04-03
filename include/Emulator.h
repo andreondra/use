@@ -17,9 +17,9 @@ private:
 
     enum class SYSTEMS{ NONE, BARE6502, NES } m_systemID = SYSTEMS::NONE;
     std::unique_ptr<System> m_system;
-    Sound m_sound;
+    std::unique_ptr<Sound> m_sound;
 
-    enum class STATE{ STOPPED, RUNNING, RUNNING_SOUND } m_runState = STATE::STOPPED;
+    enum class STATE{ STOPPED, RUNNING } m_runState = STATE::STOPPED;
 
     // ===========================================
     // Helpers
