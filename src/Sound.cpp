@@ -1,14 +1,12 @@
 #include <stdexcept>
 
-// Include implementation part of the miniaudio here.
+// We include implementation part of the miniaudio here.
 #define MINIAUDIO_IMPLEMENTATION
 #include "miniaudio.h"
 
 #include "Sound.h"
 
 Sound::Sound(size_t outputCount) {
-
-    m_outFile.open("audio.raw", std::ios::binary);
 
     // Init miniaudio.
     m_maConfig                      = ma_device_config_init(ma_device_type_playback);
@@ -39,7 +37,7 @@ Sound::Sound(size_t outputCount) {
 
     for(size_t i = 0; i < outputCount; i++) {
 
-        m_sampleQueues.emplace_back();
+        m_sampleCaches.emplace_back();
         m_sampleBuffers.emplace_back(new ma_pcm_rb, &deletePcmRb);
         if(ma_pcm_rb_init(ma_format_f32, CHANNEL_COUNT, SAMPLE_BUFFER_SIZE, nullptr, nullptr, m_sampleBuffers.back().get()) != MA_SUCCESS) {
             m_sampleBuffers.clear();
@@ -54,8 +52,11 @@ Sound::Sound(size_t outputCount) {
                 m_maNodesDataSource.clear();
                 throw std::runtime_error("Couldn't initialize data source node.");
             } else {
-                //ma_node_attach_output_bus(m_maNodesDataSource.back().get(), 0, m_maNodeLpf.get(), 0);
-                ma_node_attach_output_bus(m_maNodesDataSource.back().get(), 0, ma_node_graph_get_endpoint(m_maNodeGraph.get()), 0);
+
+                ma_node_attach_output_bus(m_maNodesDataSource.back().get(), 0, m_maNodeLpf.get(), 0);
+
+                // Output with the LPF disabled:
+                // ma_node_attach_output_bus(m_maNodesDataSource.back().get(), 0, ma_node_graph_get_endpoint(m_maNodeGraph.get()), 0);
             }
         }
     }
@@ -95,13 +96,6 @@ void Sound::dataCallback(ma_device *pDevice, void *pOutput, const void *pInput, 
     auto *instance = static_cast<Sound*>(pDevice->pUserData);
     assert(pDevice->playback.channels == Sound::CHANNEL_COUNT);
 
-    // Calculate how many system clocks there are in a frame:
-    // callbackFrequency = instance->SAMPLE_RATE / frameCount;
-    // expectedSystemClocks = instance->m_expectedClockRate / callbackFrequency;
-    // clocksPerFrame = expectedSystemClocks / frameCount;
-    // After substitution:
-    // unsigned long clocksPerFrame = instance->m_expectedClockRate / instance->SAMPLE_RATE;
-
     // Correcting buffers read pointer position.
     for(auto & buf : instance->m_sampleBuffers) {
         if(ma_pcm_rb_pointer_distance(buf.get()) > Sound::SAMPLE_BUFFER_MAX_PTR_DISTANCE) {
@@ -109,11 +103,7 @@ void Sound::dataCallback(ma_device *pDevice, void *pOutput, const void *pInput, 
         }
     }
 
-    //std::vector<float> buf(frameCount * 2, 0);
     ma_node_graph_read_pcm_frames(instance->m_maNodeGraph.get(), pOutput, frameCount, nullptr);
-    //ma_node_graph_read_pcm_frames(instance->m_maNodeGraph.get(), buf.data(), frameCount, nullptr);
-
-    //instance->m_outFile.write((char*)buf.data(), sizeof(float) * buf.size());
 }
 
 void Sound::start() {
@@ -146,7 +136,7 @@ void Sound::writeFrames(const SoundSampleSources & sources) {
         throw std::invalid_argument("Sample sources and sample buffers size mismatch.");
 
     auto bufferIt = m_sampleBuffers.begin();
-    auto queueIt = m_sampleQueues.begin();
+    auto cacheIt  = m_sampleCaches.begin();
     for(auto & getSample : sources) {
 
         // Correcting write pointer position.
@@ -157,24 +147,23 @@ void Sound::writeFrames(const SoundSampleSources & sources) {
         void* mappedBuffer;
         ma_uint32 mappedFrameCount;
 
-        queueIt->push_back(getSample().left);
-        queueIt->push_back(getSample().right);
+        cacheIt->push_back(getSample().left);
+        cacheIt->push_back(getSample().right);
+
+        ma_uint32 expectedWriteCount = cacheIt->size() / 2;
 
         if(ma_pcm_rb_acquire_write(bufferIt->get(), &mappedFrameCount, &mappedBuffer) != MA_SUCCESS)
             continue;
 
-        if(mappedFrameCount < (queueIt->size() / 2))
+        if(mappedFrameCount < expectedWriteCount)
             continue;
 
-        ma_copy_pcm_frames(mappedBuffer, queueIt->data(), queueIt->size() / 2, bufferIt->get()->format, bufferIt->get()->channels);
-        if(ma_pcm_rb_commit_write(bufferIt->get(), queueIt->size() / 2) != MA_SUCCESS)
+        ma_copy_pcm_frames(mappedBuffer, cacheIt->data(), expectedWriteCount, bufferIt->get()->format, bufferIt->get()->channels);
+        if(ma_pcm_rb_commit_write(bufferIt->get(), expectedWriteCount) != MA_SUCCESS)
             continue;
 
-        queueIt->clear();
+        // Flushed the cache to the ring buffer successfully, clear the cache.
+        cacheIt->clear();
         bufferIt++;
     }
-}
-
-int Sound::getSampleRate() {
-    return SAMPLE_RATE;
 }

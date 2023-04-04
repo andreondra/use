@@ -71,7 +71,7 @@ void Emulator::runSystem() {
     if(m_runState == STATE::RUNNING && m_system) {
 
         unsigned long remainingClocks = m_system->getClockRate() / ImGui::GetIO().Framerate;
-        unsigned long clocksPerFrame = m_system->getClockRate() / m_sound->getSampleRate();
+        unsigned long clocksPerFrame = m_system->getClockRate() / Sound::getSampleRate();
 
         while(remainingClocks) {
 
