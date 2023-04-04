@@ -10,6 +10,8 @@
 #include <functional>
 #include <memory>
 #include <cassert>
+#include <fstream>
+#include <queue>
 
 #include "miniaudio.h"
 #include "Types.h"
@@ -30,10 +32,10 @@ private:
     // ===========================================
 
     // Sample buffer size.
-    static const size_t SAMPLE_BUFFER_SIZE               = 16384;
-    static const size_t SAMPLE_BUFFER_MIN_PTR_DISTANCE   = 2024;
+    static const size_t SAMPLE_BUFFER_SIZE               = 32768;
+    static const size_t SAMPLE_BUFFER_MIN_PTR_DISTANCE   = 2048;
     static const size_t SAMPLE_BUFFER_MAX_PTR_DISTANCE   = SAMPLE_BUFFER_SIZE - SAMPLE_BUFFER_MIN_PTR_DISTANCE;
-    static const size_t BUFFER_PTR_CORRECTION            = (SAMPLE_BUFFER_SIZE / 2);
+    static const size_t BUFFER_PTR_CORRECTION            = 2048;
 
     /// Number of PCM frames processed per second (two samples for stereo in a single frame).
     static const int SAMPLE_RATE   = 44100;
@@ -84,7 +86,11 @@ private:
     // Frame buffers. Serve also as data source nodes.
     std::vector<std::unique_ptr<ma_pcm_rb, decltype(&deletePcmRb)>> m_sampleBuffers;
 
+    std::vector<std::vector<float>> m_sampleQueues;
+
     static void dataCallback(ma_device* pDevice, void* pOutput, const void* pInput, ma_uint32 frameCount);
+
+    std::ofstream m_outFile;
 
 public:
     /**

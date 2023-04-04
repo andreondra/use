@@ -70,11 +70,12 @@ void Emulator::runSystem() {
 
     if(m_runState == STATE::RUNNING && m_system) {
 
-        unsigned long remainingClocks = m_system->getClockRate() / DEFAULT_IMGUI_REFRESH_HZ;
+        unsigned long remainingClocks = m_system->getClockRate() / ImGui::GetIO().Framerate;
+        unsigned long clocksPerFrame = m_system->getClockRate() / m_sound->getSampleRate();
 
         while(remainingClocks) {
 
-            if(m_clockCounter % m_sound->getSampleRate() == 0) {
+            if(m_clockCounter % clocksPerFrame == 0) {
                 // Flush all frames to all outputs.
                 m_sound->writeFrames(m_system->getSampleSources());
             }

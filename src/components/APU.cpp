@@ -238,7 +238,7 @@ double APU::output(){
     else
         pulse = 95.88 / ((8128.0 / (m_pulse1.output() + m_pulse2.output())) + 100);
 
-    double tnd = 159.79 / ( (1 / (m_noise.output() / 12241)) + 100 );
+    double tnd = 159.79 / ( (1.0 / (m_noise.output() / 12241.0)) + 100 );
 
     return pulse + tnd;
 }
@@ -259,7 +259,7 @@ SoundSampleSources APU::getSoundSampleSources() {
     return {
       [&](){
 
-          float sample =  USETools::map(m_pulse2.output(), 0, 15, 0, 1);
+          float sample =  output();
           m_samples.push_back(sample);
           SoundStereoFrame frame{sample, sample};
           return frame;

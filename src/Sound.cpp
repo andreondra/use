@@ -8,6 +8,8 @@
 
 Sound::Sound(size_t outputCount) {
 
+    m_outFile.open("audio.raw", std::ios::binary);
+
     // Init miniaudio.
     m_maConfig                      = ma_device_config_init(ma_device_type_playback);
     m_maConfig.playback.format      = ma_format_f32;
@@ -37,6 +39,7 @@ Sound::Sound(size_t outputCount) {
 
     for(size_t i = 0; i < outputCount; i++) {
 
+        m_sampleQueues.emplace_back();
         m_sampleBuffers.emplace_back(new ma_pcm_rb, &deletePcmRb);
         if(ma_pcm_rb_init(ma_format_f32, CHANNEL_COUNT, SAMPLE_BUFFER_SIZE, nullptr, nullptr, m_sampleBuffers.back().get()) != MA_SUCCESS) {
             m_sampleBuffers.clear();
@@ -106,13 +109,20 @@ void Sound::dataCallback(ma_device *pDevice, void *pOutput, const void *pInput, 
         }
     }
 
+    //std::vector<float> buf(frameCount * 2, 0);
     ma_node_graph_read_pcm_frames(instance->m_maNodeGraph.get(), pOutput, frameCount, nullptr);
+    //ma_node_graph_read_pcm_frames(instance->m_maNodeGraph.get(), buf.data(), frameCount, nullptr);
+
+    //instance->m_outFile.write((char*)buf.data(), sizeof(float) * buf.size());
 }
 
 void Sound::start() {
 
     if(m_running)
         return;
+
+    // Making enough space between read and write pointers.
+    ma_pcm_rb_seek_write(m_sampleBuffers[0].get(), Sound::SAMPLE_BUFFER_SIZE / 2);
 
     if(ma_device_start(m_maDevice.get()) != MA_SUCCESS)
         throw std::runtime_error("Couldn't start sound device!");
@@ -136,6 +146,7 @@ void Sound::writeFrames(const SoundSampleSources & sources) {
         throw std::invalid_argument("Sample sources and sample buffers size mismatch.");
 
     auto bufferIt = m_sampleBuffers.begin();
+    auto queueIt = m_sampleQueues.begin();
     for(auto & getSample : sources) {
 
         // Correcting write pointer position.
@@ -145,21 +156,21 @@ void Sound::writeFrames(const SoundSampleSources & sources) {
 
         void* mappedBuffer;
         ma_uint32 mappedFrameCount;
-        float rawFrame[2] = {getSample().left, getSample().right};
+
+        queueIt->push_back(getSample().left);
+        queueIt->push_back(getSample().right);
 
         if(ma_pcm_rb_acquire_write(bufferIt->get(), &mappedFrameCount, &mappedBuffer) != MA_SUCCESS)
             continue;
 
-        // TODO
-        // if(mappedFrameCount < xxx) - move forward
-        // Buffer full.
-        if(mappedFrameCount == 0)
+        if(mappedFrameCount < (queueIt->size() / 2))
             continue;
 
-        ma_copy_pcm_frames(mappedBuffer, &rawFrame, 1, bufferIt->get()->format, bufferIt->get()->channels);
-        if(ma_pcm_rb_commit_write(bufferIt->get(), mappedFrameCount) != MA_SUCCESS)
+        ma_copy_pcm_frames(mappedBuffer, queueIt->data(), queueIt->size() / 2, bufferIt->get()->format, bufferIt->get()->channels);
+        if(ma_pcm_rb_commit_write(bufferIt->get(), queueIt->size() / 2) != MA_SUCCESS)
             continue;
 
+        queueIt->clear();
         bufferIt++;
     }
 }
