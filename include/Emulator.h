@@ -13,6 +13,7 @@
 class Emulator{
 
 private:
+    unsigned long long m_clockCounter = 0;
     static const int DEFAULT_IMGUI_REFRESH_HZ = 60;
 
     enum class SYSTEMS{ NONE, BARE6502, NES } m_systemID = SYSTEMS::NONE;

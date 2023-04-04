@@ -38,6 +38,10 @@ NES::NES() {
     m_components.push_back(&m_RAM);
     m_components.push_back(&m_ppu);
     m_components.push_back(&m_cart);
+
+    for(auto & component : m_components)
+        for(auto & source : component->getSoundSampleSources())
+            m_sampleSources.push_back(source);
 };
 
 void NES::clock() {

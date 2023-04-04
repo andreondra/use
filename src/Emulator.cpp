@@ -74,14 +74,17 @@ void Emulator::runSystem() {
 
         while(remainingClocks) {
 
-            if(remainingClocks % m_sound->getSampleRate()) {
-                //m_sound->writeFrame(0, )
-                // flush all frames to all outputs - probably new function in sound.h
+            if(m_clockCounter % m_sound->getSampleRate() == 0) {
+                // Flush all frames to all outputs.
+                m_sound->writeFrames(m_system->getSampleSources());
             }
 
             m_system->doClocks(1);
             remainingClocks--;
+
+            m_clockCounter++;
         }
+
     }
 }
 
@@ -115,6 +118,7 @@ void Emulator::guiToolbar() {
                     ImGui::Separator();
                     if (ImGui::MenuItem("Run...")) {
                         setIdling(false);
+                        m_sound->start();
                         m_runState = STATE::RUNNING;
                     }
                     ImGui::Separator();
@@ -123,6 +127,8 @@ void Emulator::guiToolbar() {
                 case STATE::RUNNING:
                     if (ImGui::MenuItem("Stop")) {
                         setIdling(true);
+                        m_clockCounter = 0;
+                        m_sound->stop();
                         m_runState = STATE::STOPPED;
                     }
                     break;

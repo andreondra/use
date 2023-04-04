@@ -8,7 +8,6 @@
 #include <vector>
 #include "Types.h"
 #include "Component.h"
-#include "Sound.h"
 
 class System {
 
@@ -16,7 +15,6 @@ protected:
     std::vector<Component *> m_components;
     unsigned long m_systemClockRate = 0;
     SoundSampleSources m_sampleSources;
-    Sound *m_soundOutput;
 
 public:
     System();
@@ -65,6 +63,8 @@ public:
     [[nodiscard]] virtual size_t soundOutputCount() const;
 
     [[nodiscard]] virtual SoundStereoFrame getAudioFrame(size_t index) const;
+
+    [[nodiscard]] virtual const SoundSampleSources & getSampleSources() const;
 };
 
 #endif //USE_SYSTEM_H

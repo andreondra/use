@@ -1,4 +1,9 @@
 #include <stdexcept>
+
+// Include implementation part of the miniaudio here.
+#define MINIAUDIO_IMPLEMENTATION
+#include "miniaudio.h"
+
 #include "Sound.h"
 
 Sound::Sound(size_t outputCount) {
@@ -36,24 +41,16 @@ Sound::Sound(size_t outputCount) {
         if(ma_pcm_rb_init(ma_format_f32, CHANNEL_COUNT, SAMPLE_BUFFER_SIZE, nullptr, nullptr, m_sampleBuffers.back().get()) != MA_SUCCESS) {
             m_sampleBuffers.clear();
             throw std::runtime_error("Couldn't initialize output buffer.");
-        }
-        m_maDataSources.emplace_back(new callbackDataSource_t, &deleteCallbackDataSource);
-        if(callBackDataSourceInit(m_maDataSources.back().get(), m_sampleBuffers.back().get()) != MA_SUCCESS) {
-            m_sampleBuffers.clear();
-            m_maDataSources.clear();
-            throw std::runtime_error("Couldn't initialize data source.");
         } else {
 
-            ma_data_source_node_config nodeConfig = ma_data_source_node_config_init(m_maDataSources.back().get());
+            ma_data_source_node_config nodeConfig = ma_data_source_node_config_init(m_sampleBuffers.back().get());
             m_maNodesDataSource.emplace_back(new ma_data_source_node, &deleteDataNode);
 
             if(ma_data_source_node_init(m_maNodeGraph.get(), &nodeConfig, nullptr, m_maNodesDataSource.back().get()) != MA_SUCCESS) {
                 m_sampleBuffers.clear();
-                m_maDataSources.clear();
                 m_maNodesDataSource.clear();
                 throw std::runtime_error("Couldn't initialize data source node.");
             } else {
-
                 //ma_node_attach_output_bus(m_maNodesDataSource.back().get(), 0, m_maNodeLpf.get(), 0);
                 ma_node_attach_output_bus(m_maNodesDataSource.back().get(), 0, ma_node_graph_get_endpoint(m_maNodeGraph.get()), 0);
             }
@@ -64,11 +61,6 @@ Sound::Sound(size_t outputCount) {
 Sound::~Sound() {
     stop();
 };
-
-void Sound::deleteCallbackDataSource(Sound::callbackDataSource_t *ds) {
-    callBackDataSourceUninit(ds);
-    delete ds;
-}
 
 void Sound::deleteMaDevice(ma_device *device) {
     ma_device_uninit(device);
@@ -98,7 +90,7 @@ void Sound::deletePcmRb(ma_pcm_rb *rb) {
 void Sound::dataCallback(ma_device *pDevice, void *pOutput, const void *pInput, ma_uint32 frameCount) {
 
     auto *instance = static_cast<Sound*>(pDevice->pUserData);
-    MA_ASSERT(pDevice->playback.channels == instance->CHANNEL_COUNT);
+    assert(pDevice->playback.channels == Sound::CHANNEL_COUNT);
 
     // Calculate how many system clocks there are in a frame:
     // callbackFrequency = instance->SAMPLE_RATE / frameCount;
@@ -106,6 +98,13 @@ void Sound::dataCallback(ma_device *pDevice, void *pOutput, const void *pInput, 
     // clocksPerFrame = expectedSystemClocks / frameCount;
     // After substitution:
     // unsigned long clocksPerFrame = instance->m_expectedClockRate / instance->SAMPLE_RATE;
+
+    // Correcting buffers read pointer position.
+    for(auto & buf : instance->m_sampleBuffers) {
+        if(ma_pcm_rb_pointer_distance(buf.get()) > Sound::SAMPLE_BUFFER_MAX_PTR_DISTANCE) {
+            ma_pcm_rb_seek_read(buf.get(), Sound::BUFFER_PTR_CORRECTION);
+        }
+    }
 
     ma_node_graph_read_pcm_frames(instance->m_maNodeGraph.get(), pOutput, frameCount, nullptr);
 }
@@ -131,27 +130,38 @@ void Sound::stop() {
         m_running = false;
 }
 
-void Sound::writeFrame(size_t outputIndex, SoundStereoFrame frame) {
+void Sound::writeFrames(const SoundSampleSources & sources) {
 
-    if(outputIndex > m_sampleBuffers.size())
-        throw std::invalid_argument("Invalid output index!");
+    if(sources.size() != m_sampleBuffers.size())
+        throw std::invalid_argument("Sample sources and sample buffers size mismatch.");
 
-    void* mappedBuffer;
-    ma_uint32 mappedFrameCount;
-    float rawFrame[2] = {frame.left, frame.right};
+    auto bufferIt = m_sampleBuffers.begin();
+    for(auto & getSample : sources) {
 
-    if(ma_pcm_rb_acquire_write(m_sampleBuffers[outputIndex].get(), &mappedFrameCount, &mappedBuffer) != MA_SUCCESS)
-        return;
+        // Correcting write pointer position.
+        if(ma_pcm_rb_pointer_distance(bufferIt->get()) < Sound::SAMPLE_BUFFER_MIN_PTR_DISTANCE) {
+            ma_pcm_rb_seek_write(bufferIt->get(), Sound::BUFFER_PTR_CORRECTION);
+        }
 
-    // TODO
-    // if(mappedFrameCount < xxx) - move forward
-    // Buffer full.
-    if(mappedFrameCount == 0)
-        return;
+        void* mappedBuffer;
+        ma_uint32 mappedFrameCount;
+        float rawFrame[2] = {getSample().left, getSample().right};
 
-    ma_copy_pcm_frames(mappedBuffer, &rawFrame, 1, m_sampleBuffers[outputIndex]->format, m_sampleBuffers[outputIndex]->channels);
-    if(ma_pcm_rb_commit_read(m_sampleBuffers[outputIndex].get(), mappedFrameCount) != MA_SUCCESS)
-        return;
+        if(ma_pcm_rb_acquire_write(bufferIt->get(), &mappedFrameCount, &mappedBuffer) != MA_SUCCESS)
+            continue;
+
+        // TODO
+        // if(mappedFrameCount < xxx) - move forward
+        // Buffer full.
+        if(mappedFrameCount == 0)
+            continue;
+
+        ma_copy_pcm_frames(mappedBuffer, &rawFrame, 1, bufferIt->get()->format, bufferIt->get()->channels);
+        if(ma_pcm_rb_commit_write(bufferIt->get(), mappedFrameCount) != MA_SUCCESS)
+            continue;
+
+        bufferIt++;
+    }
 }
 
 int Sound::getSampleRate() {

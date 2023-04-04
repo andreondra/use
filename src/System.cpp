@@ -4,14 +4,7 @@
 
 #include "System.h"
 
-System::System() {
-
-    // Get audio output of all components.
-
-    for(auto & component : m_components)
-        for(auto & source : component->getSoundSampleSources())
-            m_sampleSources.push_back(source);
-}
+System::System() { }
 
 void System::init() {
     for(auto & component : m_components)
@@ -53,5 +46,9 @@ SoundStereoFrame System::getAudioFrame(size_t outputIndex) const {
         throw std::invalid_argument("Invalid audio output index!");
 
     return m_sampleSources[outputIndex]();
+}
+
+const SoundSampleSources & System::getSampleSources() const {
+    return m_sampleSources;
 }
 
