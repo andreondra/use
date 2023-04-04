@@ -45,13 +45,19 @@ std::weak_ptr<Connector> Component::getConnector(const std::string & name) {
 
 std::vector<std::string> Component::listConnectors() const {
 
-    auto names = std::views::keys(m_connectors);
-    return {names.begin(), names.end()};
+    std::vector<std::string> keys;
+    for(auto & con : m_connectors) {
+        keys.push_back(con.first);
+    }
+    return keys;
 }
 
 
 std::vector<std::string> Component::listPorts() const {
 
-    auto names = std::views::keys(m_ports);
-    return {names.begin(), names.end()};
+    std::vector<std::string> keys;
+    for(auto & port : m_ports) {
+        keys.push_back(port.first);
+    }
+    return keys;
 }
