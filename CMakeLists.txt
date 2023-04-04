@@ -100,16 +100,6 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(miniaudio)
 include_directories(${miniaudio_SOURCE_DIR})
 
-# Download Ring Buffer
-FetchContent_Declare(
-        ring_buffer
-        GIT_REPOSITORY https://github.com/jnk0le/Ring-Buffer.git
-        GIT_PROGRESS TRUE
-        GIT_TAG master
-)
-FetchContent_MakeAvailable(ring_buffer)
-include_directories(${ring_buffer_SOURCE_DIR})
-
 ##########################################################
 # Build setup
 ##########################################################
