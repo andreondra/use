@@ -46,26 +46,12 @@ NES::NES() {
 
 void NES::clock() {
 
-//    m_ppuClock.send();
-//    if(m_clockCount % 3 == 0){
-//
-//        m_cpuClock.send();
-//        if(m_clockCount % 2 == 0){
-//            m_apuClock.send();
-//        }
-//    }
-//
-//    m_clockCount++;
-
-
-    m_ppu.clock();
+    m_ppuClock.send();
     if(m_clockCount % 3 == 0){
 
-        m_cpu.CLK();
-
+        m_cpuClock.send();
         if(m_clockCount % 2 == 0){
-            m_apu.clock();
-
+            m_apuClock.send();
         }
     }
 
