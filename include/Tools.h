@@ -24,6 +24,19 @@ namespace USETools {
      * @throw std::invalid_argument When pixel data is empty.
      * */
     void renderScalableBitmap(const std::vector<std::vector<RGBPixel>> & pixelData, float scale = 1.0f);
+
+    /**
+     * Map value from one range to another.
+     *
+     * @param val Value to map.
+     * @param iStart Min input value.
+     * @param iEnd Max input value.
+     * @param oStart Min output value.
+     * @param oEnd Max output value.
+     *
+     * @return Mapped value.
+     * */
+    double map(double val, double iStart, double iEnd, double oStart, double oEnd);
 }
 
 #endif //USE_TOOLS_H

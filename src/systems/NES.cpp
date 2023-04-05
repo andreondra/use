@@ -2,6 +2,8 @@
 
 NES::NES() {
 
+    m_systemClockRate = PPU_CLOCK_HZ;
+
     // Connect CPU to the main system bus as master.
     m_cpu.connect("mainBus", m_cpuBus.getConnector("master"));
 
@@ -9,6 +11,7 @@ NES::NES() {
     m_cpuBus.connect("slot 0", m_RAM.getConnector("data"));
     m_cpuBus.connect("slot 1", m_ppu.getConnector("cpuBus"));
     m_cpuBus.connect("slot 2", m_cart.getConnector("cpuBus"));
+    m_cpuBus.connect("slot 3", m_apu.getConnector("cpuBus"));
 
     // Connect PPU as master to the PPU bus.
     m_ppu.connect("ppuBus", m_ppuBus.getConnector("master"));
@@ -18,18 +21,27 @@ NES::NES() {
     // Connect PPU's INT pin to 6502's NMI.
     m_ppu.connect("INT", m_cpu.getConnector("NMI"));
 
-    // Connect CPU's and PPU's clock to the system clock.
+    // Connect APU's IRQ pin to 6502's IRQ.
+    m_apu.connect("IRQ", m_cpu.getConnector("IRQ"));
+
+    // Connect CPU's, PPU's and APU's clock to the system clock.
     m_cpuClock.connect(m_cpu.getConnector("CLK"));
     m_ppuClock.connect(m_ppu.getConnector("CLK"));
+    m_apuClock.connect(m_apu.getConnector("CLK"));
 
     // Load components to make base class "aware" of the components
-    // to show GUI, correctly initialize the system etc.
+    // to show GUI, correctly initialize the system, add sound sources etc.
     m_components.push_back(&m_cpuBus);
     m_components.push_back(&m_ppuBus);
     m_components.push_back(&m_cpu);
+    m_components.push_back(&m_apu);
     m_components.push_back(&m_RAM);
     m_components.push_back(&m_ppu);
     m_components.push_back(&m_cart);
+
+    for(auto & component : m_components)
+        for(auto & source : component->getSoundSampleSources())
+            m_sampleSources.push_back(source);
 };
 
 void NES::clock() {
@@ -39,7 +51,7 @@ void NES::clock() {
 
         m_cpuClock.send();
         if(m_clockCount % 2 == 0){
-            // APU clock.
+            m_apuClock.send();
         }
     }
 

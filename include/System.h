@@ -13,9 +13,11 @@ class System {
 
 protected:
     std::vector<Component *> m_components;
+    unsigned long m_systemClockRate = 0;
+    SoundSampleSources m_sampleSources;
 
 public:
-    System() = default;
+    System();
     virtual ~System() = default;
 
     virtual void init();
@@ -55,6 +57,27 @@ public:
      * @return Vector of dockable windows.
      * */
     virtual std::vector<EmulatorWindow> getGUIs();
+
+    /**
+     * Get main clock rate.
+     *
+     * @return Clock rate.
+     * */
+    [[nodiscard]] virtual unsigned long getClockRate() const;
+
+    /**
+     * Get a count of sound outputs. Used to correctly construct nodes in Sound.h.
+     *
+     * @return Count of all sound outputs.
+     * */
+    [[nodiscard]] virtual size_t soundOutputCount() const;
+
+    /**
+     * Get sample sources.
+     *
+     * @return Audio sample getters.
+     * */
+    [[nodiscard]] virtual const SoundSampleSources & getSampleSources() const;
 };
 
 #endif //USE_SYSTEM_H

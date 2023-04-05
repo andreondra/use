@@ -7,15 +7,20 @@
 
 #include <memory>
 #include <map>
+#include "Sound.h"
 #include "System.h"
 
 class Emulator{
 
 private:
+    unsigned long long m_clockCounter = 0;
     static const int DEFAULT_IMGUI_REFRESH_HZ = 60;
 
     enum class SYSTEMS{ NONE, BARE6502, NES } m_systemID = SYSTEMS::NONE;
     std::unique_ptr<System> m_system;
+    std::unique_ptr<Sound> m_sound;
+
+    enum class STATE{ STOPPED, RUNNING } m_runState = STATE::STOPPED;
 
     // ===========================================
     // Helpers
@@ -40,7 +45,6 @@ private:
      * Load a System to the emulator, initialize and load the debugging GUI of the system.
      * @param system A system to load.
      * */
-    bool m_runEnabled = false;
     void loadSystem(std::unique_ptr<System> system);
     void runSystem();
 

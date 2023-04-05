@@ -73,6 +73,7 @@ public:
     [[nodiscard]] virtual std::vector<std::string> listPorts() const;
 
     virtual std::vector<EmulatorWindow> getGUIs() = 0;
+    virtual SoundSampleSources getSoundSampleSources();
 
     [[nodiscard]] virtual bool initRequested();
 

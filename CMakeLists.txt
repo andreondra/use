@@ -2,8 +2,7 @@ cmake_minimum_required(VERSION 3.24)
 include(FetchContent)
 set(CMAKE_CXX_STANDARD 20)
 
-#set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O2")
-#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O2")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O1")
 
 ##########################################################
 # Global project setup
@@ -90,6 +89,16 @@ FetchContent_MakeAvailable(imgui_filedialog)
 include_directories(${imgui_filedialog_SOURCE_DIR})
 file(GLOB imgui_filedialog_sources ${imgui_filedialog_SOURCE_DIR}/*.cpp)
 list(APPEND projectSources ${imgui_filedialog_sources})
+
+# Download miniaudio.
+FetchContent_Declare(
+        miniaudio
+        GIT_REPOSITORY https://github.com/mackron/miniaudio.git
+        GIT_PROGRESS TRUE
+        GIT_TAG master
+)
+FetchContent_MakeAvailable(miniaudio)
+include_directories(${miniaudio_SOURCE_DIR})
 
 ##########################################################
 # Build setup

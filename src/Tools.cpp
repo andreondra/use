@@ -55,7 +55,6 @@ namespace USETools {
     }
 
     double map(double val, double iStart, double iEnd, double oStart, double oEnd){
-
-        return oStart + std::round((oEnd - oStart) / (iEnd - iStart)) * (val - iStart);
+        return oStart + std::round((oEnd - oStart) / (iEnd - iStart) * (val - iStart));
     }
 }

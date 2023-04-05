@@ -28,7 +28,7 @@ void Emulator::setIdling(bool enabled) {
 
 void Emulator::loadSystem(std::unique_ptr<System> system) {
 
-    m_runEnabled = false;
+    m_runState = STATE::STOPPED;
 
     // Get app state.
     HelloImGui::RunnerParams *params;
@@ -40,6 +40,9 @@ void Emulator::loadSystem(std::unique_ptr<System> system) {
     // Change and init system.
     m_system.swap(system);
     m_system->init();
+
+    // Configure sound.
+    m_sound = std::make_unique<Sound>(m_system->soundOutputCount());
 
     // Add debugging windows from the new System.
     for(auto & windowConfig : m_system->getGUIs()) {
@@ -65,20 +68,37 @@ void Emulator::loadSystem(std::unique_ptr<System> system) {
 
 void Emulator::runSystem() {
 
-    if(m_runEnabled && m_system) {
-        m_system->doRun(DEFAULT_IMGUI_REFRESH_HZ);
+    if(m_runState == STATE::RUNNING && m_system) {
+
+        unsigned long remainingClocks = m_system->getClockRate() / ImGui::GetIO().Framerate;
+        unsigned long clocksPerFrame = m_system->getClockRate() / Sound::getSampleRate();
+
+        while(remainingClocks) {
+
+            if(m_clockCounter % clocksPerFrame == 0) {
+                // Flush all frames to all outputs.
+                m_sound->writeFrames(m_system->getSampleSources());
+            }
+
+            m_system->doClocks(1);
+            remainingClocks--;
+
+            m_clockCounter++;
+        }
+
     }
 }
 
 void Emulator::guiStatusBar() {
 
-    // todo info about running state
-
     if(m_system) {
-        if(m_runEnabled) {
-            ImGui::Text("Running...");
-        } else {
-            ImGui::Text("System loaded: xxx");
+        switch(m_runState) {
+            case STATE::RUNNING:
+                ImGui::Text("Running...");
+                break;
+            case STATE::STOPPED:
+                ImGui::Text("Stopped.");
+                break;
         }
     } else {
         ImGui::Text("Ready to load a system");
@@ -91,23 +111,30 @@ void Emulator::guiToolbar() {
 
         if(m_system) {
 
-            if(m_runEnabled) {
-                if(ImGui::MenuItem("Stop")) {
-                    setIdling(true);
-                    m_runEnabled = false;
-                }
-            } else {
-                if(ImGui::MenuItem("Clock")) m_system->doClocks(1);
-                if(ImGui::MenuItem("Step"))  m_system->doSteps(1);
-                if(ImGui::MenuItem("Frame")) m_system->doFrames(1);
-                ImGui::Separator();
-                if(ImGui::MenuItem("Run...")) {
-                    setIdling(false);
-                    m_runEnabled = true;
-                }
-                ImGui::Separator();
-                if(ImGui::MenuItem("Hard reset")) m_system->init();
+            switch(m_runState) {
+                case STATE::STOPPED:
+                    if (ImGui::MenuItem("Clock")) m_system->doClocks(1);
+                    if (ImGui::MenuItem("Step")) m_system->doSteps(1);
+                    if (ImGui::MenuItem("Frame")) m_system->doFrames(1);
+                    ImGui::Separator();
+                    if (ImGui::MenuItem("Run...")) {
+                        setIdling(false);
+                        m_sound->start();
+                        m_runState = STATE::RUNNING;
+                    }
+                    ImGui::Separator();
+                    if (ImGui::MenuItem("Hard reset")) m_system->init();
+                    break;
+                case STATE::RUNNING:
+                    if (ImGui::MenuItem("Stop")) {
+                        setIdling(true);
+                        m_clockCounter = 0;
+                        m_sound->stop();
+                        m_runState = STATE::STOPPED;
+                    }
+                    break;
             }
+
         } else {
             ImGui::Text("Please select a system");
         }

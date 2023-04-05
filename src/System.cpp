@@ -4,6 +4,8 @@
 
 #include "System.h"
 
+System::System() { }
+
 void System::init() {
     for(auto & component : m_components)
         component->init();
@@ -29,3 +31,16 @@ void System::onRefresh() {
         }
     }
 }
+
+unsigned long System::getClockRate() const {
+    return m_systemClockRate;
+}
+
+size_t System::soundOutputCount() const {
+    return m_sampleSources.size();
+}
+
+const SoundSampleSources & System::getSampleSources() const {
+    return m_sampleSources;
+}
+

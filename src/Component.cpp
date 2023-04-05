@@ -60,6 +60,10 @@ std::vector<std::string> Component::listPorts() const {
     return {names.begin(), names.end()};
 }
 
+SoundSampleSources Component::getSoundSampleSources() {
+    return {};
+}
+
 bool Component::initRequested() {
 
     bool prevValue = m_initRequested;
