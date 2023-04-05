@@ -107,24 +107,26 @@ struct EmulatorWindow{
     std::function<void(void)> guiFunction = [](){};
 };
 
+/**
+ * A single pixel.
+ * */
 struct RGBPixel{
     uint8_t red;
     uint8_t green;
     uint8_t blue;
 };
 
+/**
+ * A stereo audio frame (two samples - left and right).
+ * */
 struct SoundStereoFrame {
     float left;
     float right;
 };
 
+/**
+ * A vector of sound getters provided by the Component.
+ * */
 typedef std::vector<std::function<SoundStereoFrame(void)>> SoundSampleSources;
-
-struct SoundConfig{
-
-    unsigned long systemClockSpeed;
-    std::function<void(void)> systemClock;
-    SoundSampleSources sampleSources;
-};
 
 #endif //USE_TYPES_H
