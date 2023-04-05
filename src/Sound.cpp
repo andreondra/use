@@ -41,6 +41,8 @@ Sound::Sound(size_t outputCount) {
         m_sampleBuffers.emplace_back(new ma_pcm_rb, &deletePcmRb);
         if(ma_pcm_rb_init(ma_format_f32, CHANNEL_COUNT, SAMPLE_BUFFER_SIZE, nullptr, nullptr, m_sampleBuffers.back().get()) != MA_SUCCESS) {
             m_sampleBuffers.clear();
+            m_maNodeGraph.reset();
+            m_maDevice.reset();
             throw std::runtime_error("Couldn't initialize output buffer.");
         } else {
 
@@ -50,6 +52,8 @@ Sound::Sound(size_t outputCount) {
             if(ma_data_source_node_init(m_maNodeGraph.get(), &nodeConfig, nullptr, m_maNodesDataSource.back().get()) != MA_SUCCESS) {
                 m_sampleBuffers.clear();
                 m_maNodesDataSource.clear();
+                m_maNodeGraph.reset();
+                m_maDevice.reset();
                 throw std::runtime_error("Couldn't initialize data source node.");
             } else {
 
