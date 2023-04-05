@@ -58,12 +58,25 @@ public:
      * */
     virtual std::vector<EmulatorWindow> getGUIs();
 
+    /**
+     * Get main clock rate.
+     *
+     * @return Clock rate.
+     * */
     [[nodiscard]] virtual unsigned long getClockRate() const;
 
+    /**
+     * Get a count of sound outputs. Used to correctly construct nodes in Sound.h.
+     *
+     * @return Count of all sound outputs.
+     * */
     [[nodiscard]] virtual size_t soundOutputCount() const;
 
-    [[nodiscard]] virtual SoundStereoFrame getAudioFrame(size_t index) const;
-
+    /**
+     * Get sample sources.
+     *
+     * @return Audio sample getters.
+     * */
     [[nodiscard]] virtual const SoundSampleSources & getSampleSources() const;
 };
 

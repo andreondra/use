@@ -40,14 +40,6 @@ size_t System::soundOutputCount() const {
     return m_sampleSources.size();
 }
 
-SoundStereoFrame System::getAudioFrame(size_t outputIndex) const {
-
-    if(outputIndex > m_sampleSources.size())
-        throw std::invalid_argument("Invalid audio output index!");
-
-    return m_sampleSources[outputIndex]();
-}
-
 const SoundSampleSources & System::getSampleSources() const {
     return m_sampleSources;
 }
