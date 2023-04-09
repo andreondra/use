@@ -12,6 +12,9 @@ class RP2A03 : public MOS6502 {
 protected:
 
 public:
+    RP2A03();
+    ~RP2A03() override;
+
     void init() override;
 };
 

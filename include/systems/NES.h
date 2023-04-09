@@ -33,7 +33,7 @@ protected:
     R2C02 m_ppu;
     Memory m_RAM{0x800, {.from = 0x0000, .to = 0x1FFF}, 0xFF};
     Gamepak m_cart;
-    Bus m_cpuBus{4, 16, 8};
+    Bus m_cpuBus{5, 16, 8};
     Bus m_ppuBus{1, 14, 8};
     NESPeripherals m_peripherals;
     std::shared_ptr<Connector> m_apuPeripheralConnector;

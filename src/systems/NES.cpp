@@ -40,6 +40,8 @@ NES::NES() {
             }
     });
     m_cpuBus.connect("slot 3", m_apuPeripheralConnector);
+    // This will effectively connect CPU back to itself. OAMDMA pin is located on the CPU.
+    m_cpuBus.connect("slot 4", m_cpu.getConnector("OAMDMA"));
 
     // Connect PPU as master to the PPU bus.
     m_ppu.connect("ppuBus", m_ppuBus.getConnector("master"));
