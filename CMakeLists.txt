@@ -101,12 +101,12 @@ FetchContent_MakeAvailable(miniaudio)
 include_directories(${miniaudio_SOURCE_DIR})
 
 # Download ImInputBinder
-include(FetchContent)
 FetchContent_Declare(
         ImInputBinder
         GIT_REPOSITORY https://github.com/andreondra/ImInputBinder
+        GIT_PROGRESS TRUE
 )
-list(APPEND CMAKE_MODULE_PATH ${HELLOIMGUI_CMAKE_PATH})
+FetchContent_MakeAvailable(ImInputBinder)
 include_directories(${ImInputBinder_SOURCE_DIR})
 file(GLOB ImInputBinder_sources ${ImInputBinder_SOURCE_DIR}/ImInputBinder.cpp)
 list(APPEND projectSources ${ImInputBinder_sources})
