@@ -15,6 +15,7 @@
 #include "components/Bus.h"
 #include "components/Memory.h"
 #include "components/Gamepak/Gamepak.h"
+#include "components/NESPeripherals.h"
 
 class NES : public System{
 protected:
@@ -34,6 +35,8 @@ protected:
     Gamepak m_cart;
     Bus m_cpuBus{5, 16, 8};
     Bus m_ppuBus{1, 14, 8};
+    NESPeripherals m_peripherals;
+    std::shared_ptr<Connector> m_apuPeripheralConnector;
 
     SignalPort m_cpuClock, m_ppuClock, m_apuClock;
 

@@ -100,6 +100,17 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(miniaudio)
 include_directories(${miniaudio_SOURCE_DIR})
 
+# Download ImInputBinder
+FetchContent_Declare(
+        ImInputBinder
+        GIT_REPOSITORY https://github.com/andreondra/ImInputBinder
+        GIT_PROGRESS TRUE
+)
+FetchContent_MakeAvailable(ImInputBinder)
+include_directories(${ImInputBinder_SOURCE_DIR})
+file(GLOB ImInputBinder_sources ${ImInputBinder_SOURCE_DIR}/ImInputBinder.cpp)
+list(APPEND projectSources ${ImInputBinder_sources})
+
 ##########################################################
 # Build setup
 ##########################################################

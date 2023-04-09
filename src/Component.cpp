@@ -64,6 +64,10 @@ SoundSampleSources Component::getSoundSampleSources() {
     return {};
 }
 
+std::vector<ImInputBinder::action_t> Component::getInputs() {
+    return {};
+}
+
 bool Component::initRequested() {
 
     bool prevValue = m_initRequested;

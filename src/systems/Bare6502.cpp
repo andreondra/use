@@ -6,6 +6,8 @@
 
 Bare6502::Bare6502() {
 
+    m_systemName = "Bare 6502";
+
     m_bus.connect("slot 1", m_RAM.getConnector("data"));
     m_cpu.connect("mainBus", m_bus.getConnector("master"));
 

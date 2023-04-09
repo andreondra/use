@@ -9,6 +9,7 @@
 #include <map>
 #include "Sound.h"
 #include "System.h"
+#include "ImInputBinder.h"
 
 class Emulator{
 
@@ -16,10 +17,12 @@ private:
     unsigned long long m_clockCounter = 0;
     static const int DEFAULT_IMGUI_REFRESH_HZ = 60;
 
+    ImInputBinder m_inputs;
+    bool m_showBindingsWindow = false;
+
     enum class SYSTEMS{ NONE, BARE6502, NES } m_systemID = SYSTEMS::NONE;
     std::unique_ptr<System> m_system;
     std::unique_ptr<Sound> m_sound;
-
     enum class STATE{ STOPPED, RUNNING } m_runState = STATE::STOPPED;
 
     // ===========================================
@@ -36,7 +39,11 @@ private:
      * */
     static std::string dockSpaceToString(DockSpace dockSpace);
 
+    /// Set whether to idle on no user interaction.
     void setIdling(bool enabled);
+
+    /// Generate keybindings savefile name.
+    std::string getKeybindingsSaveFileName() const;
 
     // ===========================================
     // System handling
@@ -51,6 +58,7 @@ private:
     // ===========================================
     // GUI callbacks
     // ===========================================
+    void guiMain();
     void guiStatusBar();
     void guiToolbar();
     void guiMenuItems();

@@ -12,6 +12,7 @@
 class System {
 
 protected:
+    std::string m_systemName = "Default System";
     std::vector<Component *> m_components;
     unsigned long m_systemClockRate = 0;
     SoundSampleSources m_sampleSources;
@@ -78,6 +79,16 @@ public:
      * @return Audio sample getters.
      * */
     [[nodiscard]] virtual const SoundSampleSources & getSampleSources() const;
+
+    /**
+     * Get inputs of all components in the System.
+     *
+     * @return Required inputs.
+     * */
+    virtual std::vector<ImInputBinder::action_t> getInputs();
+
+    /// Get system's name.
+    [[nodiscard]] virtual std::string getName() const;
 };
 
 #endif //USE_SYSTEM_H

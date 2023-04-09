@@ -2,6 +2,7 @@
 
 NES::NES() {
 
+    m_systemName = "NES";
     m_systemClockRate = PPU_CLOCK_HZ;
 
     // Connect CPU to the main system bus as master.
@@ -11,7 +12,34 @@ NES::NES() {
     m_cpuBus.connect("slot 0", m_RAM.getConnector("data"));
     m_cpuBus.connect("slot 1", m_ppu.getConnector("cpuBus"));
     m_cpuBus.connect("slot 2", m_cart.getConnector("cpuBus"));
-    m_cpuBus.connect("slot 3", m_apu.getConnector("cpuBus"));
+
+    // Create and connect special connector for APU and peripherals.
+    // This is necessary because there are conflicts on address 0x4017.
+    m_apuPeripheralConnector = std::make_shared<Connector>(DataInterface{
+            .read = [&](uint32_t address, uint32_t & buffer) {
+
+                uint32_t apuResult, peripheralResult;
+                if(address == 0x4017) {
+                    m_apu.getConnector("cpuBus").lock()->getDataInterface().read(address, apuResult);
+                    m_peripherals.getConnector("cpuBus").lock()->getDataInterface().read(address, peripheralResult);
+                    buffer = apuResult | peripheralResult;
+                    return true;
+                } else if(m_apu.getConnector("cpuBus").lock()->getDataInterface().read(address, apuResult)) {
+                    buffer = apuResult;
+                    return true;
+                } else if(m_peripherals.getConnector("cpuBus").lock()->getDataInterface().read(address, peripheralResult)) {
+                    buffer = peripheralResult;
+                    return true;
+                }
+
+                return false;
+            },
+            .write = [&](uint32_t address, uint32_t data) {
+                m_apu.getConnector("cpuBus").lock()->getDataInterface().write(address, data);
+                m_peripherals.getConnector("cpuBus").lock()->getDataInterface().write(address, data);
+            }
+    });
+    m_cpuBus.connect("slot 3", m_apuPeripheralConnector);
     // This will effectively connect CPU back to itself. OAMDMA pin is located on the CPU.
     m_cpuBus.connect("slot 4", m_cpu.getConnector("OAMDMA"));
 
@@ -40,6 +68,7 @@ NES::NES() {
     m_components.push_back(&m_RAM);
     m_components.push_back(&m_ppu);
     m_components.push_back(&m_cart);
+    m_components.push_back(&m_peripherals);
 
     for(auto & component : m_components)
         for(auto & source : component->getSoundSampleSources())
