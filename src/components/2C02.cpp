@@ -792,10 +792,10 @@ void R2C02::clock(){
         // Both pixels transparent = render 0x3F00.
         if(fgPixel == 0 && bgPixel == 0)
             m_screen[m_scanline][m_clock] = m_colors[ppuBusRead(0x3F00) & 0x3F];
-            // Background transparent, sprite not = render sprite.
+        // Background transparent, sprite not = render sprite.
         else if(m_settingsEnableForeground && bgPixel == 0 && fgPixel > 0)
-            ;//m_screen[m_scanline][m_clock] = getPixelColor(fgAttr, fgPixel);
-            // Sprite transparent, background not = render background.
+            m_screen[m_scanline][m_clock] = getPixelColor(fgAttr, fgPixel);
+        // Sprite transparent, background not = render background.
         else if(m_settingsEnableBackground && bgPixel > 0 && fgPixel == 0)
             m_screen[m_scanline][m_clock] = getPixelColor(bgAttr, bgPixel);
         else if(bgPixel > 0 && fgPixel > 0){
@@ -813,7 +813,7 @@ void R2C02::clock(){
             // 1 = background priority = render bg.
             if(m_settingsEnableBackground && priorityBit)
                 m_screen[m_scanline][m_clock] = getPixelColor(bgAttr, bgPixel);
-                // 0 = sprite priority = render sprite.
+            // 0 = sprite priority = render sprite.
             else if(m_settingsEnableForeground)
                 m_screen[m_scanline][m_clock] = getPixelColor(fgAttr, fgPixel);
         }
