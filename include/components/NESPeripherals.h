@@ -19,7 +19,7 @@ private:
         /// Status is copied to this shifter when the strobe latch is on.
         uint8_t dataShifter = 0;
         /// Microphone status.
-        bool mic = true;
+        bool mic = false;
         /// Latch which enables the status update of dataShifter.
         bool strobeLatch = false;
         /// Helper function to put bit to corresponding position.

@@ -31,12 +31,12 @@ NESPeripherals::NESPeripherals() {
 void NESPeripherals::init() {
     m_controller1.pressedButtons = 0;
     m_controller1.dataShifter    = 0;
-    m_controller1.mic            = true;
+    m_controller1.mic            = false;
     m_controller1.strobeLatch    = false;
 
     m_controller2.pressedButtons = 0;
     m_controller2.dataShifter    = 0;
-    m_controller2.mic            = true;
+    m_controller2.mic            = false;
     m_controller2.strobeLatch    = false;
 }
 
@@ -46,12 +46,11 @@ std::vector<EmulatorWindow> NESPeripherals::getGUIs() {
 
         // Window contents
         // ===================================================================
-        ImGui::SeparatorText("Pressed buttons");
         int playerId = 1;
+        ImGui::SeparatorText("Pressed buttons");
         for(uint8_t *shifter : {&m_controller1.dataShifter, &m_controller2.dataShifter}) {
 
             ImGui::Text("Player %d", playerId);
-
             ImGui::CheckboxFlags("A", reinterpret_cast<int *>(shifter), (uint8_t)Controller::inputButtons::A);
             ImGui::CheckboxFlags("B", reinterpret_cast<int *>(shifter), (uint8_t)Controller::inputButtons::B);
             ImGui::CheckboxFlags("Select", reinterpret_cast<int *>(shifter), (uint8_t)Controller::inputButtons::SELECT);
@@ -64,6 +63,12 @@ std::vector<EmulatorWindow> NESPeripherals::getGUIs() {
             playerId++;
         }
 
+        ImGui::SeparatorText("Microphone (P2)");
+        ImGui::Checkbox("Sound detected", &m_controller2.mic);
+
+        ImGui::SeparatorText("Strobe latches");
+        ImGui::Checkbox("Player 1", &m_controller1.strobeLatch);
+        ImGui::Checkbox("Player 2", &m_controller2.strobeLatch);
     };
 
     return {
@@ -175,6 +180,12 @@ std::vector<ImInputBinder::action_t> NESPeripherals::getInputs() {
                     .key     = ImGuiKey_G,
                     .pressCallback = [&](){ m_controller2.setState(Controller::inputButtons::DOWN, true); },
                     .releaseCallback = [&](){ m_controller2.setState(Controller::inputButtons::DOWN, false); },
+            },
+            ImInputBinder::action_t {
+                    .name_id = "[P2] Mic",
+                    .key     = ImGuiKey_P,
+                    .pressCallback = [&](){ m_controller2.setState(Controller::inputButtons::MIC, true); },
+                    .releaseCallback = [&](){ m_controller2.setState(Controller::inputButtons::MIC, false); },
             }
     };
 
