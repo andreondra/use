@@ -44,3 +44,13 @@ const SoundSampleSources & System::getSampleSources() const {
     return m_sampleSources;
 }
 
+std::vector<ImInputBinder::action_t> System::getInputs() {
+
+    std::vector<ImInputBinder::action_t> mergedInputs;
+
+    for(auto & component : m_components)
+        for(auto & input : component->getInputs())
+            mergedInputs.push_back(input);
+
+    return mergedInputs;
+}

@@ -78,6 +78,13 @@ public:
      * @return Audio sample getters.
      * */
     [[nodiscard]] virtual const SoundSampleSources & getSampleSources() const;
+
+    /**
+     * Get inputs of all components in the System.
+     *
+     * @return Required inputs.
+     * */
+    virtual std::vector<ImInputBinder::action_t> getInputs();
 };
 
 #endif //USE_SYSTEM_H
