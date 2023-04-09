@@ -9,15 +9,15 @@
 
 #include "Component.h"
 
-class NESPeripherals : Component {
+class NESPeripherals : public Component {
 private:
     /// Standard NES controller.
     class Controller{
     public:
-        /// Status of physical buttons (which are pressed -- in emulator this corresponds to configured keys on keyboard or gamepad).
-        uint8_t pressedButtons = 0;
-        /// Status is copied to this shifter when the strobe latch is on.
-        uint8_t dataShifter = 0;
+        /// Status of physical buttons (which are pressed -- in emulator this corresponds to configured keys on keyboard or gamepad). Using int to be compatible with ImGui::CheckboxFlags.
+        unsigned int pressedButtons = 0;
+        /// Status is copied to this shifter when the strobe latch is on. Using int to be compatible with ImGui::CheckboxFlags.
+        unsigned int dataShifter = 0;
         /// Microphone status.
         bool mic = false;
         /// Latch which enables the status update of dataShifter.

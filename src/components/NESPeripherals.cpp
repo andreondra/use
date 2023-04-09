@@ -48,20 +48,24 @@ std::vector<EmulatorWindow> NESPeripherals::getGUIs() {
         // ===================================================================
         int playerId = 1;
         ImGui::SeparatorText("Pressed buttons");
-        for(uint8_t *shifter : {&m_controller1.dataShifter, &m_controller2.dataShifter}) {
+        for(unsigned int *shifter : {&m_controller1.pressedButtons, &m_controller2.pressedButtons}) {
 
             ImGui::Text("Player %d", playerId);
-            ImGui::CheckboxFlags("A", reinterpret_cast<int *>(shifter), (uint8_t)Controller::inputButtons::A);
-            ImGui::CheckboxFlags("B", reinterpret_cast<int *>(shifter), (uint8_t)Controller::inputButtons::B);
-            ImGui::CheckboxFlags("Select", reinterpret_cast<int *>(shifter), (uint8_t)Controller::inputButtons::SELECT);
-            ImGui::CheckboxFlags("Start", reinterpret_cast<int *>(shifter), (uint8_t)Controller::inputButtons::START);
-            ImGui::CheckboxFlags("Up", reinterpret_cast<int *>(shifter), (uint8_t)Controller::inputButtons::UP);
-            ImGui::CheckboxFlags("Down", reinterpret_cast<int *>(shifter), (uint8_t)Controller::inputButtons::DOWN);
-            ImGui::CheckboxFlags("Left", reinterpret_cast<int *>(shifter), (uint8_t)Controller::inputButtons::LEFT);
-            ImGui::CheckboxFlags("Right", reinterpret_cast<int *>(shifter), (uint8_t)Controller::inputButtons::RIGHT);
+            ImGui::CheckboxFlags("A", shifter, 0x1 << (int)Controller::inputButtons::A);
+            ImGui::CheckboxFlags("B", shifter, 0x1 << (int)Controller::inputButtons::B);
+            ImGui::CheckboxFlags("Select", shifter, 0x1 << (int)Controller::inputButtons::SELECT);
+            ImGui::CheckboxFlags("Start", shifter, 0x1 << (int)Controller::inputButtons::START);
+            ImGui::CheckboxFlags("Up", shifter, 0x1 << (int)Controller::inputButtons::UP);
+            ImGui::CheckboxFlags("Down", shifter, 0x1 << (int)Controller::inputButtons::DOWN);
+            ImGui::CheckboxFlags("Left", shifter, 0x1 << (int)Controller::inputButtons::LEFT);
+            ImGui::CheckboxFlags("Right", shifter, 0x1 << (int)Controller::inputButtons::RIGHT);
 
             playerId++;
         }
+
+        ImGui::SeparatorText("State shifters");
+        ImGui::Text("Player 1: 0x%u", m_controller1.dataShifter);
+        ImGui::Text("Player 2: 0x%u", m_controller2.dataShifter);
 
         ImGui::SeparatorText("Microphone (P2)");
         ImGui::Checkbox("Sound detected", &m_controller2.mic);
