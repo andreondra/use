@@ -54,3 +54,7 @@ std::vector<ImInputBinder::action_t> System::getInputs() {
 
     return mergedInputs;
 }
+
+std::string System::getName() const {
+    return m_systemName;
+}
