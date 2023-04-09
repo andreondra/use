@@ -14,6 +14,7 @@
 #include "Types.h"
 #include "Connector.h"
 #include "Port.h"
+#include "ImInputBinder.h"
 
 /**
  * The Component is an abstraction mechanism for interfacing with generic emulated Component.
@@ -74,6 +75,8 @@ public:
 
     virtual std::vector<EmulatorWindow> getGUIs() = 0;
     virtual SoundSampleSources getSoundSampleSources();
+
+    virtual std::vector<ImInputBinder::action_t> getInputs();
 
     [[nodiscard]] virtual bool initRequested();
 
