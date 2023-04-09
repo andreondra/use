@@ -32,7 +32,7 @@ protected:
     R2C02 m_ppu;
     Memory m_RAM{0x800, {.from = 0x0000, .to = 0x1FFF}, 0xFF};
     Gamepak m_cart;
-    Bus m_cpuBus{4, 16, 8};
+    Bus m_cpuBus{5, 16, 8};
     Bus m_ppuBus{1, 14, 8};
 
     SignalPort m_cpuClock, m_ppuClock, m_apuClock;

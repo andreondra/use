@@ -1,5 +1,27 @@
 #include "components/2A03.h"
 
+RP2A03::RP2A03() {
+
+    m_connectors["OAMDMA"] = std::make_shared<Connector>(DataInterface{
+            .read = [&](uint32_t address, uint32_t & buffer) {
+                return false;
+            },
+            .write = [&](uint32_t address, uint32_t data) {
+
+                // Dump contents of 0xXX00-0xXXFF to OAM memory through OAMDATA register.
+                // High byte of address is determined by write to this register (0x4014).
+                if(address == 0x4014) {
+                    for(int index = 0; index <= 0xFF; index++) {
+                        m_mainBus.write(0x2004, m_mainBus.read(((data & 0xFF) << 8) | index));
+                    }
+                    m_cycles += 513;
+                }
+            }
+    });
+}
+
+RP2A03::~RP2A03() { }
+
 void RP2A03::init() {
 
     // Init CPU part.
