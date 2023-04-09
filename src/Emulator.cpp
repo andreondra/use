@@ -26,6 +26,14 @@ void Emulator::setIdling(bool enabled) {
     HelloImGui::GetRunnerParams()->fpsIdling.fpsIdle = enabled ? 9 : 0;
 }
 
+std::string Emulator::getKeybindingsSaveFileName() const {
+    if(m_system) {
+        return m_system->getName() + "_bindings.iib";
+    } else {
+        return "";
+    }
+}
+
 void Emulator::loadSystem(std::unique_ptr<System> system) {
 
     m_runState = STATE::STOPPED;
@@ -37,9 +45,19 @@ void Emulator::loadSystem(std::unique_ptr<System> system) {
     // Remove existing debugging windows.
     params->dockingParams.dockableWindows.clear();
 
+    // Remove existing inputs.
+    m_inputs.reset();
+
     // Change and init system.
     m_system.swap(system);
     m_system->init();
+
+    // Add input handlers.
+    for(auto & input : m_system->getInputs())
+        m_inputs.addAction(input);
+
+    // Try to load existing inputs.
+    m_inputs.loadBindings(getKeybindingsSaveFileName());
 
     // Configure sound.
     m_sound = std::make_unique<Sound>(m_system->soundOutputCount());
@@ -68,6 +86,9 @@ void Emulator::loadSystem(std::unique_ptr<System> system) {
 
 void Emulator::runSystem() {
 
+    // Update user input states.
+    m_inputs.update();
+
     if(m_runState == STATE::RUNNING && m_system) {
 
         unsigned long remainingClocks = m_system->getClockRate() / ImGui::GetIO().Framerate;
@@ -87,6 +108,16 @@ void Emulator::runSystem() {
         }
 
     }
+}
+
+void Emulator::guiMain() {
+
+    if(m_showBindingsWindow) {
+        ImGui::Begin("Settings: Key bindings", &m_showBindingsWindow);
+        m_inputs.renderEditor();
+        ImGui::End();
+    }
+
 }
 
 void Emulator::guiStatusBar() {
@@ -135,6 +166,22 @@ void Emulator::guiToolbar() {
                     break;
             }
 
+        } else {
+            ImGui::Text("Please select a system");
+        }
+
+        ImGui::EndMenu();
+    }
+
+    if(ImGui::BeginMenu("Settings")) {
+
+        if(m_system) {
+            if(ImGui::MenuItem("Key bindings", nullptr, m_showBindingsWindow)) {
+                m_showBindingsWindow = !m_showBindingsWindow;
+
+                // Save inputs on close.
+                if(!m_showBindingsWindow) m_inputs.saveBindings(getKeybindingsSaveFileName());
+            }
         } else {
             ImGui::Text("Please select a system");
         }
@@ -195,6 +242,11 @@ int Emulator::run() {
     par.imGuiWindowParams.showMenuBar = true;
     par.callbacks.ShowAppMenuItems = [&](){guiMenuItems();};
     par.callbacks.ShowMenus = [&](){guiToolbar();};
+
+    // ===============================================
+    // Main GUI
+    // ===============================================
+    par.callbacks.ShowGui = [&](){guiMain();};
 
     // ===============================================
     // Docking areas
