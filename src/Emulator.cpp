@@ -69,8 +69,6 @@ void Emulator::loadSystem(std::unique_ptr<System> system) {
         std::string newLabel = (!windowConfig.category.empty()) ? "[" + windowConfig.category + "] " : "";
         // Add Window title.
         newLabel += windowConfig.title;
-        // Add unique ID.
-        newLabel += "###" + std::to_string(windowConfig.id);
 
         HelloImGui::DockableWindow window;
         window.label = newLabel;
