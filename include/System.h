@@ -1,6 +1,10 @@
-//
-// Created by golas on 21.2.23.
-//
+/**
+ * @file System.h
+ * @author Ondrej Golasowski (golasowski.o@gmail.com)
+ * @brief System emulation abstraction.
+ * @copyright Copyright (c) 2023 Ondrej Golasowski
+ *
+ */
 
 #ifndef USE_SYSTEM_H
 #define USE_SYSTEM_H
@@ -8,7 +12,12 @@
 #include <vector>
 #include "Types.h"
 #include "Component.h"
+#include "ImInputBinder.h"
 
+/**
+ * This class is an abstraction of an emulated system.
+ * Components are placed and interconnected here to create a functioning system.
+ * */
 class System {
 
 protected:
