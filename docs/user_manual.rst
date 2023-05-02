@@ -53,7 +53,7 @@ select a ROM dump from the filesystem.
     There are many factors deciding whether or not the game of the software contained on the ROM will run well, mainly
     accuracy of the emulated hardware. However, the main factor is whether the "mapper" used by the cartridge which
     stored the software is supported by the emulator. For now, only mappers 0 and 1 are supported. See
-    ``NesCartDB <https://nescartdb.com/>`` to check what mapper does the ROM dump use.
+    `NesCartDB <https://nescartdb.com/>`_ to check what mapper does the ROM dump use.
 
 .. warning::
     Disclaimer: Do not forget that downloading and distribution of the ROM dumps is illegal.
