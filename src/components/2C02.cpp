@@ -3,7 +3,6 @@
  * @author Ondrej Golasowski (golasowski.o@gmail.com)
  * @brief Ricoh 2C02 (PPU) software implementation.
  * @copyright Copyright (c) 2023 Ondrej Golasowski
- *
  */
 
 #include "components/2C02.h"

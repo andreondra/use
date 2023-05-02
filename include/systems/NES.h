@@ -17,6 +17,9 @@
 #include "components/Gamepak/Gamepak.h"
 #include "components/NESPeripherals.h"
 
+/**
+ * Nintendo Entertainment System emulation (NTSC version).
+ * */
 class NES : public System{
 protected:
     // ===========================================
@@ -57,7 +60,6 @@ public:
     void doSteps(unsigned int count) override;
     void doFrames(unsigned int count) override;
     void doRun(unsigned int updateFrequency) override;
-
 };
 
 #endif //USE_NES_H
