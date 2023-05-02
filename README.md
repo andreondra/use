@@ -1,4 +1,6 @@
-# USE: Universal System Emulator
+![USE logo](graphics/logo-full-path.svg)
+
+# USE: the Universal System Emulator
 The USE is a platform created to ease the development of software-based emulators of archaic hardware.
 The project aims to be easily understandable, extensible, portable and tries to follow good programming practices while
 utilizing the newest C++ standard. For more information about the project, please consult the documentation.
