@@ -267,7 +267,6 @@ void R2C02::init(){
 
     memset(m_palettes, 0, 32);
     memset(m_palettes, 0, sizeof(m_palettes) / sizeof(m_palettes[0]));
-    memset(m_nametables, 0, sizeof(m_nametables) / sizeof(m_nametables[0]));
 
     for(auto & row : m_screen) {
         for(auto & pixel : row) {
