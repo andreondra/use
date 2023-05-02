@@ -13,6 +13,8 @@ TODO
 ## Quick start on Linux/macOS/Windows
 This is a quick start guide on how to prepare the platform either for development of your own emulator or just testing.
 
+Note that there are some required system packages (CMake will report), for Ubuntu they are: `libxrandr-dev libxinerama-dev libxcursor-dev libxi-dev libgl-dev`.
+
 ### Get the repository
 ```shell
 git clone https://github.com/andreondra/use.git
