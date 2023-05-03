@@ -3,11 +3,11 @@
 # USE: the Universal System Emulator
 The USE is a platform created to ease the development of software-based emulators of archaic hardware.
 The project aims to be easily understandable, extensible, portable and tries to follow good programming practices while
-utilizing the newest C++ standard. For more information about the project, please consult the documentation.
+utilizing the newest C++ standard.
 
-Are you an user? Check user guide (TODO link).
-
-Are you a developer? Check development guide (TODO link).
+## Documentation
+A documentation for the project is available at [📃 GitHub Pages](https://andreondra.github.io/use/). It contains user manual,
+contributor's guide, developer's guide and API documentation which is generated on every push to the main branch.
 
 ## Prebuilt binaries
 For Windows there is a prebuilt-binary built from the latest commit to the main branch in
