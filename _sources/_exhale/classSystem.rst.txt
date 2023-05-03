@@ -1,0 +1,27 @@
+.. _exhale_class_classSystem:
+
+Class System
+============
+
+- Defined in :ref:`file__home_runner_work_use_use_include_System.h`
+
+
+Inheritance Relationships
+-------------------------
+
+Derived Types
+*************
+
+- ``public Bare6502`` (:ref:`exhale_class_classBare6502`)
+- ``public NES`` (:ref:`exhale_class_classNES`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: System
+   :project: Universal System Emulator
+   :members:
+   :protected-members:
+   :undoc-members:

@@ -1,0 +1,23 @@
+.. _exhale_struct_structR2C02_1_1internalRegisters__t:
+
+Struct R2C02::internalRegisters_t
+=================================
+
+- Defined in :ref:`file__home_runner_work_use_use_include_components_2C02.h`
+
+
+Nested Relationships
+--------------------
+
+This struct is a nested type of :ref:`exhale_class_classR2C02`.
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: R2C02::internalRegisters_t
+   :project: Universal System Emulator
+   :members:
+   :protected-members:
+   :undoc-members:

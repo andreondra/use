@@ -1,0 +1,50 @@
+
+.. _program_listing_file__home_runner_work_use_use_include_components_Gamepak_Mapper.h:
+
+Program Listing for File Mapper.h
+=================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file__home_runner_work_use_use_include_components_Gamepak_Mapper.h>` (``/home/runner/work/use/use/include/components/Gamepak/Mapper.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   
+   #ifndef USE_MAPPER_H
+   #define USE_MAPPER_H
+   
+   #include "Types.h"
+   
+   class Mapper {
+   public:
+       enum class mirroringType_t {HORIZONTAL, VERTICAL, FOURSCREEN, SINGLE_LO, SINGLE_HI};
+   
+   protected:
+       // ===========================================
+       // CIRAM handling
+       // ===========================================
+       mirroringType_t m_mirroringType = mirroringType_t::HORIZONTAL;
+       std::array<uint8_t, 0x800> m_CIRAM {0x00};
+       virtual void CIRAMWrite(uint16_t address, uint8_t data);
+   
+       virtual uint8_t CIRAMRead(uint16_t address);
+   
+   public:
+       Mapper() = default;
+       virtual ~Mapper() = default;
+   
+       virtual void init();
+   
+       virtual bool cpuRead(uint16_t addr, uint8_t & data) = 0;
+   
+       virtual bool cpuWrite(uint16_t addr, uint8_t data)  = 0;
+   
+       virtual bool ppuRead(uint16_t addr, uint8_t & data) = 0;
+   
+       virtual bool ppuWrite(uint16_t addr, uint8_t data)  = 0;
+   
+       virtual void drawGUI()                              = 0;
+   };
+   
+   #endif //USE_MAPPER_H

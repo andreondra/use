@@ -1,0 +1,60 @@
+
+.. _file__home_runner_work_use_use_include_components_Gamepak_Mapper001.h:
+
+File Mapper001.h
+================
+
+|exhale_lsh| :ref:`Parent directory <dir__home_runner_work_use_use_include_components_Gamepak>` (``/home/runner/work/use/use/include/components/Gamepak``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+
+iNES :ref:`exhale_class_classMapper` 001. This mapper is used in boards SKROM, SLROM, SNROM... 
+
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``/home/runner/work/use/use/include/components/Gamepak/Mapper001.h``)
+---------------------------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file__home_runner_work_use_use_include_components_Gamepak_Mapper001.h.rst
+
+
+
+Detailed Description
+--------------------
+
+Ondrej Golasowski (golasowski.o@gmail.com) 
+
+Copyright (c) 2023 Ondrej Golasowski 
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``Mapper.h`` (:ref:`file__home_runner_work_use_use_include_components_Gamepak_Mapper.h`)
+
+
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classMapper001`
+

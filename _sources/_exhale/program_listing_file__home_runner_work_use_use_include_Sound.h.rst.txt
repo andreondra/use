@@ -1,0 +1,100 @@
+
+.. _program_listing_file__home_runner_work_use_use_include_Sound.h:
+
+Program Listing for File Sound.h
+================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file__home_runner_work_use_use_include_Sound.h>` (``/home/runner/work/use/use/include/Sound.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   
+   #ifndef USE_SOUND_H
+   #define USE_SOUND_H
+   
+   #include <memory>
+   #include "miniaudio.h"
+   #include "Types.h"
+   
+   class Sound {
+   
+   private:
+       bool m_running = false;
+   
+       // ===========================================
+       // Audio parameters
+       // ===========================================
+       static const size_t SAMPLE_BUFFER_SIZE               = 32768;
+       static const size_t SAMPLE_BUFFER_MIN_PTR_DISTANCE   = 2048;
+       static const size_t SAMPLE_BUFFER_MAX_PTR_DISTANCE   = SAMPLE_BUFFER_SIZE - SAMPLE_BUFFER_MIN_PTR_DISTANCE;
+       static const size_t BUFFER_PTR_CORRECTION            = 16384;
+   
+       static const int SAMPLE_RATE   = 44100;
+       static const int CHANNEL_COUNT = 2;
+   
+       // Low Pass Filter parameters.
+       static const int   LPF_CUTOFF_FREQ   = 20000;
+       static const int   LPF_ORDER           = 8;
+   
+       // ===========================================
+       // Miniaudio data
+       // ===========================================
+       ma_device_config m_maConfig;
+       ma_lpf_node_config  m_maLpfConfig;
+       ma_node_graph_config  m_maNodeGraphConfig;
+       // Custom deleters for unique_ptr encapsulated miniaudio objects.
+       static void deleteMaDevice(ma_device *device);
+       static void deleteNodeGraph(ma_node_graph *ng);
+       static void deleteLpfNode(ma_lpf_node *node);
+       static void deleteDataNode(ma_data_source_node *node);
+       static void deletePcmRb(ma_pcm_rb *rb);
+       // RAII encapsulation for miniaudio structs (they require custom deleter).
+       // Warning: maintain the order of the members, so the destruction happens in the correct order.
+       // Destruction order is guaranteed by C++ standard 12.6.2.
+       std::unique_ptr<ma_device,     decltype(&deleteMaDevice) >  m_maDevice   {new ma_device, &deleteMaDevice};
+       std::unique_ptr<ma_node_graph, decltype(&deleteNodeGraph)>  m_maNodeGraph{new ma_node_graph, &deleteNodeGraph};
+       std::unique_ptr<ma_lpf_node,   decltype(&deleteLpfNode)  >  m_maNodeLpf  {new ma_lpf_node, &deleteLpfNode};
+   
+       // The sound is processed in a following way:
+       //  +-------------------+
+       // |                   |
+       // |  Frame  source 1  |---+
+       // |                   |   |
+       // +-------------------|   |        +-------------------+
+       //                         |        |                   |
+       //         ...             +------->|  Low Pass Filter  |
+       //                         |        |                   |
+       // +-------------------|   |        +-------------------+
+       // |                   |   |
+       // |  Frame  source x  |---+
+       // |                   |
+       // +-------------------+
+       std::vector<std::unique_ptr<ma_data_source_node, decltype(&deleteDataNode)>> m_maNodesDataSource;
+   
+       static void dataCallback(ma_device* pDevice, void* pOutput, const void* pInput, ma_uint32 frameCount);
+   
+       // ===========================================
+       // Audio buffering
+       // ===========================================
+       std::vector<std::unique_ptr<ma_pcm_rb, decltype(&deletePcmRb)>> m_sampleBuffers;
+       std::vector<std::vector<float>> m_sampleCaches;
+   
+   public:
+   
+       explicit Sound(size_t outputCount);
+       ~Sound();
+   
+       void start();
+   
+       void stop();
+   
+       void writeFrames(const SoundSampleSources & sources);
+   
+       [[nodiscard]] static constexpr int getSampleRate() {
+           return SAMPLE_RATE;
+       };
+   };
+   
+   #endif //USE_SOUND_H

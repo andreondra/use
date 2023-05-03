@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Class Mapper000 &mdash; Universal System Emulator  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+    <link rel="canonical" href="./_exhale/classMapper000.html" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Class Mapper001" href="classMapper001.html" />
+    <link rel="prev" title="Class Mapper" href="classMapper.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Universal System Emulator
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Universal System Emulator documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_manual.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_manual.html">Developer’s Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contr_manual.html">Contributor’s Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="api_docs_root.html">API docs</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="api_docs_root.html#class-hierarchy">Class Hierarchy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api_docs_root.html#file-hierarchy">File Hierarchy</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="api_docs_root.html#full-api">Full API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="api_docs_root.html#namespaces">Namespaces</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="api_docs_root.html#classes-and-structs">Classes and Structs</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="structAddressRange.html">Struct AddressRange</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structAPU_1_1apu__envelope.html">Struct APU::apu_envelope</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structAPU_1_1apu__lengthCounter.html">Struct APU::apu_lengthCounter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structAPU_1_1apu__noise.html">Struct APU::apu_noise</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structAPU_1_1apu__pulse.html">Struct APU::apu_pulse</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structAPU_1_1apu__triangle.html">Struct APU::apu_triangle</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structDataInterface.html">Struct DataInterface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structEmulatorWindow.html">Struct EmulatorWindow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structGamepak_1_1gamepakParams.html">Struct Gamepak::gamepakParams</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structMOS6502_1_1instruction__t.html">Struct MOS6502::instruction_t</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structMOS6502_1_1status__flags__t.html">Struct MOS6502::status_flags_t</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structR2C02_1_1internalRegisters__t.html">Struct R2C02::internalRegisters_t</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structR2C02_1_1registers__t.html">Struct R2C02::registers_t</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structRGBPixel.html">Struct RGBPixel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structSignalInterface.html">Struct SignalInterface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structSoundStereoFrame.html">Struct SoundStereoFrame</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAPU.html">Class APU</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classBare6502.html">Class Bare6502</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classBus.html">Class Bus</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classComponent.html">Class Component</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classConnector.html">Class Connector</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classDataPort.html">Class DataPort</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classEmulator.html">Class Emulator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classGamepak.html">Class Gamepak</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classMapper.html">Class Mapper</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Class Mapper000</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classMapper001.html">Class Mapper001</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classMemory.html">Class Memory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classMOS6502.html">Class MOS6502</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classNES.html">Class NES</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classNESPeripherals.html">Class NESPeripherals</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classNESPeripherals_1_1Controller.html">Class NESPeripherals::Controller</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classPort.html">Class Port</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classR2C02.html">Class R2C02</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classRP2A03.html">Class RP2A03</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classSignalPort.html">Class SignalPort</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classSound.html">Class Sound</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classSystem.html">Class System</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classTrigger.html">Class Trigger</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api_docs_root.html#enums">Enums</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_docs_root.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_docs_root.html#typedefs">Typedefs</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Universal System Emulator</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="api_docs_root.html">API docs</a></li>
+      <li class="breadcrumb-item active">Class Mapper000</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/_exhale/classMapper000.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="class-mapper000">
+<span id="exhale-class-classmapper000"></span><h1>Class Mapper000<a class="headerlink" href="#class-mapper000" title="Permalink to this headline"></a></h1>
+<ul class="simple">
+<li><p>Defined in <a class="reference internal" href="file__home_runner_work_use_use_include_components_Gamepak_Mapper000.h.html#file-home-runner-work-use-use-include-components-gamepak-mapper000-h"><span class="std std-ref">File Mapper000.h</span></a></p></li>
+</ul>
+<section id="inheritance-relationships">
+<h2>Inheritance Relationships<a class="headerlink" href="#inheritance-relationships" title="Permalink to this headline"></a></h2>
+<section id="base-type">
+<h3>Base Type<a class="headerlink" href="#base-type" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">Mapper</span></code> (<a class="reference internal" href="classMapper.html#exhale-class-classmapper"><span class="std std-ref">Class Mapper</span></a>)</p></li>
+</ul>
+</section>
+</section>
+<section id="class-documentation">
+<h2>Class Documentation<a class="headerlink" href="#class-documentation" title="Permalink to this headline"></a></h2>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv49Mapper000">
+<span id="_CPPv39Mapper000"></span><span id="_CPPv29Mapper000"></span><span id="Mapper000"></span><span class="target" id="classMapper000"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Mapper000</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><a class="reference internal" href="classMapper.html#_CPPv46Mapper" title="Mapper"><span class="n"><span class="pre">Mapper</span></span></a><a class="headerlink" href="#_CPPv49Mapper000" title="Permalink to this definition"></a><br /></dt>
+<dd><p>iNES mapper 000.</p>
+<p>PRG ROM: 16 or 32 KiB. PRG RAM: 2 or 4 KiB, this implementation provides always 8 KiB for compatibility. CHR ROM: 8 KiB If no CHR ROM present (0 KiB), m_CHRRAM will be mapped to CHR ROM and 8 KiB of memory provided.</p>
+<p>Mirroring settings: via solder pads. This mapper has no bankswitching support. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N9Mapper0009Mapper000ERNSt6vectorI7uint8_tEERNSt6vectorI7uint8_tEE15mirroringType_t">
+<span id="_CPPv3N9Mapper0009Mapper000ERNSt6vectorI7uint8_tEERNSt6vectorI7uint8_tEE15mirroringType_t"></span><span id="_CPPv2N9Mapper0009Mapper000ERNSt6vectorI7uint8_tEERNSt6vectorI7uint8_tEE15mirroringType_t"></span><span id="Mapper000::Mapper000__std::vector:uint8_t:R.std::vector:uint8_t:R.mirroringType_t"></span><span class="target" id="classMapper000_1a9b64a25d9970bfba856bb3447586f809"></span><span class="sig-name descname"><span class="n"><span class="pre">Mapper000</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">uint8_t</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">PRGROM</span></span>, <span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">uint8_t</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">CHRROM</span></span>, <span class="n"><span class="pre">mirroringType_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">mirroringType</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9Mapper0009Mapper000ERNSt6vectorI7uint8_tEERNSt6vectorI7uint8_tEE15mirroringType_t" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Construct <a class="reference internal" href="classMapper.html#classMapper"><span class="std std-ref">Mapper</span></a> 000. This mapper has a fixed mirroring mode depending on hardware configuration (soldered pad), this information is contained in the ROM dump and passed to the mapper via mirroringType parameter.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Throws</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span><span class="cpp-expr sig sig-inline cpp"><span class="n">std</span><span class="p">::</span><span class="n">invalid_argument</span></span></span> – If PRGROM has invalid size (not 0x4000 nor 0x8000). </p></li>
+<li><p><span><span class="cpp-expr sig sig-inline cpp"><span class="n">std</span><span class="p">::</span><span class="n">invalid_argument</span></span></span> – If CHRROM has invalid size (not 0x8000). </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N9Mapper000D0Ev">
+<span id="_CPPv3N9Mapper000D0Ev"></span><span id="_CPPv2N9Mapper000D0Ev"></span><span id="Mapper000::~Mapper000"></span><span class="target" id="classMapper000_1a265a6d80690205c45b2795345647af6c"></span><span class="sig-name descname"><span class="n"><span class="pre">~Mapper000</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">override</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">default</span></span><a class="headerlink" href="#_CPPv4N9Mapper000D0Ev" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N9Mapper0004initEv">
+<span id="_CPPv3N9Mapper0004initEv"></span><span id="_CPPv2N9Mapper0004initEv"></span><span id="Mapper000::init"></span><span class="target" id="classMapper000_1ac3db153bf1541326b365dc086b83180d"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">init</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4N9Mapper0004initEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Initialize mapper to the power-up state = clean all volatile memories. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N9Mapper0007cpuReadE8uint16_tR7uint8_t">
+<span id="_CPPv3N9Mapper0007cpuReadE8uint16_tR7uint8_t"></span><span id="_CPPv2N9Mapper0007cpuReadE8uint16_tR7uint8_t"></span><span id="Mapper000::cpuRead__uint16_t.uint8_tR"></span><span class="target" id="classMapper000_1a85e86773da8329f52b82aceb3a9cc465"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">cpuRead</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">addr</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">data</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4N9Mapper0007cpuReadE8uint16_tR7uint8_t" title="Permalink to this definition"></a><br /></dt>
+<dd><p>CPU read interface. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>addr</strong> – Address to read from. </p></li>
+<li><p><strong>data</strong> – Buffer to write to. </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>true If anything was read </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N9Mapper0008cpuWriteE8uint16_t7uint8_t">
+<span id="_CPPv3N9Mapper0008cpuWriteE8uint16_t7uint8_t"></span><span id="_CPPv2N9Mapper0008cpuWriteE8uint16_t7uint8_t"></span><span id="Mapper000::cpuWrite__uint16_t.uint8_t"></span><span class="target" id="classMapper000_1aa254e65b356b64d2095f763030311534"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">cpuWrite</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">addr</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">data</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4N9Mapper0008cpuWriteE8uint16_t7uint8_t" title="Permalink to this definition"></a><br /></dt>
+<dd><p>CPU write interface. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>addr</strong> – Address to write to. </p></li>
+<li><p><strong>data</strong> – Data to write. </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>true If anything was written. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N9Mapper0007ppuReadE8uint16_tR7uint8_t">
+<span id="_CPPv3N9Mapper0007ppuReadE8uint16_tR7uint8_t"></span><span id="_CPPv2N9Mapper0007ppuReadE8uint16_tR7uint8_t"></span><span id="Mapper000::ppuRead__uint16_t.uint8_tR"></span><span class="target" id="classMapper000_1ac3a01123eac40f7df5272ccc1df22be1"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ppuRead</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">addr</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">data</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4N9Mapper0007ppuReadE8uint16_tR7uint8_t" title="Permalink to this definition"></a><br /></dt>
+<dd><p>PPU read interface. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>addr</strong> – Address to read from. </p></li>
+<li><p><strong>data</strong> – Buffer to write to. </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>true If anything was read. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N9Mapper0008ppuWriteE8uint16_t7uint8_t">
+<span id="_CPPv3N9Mapper0008ppuWriteE8uint16_t7uint8_t"></span><span id="_CPPv2N9Mapper0008ppuWriteE8uint16_t7uint8_t"></span><span id="Mapper000::ppuWrite__uint16_t.uint8_t"></span><span class="target" id="classMapper000_1a6ca3e8ad7d9770ff81989b941d6c3b83"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ppuWrite</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">addr</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">data</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4N9Mapper0008ppuWriteE8uint16_t7uint8_t" title="Permalink to this definition"></a><br /></dt>
+<dd><p>PPU write interface. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>addr</strong> – Address to write to. </p></li>
+<li><p><strong>data</strong> – Data to write. </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>true If anything was written. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N9Mapper0007drawGUIEv">
+<span id="_CPPv3N9Mapper0007drawGUIEv"></span><span id="_CPPv2N9Mapper0007drawGUIEv"></span><span id="Mapper000::drawGUI"></span><span class="target" id="classMapper000_1a7ffcf12ead9d6e0490683dab8ff8ed96"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">drawGUI</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4N9Mapper0007drawGUIEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Draw a debugging GUI. </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-protected-attributes">Protected Attributes</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N9Mapper0008m_PRGROME">
+<span id="_CPPv3N9Mapper0008m_PRGROME"></span><span id="_CPPv2N9Mapper0008m_PRGROME"></span><span id="Mapper000::m_PRGROM__std::vector:uint8_t:R"></span><span class="target" id="classMapper000_1a55e67754cd2c96d7b881ceca071b9d76"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">uint8_t</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">m_PRGROM</span></span></span><a class="headerlink" href="#_CPPv4N9Mapper0008m_PRGROME" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N9Mapper0008m_CHRROME">
+<span id="_CPPv3N9Mapper0008m_CHRROME"></span><span id="_CPPv2N9Mapper0008m_CHRROME"></span><span id="Mapper000::m_CHRROM__std::vector:uint8_t:R"></span><span class="target" id="classMapper000_1ad5f9cb280e0f4ce363af3d6fed03ad7e"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">uint8_t</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">m_CHRROM</span></span></span><a class="headerlink" href="#_CPPv4N9Mapper0008m_CHRROME" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N9Mapper0008m_PRGRAME">
+<span id="_CPPv3N9Mapper0008m_PRGRAME"></span><span id="_CPPv2N9Mapper0008m_PRGRAME"></span><span id="Mapper000::m_PRGRAM__std::array:uint8_t.0x2000:"></span><span class="target" id="classMapper000_1ae878a0bb83374ccaccf0a24d9853ceee"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">array</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">uint8_t</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">0x2000</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_PRGRAM</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="p"><span class="pre">{</span></span><span class="m"><span class="pre">0x00</span></span><span class="p"><span class="pre">}</span></span><a class="headerlink" href="#_CPPv4N9Mapper0008m_PRGRAME" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N9Mapper0008m_CHRRAME">
+<span id="_CPPv3N9Mapper0008m_CHRRAME"></span><span id="_CPPv2N9Mapper0008m_CHRRAME"></span><span id="Mapper000::m_CHRRAM__std::vector:uint8_t:"></span><span class="target" id="classMapper000_1aa6ff137dcf7c5dd027de269726643d42"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">uint8_t</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_CHRRAM</span></span></span><a class="headerlink" href="#_CPPv4N9Mapper0008m_CHRRAME" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N9Mapper00013m_CHRWritableE">
+<span id="_CPPv3N9Mapper00013m_CHRWritableE"></span><span id="_CPPv2N9Mapper00013m_CHRWritableE"></span><span id="Mapper000::m_CHRWritable__b"></span><span class="target" id="classMapper000_1ad02067bd9911d579af93fceeef440f77"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_CHRWritable</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">false</span></span><a class="headerlink" href="#_CPPv4N9Mapper00013m_CHRWritableE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="classMapper.html" class="btn btn-neutral float-left" title="Class Mapper" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="classMapper001.html" class="btn btn-neutral float-right" title="Class Mapper001" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023 Ondrej Golasowski.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

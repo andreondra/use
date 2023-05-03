@@ -1,0 +1,43 @@
+
+.. _program_listing_file__home_runner_work_use_use_include_Connector.h:
+
+Program Listing for File Connector.h
+====================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file__home_runner_work_use_use_include_Connector.h>` (``/home/runner/work/use/use/include/Connector.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   
+   #ifndef USE_CONNECTOR_H
+   #define USE_CONNECTOR_H
+   
+   #include <variant>
+   #include <memory>
+   #include "Types.h"
+   
+   class Connector {
+   
+   private:
+       std::variant<std::monostate, DataInterface, SignalInterface> m_interface;
+   
+   public:
+       Connector() = default;
+       explicit Connector(DataInterface interface);
+       explicit Connector(SignalInterface interface);
+   
+       [[nodiscard]] bool hasDataInterface() const;
+       [[nodiscard]] bool hasSignalInterface()  const;
+   
+       const DataInterface & getDataInterface();
+   
+       const SignalInterface  & getSignalInterface();
+   
+       void setInterface(DataInterface interface);
+   
+       void setInterface(SignalInterface interface);
+   };
+   
+   #endif //USE_CONNECTOR_H

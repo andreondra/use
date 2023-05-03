@@ -1,0 +1,30 @@
+
+.. _program_listing_file__home_runner_work_use_use_include_components_2A03.h:
+
+Program Listing for File 2A03.h
+===============================
+
+|exhale_lsh| :ref:`Return to documentation for file <file__home_runner_work_use_use_include_components_2A03.h>` (``/home/runner/work/use/use/include/components/2A03.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   
+   #ifndef USE_2A03_H
+   #define USE_2A03_H
+   
+   #include "components/6502.h"
+   
+   class RP2A03 : public MOS6502 {
+   
+   protected:
+   
+   public:
+       RP2A03();
+       ~RP2A03() override;
+   
+       void init() override;
+   };
+   
+   #endif //USE_2A03_H

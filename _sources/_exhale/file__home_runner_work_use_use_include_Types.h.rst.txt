@@ -1,0 +1,116 @@
+
+.. _file__home_runner_work_use_use_include_Types.h:
+
+File Types.h
+============
+
+|exhale_lsh| :ref:`Parent directory <dir__home_runner_work_use_use_include>` (``/home/runner/work/use/use/include``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+
+:ref:`exhale_class_classEmulator` helper types. 
+
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``/home/runner/work/use/use/include/Types.h``)
+----------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file__home_runner_work_use_use_include_Types.h.rst
+
+
+
+Detailed Description
+--------------------
+
+Ondrej Golasowski (golasowski.o@gmail.com) 
+
+Copyright (c) 2023 Ondrej Golasowski 
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``cstdint``
+
+- ``functional``
+
+- ``string``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file__home_runner_work_use_use_include_Component.h`
+
+- :ref:`file__home_runner_work_use_use_include_components_2C02.h`
+
+- :ref:`file__home_runner_work_use_use_include_components_6502.h`
+
+- :ref:`file__home_runner_work_use_use_include_components_Bus.h`
+
+- :ref:`file__home_runner_work_use_use_include_components_Gamepak_Gamepak.h`
+
+- :ref:`file__home_runner_work_use_use_include_components_Gamepak_Mapper.h`
+
+- :ref:`file__home_runner_work_use_use_include_components_Gamepak_Mapper000.h`
+
+- :ref:`file__home_runner_work_use_use_include_components_Memory.h`
+
+- :ref:`file__home_runner_work_use_use_include_Connector.h`
+
+- :ref:`file__home_runner_work_use_use_include_Sound.h`
+
+- :ref:`file__home_runner_work_use_use_include_System.h`
+
+- :ref:`file__home_runner_work_use_use_include_Tools.h`
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structAddressRange`
+
+- :ref:`exhale_struct_structDataInterface`
+
+- :ref:`exhale_struct_structEmulatorWindow`
+
+- :ref:`exhale_struct_structRGBPixel`
+
+- :ref:`exhale_struct_structSignalInterface`
+
+- :ref:`exhale_struct_structSoundStereoFrame`
+
+
+Enums
+-----
+
+
+- :ref:`exhale_enum_Types_8h_1a6116b547a7a7786ba3daf4b375aa0f02`
+
+
+Typedefs
+--------
+
+
+- :ref:`exhale_typedef_Types_8h_1a382822aac1503157bea48dba6caad4d5`
+

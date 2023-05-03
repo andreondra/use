@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Class Component &mdash; Universal System Emulator  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+    <link rel="canonical" href="./_exhale/classComponent.html" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Class Connector" href="classConnector.html" />
+    <link rel="prev" title="Class Bus" href="classBus.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Universal System Emulator
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Universal System Emulator documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_manual.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_manual.html">Developer’s Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contr_manual.html">Contributor’s Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="api_docs_root.html">API docs</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="api_docs_root.html#class-hierarchy">Class Hierarchy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api_docs_root.html#file-hierarchy">File Hierarchy</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="api_docs_root.html#full-api">Full API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="api_docs_root.html#namespaces">Namespaces</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="api_docs_root.html#classes-and-structs">Classes and Structs</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="structAddressRange.html">Struct AddressRange</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structAPU_1_1apu__envelope.html">Struct APU::apu_envelope</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structAPU_1_1apu__lengthCounter.html">Struct APU::apu_lengthCounter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structAPU_1_1apu__noise.html">Struct APU::apu_noise</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structAPU_1_1apu__pulse.html">Struct APU::apu_pulse</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structAPU_1_1apu__triangle.html">Struct APU::apu_triangle</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structDataInterface.html">Struct DataInterface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structEmulatorWindow.html">Struct EmulatorWindow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structGamepak_1_1gamepakParams.html">Struct Gamepak::gamepakParams</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structMOS6502_1_1instruction__t.html">Struct MOS6502::instruction_t</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structMOS6502_1_1status__flags__t.html">Struct MOS6502::status_flags_t</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structR2C02_1_1internalRegisters__t.html">Struct R2C02::internalRegisters_t</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structR2C02_1_1registers__t.html">Struct R2C02::registers_t</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structRGBPixel.html">Struct RGBPixel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structSignalInterface.html">Struct SignalInterface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structSoundStereoFrame.html">Struct SoundStereoFrame</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAPU.html">Class APU</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classBare6502.html">Class Bare6502</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classBus.html">Class Bus</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Class Component</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classConnector.html">Class Connector</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classDataPort.html">Class DataPort</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classEmulator.html">Class Emulator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classGamepak.html">Class Gamepak</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classMapper.html">Class Mapper</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classMapper000.html">Class Mapper000</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classMapper001.html">Class Mapper001</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classMemory.html">Class Memory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classMOS6502.html">Class MOS6502</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classNES.html">Class NES</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classNESPeripherals.html">Class NESPeripherals</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classNESPeripherals_1_1Controller.html">Class NESPeripherals::Controller</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classPort.html">Class Port</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classR2C02.html">Class R2C02</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classRP2A03.html">Class RP2A03</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classSignalPort.html">Class SignalPort</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classSound.html">Class Sound</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classSystem.html">Class System</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classTrigger.html">Class Trigger</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api_docs_root.html#enums">Enums</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_docs_root.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_docs_root.html#typedefs">Typedefs</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Universal System Emulator</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="api_docs_root.html">API docs</a></li>
+      <li class="breadcrumb-item active">Class Component</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/_exhale/classComponent.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="class-component">
+<span id="exhale-class-classcomponent"></span><h1>Class Component<a class="headerlink" href="#class-component" title="Permalink to this headline"></a></h1>
+<ul class="simple">
+<li><p>Defined in <a class="reference internal" href="file__home_runner_work_use_use_include_Component.h.html#file-home-runner-work-use-use-include-component-h"><span class="std std-ref">File Component.h</span></a></p></li>
+</ul>
+<section id="inheritance-relationships">
+<h2>Inheritance Relationships<a class="headerlink" href="#inheritance-relationships" title="Permalink to this headline"></a></h2>
+<section id="derived-types">
+<h3>Derived Types<a class="headerlink" href="#derived-types" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">APU</span></code> (<a class="reference internal" href="classAPU.html#exhale-class-classapu"><span class="std std-ref">Class APU</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">Bus</span></code> (<a class="reference internal" href="classBus.html#exhale-class-classbus"><span class="std std-ref">Class Bus</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">Gamepak</span></code> (<a class="reference internal" href="classGamepak.html#exhale-class-classgamepak"><span class="std std-ref">Class Gamepak</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">MOS6502</span></code> (<a class="reference internal" href="classMOS6502.html#exhale-class-classmos6502"><span class="std std-ref">Class MOS6502</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">Memory</span></code> (<a class="reference internal" href="classMemory.html#exhale-class-classmemory"><span class="std std-ref">Class Memory</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">NESPeripherals</span></code> (<a class="reference internal" href="classNESPeripherals.html#exhale-class-classnesperipherals"><span class="std std-ref">Class NESPeripherals</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">R2C02</span></code> (<a class="reference internal" href="classR2C02.html#exhale-class-classr2c02"><span class="std std-ref">Class R2C02</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">Trigger</span></code> (<a class="reference internal" href="classTrigger.html#exhale-class-classtrigger"><span class="std std-ref">Class Trigger</span></a>)</p></li>
+</ul>
+</section>
+</section>
+<section id="class-documentation">
+<h2>Class Documentation<a class="headerlink" href="#class-documentation" title="Permalink to this headline"></a></h2>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv49Component">
+<span id="_CPPv39Component"></span><span id="_CPPv29Component"></span><span id="Component"></span><span class="target" id="classComponent"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Component</span></span></span><a class="headerlink" href="#_CPPv49Component" title="Permalink to this definition"></a><br /></dt>
+<dd><p>The <a class="reference internal" href="#classComponent"><span class="std std-ref">Component</span></a> is an abstraction mechanism for interfacing with generic emulated <a class="reference internal" href="#classComponent"><span class="std std-ref">Component</span></a>. The class is used to provide an unified interface for node editors and similar tools.</p>
+<p>The Components interface with each other using Ports and Connectors; no other means shall be used, to make the <a class="reference internal" href="#classComponent"><span class="std std-ref">Component</span></a> as universal as possible.</p>
+<p>See documentation for creating a custom component. </p>
+<p>Subclassed by <a class="reference internal" href="classAPU.html#classAPU"><span class="std std-ref">APU</span></a>, <a class="reference internal" href="classBus.html#classBus"><span class="std std-ref">Bus</span></a>, <a class="reference internal" href="classGamepak.html#classGamepak"><span class="std std-ref">Gamepak</span></a>, <a class="reference internal" href="classMOS6502.html#classMOS6502"><span class="std std-ref">MOS6502</span></a>, <a class="reference internal" href="classMemory.html#classMemory"><span class="std std-ref">Memory</span></a>, <a class="reference internal" href="classNESPeripherals.html#classNESPeripherals"><span class="std std-ref">NESPeripherals</span></a>, <a class="reference internal" href="classR2C02.html#classR2C02"><span class="std std-ref">R2C02</span></a>, <a class="reference internal" href="classTrigger.html#classTrigger"><span class="std std-ref">Trigger</span></a></p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N9Component9ComponentEv">
+<span id="_CPPv3N9Component9ComponentEv"></span><span id="_CPPv2N9Component9ComponentEv"></span><span id="Component::Component"></span><span class="target" id="classComponent_1a404098a91640552f9d0284d08b53def4"></span><span class="sig-name descname"><span class="n"><span class="pre">Component</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">default</span></span><a class="headerlink" href="#_CPPv4N9Component9ComponentEv" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N9ComponentD0Ev">
+<span id="_CPPv3N9ComponentD0Ev"></span><span id="_CPPv2N9ComponentD0Ev"></span><span id="Component::~Component"></span><span class="target" id="classComponent_1ad82d7393e339c1b19cc17a0d55b5674d"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">~Component</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">default</span></span><a class="headerlink" href="#_CPPv4N9ComponentD0Ev" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N9Component4initEv">
+<span id="_CPPv3N9Component4initEv"></span><span id="_CPPv2N9Component4initEv"></span><span id="Component::init"></span><span class="target" id="classComponent_1a56baf8afdea3366554b3c7b13fd6e3f7"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">init</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv4N9Component4initEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Initialize a component to a default power-on state (hard reset).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For <a class="reference internal" href="#classComponent"><span class="std std-ref">Component</span></a> developer: Implement a correct power-on state here. </p>
+</div>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK9Component11getDeviceIDEv">
+<span id="_CPPv3NK9Component11getDeviceIDEv"></span><span id="_CPPv2NK9Component11getDeviceIDEv"></span><span id="Component::getDeviceIDC"></span><span class="target" id="classComponent_1a82a1a61332f74dfe090174408dfd0d18"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="n"><span class="pre">uintptr_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getDeviceID</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="k"><span class="pre">final</span></span><a class="headerlink" href="#_CPPv4NK9Component11getDeviceIDEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Get a emulator-wide unique component identifier. By default a casted pointer to the component instance. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#classComponent"><span class="std std-ref">Component</span></a>’s unique ID. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK9Component13getDeviceNameEv">
+<span id="_CPPv3NK9Component13getDeviceNameEv"></span><span id="_CPPv2NK9Component13getDeviceNameEv"></span><span id="Component::getDeviceNameC"></span><span class="target" id="classComponent_1a2fa5b39669cf85837d42b82cae2f074f"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getDeviceName</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="k"><span class="pre">final</span></span><a class="headerlink" href="#_CPPv4NK9Component13getDeviceNameEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Get a component’s name. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#classComponent"><span class="std std-ref">Component</span></a>’s name. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N9Component13setDeviceNameERKNSt6stringE">
+<span id="_CPPv3N9Component13setDeviceNameERKNSt6stringE"></span><span id="_CPPv2N9Component13setDeviceNameERKNSt6stringE"></span><span id="Component::setDeviceName__ssCR"></span><span class="target" id="classComponent_1af822ed8c2f5d5afd8a80f8761c8a84bd"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setDeviceName</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">newName</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">final</span></span><a class="headerlink" href="#_CPPv4N9Component13setDeviceNameERKNSt6stringE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Set component’s name. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>newName</strong> – A new name to set. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N9Component7connectERKNSt6stringENSt8weak_ptrI9ConnectorEE">
+<span id="_CPPv3N9Component7connectERKNSt6stringENSt8weak_ptrI9ConnectorEE"></span><span id="_CPPv2N9Component7connectERKNSt6stringENSt8weak_ptrI9ConnectorEE"></span><span id="Component::connect__ssCR.std::weak_ptr:Connector:"></span><span class="target" id="classComponent_1a15a1a9ff46322abdba426f406dae4614"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">connect</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">toPort</span></span>, <span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">weak_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="classConnector.html#_CPPv49Connector" title="Connector"><span class="n"><span class="pre">Connector</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">connector</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">final</span></span><a class="headerlink" href="#_CPPv4N9Component7connectERKNSt6stringENSt8weak_ptrI9ConnectorEE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Connect a connector to a specified port.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>toPort</strong> – <a class="reference internal" href="classPort.html#classPort"><span class="std std-ref">Port</span></a> to connect the connector to. </p></li>
+<li><p><strong>connector</strong> – The connector to connect. </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N9Component10disconnectERKNSt6stringE">
+<span id="_CPPv3N9Component10disconnectERKNSt6stringE"></span><span id="_CPPv2N9Component10disconnectERKNSt6stringE"></span><span id="Component::disconnect__ssCR"></span><span class="target" id="classComponent_1acacf6ceadbd0e476eb524b568c2eeffa"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">disconnect</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">fromPort</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">final</span></span><a class="headerlink" href="#_CPPv4N9Component10disconnectERKNSt6stringE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Disconnect a connector from a specified port.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>fromPort</strong> – A name of a port from which the connector should be disconnected. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N9Component12getConnectorERKNSt6stringE">
+<span id="_CPPv3N9Component12getConnectorERKNSt6stringE"></span><span id="_CPPv2N9Component12getConnectorERKNSt6stringE"></span><span id="Component::getConnector__ssCR"></span><span class="target" id="classComponent_1a3372a678b38359561f560a90478338fb"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">weak_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="classConnector.html#_CPPv49Connector" title="Connector"><span class="n"><span class="pre">Connector</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getConnector</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">name</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">final</span></span><a class="headerlink" href="#_CPPv4N9Component12getConnectorERKNSt6stringE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Get a connector IO.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>name</strong> – Name of the connector to receive. </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Selected connector. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK9Component14listConnectorsEv">
+<span id="_CPPv3NK9Component14listConnectorsEv"></span><span id="_CPPv2NK9Component14listConnectorsEv"></span><span id="Component::listConnectorsC"></span><span class="target" id="classComponent_1a71dacfcd87205adf2c0143910f62f37c"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">listConnectors</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="k"><span class="pre">final</span></span><a class="headerlink" href="#_CPPv4NK9Component14listConnectorsEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Return names of all connectors in the component. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK9Component9listPortsEv">
+<span id="_CPPv3NK9Component9listPortsEv"></span><span id="_CPPv2NK9Component9listPortsEv"></span><span id="Component::listPortsC"></span><span class="target" id="classComponent_1af39c80a9d735b2ffdba631ac7233f562"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">listPorts</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="k"><span class="pre">final</span></span><a class="headerlink" href="#_CPPv4NK9Component9listPortsEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Return names of all port in the component. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N9Component7getGUIsEv">
+<span id="_CPPv3N9Component7getGUIsEv"></span><span id="_CPPv2N9Component7getGUIsEv"></span><span id="Component::getGUIs"></span><span class="target" id="classComponent_1a8094c4bc8441bbf84ef1c031c2bd42d4"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="structEmulatorWindow.html#_CPPv414EmulatorWindow" title="EmulatorWindow"><span class="n"><span class="pre">EmulatorWindow</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getGUIs</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv4N9Component7getGUIsEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Get GUI windows: metadata and rendering functions.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For <a class="reference internal" href="#classComponent"><span class="std std-ref">Component</span></a> developer: If the component have a debugger or other GUI, return an arbitrary count of windows, they will be rendered on a load of a system which contains the component.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A vector of windows to be rendered. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N9Component21getSoundSampleSourcesEv">
+<span id="_CPPv3N9Component21getSoundSampleSourcesEv"></span><span id="_CPPv2N9Component21getSoundSampleSourcesEv"></span><span id="Component::getSoundSampleSources"></span><span class="target" id="classComponent_1af5a3da5f93cb8bfec495f6f1bff2d3f7"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><a class="reference internal" href="typedef_Types_8h_1a382822aac1503157bea48dba6caad4d5.html#_CPPv418SoundSampleSources" title="SoundSampleSources"><span class="n"><span class="pre">SoundSampleSources</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getSoundSampleSources</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9Component21getSoundSampleSourcesEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Get audio sources: a list of functions to request a stereo audio sample (frame).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For <a class="reference internal" href="#classComponent"><span class="std std-ref">Component</span></a> developer: If the component has any sound outputs, return a functions to get samples from them here. You can return any number of outputs, they will be mixed seamlessly. </p>
+</div>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N9Component9getInputsEv">
+<span id="_CPPv3N9Component9getInputsEv"></span><span id="_CPPv2N9Component9getInputsEv"></span><span id="Component::getInputs"></span><span class="target" id="classComponent_1a13f8e5b5f5cb39cc74fd6ac5af323117"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">ImInputBinder</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">action_t</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getInputs</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9Component9getInputsEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Get input key/gamepad mapping requests with corresponding actions.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For <a class="reference internal" href="#classComponent"><span class="std std-ref">Component</span></a> developer: If the component wants to interact with keyboard, gamepad or similar, return a vector of required keys and actions when they are pressed or released. Default keybindings can be changed by the user and saved to their config. </p>
+</div>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N9Component13initRequestedEv">
+<span id="_CPPv3N9Component13initRequestedEv"></span><span id="_CPPv2N9Component13initRequestedEv"></span><span id="Component::initRequested"></span><span class="target" id="classComponent_1a0174333f5936022cd7eedcd30162a869"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">initRequested</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9Component13initRequestedEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns true if the component wants a whole system restarted.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For <a class="reference internal" href="#classComponent"><span class="std std-ref">Component</span></a> developer: It can be used for example if the component represents a program ROM and a new ROM was loaded; therefore CPU needs to be restarted to change the program counter to correct location in the new ROM.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>true Restart is requested. </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>false No restart needed. </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-protected-attributes">Protected Attributes</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N9Component12m_deviceNameE">
+<span id="_CPPv3N9Component12m_deviceNameE"></span><span id="_CPPv2N9Component12m_deviceNameE"></span><span id="Component::m_deviceName__ss"></span><span class="target" id="classComponent_1a6eb6c5d363c3ddca7cbc7b3a2772cb78"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_deviceName</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="s"><span class="pre">&quot;Default</span> <span class="pre">Component&quot;</span></span><a class="headerlink" href="#_CPPv4N9Component12m_deviceNameE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Components’ name. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N9Component12m_connectorsE">
+<span id="_CPPv3N9Component12m_connectorsE"></span><span id="_CPPv2N9Component12m_connectorsE"></span><span id="Component::m_connectors__std::map:ss.std::shared_ptr:Connector::"></span><span class="target" id="classComponent_1af29ec2ac9df6f96b496bdf15be594847"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">map</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="classConnector.html#_CPPv49Connector" title="Connector"><span class="n"><span class="pre">Connector</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_connectors</span></span></span><a class="headerlink" href="#_CPPv4N9Component12m_connectorsE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Exposed connectors by name. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N9Component7m_portsE">
+<span id="_CPPv3N9Component7m_portsE"></span><span id="_CPPv2N9Component7m_portsE"></span><span id="Component::m_ports__std::map:ss.PortP:"></span><span class="target" id="classComponent_1a3bfa4a3a8595d85a3ba695d366986f98"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">map</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="classPort.html#_CPPv44Port" title="Port"><span class="n"><span class="pre">Port</span></span></a><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_ports</span></span></span><a class="headerlink" href="#_CPPv4N9Component7m_portsE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Available ports by name. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N9Component15m_initRequestedE">
+<span id="_CPPv3N9Component15m_initRequestedE"></span><span id="_CPPv2N9Component15m_initRequestedE"></span><span id="Component::m_initRequested__b"></span><span class="target" id="classComponent_1a6945c06a4991f3cc46d347a988b7bbfd"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_initRequested</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">false</span></span><a class="headerlink" href="#_CPPv4N9Component15m_initRequestedE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Request init of the whole system. Used mainly by ROM on load to properly load reset vectors. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="classBus.html" class="btn btn-neutral float-left" title="Class Bus" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="classConnector.html" class="btn btn-neutral float-right" title="Class Connector" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023 Ondrej Golasowski.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

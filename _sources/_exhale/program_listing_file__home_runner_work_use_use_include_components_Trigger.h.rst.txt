@@ -1,0 +1,33 @@
+
+.. _program_listing_file__home_runner_work_use_use_include_components_Trigger.h:
+
+Program Listing for File Trigger.h
+==================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file__home_runner_work_use_use_include_components_Trigger.h>` (``/home/runner/work/use/use/include/components/Trigger.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   
+   #ifndef USE_TRIGGER_H
+   #define USE_TRIGGER_H
+   
+   #include "Component.h"
+   
+   class Trigger : public Component {
+   protected:
+       uint32_t m_triggerAddress, m_triggerValue, m_mask;
+       SignalPort m_target;
+   
+   public:
+       explicit Trigger(uint32_t address,
+                        uint32_t value = 0x1,
+                        uint32_t mask = ~0x0);
+   
+       void init() override;
+       std::vector<EmulatorWindow> getGUIs() override;
+   };
+   
+   #endif //USE_TRIGGER_H

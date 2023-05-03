@@ -1,0 +1,43 @@
+.. _exhale_class_classMOS6502:
+
+Class MOS6502
+=============
+
+- Defined in :ref:`file__home_runner_work_use_use_include_components_6502.h`
+
+
+Nested Relationships
+--------------------
+
+
+Nested Types
+************
+
+- :ref:`exhale_struct_structMOS6502_1_1instruction__t`
+- :ref:`exhale_struct_structMOS6502_1_1status__flags__t`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public Component`` (:ref:`exhale_class_classComponent`)
+
+
+Derived Type
+************
+
+- ``public RP2A03`` (:ref:`exhale_class_classRP2A03`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: MOS6502
+   :project: Universal System Emulator
+   :members:
+   :protected-members:
+   :undoc-members:

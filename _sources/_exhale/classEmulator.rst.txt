@@ -1,0 +1,17 @@
+.. _exhale_class_classEmulator:
+
+Class Emulator
+==============
+
+- Defined in :ref:`file__home_runner_work_use_use_include_Emulator.h`
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: Emulator
+   :project: Universal System Emulator
+   :members:
+   :protected-members:
+   :undoc-members:

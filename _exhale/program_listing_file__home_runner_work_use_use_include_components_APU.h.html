@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Program Listing for File APU.h &mdash; Universal System Emulator  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+    <link rel="canonical" href="./_exhale/program_listing_file__home_runner_work_use_use_include_components_APU.h.html" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Universal System Emulator
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Universal System Emulator documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_manual.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_manual.html">Developer’s Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contr_manual.html">Contributor’s Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_docs_root.html">API docs</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Universal System Emulator</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Program Listing for File APU.h</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/_exhale/program_listing_file__home_runner_work_use_use_include_components_APU.h.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="program-listing-for-file-apu-h">
+<span id="program-listing-file-home-runner-work-use-use-include-components-apu-h"></span><h1>Program Listing for File APU.h<a class="headerlink" href="#program-listing-for-file-apu-h" title="Permalink to this headline"></a></h1>
+<p>↰ <a class="reference internal" href="file__home_runner_work_use_use_include_components_APU.h.html#file-home-runner-work-use-use-include-components-apu-h"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">/home/runner/work/use/use/include/components/APU.h</span></code>)</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifndef USE_APU_H</span>
+<span class="cp">#define USE_APU_H</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cstdint&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Component.h&quot;</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">APU</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Component</span><span class="w"> </span><span class="p">{</span>
+
+<span class="k">private</span><span class="o">:</span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">m_internalIRQState</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">m_clock</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">frameCounterModeFlag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">disableFrameInterruptFlag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">apu_lengthCounter</span><span class="p">{</span>
+<span class="w">    </span><span class="k">private</span><span class="o">:</span>
+<span class="w">        </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">lengths</span><span class="p">[</span><span class="mh">0x20</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">254</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">40</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">80</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="mi">160</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="mi">60</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">14</span><span class="p">,</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w"> </span><span class="mi">26</span><span class="p">,</span><span class="w"> </span><span class="mi">14</span><span class="p">,</span>
+<span class="w">                </span><span class="mi">12</span><span class="p">,</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span><span class="w"> </span><span class="mi">24</span><span class="p">,</span><span class="w"> </span><span class="mi">18</span><span class="p">,</span><span class="w"> </span><span class="mi">48</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w"> </span><span class="mi">96</span><span class="p">,</span><span class="w"> </span><span class="mi">22</span><span class="p">,</span><span class="w"> </span><span class="mi">192</span><span class="p">,</span><span class="w"> </span><span class="mi">24</span><span class="p">,</span><span class="w"> </span><span class="mi">72</span><span class="p">,</span><span class="w"> </span><span class="mi">26</span><span class="p">,</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span><span class="w"> </span><span class="mi">28</span><span class="p">,</span><span class="w"> </span><span class="mi">32</span><span class="p">,</span><span class="w"> </span><span class="mi">30</span>
+<span class="w">        </span><span class="p">};</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="n">haltFlag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="n">enableFlag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">public</span><span class="o">:</span>
+<span class="w">        </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">counterValue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">void</span><span class="w"> </span><span class="nf">reset</span><span class="p">();</span>
+<span class="w">        </span><span class="kt">void</span><span class="w"> </span><span class="nf">clock</span><span class="p">();</span>
+<span class="w">        </span><span class="kt">void</span><span class="w"> </span><span class="nf">setLength</span><span class="p">(</span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">lengthBits</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">void</span><span class="w"> </span><span class="nf">setEnableFlag</span><span class="p">(</span><span class="kt">bool</span><span class="w"> </span><span class="n">value</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">void</span><span class="w"> </span><span class="nf">setHaltFlag</span><span class="p">(</span><span class="kt">bool</span><span class="w"> </span><span class="n">value</span><span class="p">);</span>
+<span class="w">    </span><span class="p">};</span>
+
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">apu_envelope</span><span class="p">{</span>
+
+<span class="w">    </span><span class="k">private</span><span class="o">:</span>
+
+<span class="w">        </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">decayLevelCounter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+<span class="w">        </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">divider</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="n">startFlag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="n">loopFlag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="n">constantVolumeFlag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">public</span><span class="o">:</span>
+
+<span class="w">        </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">dividerPeriodReloadValue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+<span class="w">        </span><span class="kt">void</span><span class="w"> </span><span class="nf">reset</span><span class="p">();</span>
+
+<span class="w">        </span><span class="kt">void</span><span class="w"> </span><span class="nf">configure</span><span class="p">(</span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">configuration</span><span class="p">);</span>
+
+<span class="w">        </span><span class="kt">void</span><span class="w"> </span><span class="nf">setStart</span><span class="p">(</span><span class="kt">bool</span><span class="w"> </span><span class="n">value</span><span class="p">);</span>
+
+<span class="w">        </span><span class="kt">void</span><span class="w"> </span><span class="nf">clock</span><span class="p">();</span>
+
+<span class="w">        </span><span class="kt">uint8_t</span><span class="w"> </span><span class="nf">output</span><span class="p">();</span>
+<span class="w">    </span><span class="p">};</span>
+
+<span class="w">    </span><span class="c1">// ================================================================================================</span>
+<span class="w">    </span><span class="c1">// APU sound channels</span>
+<span class="w">    </span><span class="c1">// Modify volume envelope to create a unique sound.</span>
+
+<span class="w">    </span><span class="c1">// ====================== APU Pulse ======================</span>
+<span class="w">    </span><span class="c1">//                  Sweep -----&gt; Timer</span>
+<span class="w">    </span><span class="c1">//                    |            |</span>
+<span class="w">    </span><span class="c1">//                    |            |</span>
+<span class="w">    </span><span class="c1">//                    |            v</span>
+<span class="w">    </span><span class="c1">//                    |        Sequencer   Length Counter</span>
+<span class="w">    </span><span class="c1">//                    |            |             |</span>
+<span class="w">    </span><span class="c1">//                    |            |             |</span>
+<span class="w">    </span><span class="c1">//                    v            v             v</span>
+<span class="w">    </span><span class="c1">// Envelope -------&gt; Gate -----&gt; Gate -------&gt; Gate ---&gt;(to mixer)</span>
+<span class="w">    </span><span class="c1">// Envelope generates the signal, then it is passed through 3 gates.</span>
+<span class="w">    </span><span class="c1">// First gate...</span>
+<span class="w">    </span><span class="c1">// Second gate is controlled by sequencer, which opens/closes the gate</span>
+<span class="w">    </span><span class="c1">// according to the selected sequence (sequence controls the duty cycle of the signal),</span>
+<span class="w">    </span><span class="c1">// which is shifted by the timer (timer controls the frequency of the signal).</span>
+<span class="w">    </span><span class="c1">// Third gate is controlled by the length counter.</span>
+<span class="w">    </span><span class="c1">// Finally, the signal is passed to the mixer.</span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">apu_pulse</span><span class="p">{</span>
+
+<span class="w">        </span><span class="n">apu_pulse</span><span class="p">(</span><span class="kt">bool</span><span class="w"> </span><span class="n">useTwosComplement</span><span class="p">);</span>
+
+<span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">sequences</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mh">0x40</span><span class="p">,</span><span class="w"> </span><span class="mh">0x60</span><span class="p">,</span><span class="w"> </span><span class="mh">0x78</span><span class="p">,</span><span class="w"> </span><span class="mh">0x9F</span><span class="p">};</span>
+<span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">sequencesOsc</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mf">0.125</span><span class="p">,</span><span class="w"> </span><span class="mf">0.25</span><span class="p">,</span><span class="w"> </span><span class="mf">0.5</span><span class="p">,</span><span class="w"> </span><span class="mf">0.75</span><span class="p">};</span>
+
+<span class="w">        </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">sequencerPos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+<span class="w">        </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">timer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">timerPeriod</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+<span class="w">        </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">dutyCycle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+<span class="w">        </span><span class="n">apu_envelope</span><span class="w"> </span><span class="n">envelope</span><span class="p">;</span>
+
+<span class="w">        </span><span class="n">apu_lengthCounter</span><span class="w"> </span><span class="n">lengthCounter</span><span class="p">;</span>
+
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="n">useTwosComplement</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="n">sweepReload</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="n">sweepEnabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="n">sweepNegate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">sweepShiftCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">sweepPeriod</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">sweepCounter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">targetPeriod</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+<span class="w">        </span><span class="kt">void</span><span class="w"> </span><span class="nf">setupSweep</span><span class="p">(</span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">value</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">void</span><span class="w"> </span><span class="nf">clockSweep</span><span class="p">();</span>
+<span class="w">        </span><span class="kt">void</span><span class="w"> </span><span class="nf">updateTargetPeriod</span><span class="p">();</span>
+
+<span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">phaseIndex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+<span class="w">        </span><span class="kt">void</span><span class="w"> </span><span class="nf">reset</span><span class="p">();</span>
+<span class="w">        </span><span class="kt">void</span><span class="w"> </span><span class="nf">clock</span><span class="p">();</span>
+<span class="w">        </span><span class="kt">uint8_t</span><span class="w"> </span><span class="nf">output</span><span class="p">();</span>
+<span class="w">        </span><span class="kt">float</span><span class="w"> </span><span class="nf">oscOutput</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="n">m_pulse1</span><span class="p">,</span><span class="w"> </span><span class="n">m_pulse2</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">apu_noise</span><span class="p">{</span>
+
+<span class="w">    </span><span class="k">private</span><span class="o">:</span>
+<span class="w">        </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">periodIndex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">periods</span><span class="p">[</span><span class="mh">0x10</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span><span class="w"> </span><span class="mi">32</span><span class="p">,</span><span class="w"> </span><span class="mi">64</span><span class="p">,</span><span class="w"> </span><span class="mi">96</span><span class="p">,</span><span class="w"> </span><span class="mi">128</span><span class="p">,</span><span class="w"> </span><span class="mi">160</span><span class="p">,</span><span class="w"> </span><span class="mi">202</span><span class="p">,</span><span class="w"> </span><span class="mi">254</span><span class="p">,</span><span class="w"> </span><span class="mi">380</span><span class="p">,</span><span class="w"> </span><span class="mi">508</span><span class="p">,</span><span class="w"> </span><span class="mi">762</span><span class="p">,</span><span class="w"> </span><span class="mi">1016</span><span class="p">,</span><span class="w"> </span><span class="mi">2034</span><span class="p">,</span><span class="w"> </span><span class="mi">4068</span>
+<span class="w">        </span><span class="p">};</span>
+<span class="w">        </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">timer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">shiftRegister</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">public</span><span class="o">:</span>
+
+<span class="w">        </span><span class="n">apu_envelope</span><span class="w"> </span><span class="n">envelope</span><span class="p">;</span>
+<span class="w">        </span><span class="n">apu_lengthCounter</span><span class="w"> </span><span class="n">lengthCounter</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="n">modeFlag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+
+<span class="w">        </span><span class="kt">void</span><span class="w"> </span><span class="nf">reset</span><span class="p">();</span>
+<span class="w">        </span><span class="kt">void</span><span class="w"> </span><span class="nf">setPeriod</span><span class="p">(</span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">bits</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">void</span><span class="w"> </span><span class="nf">clock</span><span class="p">();</span>
+<span class="w">        </span><span class="kt">uint8_t</span><span class="w"> </span><span class="nf">output</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="n">m_noise</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">apu_triangle</span><span class="p">{</span>
+<span class="w">    </span><span class="k">public</span><span class="o">:</span>
+<span class="w">        </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">timerPeriod</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">timer</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">linearCounter</span><span class="p">;</span>
+
+<span class="w">        </span><span class="n">apu_envelope</span><span class="w"> </span><span class="n">envelope</span><span class="p">;</span>
+<span class="w">        </span><span class="n">apu_lengthCounter</span><span class="w"> </span><span class="n">lengthCounter</span><span class="p">;</span>
+
+<span class="w">        </span><span class="kt">void</span><span class="w"> </span><span class="nf">reset</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="n">m_triangle</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">SignalPort</span><span class="w"> </span><span class="n">m_IRQ</span><span class="p">;</span>
+
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="n">APU</span><span class="p">();</span>
+<span class="w">    </span><span class="o">~</span><span class="n">APU</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">default</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">init</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">clock</span><span class="p">();</span>
+
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="nf">output</span><span class="p">();</span>
+
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="nf">oscOutput</span><span class="p">();</span>
+
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">EmulatorWindow</span><span class="o">&gt;</span><span class="w"> </span><span class="n">getGUIs</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>
+<span class="w">    </span><span class="n">SoundSampleSources</span><span class="w">  </span><span class="nf">getSoundSampleSources</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="cp">#endif </span><span class="c1">//USE_APU_H</span>
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023 Ondrej Golasowski.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

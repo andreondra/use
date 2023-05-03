@@ -1,0 +1,33 @@
+.. _exhale_class_classComponent:
+
+Class Component
+===============
+
+- Defined in :ref:`file__home_runner_work_use_use_include_Component.h`
+
+
+Inheritance Relationships
+-------------------------
+
+Derived Types
+*************
+
+- ``public APU`` (:ref:`exhale_class_classAPU`)
+- ``public Bus`` (:ref:`exhale_class_classBus`)
+- ``public Gamepak`` (:ref:`exhale_class_classGamepak`)
+- ``public MOS6502`` (:ref:`exhale_class_classMOS6502`)
+- ``public Memory`` (:ref:`exhale_class_classMemory`)
+- ``public NESPeripherals`` (:ref:`exhale_class_classNESPeripherals`)
+- ``public R2C02`` (:ref:`exhale_class_classR2C02`)
+- ``public Trigger`` (:ref:`exhale_class_classTrigger`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: Component
+   :project: Universal System Emulator
+   :members:
+   :protected-members:
+   :undoc-members:

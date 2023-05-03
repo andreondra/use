@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Class Bare6502 &mdash; Universal System Emulator  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+    <link rel="canonical" href="./_exhale/classBare6502.html" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Class Bus" href="classBus.html" />
+    <link rel="prev" title="Class APU" href="classAPU.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Universal System Emulator
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Universal System Emulator documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_manual.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_manual.html">Developer’s Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contr_manual.html">Contributor’s Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="api_docs_root.html">API docs</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="api_docs_root.html#class-hierarchy">Class Hierarchy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api_docs_root.html#file-hierarchy">File Hierarchy</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="api_docs_root.html#full-api">Full API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="api_docs_root.html#namespaces">Namespaces</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="api_docs_root.html#classes-and-structs">Classes and Structs</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="structAddressRange.html">Struct AddressRange</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structAPU_1_1apu__envelope.html">Struct APU::apu_envelope</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structAPU_1_1apu__lengthCounter.html">Struct APU::apu_lengthCounter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structAPU_1_1apu__noise.html">Struct APU::apu_noise</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structAPU_1_1apu__pulse.html">Struct APU::apu_pulse</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structAPU_1_1apu__triangle.html">Struct APU::apu_triangle</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structDataInterface.html">Struct DataInterface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structEmulatorWindow.html">Struct EmulatorWindow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structGamepak_1_1gamepakParams.html">Struct Gamepak::gamepakParams</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structMOS6502_1_1instruction__t.html">Struct MOS6502::instruction_t</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structMOS6502_1_1status__flags__t.html">Struct MOS6502::status_flags_t</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structR2C02_1_1internalRegisters__t.html">Struct R2C02::internalRegisters_t</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structR2C02_1_1registers__t.html">Struct R2C02::registers_t</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structRGBPixel.html">Struct RGBPixel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structSignalInterface.html">Struct SignalInterface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structSoundStereoFrame.html">Struct SoundStereoFrame</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAPU.html">Class APU</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Class Bare6502</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classBus.html">Class Bus</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classComponent.html">Class Component</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classConnector.html">Class Connector</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classDataPort.html">Class DataPort</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classEmulator.html">Class Emulator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classGamepak.html">Class Gamepak</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classMapper.html">Class Mapper</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classMapper000.html">Class Mapper000</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classMapper001.html">Class Mapper001</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classMemory.html">Class Memory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classMOS6502.html">Class MOS6502</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classNES.html">Class NES</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classNESPeripherals.html">Class NESPeripherals</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classNESPeripherals_1_1Controller.html">Class NESPeripherals::Controller</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classPort.html">Class Port</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classR2C02.html">Class R2C02</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classRP2A03.html">Class RP2A03</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classSignalPort.html">Class SignalPort</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classSound.html">Class Sound</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classSystem.html">Class System</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classTrigger.html">Class Trigger</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api_docs_root.html#enums">Enums</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_docs_root.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_docs_root.html#typedefs">Typedefs</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Universal System Emulator</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="api_docs_root.html">API docs</a></li>
+      <li class="breadcrumb-item active">Class Bare6502</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/_exhale/classBare6502.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="class-bare6502">
+<span id="exhale-class-classbare6502"></span><h1>Class Bare6502<a class="headerlink" href="#class-bare6502" title="Permalink to this headline"></a></h1>
+<ul class="simple">
+<li><p>Defined in <a class="reference internal" href="file__home_runner_work_use_use_include_systems_Bare6502.h.html#file-home-runner-work-use-use-include-systems-bare6502-h"><span class="std std-ref">File Bare6502.h</span></a></p></li>
+</ul>
+<section id="inheritance-relationships">
+<h2>Inheritance Relationships<a class="headerlink" href="#inheritance-relationships" title="Permalink to this headline"></a></h2>
+<section id="base-type">
+<h3>Base Type<a class="headerlink" href="#base-type" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">System</span></code> (<a class="reference internal" href="classSystem.html#exhale-class-classsystem"><span class="std std-ref">Class System</span></a>)</p></li>
+</ul>
+</section>
+</section>
+<section id="class-documentation">
+<h2>Class Documentation<a class="headerlink" href="#class-documentation" title="Permalink to this headline"></a></h2>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv48Bare6502">
+<span id="_CPPv38Bare6502"></span><span id="_CPPv28Bare6502"></span><span id="Bare6502"></span><span class="target" id="classBare6502"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Bare6502</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><a class="reference internal" href="classSystem.html#_CPPv46System" title="System"><span class="n"><span class="pre">System</span></span></a><a class="headerlink" href="#_CPPv48Bare6502" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Bare 6502 system. Unfinished. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N8Bare65028Bare6502Ev">
+<span id="_CPPv3N8Bare65028Bare6502Ev"></span><span id="_CPPv2N8Bare65028Bare6502Ev"></span><span id="Bare6502::Bare6502"></span><span class="target" id="classBare6502_1aeb6d9147be6623e4babbc368ba39b925"></span><span class="sig-name descname"><span class="n"><span class="pre">Bare6502</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8Bare65028Bare6502Ev" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N8Bare6502D0Ev">
+<span id="_CPPv3N8Bare6502D0Ev"></span><span id="_CPPv2N8Bare6502D0Ev"></span><span id="Bare6502::~Bare6502"></span><span class="target" id="classBare6502_1a06893169a9e67c96377254b251e4df26"></span><span class="sig-name descname"><span class="n"><span class="pre">~Bare6502</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">override</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">default</span></span><a class="headerlink" href="#_CPPv4N8Bare6502D0Ev" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N8Bare65024initEv">
+<span id="_CPPv3N8Bare65024initEv"></span><span id="_CPPv2N8Bare65024initEv"></span><span id="Bare6502::init"></span><span class="target" id="classBare6502_1a645bcdd81fb1970d0719b0075850626c"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">init</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4N8Bare65024initEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Initialize a <a class="reference internal" href="classSystem.html#classSystem"><span class="std std-ref">System</span></a> to a power-on state. Default implementation just calls init on all components in m_components.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For <a class="reference internal" href="classSystem.html#classSystem"><span class="std std-ref">System</span></a> developer: If there is any other operation except initializing all the components, you can override the method and implement the initialization yourself. </p>
+</div>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N8Bare65028doClocksEj">
+<span id="_CPPv3N8Bare65028doClocksEj"></span><span id="_CPPv2N8Bare65028doClocksEj"></span><span id="Bare6502::doClocks__unsigned-i"></span><span class="target" id="classBare6502_1a34a20d547f4e795e102c767a87e09c75"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">doClocks</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">count</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4N8Bare65028doClocksEj" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Proceed specified number of system clocks.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For <a class="reference internal" href="classSystem.html#classSystem"><span class="std std-ref">System</span></a> developer: implement a reaction to a main clock signal. Normally whole emulation is driven by this function.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>count</strong> – Number of clock to process. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N8Bare65027doStepsEj">
+<span id="_CPPv3N8Bare65027doStepsEj"></span><span id="_CPPv2N8Bare65027doStepsEj"></span><span id="Bare6502::doSteps__unsigned-i"></span><span class="target" id="classBare6502_1acccd027d7a3cbaeffbbc4d44593b55b4"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">doSteps</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">count</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4N8Bare65027doStepsEj" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Proceed specified number of CPU instructions.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For <a class="reference internal" href="classSystem.html#classSystem"><span class="std std-ref">System</span></a> developer: You can for example proceed by single clocks until the CPU processes specified number of instructions. If there is no CPU, provide dummy method.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>count</strong> – Number of instructions to process. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N8Bare65028doFramesEj">
+<span id="_CPPv3N8Bare65028doFramesEj"></span><span id="_CPPv2N8Bare65028doFramesEj"></span><span id="Bare6502::doFrames__unsigned-i"></span><span class="target" id="classBare6502_1add41922b17dce452195c9d39029c0a2b"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">doFrames</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">count</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4N8Bare65028doFramesEj" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Proceed specified number of rendered frames.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For <a class="reference internal" href="classSystem.html#classSystem"><span class="std std-ref">System</span></a> developer: If there is neither GPU or any definition of frame, provide dummy method.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>count</strong> – Number of frames to process. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N8Bare65025doRunEj">
+<span id="_CPPv3N8Bare65025doRunEj"></span><span id="_CPPv2N8Bare65025doRunEj"></span><span id="Bare6502::doRun__unsigned-i"></span><span class="target" id="classBare6502_1a0f04cb524c4c6fad653e6ef373512f5e"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">doRun</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">updateFrequency</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4N8Bare65025doRunEj" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Run system in real-time.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For <a class="reference internal" href="classSystem.html#classSystem"><span class="std std-ref">System</span></a> developer:</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>updateFrequency</strong> – Frequency in which the function is called to match the clock speed. </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-protected-attributes">Protected Attributes</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N8Bare65025m_cpuE">
+<span id="_CPPv3N8Bare65025m_cpuE"></span><span id="_CPPv2N8Bare65025m_cpuE"></span><span id="Bare6502::m_cpu__MOS6502"></span><span class="target" id="classBare6502_1aba9704039f33ae6c3df1a229ef39f939"></span><a class="reference internal" href="classMOS6502.html#_CPPv47MOS6502" title="MOS6502"><span class="n"><span class="pre">MOS6502</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_cpu</span></span></span><a class="headerlink" href="#_CPPv4N8Bare65025m_cpuE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N8Bare65025m_RAME">
+<span id="_CPPv3N8Bare65025m_RAME"></span><span id="_CPPv2N8Bare65025m_RAME"></span><span id="Bare6502::m_RAM__Memory"></span><span class="target" id="classBare6502_1a8cd86073339de3b45881235198be89e0"></span><a class="reference internal" href="classMemory.html#_CPPv46Memory" title="Memory"><span class="n"><span class="pre">Memory</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_RAM</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="p"><span class="pre">{</span></span><span class="m"><span class="pre">0x800</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">{</span></span><span class="m"><span class="pre">0x0000</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">0x1FFF</span></span><span class="p"><span class="pre">}</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">0xFF</span></span><span class="p"><span class="pre">}</span></span><a class="headerlink" href="#_CPPv4N8Bare65025m_RAME" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N8Bare65025m_busE">
+<span id="_CPPv3N8Bare65025m_busE"></span><span id="_CPPv2N8Bare65025m_busE"></span><span id="Bare6502::m_bus__Bus"></span><span class="target" id="classBare6502_1ab250e657aca3b6aa3f81e29f7e3d6fad"></span><a class="reference internal" href="classBus.html#_CPPv43Bus" title="Bus"><span class="n"><span class="pre">Bus</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_bus</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="p"><span class="pre">{</span></span><span class="m"><span class="pre">2</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">8</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">16</span></span><span class="p"><span class="pre">}</span></span><a class="headerlink" href="#_CPPv4N8Bare65025m_busE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="classAPU.html" class="btn btn-neutral float-left" title="Class APU" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="classBus.html" class="btn btn-neutral float-right" title="Class Bus" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023 Ondrej Golasowski.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

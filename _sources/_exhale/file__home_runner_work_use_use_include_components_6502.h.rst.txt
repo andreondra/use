@@ -1,0 +1,82 @@
+
+.. _file__home_runner_work_use_use_include_components_6502.h:
+
+File 6502.h
+===========
+
+|exhale_lsh| :ref:`Parent directory <dir__home_runner_work_use_use_include_components>` (``/home/runner/work/use/use/include/components``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+
+:ref:`exhale_class_classMOS6502` CPU software implementation. 
+
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``/home/runner/work/use/use/include/components/6502.h``)
+--------------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file__home_runner_work_use_use_include_components_6502.h.rst
+
+
+
+Detailed Description
+--------------------
+
+Ondrej Golasowski (golasowski.o@gmail.com) 
+
+Copyright (c) 2022 Ondrej Golasowski 
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``Component.h`` (:ref:`file__home_runner_work_use_use_include_Component.h`)
+
+- ``Types.h`` (:ref:`file__home_runner_work_use_use_include_Types.h`)
+
+- ``cstdint``
+
+- ``functional``
+
+- ``map``
+
+- ``string``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file__home_runner_work_use_use_include_components_2A03.h`
+
+- :ref:`file__home_runner_work_use_use_include_systems_Bare6502.h`
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structMOS6502_1_1instruction__t`
+
+- :ref:`exhale_struct_structMOS6502_1_1status__flags__t`
+
+- :ref:`exhale_class_classMOS6502`
+

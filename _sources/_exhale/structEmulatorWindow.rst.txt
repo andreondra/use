@@ -1,0 +1,17 @@
+.. _exhale_struct_structEmulatorWindow:
+
+Struct EmulatorWindow
+=====================
+
+- Defined in :ref:`file__home_runner_work_use_use_include_Types.h`
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: EmulatorWindow
+   :project: Universal System Emulator
+   :members:
+   :protected-members:
+   :undoc-members:

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>User Manual &mdash; Universal System Emulator  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="_static/collapsible-lists/css/tree_view.css" type="text/css" />
+    <link rel="canonical" href="./user_manual.html" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Developer’s Guide" href="dev_manual.html" />
+    <link rel="prev" title="Universal System Emulator documentation" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Universal System Emulator
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index.html">Universal System Emulator documentation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">User Manual</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#trying-out-the-first-system-running-the-nes">Trying out the first system: Running the NES</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dev_manual.html">Developer’s Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contr_manual.html">Contributor’s Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_exhale/api_docs_root.html">API docs</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Universal System Emulator</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">User Manual</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/user_manual.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="user-manual">
+<h1>User Manual<a class="headerlink" href="#user-manual" title="Permalink to this headline"></a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline"></a></h2>
+<p>Welcome to the USE’s user manual.
+This page describes how to use the emulator for running
+software on supported systems.</p>
+<p>After you either built or aquired prebuilt application, you may run the executable.
+You will be greeted by the main window:</p>
+<a class="reference internal image-reference" href="_images/ss_main_window.png"><img alt="_images/ss_main_window.png" src="_images/ss_main_window.png" style="width: 800px;" /></a>
+<p>In the bottom left, you can see current FPS value. Notice the “✅ Enable idling”. If this is allowed,
+no emulation is running and the application lost the focus (you clicked with the cursor elsewhere),
+the application will reduce the target FPS to a lower value to reduce the CPU utilization.</p>
+<p>At the top, there is a main menu with the following buttons:</p>
+<ul class="simple">
+<li><p>“USE: Universal System Emulator” acts like a “File” menu. You can select a system to emulate or quit the app.</p></li>
+<li><p>“View” menu allows to show/hide windows, select themes and toggle status bar and FPS display.</p></li>
+<li><p>“Run” menu is available only if the system is loaded and allows to control the state of the system.</p></li>
+<li><p>“Settings” menu allows to set up the emulator. For now there is no global setup, so it is available only when the system is loaded.</p></li>
+</ul>
+</section>
+<section id="trying-out-the-first-system-running-the-nes">
+<h2>Trying out the first system: Running the NES<a class="headerlink" href="#trying-out-the-first-system-running-the-nes" title="Permalink to this headline"></a></h2>
+<p>One of the systems available in the Universal System Emulator is the Nintendo Entertainment System. Select it
+from the main menu:</p>
+<a class="reference internal image-reference" href="_images/ss_select_nes.png"><img alt="_images/ss_select_nes.png" src="_images/ss_select_nes.png" style="width: 400px;" /></a>
+<p>Multiple debugging windows will appear, the count of the windows and their contents depends on the system and used
+components. In a case of the NES, there are debugging windows for every component. As a user, you will usually
+want to just load a ROM and play the game.</p>
+<p>Click the <em>[Gamepak] Parameters</em> window and under the <em>Load from file</em> click <em>Select file</em>. A file picker will be shown,
+select a ROM dump from the filesystem.</p>
+<a class="reference internal image-reference" href="_images/ss_nes_rom.png"><img alt="_images/ss_nes_rom.png" src="_images/ss_nes_rom.png" style="width: 400px;" /></a>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Please be aware that only some of the ROMs are supported at the time of writing the documentation.
+There are many factors deciding whether or not the game of the software contained on the ROM will run well, mainly
+accuracy of the emulated hardware. However, the main factor is whether the “mapper” used by the cartridge which
+stored the software is supported by the emulator. For now, only mappers 0 and 1 are supported. See
+<a class="reference external" href="https://nescartdb.com/">NesCartDB</a> to check what mapper does the ROM dump use.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Disclaimer: Do not forget that downloading and distribution of the ROM dumps is illegal.
+You have to own the physical cartridge and dump the ROM yourself to be able to legally run the software in any emulator.</p>
+</div>
+<p>When you select and open the ROM dump, you can run the software. At the top, select the <em>Run</em> menu and click <em>Run…</em>.
+You will now see the video output and hear all the sounds generated by the console. You can also inspect some
+of the other windows, they contain interesting information of the console’s internal states.</p>
+<a class="reference internal image-reference" href="_images/ss_nes_game_loaded.png"><img alt="_images/ss_nes_game_loaded.png" src="_images/ss_nes_game_loaded.png" style="width: 800px;" /></a>
+<p>To stop the emulation, click <em>Stop</em> in the same menu. To interact with the console, use your keyboard. To see
+current key bindings, click the <em>Settings</em> menu and select <em>Key bindings</em>. You can change or unassign the keys using
+the buttons in the <em>Actions</em> column.</p>
+<a class="reference internal image-reference" href="_images/ss_nes_keybindings.png"><img alt="_images/ss_nes_keybindings.png" src="_images/ss_nes_keybindings.png" style="width: 400px;" /></a>
+<p>That’s it. 😄 Have fun and if you are interested in either platform’s or specific system’s development, head to
+the <a class="reference internal" href="dev_manual.html#developer-s-guide"><span class="std std-ref">Developer’s Guide</span></a>!</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Universal System Emulator documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="dev_manual.html" class="btn btn-neutral float-right" title="Developer’s Guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023 Ondrej Golasowski.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

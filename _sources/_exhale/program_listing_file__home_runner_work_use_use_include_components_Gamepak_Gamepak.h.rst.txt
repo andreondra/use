@@ -1,0 +1,119 @@
+
+.. _program_listing_file__home_runner_work_use_use_include_components_Gamepak_Gamepak.h:
+
+Program Listing for File Gamepak.h
+==================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file__home_runner_work_use_use_include_components_Gamepak_Gamepak.h>` (``/home/runner/work/use/use/include/components/Gamepak/Gamepak.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   
+   #ifndef USE_GAMEPAK_H
+   #define USE_GAMEPAK_H
+   
+   #include <fstream>
+   #include <istream>
+   #include <vector>
+   #include <memory>
+   #include "Types.h"
+   #include "Mapper.h"
+   #include "Port.h"
+   #include "Component.h"
+   
+   class Gamepak : public Component {
+   
+   protected:
+       // ===========================================
+       // Constants
+       // ===========================================
+       static const size_t PRGROM_UNIT_SIZE = 16384;
+       static const size_t CHRROM_UNIT_SIZE = 8192;
+       static const size_t PRGRAM_UNIT_SIZE = 8192;
+   
+       // ===========================================
+       // Types
+       // ===========================================
+       enum class fileFormat_t {NES20, INES, ARCHAICINES};
+       enum class consoleType_t {STANDARD, VSUNISYSTEM, PLAYCHOICE, EXTENDED};
+       enum class tvSystem_t {NTSC, PAL, MULTI, DENDY};
+   
+       // ===========================================
+       // Parameters
+       // ===========================================
+       struct gamepakParams{
+   
+           // Common for all formats.
+           size_t PRGROMsize;
+           size_t CHRROMsize;
+           Mapper::mirroringType_t mirroringType;
+           fileFormat_t fileFormat;
+           bool hasPersistentMemory;
+           bool hasTrainer;
+           uint16_t mapperNumber;
+   
+           // iNES + NES 2.0
+           size_t PRGRAMsize;
+           consoleType_t consoleType;
+           tvSystem_t tvSystem;
+   
+           // NES 2.0
+           uint8_t submapperNumber;
+           size_t PRGNVRAMsize;
+           size_t CHRRAMsize;
+           size_t CHRNVRAMsize;
+   
+           gamepakParams() {
+               init();
+           }
+   
+           void init() {
+               PRGROMsize = 0;
+               CHRROMsize = 0;
+               mirroringType = Mapper::mirroringType_t::HORIZONTAL;
+               fileFormat = fileFormat_t::INES;
+               hasPersistentMemory = false;
+               hasTrainer = false;
+               mapperNumber = 0;
+               PRGRAMsize = 0;
+               consoleType = consoleType_t::STANDARD;
+               tvSystem = tvSystem_t::NTSC;
+               submapperNumber = 0;
+               PRGNVRAMsize = 0;
+               CHRRAMsize = 0;
+               CHRNVRAMsize = 0;
+           }
+   
+       } m_params;
+   
+       // ===========================================
+       // Data
+       // ===========================================
+   
+       std::vector<uint8_t> m_trainer;
+       std::vector<uint8_t> m_PRGROM;
+       std::vector<uint8_t> m_CHRROM;
+   
+   //    std::vector<uint8_t> m_INSTROM;
+   //    std::vector<uint8_t> m_PROM;
+   
+       // ===========================================
+       // Mapper handling
+       // ===========================================
+       std::unique_ptr<Mapper> m_mapper;
+   
+   public:
+       Gamepak();
+       ~Gamepak() override;
+   
+       void init() override;
+   
+       void load(std::ifstream & ifs);
+   
+       std::vector<EmulatorWindow> getGUIs() override;
+   
+   };
+   
+   #endif //USE_GAMEPAK_H

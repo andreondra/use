@@ -1,0 +1,26 @@
+.. _exhale_class_classRP2A03:
+
+Class RP2A03
+============
+
+- Defined in :ref:`file__home_runner_work_use_use_include_components_2A03.h`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public MOS6502`` (:ref:`exhale_class_classMOS6502`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: RP2A03
+   :project: Universal System Emulator
+   :members:
+   :protected-members:
+   :undoc-members:

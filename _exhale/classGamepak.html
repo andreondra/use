@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Class Gamepak &mdash; Universal System Emulator  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+    <link rel="canonical" href="./_exhale/classGamepak.html" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Class Mapper" href="classMapper.html" />
+    <link rel="prev" title="Class Emulator" href="classEmulator.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Universal System Emulator
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Universal System Emulator documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_manual.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_manual.html">Developer’s Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contr_manual.html">Contributor’s Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="api_docs_root.html">API docs</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="api_docs_root.html#class-hierarchy">Class Hierarchy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api_docs_root.html#file-hierarchy">File Hierarchy</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="api_docs_root.html#full-api">Full API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="api_docs_root.html#namespaces">Namespaces</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="api_docs_root.html#classes-and-structs">Classes and Structs</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="structAddressRange.html">Struct AddressRange</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structAPU_1_1apu__envelope.html">Struct APU::apu_envelope</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structAPU_1_1apu__lengthCounter.html">Struct APU::apu_lengthCounter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structAPU_1_1apu__noise.html">Struct APU::apu_noise</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structAPU_1_1apu__pulse.html">Struct APU::apu_pulse</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structAPU_1_1apu__triangle.html">Struct APU::apu_triangle</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structDataInterface.html">Struct DataInterface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structEmulatorWindow.html">Struct EmulatorWindow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structGamepak_1_1gamepakParams.html">Struct Gamepak::gamepakParams</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structMOS6502_1_1instruction__t.html">Struct MOS6502::instruction_t</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structMOS6502_1_1status__flags__t.html">Struct MOS6502::status_flags_t</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structR2C02_1_1internalRegisters__t.html">Struct R2C02::internalRegisters_t</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structR2C02_1_1registers__t.html">Struct R2C02::registers_t</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structRGBPixel.html">Struct RGBPixel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structSignalInterface.html">Struct SignalInterface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structSoundStereoFrame.html">Struct SoundStereoFrame</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAPU.html">Class APU</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classBare6502.html">Class Bare6502</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classBus.html">Class Bus</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classComponent.html">Class Component</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classConnector.html">Class Connector</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classDataPort.html">Class DataPort</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classEmulator.html">Class Emulator</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Class Gamepak</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classMapper.html">Class Mapper</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classMapper000.html">Class Mapper000</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classMapper001.html">Class Mapper001</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classMemory.html">Class Memory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classMOS6502.html">Class MOS6502</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classNES.html">Class NES</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classNESPeripherals.html">Class NESPeripherals</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classNESPeripherals_1_1Controller.html">Class NESPeripherals::Controller</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classPort.html">Class Port</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classR2C02.html">Class R2C02</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classRP2A03.html">Class RP2A03</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classSignalPort.html">Class SignalPort</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classSound.html">Class Sound</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classSystem.html">Class System</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classTrigger.html">Class Trigger</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api_docs_root.html#enums">Enums</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_docs_root.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_docs_root.html#typedefs">Typedefs</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Universal System Emulator</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="api_docs_root.html">API docs</a></li>
+      <li class="breadcrumb-item active">Class Gamepak</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/_exhale/classGamepak.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="class-gamepak">
+<span id="exhale-class-classgamepak"></span><h1>Class Gamepak<a class="headerlink" href="#class-gamepak" title="Permalink to this headline"></a></h1>
+<ul class="simple">
+<li><p>Defined in <a class="reference internal" href="file__home_runner_work_use_use_include_components_Gamepak_Gamepak.h.html#file-home-runner-work-use-use-include-components-gamepak-gamepak-h"><span class="std std-ref">File Gamepak.h</span></a></p></li>
+</ul>
+<section id="nested-relationships">
+<h2>Nested Relationships<a class="headerlink" href="#nested-relationships" title="Permalink to this headline"></a></h2>
+<section id="nested-types">
+<h3>Nested Types<a class="headerlink" href="#nested-types" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p><a class="reference internal" href="structGamepak_1_1gamepakParams.html#exhale-struct-structgamepak-1-1gamepakparams"><span class="std std-ref">Struct Gamepak::gamepakParams</span></a></p></li>
+</ul>
+</section>
+</section>
+<section id="inheritance-relationships">
+<h2>Inheritance Relationships<a class="headerlink" href="#inheritance-relationships" title="Permalink to this headline"></a></h2>
+<section id="base-type">
+<h3>Base Type<a class="headerlink" href="#base-type" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">Component</span></code> (<a class="reference internal" href="classComponent.html#exhale-class-classcomponent"><span class="std std-ref">Class Component</span></a>)</p></li>
+</ul>
+</section>
+</section>
+<section id="class-documentation">
+<h2>Class Documentation<a class="headerlink" href="#class-documentation" title="Permalink to this headline"></a></h2>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv47Gamepak">
+<span id="_CPPv37Gamepak"></span><span id="_CPPv27Gamepak"></span><span id="Gamepak"></span><span class="target" id="classGamepak"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Gamepak</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><a class="reference internal" href="classComponent.html#_CPPv49Component" title="Component"><span class="n"><span class="pre">Component</span></span></a><a class="headerlink" href="#_CPPv47Gamepak" title="Permalink to this definition"></a><br /></dt>
+<dd><p>NES/Famicom cartridge emulation class.</p>
+<p>This class handles parsing of supported cartridge dump formats, loads an appropriate mapper and handles PPU’s built in VRAM (CIRAM) if requested. There are two virtual connectors, this corresponds to the real hardware, where the cartridge is directly connected to the CPU’s and PPU’s buses.</p>
+<p>Connectors: data “cpuBus” for CPU and data “ppuBus” for PPU. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7Gamepak7GamepakEv">
+<span id="_CPPv3N7Gamepak7GamepakEv"></span><span id="_CPPv2N7Gamepak7GamepakEv"></span><span id="Gamepak::Gamepak"></span><span class="target" id="classGamepak_1aafd55452de9ae50befc84a7e86891606"></span><span class="sig-name descname"><span class="n"><span class="pre">Gamepak</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7Gamepak7GamepakEv" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7GamepakD0Ev">
+<span id="_CPPv3N7GamepakD0Ev"></span><span id="_CPPv2N7GamepakD0Ev"></span><span id="Gamepak::~Gamepak"></span><span class="target" id="classGamepak_1a62376f144cd1905bc31e866b288ebf86"></span><span class="sig-name descname"><span class="n"><span class="pre">~Gamepak</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4N7GamepakD0Ev" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7Gamepak4initEv">
+<span id="_CPPv3N7Gamepak4initEv"></span><span id="_CPPv2N7Gamepak4initEv"></span><span id="Gamepak::init"></span><span class="target" id="classGamepak_1af79bd84fb00a5b0a096deabbeeb7412b"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">init</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4N7Gamepak4initEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Initialize <a class="reference internal" href="#classGamepak"><span class="std std-ref">Gamepak</span></a> to power-up state.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This does not delete any previously loaded ROM, only deletes data stored on volatile memories. </p>
+</div>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7Gamepak4loadERNSt8ifstreamE">
+<span id="_CPPv3N7Gamepak4loadERNSt8ifstreamE"></span><span id="_CPPv2N7Gamepak4loadERNSt8ifstreamE"></span><span id="Gamepak::load__std::ifstreamR"></span><span class="target" id="classGamepak_1afb331e3e70f6e319bc45f5241f4b3745"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">load</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ifstream</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">ifs</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7Gamepak4loadERNSt8ifstreamE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Load a ROM file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>ifs</strong> – Input stream containing ROM data. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7Gamepak7getGUIsEv">
+<span id="_CPPv3N7Gamepak7getGUIsEv"></span><span id="_CPPv2N7Gamepak7getGUIsEv"></span><span id="Gamepak::getGUIs"></span><span class="target" id="classGamepak_1a6e66f0a7fe6e3b72d6d6d45587985d24"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="structEmulatorWindow.html#_CPPv414EmulatorWindow" title="EmulatorWindow"><span class="n"><span class="pre">EmulatorWindow</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getGUIs</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4N7Gamepak7getGUIsEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Render a debugging GUI. Shows <a class="reference internal" href="#classGamepak"><span class="std std-ref">Gamepak</span></a> parameters and mapper’s internal state.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>GUI windows. </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-protected-types">Protected Types</p>
+<dl class="cpp enum-class">
+<dt class="sig sig-object cpp" id="_CPPv4N7Gamepak12fileFormat_tE">
+<span id="_CPPv3N7Gamepak12fileFormat_tE"></span><span id="_CPPv2N7Gamepak12fileFormat_tE"></span><span class="target" id="classGamepak_1ad4d0a51d034729b5ad46ced03fc189aa"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fileFormat_t</span></span></span><a class="headerlink" href="#_CPPv4N7Gamepak12fileFormat_tE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Type of file format. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N7Gamepak12fileFormat_t5NES20E">
+<span id="_CPPv3N7Gamepak12fileFormat_t5NES20E"></span><span id="_CPPv2N7Gamepak12fileFormat_t5NES20E"></span><span class="target" id="classGamepak_1ad4d0a51d034729b5ad46ced03fc189aaaec36db88a20d1ef839d5adab0b75e6c5"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">NES20</span></span></span><a class="headerlink" href="#_CPPv4N7Gamepak12fileFormat_t5NES20E" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N7Gamepak12fileFormat_t4INESE">
+<span id="_CPPv3N7Gamepak12fileFormat_t4INESE"></span><span id="_CPPv2N7Gamepak12fileFormat_t4INESE"></span><span class="target" id="classGamepak_1ad4d0a51d034729b5ad46ced03fc189aaadbd227da190a958c035d01d67141307b"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">INES</span></span></span><a class="headerlink" href="#_CPPv4N7Gamepak12fileFormat_t4INESE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N7Gamepak12fileFormat_t11ARCHAICINESE">
+<span id="_CPPv3N7Gamepak12fileFormat_t11ARCHAICINESE"></span><span id="_CPPv2N7Gamepak12fileFormat_t11ARCHAICINESE"></span><span class="target" id="classGamepak_1ad4d0a51d034729b5ad46ced03fc189aaaa1a5b3858bec15d104663d82c539c463"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ARCHAICINES</span></span></span><a class="headerlink" href="#_CPPv4N7Gamepak12fileFormat_t11ARCHAICINESE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum-class">
+<dt class="sig sig-object cpp" id="_CPPv4N7Gamepak13consoleType_tE">
+<span id="_CPPv3N7Gamepak13consoleType_tE"></span><span id="_CPPv2N7Gamepak13consoleType_tE"></span><span class="target" id="classGamepak_1aeaab9c04b8a2423108f569c5db384d32"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">consoleType_t</span></span></span><a class="headerlink" href="#_CPPv4N7Gamepak13consoleType_tE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Console type. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N7Gamepak13consoleType_t8STANDARDE">
+<span id="_CPPv3N7Gamepak13consoleType_t8STANDARDE"></span><span id="_CPPv2N7Gamepak13consoleType_t8STANDARDE"></span><span class="target" id="classGamepak_1aeaab9c04b8a2423108f569c5db384d32a94e94133f4bdc1794c6b647b8ea134d0"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">STANDARD</span></span></span><a class="headerlink" href="#_CPPv4N7Gamepak13consoleType_t8STANDARDE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N7Gamepak13consoleType_t11VSUNISYSTEME">
+<span id="_CPPv3N7Gamepak13consoleType_t11VSUNISYSTEME"></span><span id="_CPPv2N7Gamepak13consoleType_t11VSUNISYSTEME"></span><span class="target" id="classGamepak_1aeaab9c04b8a2423108f569c5db384d32a3a0130d48ab334e9a27aebc7a7df9768"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">VSUNISYSTEM</span></span></span><a class="headerlink" href="#_CPPv4N7Gamepak13consoleType_t11VSUNISYSTEME" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N7Gamepak13consoleType_t10PLAYCHOICEE">
+<span id="_CPPv3N7Gamepak13consoleType_t10PLAYCHOICEE"></span><span id="_CPPv2N7Gamepak13consoleType_t10PLAYCHOICEE"></span><span class="target" id="classGamepak_1aeaab9c04b8a2423108f569c5db384d32adf65cc584f2c546144fd145234d380dc"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PLAYCHOICE</span></span></span><a class="headerlink" href="#_CPPv4N7Gamepak13consoleType_t10PLAYCHOICEE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N7Gamepak13consoleType_t8EXTENDEDE">
+<span id="_CPPv3N7Gamepak13consoleType_t8EXTENDEDE"></span><span id="_CPPv2N7Gamepak13consoleType_t8EXTENDEDE"></span><span class="target" id="classGamepak_1aeaab9c04b8a2423108f569c5db384d32a137134e62b2c971eba88c77734c14658"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">EXTENDED</span></span></span><a class="headerlink" href="#_CPPv4N7Gamepak13consoleType_t8EXTENDEDE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum-class">
+<dt class="sig sig-object cpp" id="_CPPv4N7Gamepak10tvSystem_tE">
+<span id="_CPPv3N7Gamepak10tvSystem_tE"></span><span id="_CPPv2N7Gamepak10tvSystem_tE"></span><span class="target" id="classGamepak_1aa215adc002d647be4fae157b69ea0928"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">tvSystem_t</span></span></span><a class="headerlink" href="#_CPPv4N7Gamepak10tvSystem_tE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>TV region type. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N7Gamepak10tvSystem_t4NTSCE">
+<span id="_CPPv3N7Gamepak10tvSystem_t4NTSCE"></span><span id="_CPPv2N7Gamepak10tvSystem_t4NTSCE"></span><span class="target" id="classGamepak_1aa215adc002d647be4fae157b69ea0928a4b38da225171e1781308c764b6b3b172"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">NTSC</span></span></span><a class="headerlink" href="#_CPPv4N7Gamepak10tvSystem_t4NTSCE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N7Gamepak10tvSystem_t3PALE">
+<span id="_CPPv3N7Gamepak10tvSystem_t3PALE"></span><span id="_CPPv2N7Gamepak10tvSystem_t3PALE"></span><span class="target" id="classGamepak_1aa215adc002d647be4fae157b69ea0928acf4f483867e0c770dda73062a492b370"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PAL</span></span></span><a class="headerlink" href="#_CPPv4N7Gamepak10tvSystem_t3PALE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N7Gamepak10tvSystem_t5MULTIE">
+<span id="_CPPv3N7Gamepak10tvSystem_t5MULTIE"></span><span id="_CPPv2N7Gamepak10tvSystem_t5MULTIE"></span><span class="target" id="classGamepak_1aa215adc002d647be4fae157b69ea0928af26be970aac1b06fa62b87562bc73deb"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">MULTI</span></span></span><a class="headerlink" href="#_CPPv4N7Gamepak10tvSystem_t5MULTIE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N7Gamepak10tvSystem_t5DENDYE">
+<span id="_CPPv3N7Gamepak10tvSystem_t5DENDYE"></span><span id="_CPPv2N7Gamepak10tvSystem_t5DENDYE"></span><span class="target" id="classGamepak_1aa215adc002d647be4fae157b69ea0928a20d2f0c6e4401d2086b4abe39d3ef021"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">DENDY</span></span></span><a class="headerlink" href="#_CPPv4N7Gamepak10tvSystem_t5DENDYE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-protected-attributes">Protected Attributes</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7Gamepak8m_paramsE">
+<span id="_CPPv3N7Gamepak8m_paramsE"></span><span id="_CPPv2N7Gamepak8m_paramsE"></span><span id="Gamepak::m_params__Gamepak::gamepakParams"></span><span class="target" id="classGamepak_1ae392f86f2913f010528555767e2039ca"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv47Gamepak" title="Gamepak"><span class="n"><span class="pre">Gamepak</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="#_CPPv4N7Gamepak13gamepakParamsE" title="Gamepak::gamepakParams"><span class="n"><span class="pre">gamepakParams</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_params</span></span></span><a class="headerlink" href="#_CPPv4N7Gamepak8m_paramsE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7Gamepak9m_trainerE">
+<span id="_CPPv3N7Gamepak9m_trainerE"></span><span id="_CPPv2N7Gamepak9m_trainerE"></span><span id="Gamepak::m_trainer__std::vector:uint8_t:"></span><span class="target" id="classGamepak_1a2dd98ca236a9f856d32c8d9f2f55d34b"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">uint8_t</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_trainer</span></span></span><a class="headerlink" href="#_CPPv4N7Gamepak9m_trainerE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Trainer data. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7Gamepak8m_PRGROME">
+<span id="_CPPv3N7Gamepak8m_PRGROME"></span><span id="_CPPv2N7Gamepak8m_PRGROME"></span><span id="Gamepak::m_PRGROM__std::vector:uint8_t:"></span><span class="target" id="classGamepak_1aceafd735bfcb6160e52342844c99d5cd"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">uint8_t</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_PRGROM</span></span></span><a class="headerlink" href="#_CPPv4N7Gamepak8m_PRGROME" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Program data. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7Gamepak8m_CHRROME">
+<span id="_CPPv3N7Gamepak8m_CHRROME"></span><span id="_CPPv2N7Gamepak8m_CHRROME"></span><span id="Gamepak::m_CHRROM__std::vector:uint8_t:"></span><span class="target" id="classGamepak_1a58947a30da70d99fd808563c79518df6"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">uint8_t</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_CHRROM</span></span></span><a class="headerlink" href="#_CPPv4N7Gamepak8m_CHRROME" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Character (picture) data. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7Gamepak8m_mapperE">
+<span id="_CPPv3N7Gamepak8m_mapperE"></span><span id="_CPPv2N7Gamepak8m_mapperE"></span><span id="Gamepak::m_mapper__std::unique_ptr:Mapper:"></span><span class="target" id="classGamepak_1a0754e327361d3508ac5af4580b258666"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">unique_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="classMapper.html#_CPPv46Mapper" title="Mapper"><span class="n"><span class="pre">Mapper</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_mapper</span></span></span><a class="headerlink" href="#_CPPv4N7Gamepak8m_mapperE" title="Permalink to this definition"></a><br /></dt>
+<dd><p><a class="reference internal" href="#classGamepak"><span class="std std-ref">Gamepak</span></a>’s mapper. </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-protected-static-attributes">Protected Static Attributes</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7Gamepak16PRGROM_UNIT_SIZEE">
+<span id="_CPPv3N7Gamepak16PRGROM_UNIT_SIZEE"></span><span id="_CPPv2N7Gamepak16PRGROM_UNIT_SIZEE"></span><span id="Gamepak::PRGROM_UNIT_SIZE__sC"></span><span class="target" id="classGamepak_1a990206e4c1797dc2eccdf437b0a2c526"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PRGROM_UNIT_SIZE</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">16384</span></span><a class="headerlink" href="#_CPPv4N7Gamepak16PRGROM_UNIT_SIZEE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Size of program ROM unit. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7Gamepak16CHRROM_UNIT_SIZEE">
+<span id="_CPPv3N7Gamepak16CHRROM_UNIT_SIZEE"></span><span id="_CPPv2N7Gamepak16CHRROM_UNIT_SIZEE"></span><span id="Gamepak::CHRROM_UNIT_SIZE__sC"></span><span class="target" id="classGamepak_1a5bdf3c0efe118956ac4c8961ac28dd2e"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CHRROM_UNIT_SIZE</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">8192</span></span><a class="headerlink" href="#_CPPv4N7Gamepak16CHRROM_UNIT_SIZEE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Size of character ROM unit. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7Gamepak16PRGRAM_UNIT_SIZEE">
+<span id="_CPPv3N7Gamepak16PRGRAM_UNIT_SIZEE"></span><span id="_CPPv2N7Gamepak16PRGRAM_UNIT_SIZEE"></span><span id="Gamepak::PRGRAM_UNIT_SIZE__sC"></span><span class="target" id="classGamepak_1a6582a7452aa6fd4de18980c7dfbdeddd"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PRGRAM_UNIT_SIZE</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">8192</span></span><a class="headerlink" href="#_CPPv4N7Gamepak16PRGRAM_UNIT_SIZEE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Size of program RAM unit. </p>
+</dd></dl>
+
+</div>
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv4N7Gamepak13gamepakParamsE">
+<span id="_CPPv3N7Gamepak13gamepakParamsE"></span><span id="_CPPv2N7Gamepak13gamepakParamsE"></span><span id="Gamepak::gamepakParams"></span><span class="target" id="structGamepak_1_1gamepakParams"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gamepakParams</span></span></span><a class="headerlink" href="#_CPPv4N7Gamepak13gamepakParamsE" title="Permalink to this definition"></a><br /></dt>
+<dd><p><a class="reference internal" href="#classGamepak"><span class="std std-ref">Gamepak</span></a> parameters. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7Gamepak13gamepakParams13gamepakParamsEv">
+<span id="_CPPv3N7Gamepak13gamepakParams13gamepakParamsEv"></span><span id="_CPPv2N7Gamepak13gamepakParams13gamepakParamsEv"></span><span id="Gamepak::gamepakParams::gamepakParams"></span><span class="target" id="structGamepak_1_1gamepakParams_1af37c142f9943fb69f5dba66a58133760"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gamepakParams</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7Gamepak13gamepakParams13gamepakParamsEv" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7Gamepak13gamepakParams4initEv">
+<span id="_CPPv3N7Gamepak13gamepakParams4initEv"></span><span id="_CPPv2N7Gamepak13gamepakParams4initEv"></span><span id="Gamepak::gamepakParams::init"></span><span class="target" id="structGamepak_1_1gamepakParams_1a131bd6cea7ede2a22d66a002eed23a12"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">init</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7Gamepak13gamepakParams4initEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Init parameters to common default values for all types. </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7Gamepak13gamepakParams10PRGROMsizeE">
+<span id="_CPPv3N7Gamepak13gamepakParams10PRGROMsizeE"></span><span id="_CPPv2N7Gamepak13gamepakParams10PRGROMsizeE"></span><span id="Gamepak::gamepakParams::PRGROMsize__s"></span><span class="target" id="structGamepak_1_1gamepakParams_1a12212a956058757e39ab97c59a048f8d"></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PRGROMsize</span></span></span><a class="headerlink" href="#_CPPv4N7Gamepak13gamepakParams10PRGROMsizeE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Absolute size of PRG ROM. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7Gamepak13gamepakParams10CHRROMsizeE">
+<span id="_CPPv3N7Gamepak13gamepakParams10CHRROMsizeE"></span><span id="_CPPv2N7Gamepak13gamepakParams10CHRROMsizeE"></span><span id="Gamepak::gamepakParams::CHRROMsize__s"></span><span class="target" id="structGamepak_1_1gamepakParams_1aa949315939ececd144ccea3686c16597"></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CHRROMsize</span></span></span><a class="headerlink" href="#_CPPv4N7Gamepak13gamepakParams10CHRROMsizeE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Absolute size of CHR ROM. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7Gamepak13gamepakParams13mirroringTypeE">
+<span id="_CPPv3N7Gamepak13gamepakParams13mirroringTypeE"></span><span id="_CPPv2N7Gamepak13gamepakParams13mirroringTypeE"></span><span id="Gamepak::gamepakParams::mirroringType__Mapper::mirroringType_t"></span><span class="target" id="structGamepak_1_1gamepakParams_1afa220990fc08f406f50f42586bb11250"></span><a class="reference internal" href="classMapper.html#_CPPv46Mapper" title="Mapper"><span class="n"><span class="pre">Mapper</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="classMapper.html#_CPPv4N6Mapper15mirroringType_tE" title="Mapper::mirroringType_t"><span class="n"><span class="pre">mirroringType_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">mirroringType</span></span></span><a class="headerlink" href="#_CPPv4N7Gamepak13gamepakParams13mirroringTypeE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Mirroring type. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7Gamepak13gamepakParams10fileFormatE">
+<span id="_CPPv3N7Gamepak13gamepakParams10fileFormatE"></span><span id="_CPPv2N7Gamepak13gamepakParams10fileFormatE"></span><span id="Gamepak::gamepakParams::fileFormat__fileFormat_t"></span><span class="target" id="structGamepak_1_1gamepakParams_1a536a5165cd247f349d1cc299906540a1"></span><a class="reference internal" href="#_CPPv4N7Gamepak12fileFormat_tE" title="Gamepak::fileFormat_t"><span class="n"><span class="pre">fileFormat_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fileFormat</span></span></span><a class="headerlink" href="#_CPPv4N7Gamepak13gamepakParams10fileFormatE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>File format. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7Gamepak13gamepakParams19hasPersistentMemoryE">
+<span id="_CPPv3N7Gamepak13gamepakParams19hasPersistentMemoryE"></span><span id="_CPPv2N7Gamepak13gamepakParams19hasPersistentMemoryE"></span><span id="Gamepak::gamepakParams::hasPersistentMemory__b"></span><span class="target" id="structGamepak_1_1gamepakParams_1ad804883e43d3c8593590ed5df9df6a39"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">hasPersistentMemory</span></span></span><a class="headerlink" href="#_CPPv4N7Gamepak13gamepakParams19hasPersistentMemoryE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Whether the gamepak contains any persistent memory. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7Gamepak13gamepakParams10hasTrainerE">
+<span id="_CPPv3N7Gamepak13gamepakParams10hasTrainerE"></span><span id="_CPPv2N7Gamepak13gamepakParams10hasTrainerE"></span><span id="Gamepak::gamepakParams::hasTrainer__b"></span><span class="target" id="structGamepak_1_1gamepakParams_1a5f0cd6fdcd6ece0c92ea9e6fe8a8a399"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">hasTrainer</span></span></span><a class="headerlink" href="#_CPPv4N7Gamepak13gamepakParams10hasTrainerE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Whether the gamepak contains trainer. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7Gamepak13gamepakParams12mapperNumberE">
+<span id="_CPPv3N7Gamepak13gamepakParams12mapperNumberE"></span><span id="_CPPv2N7Gamepak13gamepakParams12mapperNumberE"></span><span id="Gamepak::gamepakParams::mapperNumber__uint16_t"></span><span class="target" id="structGamepak_1_1gamepakParams_1a3efce9309b736207d386d32a62288cec"></span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">mapperNumber</span></span></span><a class="headerlink" href="#_CPPv4N7Gamepak13gamepakParams12mapperNumberE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>iNES mapper number. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7Gamepak13gamepakParams10PRGRAMsizeE">
+<span id="_CPPv3N7Gamepak13gamepakParams10PRGRAMsizeE"></span><span id="_CPPv2N7Gamepak13gamepakParams10PRGRAMsizeE"></span><span id="Gamepak::gamepakParams::PRGRAMsize__s"></span><span class="target" id="structGamepak_1_1gamepakParams_1a845ad45e24cf687dcdbe61fe9affbb80"></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PRGRAMsize</span></span></span><a class="headerlink" href="#_CPPv4N7Gamepak13gamepakParams10PRGRAMsizeE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Absolute size of PRG RAM. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7Gamepak13gamepakParams11consoleTypeE">
+<span id="_CPPv3N7Gamepak13gamepakParams11consoleTypeE"></span><span id="_CPPv2N7Gamepak13gamepakParams11consoleTypeE"></span><span id="Gamepak::gamepakParams::consoleType__consoleType_t"></span><span class="target" id="structGamepak_1_1gamepakParams_1afbd5cbbf96f88e377f26a53fe9c2a3e8"></span><a class="reference internal" href="#_CPPv4N7Gamepak13consoleType_tE" title="Gamepak::consoleType_t"><span class="n"><span class="pre">consoleType_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">consoleType</span></span></span><a class="headerlink" href="#_CPPv4N7Gamepak13gamepakParams11consoleTypeE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Console type. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7Gamepak13gamepakParams8tvSystemE">
+<span id="_CPPv3N7Gamepak13gamepakParams8tvSystemE"></span><span id="_CPPv2N7Gamepak13gamepakParams8tvSystemE"></span><span id="Gamepak::gamepakParams::tvSystem__tvSystem_t"></span><span class="target" id="structGamepak_1_1gamepakParams_1ac6119a307dcefe530c64e4aadcc890b5"></span><a class="reference internal" href="#_CPPv4N7Gamepak10tvSystem_tE" title="Gamepak::tvSystem_t"><span class="n"><span class="pre">tvSystem_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">tvSystem</span></span></span><a class="headerlink" href="#_CPPv4N7Gamepak13gamepakParams8tvSystemE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>TV region type. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7Gamepak13gamepakParams15submapperNumberE">
+<span id="_CPPv3N7Gamepak13gamepakParams15submapperNumberE"></span><span id="_CPPv2N7Gamepak13gamepakParams15submapperNumberE"></span><span id="Gamepak::gamepakParams::submapperNumber__uint8_t"></span><span class="target" id="structGamepak_1_1gamepakParams_1a879fe6fa7bc4b0bda9d6f9c12f54001c"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">submapperNumber</span></span></span><a class="headerlink" href="#_CPPv4N7Gamepak13gamepakParams15submapperNumberE" title="Permalink to this definition"></a><br /></dt>
+<dd><p><a class="reference internal" href="classMapper.html#classMapper"><span class="std std-ref">Mapper</span></a> number specifier. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7Gamepak13gamepakParams12PRGNVRAMsizeE">
+<span id="_CPPv3N7Gamepak13gamepakParams12PRGNVRAMsizeE"></span><span id="_CPPv2N7Gamepak13gamepakParams12PRGNVRAMsizeE"></span><span id="Gamepak::gamepakParams::PRGNVRAMsize__s"></span><span class="target" id="structGamepak_1_1gamepakParams_1ab422da719a48359fe0263c50f18f6da7"></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PRGNVRAMsize</span></span></span><a class="headerlink" href="#_CPPv4N7Gamepak13gamepakParams12PRGNVRAMsizeE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Non-volatile PRG memory absolute size. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7Gamepak13gamepakParams10CHRRAMsizeE">
+<span id="_CPPv3N7Gamepak13gamepakParams10CHRRAMsizeE"></span><span id="_CPPv2N7Gamepak13gamepakParams10CHRRAMsizeE"></span><span id="Gamepak::gamepakParams::CHRRAMsize__s"></span><span class="target" id="structGamepak_1_1gamepakParams_1aa169fecb09afe904bb9b0b38d0ba0d8c"></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CHRRAMsize</span></span></span><a class="headerlink" href="#_CPPv4N7Gamepak13gamepakParams10CHRRAMsizeE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Character RAM absolute size. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7Gamepak13gamepakParams12CHRNVRAMsizeE">
+<span id="_CPPv3N7Gamepak13gamepakParams12CHRNVRAMsizeE"></span><span id="_CPPv2N7Gamepak13gamepakParams12CHRNVRAMsizeE"></span><span id="Gamepak::gamepakParams::CHRNVRAMsize__s"></span><span class="target" id="structGamepak_1_1gamepakParams_1a8367428265d52172c3b6924994f04436"></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CHRNVRAMsize</span></span></span><a class="headerlink" href="#_CPPv4N7Gamepak13gamepakParams12CHRNVRAMsizeE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Character NVRAM absolute size. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="classEmulator.html" class="btn btn-neutral float-left" title="Class Emulator" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="classMapper.html" class="btn btn-neutral float-right" title="Class Mapper" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023 Ondrej Golasowski.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

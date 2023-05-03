@@ -1,0 +1,43 @@
+
+.. _program_listing_file__home_runner_work_use_use_include_components_Memory.h:
+
+Program Listing for File Memory.h
+=================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file__home_runner_work_use_use_include_components_Memory.h>` (``/home/runner/work/use/use/include/components/Memory.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   
+   #ifndef USE_MEMORY_H
+   #define USE_MEMORY_H
+   
+   #include <cstdint>
+   #include <memory>
+   #include "Component.h"
+   #include "Types.h"
+   
+   class Memory : public Component{
+   
+   private:
+       std::vector<uint8_t> m_data;
+       AddressRange m_addressRange;
+       uint8_t m_defaultValue;
+   
+       void memoryInit();
+   
+   public:
+       Memory(
+           size_t size,
+           AddressRange addressRange,
+           uint8_t defaultValue = 0x0);
+   
+       void init() override;
+       std::vector<EmulatorWindow> getGUIs() override;
+   
+       void load(uint32_t from, std::ifstream & src);
+   };
+   
+   #endif //USE_MEMORY_H

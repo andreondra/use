@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Class Port &mdash; Universal System Emulator  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+    <link rel="canonical" href="./_exhale/classPort.html" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Class R2C02" href="classR2C02.html" />
+    <link rel="prev" title="Class NESPeripherals::Controller" href="classNESPeripherals_1_1Controller.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Universal System Emulator
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Universal System Emulator documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_manual.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_manual.html">Developer’s Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contr_manual.html">Contributor’s Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="api_docs_root.html">API docs</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="api_docs_root.html#class-hierarchy">Class Hierarchy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api_docs_root.html#file-hierarchy">File Hierarchy</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="api_docs_root.html#full-api">Full API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="api_docs_root.html#namespaces">Namespaces</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="api_docs_root.html#classes-and-structs">Classes and Structs</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="structAddressRange.html">Struct AddressRange</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structAPU_1_1apu__envelope.html">Struct APU::apu_envelope</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structAPU_1_1apu__lengthCounter.html">Struct APU::apu_lengthCounter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structAPU_1_1apu__noise.html">Struct APU::apu_noise</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structAPU_1_1apu__pulse.html">Struct APU::apu_pulse</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structAPU_1_1apu__triangle.html">Struct APU::apu_triangle</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structDataInterface.html">Struct DataInterface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structEmulatorWindow.html">Struct EmulatorWindow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structGamepak_1_1gamepakParams.html">Struct Gamepak::gamepakParams</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structMOS6502_1_1instruction__t.html">Struct MOS6502::instruction_t</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structMOS6502_1_1status__flags__t.html">Struct MOS6502::status_flags_t</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structR2C02_1_1internalRegisters__t.html">Struct R2C02::internalRegisters_t</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structR2C02_1_1registers__t.html">Struct R2C02::registers_t</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structRGBPixel.html">Struct RGBPixel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structSignalInterface.html">Struct SignalInterface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structSoundStereoFrame.html">Struct SoundStereoFrame</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAPU.html">Class APU</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classBare6502.html">Class Bare6502</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classBus.html">Class Bus</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classComponent.html">Class Component</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classConnector.html">Class Connector</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classDataPort.html">Class DataPort</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classEmulator.html">Class Emulator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classGamepak.html">Class Gamepak</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classMapper.html">Class Mapper</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classMapper000.html">Class Mapper000</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classMapper001.html">Class Mapper001</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classMemory.html">Class Memory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classMOS6502.html">Class MOS6502</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classNES.html">Class NES</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classNESPeripherals.html">Class NESPeripherals</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classNESPeripherals_1_1Controller.html">Class NESPeripherals::Controller</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Class Port</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classR2C02.html">Class R2C02</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classRP2A03.html">Class RP2A03</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classSignalPort.html">Class SignalPort</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classSound.html">Class Sound</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classSystem.html">Class System</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classTrigger.html">Class Trigger</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api_docs_root.html#enums">Enums</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_docs_root.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_docs_root.html#typedefs">Typedefs</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Universal System Emulator</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="api_docs_root.html">API docs</a></li>
+      <li class="breadcrumb-item active">Class Port</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/_exhale/classPort.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="class-port">
+<span id="exhale-class-classport"></span><h1>Class Port<a class="headerlink" href="#class-port" title="Permalink to this headline"></a></h1>
+<ul class="simple">
+<li><p>Defined in <a class="reference internal" href="file__home_runner_work_use_use_include_Port.h.html#file-home-runner-work-use-use-include-port-h"><span class="std std-ref">File Port.h</span></a></p></li>
+</ul>
+<section id="inheritance-relationships">
+<h2>Inheritance Relationships<a class="headerlink" href="#inheritance-relationships" title="Permalink to this headline"></a></h2>
+<section id="derived-types">
+<h3>Derived Types<a class="headerlink" href="#derived-types" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">DataPort</span></code> (<a class="reference internal" href="classDataPort.html#exhale-class-classdataport"><span class="std std-ref">Class DataPort</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">SignalPort</span></code> (<a class="reference internal" href="classSignalPort.html#exhale-class-classsignalport"><span class="std std-ref">Class SignalPort</span></a>)</p></li>
+</ul>
+</section>
+</section>
+<section id="class-documentation">
+<h2>Class Documentation<a class="headerlink" href="#class-documentation" title="Permalink to this headline"></a></h2>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv44Port">
+<span id="_CPPv34Port"></span><span id="_CPPv24Port"></span><span id="Port"></span><span class="target" id="classPort"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Port</span></span></span><a class="headerlink" href="#_CPPv44Port" title="Permalink to this definition"></a><br /></dt>
+<dd><p><a class="reference internal" href="classComponent.html#classComponent"><span class="std std-ref">Component</span></a>’s port abstraction class. The <a class="reference internal" href="#classPort"><span class="std std-ref">Port</span></a> means to be used as a local <a class="reference internal" href="classComponent.html#classComponent"><span class="std std-ref">Component</span></a>’s variable, which allows to interface with another <a class="reference internal" href="classComponent.html#classComponent"><span class="std std-ref">Component</span></a>. The controlled <a class="reference internal" href="classComponent.html#classComponent"><span class="std std-ref">Component</span></a> exposes a <a class="reference internal" href="classConnector.html#classConnector"><span class="std std-ref">Connector</span></a>, which shall be stored in the <a class="reference internal" href="#classPort"><span class="std std-ref">Port</span></a>. </p>
+<p>Subclassed by <a class="reference internal" href="classDataPort.html#classDataPort"><span class="std std-ref">DataPort</span></a>, <a class="reference internal" href="classSignalPort.html#classSignalPort"><span class="std std-ref">SignalPort</span></a></p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N4Port4PortEv">
+<span id="_CPPv3N4Port4PortEv"></span><span id="_CPPv2N4Port4PortEv"></span><span id="Port::Port"></span><span class="target" id="classPort_1ae9162f1b501cb93d926d092e334ef19c"></span><span class="sig-name descname"><span class="n"><span class="pre">Port</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">default</span></span><a class="headerlink" href="#_CPPv4N4Port4PortEv" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N4PortD0Ev">
+<span id="_CPPv3N4PortD0Ev"></span><span id="_CPPv2N4PortD0Ev"></span><span id="Port::~Port"></span><span class="target" id="classPort_1abbd27caff9c3587bec4d8211ec16c5d4"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">~Port</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">default</span></span><a class="headerlink" href="#_CPPv4N4PortD0Ev" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N4Port7connectENSt8weak_ptrI9ConnectorEE">
+<span id="_CPPv3N4Port7connectENSt8weak_ptrI9ConnectorEE"></span><span id="_CPPv2N4Port7connectENSt8weak_ptrI9ConnectorEE"></span><span id="Port::connect__std::weak_ptr:Connector:"></span><span class="target" id="classPort_1a6e225fcb8afb38f4950116ccfa0227ae"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">connect</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">weak_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="classConnector.html#_CPPv49Connector" title="Connector"><span class="n"><span class="pre">Connector</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">connector</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv4N4Port7connectENSt8weak_ptrI9ConnectorEE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Attach a <a class="reference internal" href="classConnector.html#classConnector"><span class="std std-ref">Connector</span></a> to the port. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>connector</strong> – <a class="reference internal" href="classConnector.html#classConnector"><span class="std std-ref">Connector</span></a> to be connected. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N4Port10disconnectEv">
+<span id="_CPPv3N4Port10disconnectEv"></span><span id="_CPPv2N4Port10disconnectEv"></span><span id="Port::disconnect"></span><span class="target" id="classPort_1a9c1902a0bb99feb6a823ca6e71435fe5"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">disconnect</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">final</span></span><a class="headerlink" href="#_CPPv4N4Port10disconnectEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Detach a <a class="reference internal" href="classConnector.html#classConnector"><span class="std std-ref">Connector</span></a>. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK4Port5emptyEv">
+<span id="_CPPv3NK4Port5emptyEv"></span><span id="_CPPv2NK4Port5emptyEv"></span><span id="Port::emptyC"></span><span class="target" id="classPort_1ab2fa594045b3b614a611464dd1641dd4"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">empty</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="k"><span class="pre">final</span></span><a class="headerlink" href="#_CPPv4NK4Port5emptyEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Checks if there is any <a class="reference internal" href="classConnector.html#classConnector"><span class="std std-ref">Connector</span></a> attached to the <a class="reference internal" href="#classPort"><span class="std std-ref">Port</span></a>. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>true If the <a class="reference internal" href="classConnector.html#classConnector"><span class="std std-ref">Connector</span></a> is present. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK4PortcvbEv">
+<span id="_CPPv3NK4PortcvbEv"></span><span id="_CPPv2NK4PortcvbEv"></span><span id="Port::castto-b-operatorC"></span><span class="target" id="classPort_1a76020666c0dea94a15e287b46e1b5d95"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="k"><span class="pre">final</span></span><a class="headerlink" href="#_CPPv4NK4PortcvbEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>A shorthand for <a class="reference internal" href="#classPort_1ab2fa594045b3b614a611464dd1641dd4"><span class="std std-ref">empty()</span></a> function. </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-protected-attributes">Protected Attributes</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N4Port11m_connectorE">
+<span id="_CPPv3N4Port11m_connectorE"></span><span id="_CPPv2N4Port11m_connectorE"></span><span id="Port::m_connector__std::weak_ptr:Connector:"></span><span class="target" id="classPort_1a48f2640a1ed8d8a8b9aa67eb3e66587b"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">weak_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="classConnector.html#_CPPv49Connector" title="Connector"><span class="n"><span class="pre">Connector</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_connector</span></span></span><a class="headerlink" href="#_CPPv4N4Port11m_connectorE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>A connector which <a class="reference internal" href="#classPort"><span class="std std-ref">Port</span></a> interface with. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="classNESPeripherals_1_1Controller.html" class="btn btn-neutral float-left" title="Class NESPeripherals::Controller" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="classR2C02.html" class="btn btn-neutral float-right" title="Class R2C02" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023 Ondrej Golasowski.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+.. _exhale_class_classBare6502:
+
+Class Bare6502
+==============
+
+- Defined in :ref:`file__home_runner_work_use_use_include_systems_Bare6502.h`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public System`` (:ref:`exhale_class_classSystem`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: Bare6502
+   :project: Universal System Emulator
+   :members:
+   :protected-members:
+   :undoc-members:

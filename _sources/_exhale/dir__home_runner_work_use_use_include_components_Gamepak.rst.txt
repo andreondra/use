@@ -1,0 +1,24 @@
+.. _dir__home_runner_work_use_use_include_components_Gamepak:
+
+
+Directory Gamepak
+=================
+
+
+|exhale_lsh| :ref:`Parent directory <dir__home_runner_work_use_use_include_components>` (``/home/runner/work/use/use/include/components``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+*Directory path:* ``/home/runner/work/use/use/include/components/Gamepak``
+
+
+Files
+-----
+
+- :ref:`file__home_runner_work_use_use_include_components_Gamepak_Gamepak.h`
+- :ref:`file__home_runner_work_use_use_include_components_Gamepak_Mapper.h`
+- :ref:`file__home_runner_work_use_use_include_components_Gamepak_Mapper000.h`
+- :ref:`file__home_runner_work_use_use_include_components_Gamepak_Mapper001.h`
+
+

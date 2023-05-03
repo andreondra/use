@@ -1,0 +1,84 @@
+
+.. _program_listing_file__home_runner_work_use_use_include_components_Gamepak_Mapper001.h:
+
+Program Listing for File Mapper001.h
+====================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file__home_runner_work_use_use_include_components_Gamepak_Mapper001.h>` (``/home/runner/work/use/use/include/components/Gamepak/Mapper001.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   
+   #ifndef USE_MAPPER001_H
+   #define USE_MAPPER001_H
+   
+   #include "Mapper.h"
+   
+   class Mapper001 : public Mapper{
+   
+   private:
+   
+       // Custom types.
+       enum class PRGMode_t : uint8_t {
+           SWITCH_BOTH0 = 0,
+           SWITCH_BOTH1 = 1,
+           FIX_LOW_SWITCH_HIGH = 2,
+           SWITCH_LOW_FIX_HIGH = 3
+       };
+   
+       enum class CHRMode_t : uint8_t {
+           SWITCH8KB = 0,
+           SWITCH4KB = 1
+       };
+   
+       std::vector<uint8_t> & m_CHRROM;
+       std::vector<uint8_t> & m_PRGROM;
+       std::vector<uint8_t> m_CHRRAM;
+       bool m_CHRWritable = false;
+   
+       std::vector<uint8_t> m_PRGRAM;
+       uint8_t m_loadRegister = 0;
+       uint8_t m_writeCounter = 0;
+   
+       struct {
+   
+           PRGMode_t PRGMode;
+           uint8_t PRGROMSelect;
+   
+           CHRMode_t CHRMode;
+           uint8_t CHRROMLoSelect;
+           uint8_t CHRROMHiSelect;
+   
+           bool enablePRGRAM;
+           uint8_t PRGRAMSelect;
+   
+           void init(){
+   
+               PRGMode = PRGMode_t::SWITCH_LOW_FIX_HIGH;
+               PRGROMSelect = 0;
+               CHRMode = CHRMode_t::SWITCH8KB;
+               CHRROMLoSelect = 0;
+               CHRROMHiSelect = 0;
+               enablePRGRAM = true;
+           };
+   
+       } m_registers;
+   
+       void setMirroring(uint8_t rawValue);
+   
+   public:
+       Mapper001(std::vector<uint8_t> & PRGROM, std::vector<uint8_t> & CHRROM, size_t PRGRAMSize = 0x8000);
+       ~Mapper001() override = default;
+   
+       void init() override;
+       bool cpuRead(uint16_t addr, uint8_t & data) override;
+       bool cpuWrite(uint16_t addr, uint8_t data)  override;
+       bool ppuRead(uint16_t addr, uint8_t & data) override;
+       bool ppuWrite(uint16_t addr, uint8_t data)  override;
+   
+       void drawGUI() override;
+   };
+   
+   #endif //USE_MAPPER001_H

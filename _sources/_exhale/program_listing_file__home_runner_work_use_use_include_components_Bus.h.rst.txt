@@ -1,0 +1,46 @@
+
+.. _program_listing_file__home_runner_work_use_use_include_components_Bus.h:
+
+Program Listing for File Bus.h
+==============================
+
+|exhale_lsh| :ref:`Return to documentation for file <file__home_runner_work_use_use_include_components_Bus.h>` (``/home/runner/work/use/use/include/components/Bus.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   //
+   // Created by golas on 23.2.23.
+   //
+   
+   #ifndef USE_BUS_H
+   #define USE_BUS_H
+   
+   #include <map>
+   #include <cstdint>
+   #include <stdexcept>
+   #include <cstdint>
+   #include <memory>
+   #include "Types.h"
+   #include "Component.h"
+   
+   class Bus : public Component{
+   
+   private:
+       uint32_t m_addrMask;
+       uint32_t m_dataMask;
+       std::vector<DataPort> m_devices;
+   
+       enum class lastAccess {NONE, READ, WRITE} m_lastAccess = lastAccess::NONE;
+       uint32_t m_lastAddress = 0x00;
+       uint32_t m_lastData = 0x00;
+   
+   public:
+       Bus(int portCount, int addrWidth, int dataWidth);
+   
+       void init() override;
+       std::vector<EmulatorWindow> getGUIs() override;
+   };
+   
+   #endif //USE_BUS_H

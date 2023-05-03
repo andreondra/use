@@ -1,0 +1,23 @@
+.. _exhale_struct_structAPU_1_1apu__pulse:
+
+Struct APU::apu_pulse
+=====================
+
+- Defined in :ref:`file__home_runner_work_use_use_include_components_APU.h`
+
+
+Nested Relationships
+--------------------
+
+This struct is a nested type of :ref:`exhale_class_classAPU`.
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: APU::apu_pulse
+   :project: Universal System Emulator
+   :members:
+   :protected-members:
+   :undoc-members:

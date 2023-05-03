@@ -1,0 +1,14 @@
+.. _exhale_typedef_Types_8h_1a382822aac1503157bea48dba6caad4d5:
+
+Typedef SoundSampleSources
+==========================
+
+- Defined in :ref:`file__home_runner_work_use_use_include_Types.h`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: SoundSampleSources
+   :project: Universal System Emulator

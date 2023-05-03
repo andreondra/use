@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>API docs &mdash; Universal System Emulator  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+    <link rel="canonical" href="./_exhale/api_docs_root.html" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Namespace USETools" href="namespace_USETools.html" />
+    <link rel="prev" title="Contributor’s Guide" href="../contr_manual.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Universal System Emulator
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Universal System Emulator documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_manual.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_manual.html">Developer’s Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contr_manual.html">Contributor’s Guide</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">API docs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#class-hierarchy">Class Hierarchy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#file-hierarchy">File Hierarchy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#full-api">Full API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#namespaces">Namespaces</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="namespace_USETools.html">Namespace USETools</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#classes-and-structs">Classes and Structs</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="structAddressRange.html">Struct AddressRange</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structAPU_1_1apu__envelope.html">Struct APU::apu_envelope</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structAPU_1_1apu__lengthCounter.html">Struct APU::apu_lengthCounter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structAPU_1_1apu__noise.html">Struct APU::apu_noise</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structAPU_1_1apu__pulse.html">Struct APU::apu_pulse</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structAPU_1_1apu__triangle.html">Struct APU::apu_triangle</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structDataInterface.html">Struct DataInterface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structEmulatorWindow.html">Struct EmulatorWindow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structGamepak_1_1gamepakParams.html">Struct Gamepak::gamepakParams</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structMOS6502_1_1instruction__t.html">Struct MOS6502::instruction_t</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structMOS6502_1_1status__flags__t.html">Struct MOS6502::status_flags_t</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structR2C02_1_1internalRegisters__t.html">Struct R2C02::internalRegisters_t</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structR2C02_1_1registers__t.html">Struct R2C02::registers_t</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structRGBPixel.html">Struct RGBPixel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structSignalInterface.html">Struct SignalInterface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structSoundStereoFrame.html">Struct SoundStereoFrame</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAPU.html">Class APU</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classBare6502.html">Class Bare6502</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classBus.html">Class Bus</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classComponent.html">Class Component</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classConnector.html">Class Connector</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classDataPort.html">Class DataPort</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classEmulator.html">Class Emulator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classGamepak.html">Class Gamepak</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classMapper.html">Class Mapper</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classMapper000.html">Class Mapper000</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classMapper001.html">Class Mapper001</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classMemory.html">Class Memory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classMOS6502.html">Class MOS6502</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classNES.html">Class NES</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classNESPeripherals.html">Class NESPeripherals</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classNESPeripherals_1_1Controller.html">Class NESPeripherals::Controller</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classPort.html">Class Port</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classR2C02.html">Class R2C02</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classRP2A03.html">Class RP2A03</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classSignalPort.html">Class SignalPort</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classSound.html">Class Sound</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classSystem.html">Class System</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classTrigger.html">Class Trigger</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#enums">Enums</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="enum_Types_8h_1a6116b547a7a7786ba3daf4b375aa0f02.html">Enum DockSpace</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#functions">Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="function_Tools_8h_1ae447c6b042bdf8f9041a410fc21ef76d.html">Function USETools::map</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_Tools_8h_1adbc2820ea8905f707434d6f4bc697e7f.html">Function USETools::renderScalableBitmap</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#typedefs">Typedefs</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="typedef_Types_8h_1a382822aac1503157bea48dba6caad4d5.html">Typedef SoundSampleSources</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Universal System Emulator</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">API docs</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/_exhale/api_docs_root.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="api-docs">
+<h1>API docs<a class="headerlink" href="#api-docs" title="Permalink to this headline"></a></h1>
+<section id="class-hierarchy">
+<h2>Class Hierarchy<a class="headerlink" href="#class-hierarchy" title="Permalink to this headline"></a></h2>
+<ul class="treeView" id="class-treeView">
+  <li>
+    <ul class="collapsibleList">
+      <li>Struct <a href="structAddressRange.html#exhale-struct-structAddressRange">AddressRange</a></li><li>Struct <a href="structDataInterface.html#exhale-struct-structDataInterface">DataInterface</a></li><li>Struct <a href="structEmulatorWindow.html#exhale-struct-structEmulatorWindow">EmulatorWindow</a></li><li>Struct <a href="structRGBPixel.html#exhale-struct-structRGBPixel">RGBPixel</a></li><li>Struct <a href="structSignalInterface.html#exhale-struct-structSignalInterface">SignalInterface</a></li><li>Struct <a href="structSoundStereoFrame.html#exhale-struct-structSoundStereoFrame">SoundStereoFrame</a></li><li>Class <a href="classAPU.html#exhale-class-classAPU">APU</a><ul><li>Struct <a href="structAPU_1_1apu__envelope.html#exhale-struct-structAPU-1-1apu-envelope">APU::apu_envelope</a></li><li>Struct <a href="structAPU_1_1apu__lengthCounter.html#exhale-struct-structAPU-1-1apu-lengthCounter">APU::apu_lengthCounter</a></li><li>Struct <a href="structAPU_1_1apu__noise.html#exhale-struct-structAPU-1-1apu-noise">APU::apu_noise</a></li><li>Struct <a href="structAPU_1_1apu__pulse.html#exhale-struct-structAPU-1-1apu-pulse">APU::apu_pulse</a></li><li class="lastChild">Struct <a href="structAPU_1_1apu__triangle.html#exhale-struct-structAPU-1-1apu-triangle">APU::apu_triangle</a></li></ul></li><li>Class <a href="classBare6502.html#exhale-class-classBare6502">Bare6502</a></li><li>Class <a href="classBus.html#exhale-class-classBus">Bus</a></li><li>Class <a href="classComponent.html#exhale-class-classComponent">Component</a></li><li>Class <a href="classConnector.html#exhale-class-classConnector">Connector</a></li><li>Class <a href="classDataPort.html#exhale-class-classDataPort">DataPort</a></li><li>Class <a href="classEmulator.html#exhale-class-classEmulator">Emulator</a></li><li>Class <a href="classGamepak.html#exhale-class-classGamepak">Gamepak</a><ul><li class="lastChild">Struct <a href="structGamepak_1_1gamepakParams.html#exhale-struct-structGamepak-1-1gamepakParams">Gamepak::gamepakParams</a></li></ul></li><li>Class <a href="classMapper.html#exhale-class-classMapper">Mapper</a></li><li>Class <a href="classMapper000.html#exhale-class-classMapper000">Mapper000</a></li><li>Class <a href="classMapper001.html#exhale-class-classMapper001">Mapper001</a></li><li>Class <a href="classMemory.html#exhale-class-classMemory">Memory</a></li><li>Class <a href="classMOS6502.html#exhale-class-classMOS6502">MOS6502</a><ul><li>Struct <a href="structMOS6502_1_1instruction__t.html#exhale-struct-structMOS6502-1-1instruction-t">MOS6502::instruction_t</a></li><li class="lastChild">Struct <a href="structMOS6502_1_1status__flags__t.html#exhale-struct-structMOS6502-1-1status-flags-t">MOS6502::status_flags_t</a></li></ul></li><li>Class <a href="classNES.html#exhale-class-classNES">NES</a></li><li>Class <a href="classNESPeripherals.html#exhale-class-classNESPeripherals">NESPeripherals</a><ul><li class="lastChild">Class <a href="classNESPeripherals_1_1Controller.html#exhale-class-classNESPeripherals-1-1Controller">NESPeripherals::Controller</a></li></ul></li><li>Class <a href="classPort.html#exhale-class-classPort">Port</a></li><li>Class <a href="classR2C02.html#exhale-class-classR2C02">R2C02</a><ul><li>Struct <a href="structR2C02_1_1internalRegisters__t.html#exhale-struct-structR2C02-1-1internalRegisters-t">R2C02::internalRegisters_t</a></li><li class="lastChild">Struct <a href="structR2C02_1_1registers__t.html#exhale-struct-structR2C02-1-1registers-t">R2C02::registers_t</a></li></ul></li><li>Class <a href="classRP2A03.html#exhale-class-classRP2A03">RP2A03</a></li><li>Class <a href="classSignalPort.html#exhale-class-classSignalPort">SignalPort</a></li><li>Class <a href="classSound.html#exhale-class-classSound">Sound</a></li><li>Class <a href="classSystem.html#exhale-class-classSystem">System</a></li><li>Class <a href="classTrigger.html#exhale-class-classTrigger">Trigger</a></li><li class="lastChild">Enum <a href="enum_Types_8h_1a6116b547a7a7786ba3daf4b375aa0f02.html#exhale-enum-Types-8h-1a6116b547a7a7786ba3daf4b375aa0f02">DockSpace</a></li>
+    </ul>
+  </li><!-- only tree view element -->
+</ul><!-- /treeView class-treeView --></section>
+<section id="file-hierarchy">
+<h2>File Hierarchy<a class="headerlink" href="#file-hierarchy" title="Permalink to this headline"></a></h2>
+<ul class="treeView" id="file-treeView">
+  <li>
+    <ul class="collapsibleList">
+      <li class="lastChild">Directory <a href="dir__home_runner_work_use_use_include.html#dir-home-runner-work-use-use-include">include</a><ul><li>Directory <a href="dir__home_runner_work_use_use_include_components.html#dir-home-runner-work-use-use-include-components">components</a><ul><li>Directory <a href="dir__home_runner_work_use_use_include_components_Gamepak.html#dir-home-runner-work-use-use-include-components-Gamepak">Gamepak</a><ul><li>File <a href="file__home_runner_work_use_use_include_components_Gamepak_Gamepak.h.html#file-home-runner-work-use-use-include-components-Gamepak-Gamepak.h">Gamepak.h</a></li><li>File <a href="file__home_runner_work_use_use_include_components_Gamepak_Mapper.h.html#file-home-runner-work-use-use-include-components-Gamepak-Mapper.h">Mapper.h</a></li><li>File <a href="file__home_runner_work_use_use_include_components_Gamepak_Mapper000.h.html#file-home-runner-work-use-use-include-components-Gamepak-Mapper000.h">Mapper000.h</a></li><li class="lastChild">File <a href="file__home_runner_work_use_use_include_components_Gamepak_Mapper001.h.html#file-home-runner-work-use-use-include-components-Gamepak-Mapper001.h">Mapper001.h</a></li></ul></li><li>File <a href="file__home_runner_work_use_use_include_components_2A03.h.html#file-home-runner-work-use-use-include-components-2A03.h">2A03.h</a></li><li>File <a href="file__home_runner_work_use_use_include_components_2C02.h.html#file-home-runner-work-use-use-include-components-2C02.h">2C02.h</a></li><li>File <a href="file__home_runner_work_use_use_include_components_6502.h.html#file-home-runner-work-use-use-include-components-6502.h">6502.h</a></li><li>File <a href="file__home_runner_work_use_use_include_components_APU.h.html#file-home-runner-work-use-use-include-components-APU.h">APU.h</a></li><li>File <a href="file__home_runner_work_use_use_include_components_Bus.h.html#file-home-runner-work-use-use-include-components-Bus.h">Bus.h</a></li><li>File <a href="file__home_runner_work_use_use_include_components_Memory.h.html#file-home-runner-work-use-use-include-components-Memory.h">Memory.h</a></li><li>File <a href="file__home_runner_work_use_use_include_components_NESPeripherals.h.html#file-home-runner-work-use-use-include-components-NESPeripherals.h">NESPeripherals.h</a></li><li class="lastChild">File <a href="file__home_runner_work_use_use_include_components_Trigger.h.html#file-home-runner-work-use-use-include-components-Trigger.h">Trigger.h</a></li></ul></li><li>Directory <a href="dir__home_runner_work_use_use_include_systems.html#dir-home-runner-work-use-use-include-systems">systems</a><ul><li>File <a href="file__home_runner_work_use_use_include_systems_Bare6502.h.html#file-home-runner-work-use-use-include-systems-Bare6502.h">Bare6502.h</a></li><li class="lastChild">File <a href="file__home_runner_work_use_use_include_systems_NES.h.html#file-home-runner-work-use-use-include-systems-NES.h">NES.h</a></li></ul></li><li>File <a href="file__home_runner_work_use_use_include_Component.h.html#file-home-runner-work-use-use-include-Component.h">Component.h</a></li><li>File <a href="file__home_runner_work_use_use_include_Connector.h.html#file-home-runner-work-use-use-include-Connector.h">Connector.h</a></li><li>File <a href="file__home_runner_work_use_use_include_Emulator.h.html#file-home-runner-work-use-use-include-Emulator.h">Emulator.h</a></li><li>File <a href="file__home_runner_work_use_use_include_Port.h.html#file-home-runner-work-use-use-include-Port.h">Port.h</a></li><li>File <a href="file__home_runner_work_use_use_include_Sound.h.html#file-home-runner-work-use-use-include-Sound.h">Sound.h</a></li><li>File <a href="file__home_runner_work_use_use_include_System.h.html#file-home-runner-work-use-use-include-System.h">System.h</a></li><li>File <a href="file__home_runner_work_use_use_include_Tools.h.html#file-home-runner-work-use-use-include-Tools.h">Tools.h</a></li><li class="lastChild">File <a href="file__home_runner_work_use_use_include_Types.h.html#file-home-runner-work-use-use-include-Types.h">Types.h</a></li></ul></li>
+    </ul>
+  </li><!-- only tree view element -->
+</ul><!-- /treeView file-treeView --></section>
+<section id="full-api">
+<h2>Full API<a class="headerlink" href="#full-api" title="Permalink to this headline"></a></h2>
+<section id="namespaces">
+<h3>Namespaces<a class="headerlink" href="#namespaces" title="Permalink to this headline"></a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="namespace_USETools.html">Namespace USETools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="namespace_USETools.html#functions">Functions</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="classes-and-structs">
+<h3>Classes and Structs<a class="headerlink" href="#classes-and-structs" title="Permalink to this headline"></a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="structAddressRange.html">Struct AddressRange</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="structAddressRange.html#struct-documentation">Struct Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="structAPU_1_1apu__envelope.html">Struct APU::apu_envelope</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="structAPU_1_1apu__envelope.html#nested-relationships">Nested Relationships</a></li>
+<li class="toctree-l2"><a class="reference internal" href="structAPU_1_1apu__envelope.html#struct-documentation">Struct Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="structAPU_1_1apu__lengthCounter.html">Struct APU::apu_lengthCounter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="structAPU_1_1apu__lengthCounter.html#nested-relationships">Nested Relationships</a></li>
+<li class="toctree-l2"><a class="reference internal" href="structAPU_1_1apu__lengthCounter.html#struct-documentation">Struct Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="structAPU_1_1apu__noise.html">Struct APU::apu_noise</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="structAPU_1_1apu__noise.html#nested-relationships">Nested Relationships</a></li>
+<li class="toctree-l2"><a class="reference internal" href="structAPU_1_1apu__noise.html#struct-documentation">Struct Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="structAPU_1_1apu__pulse.html">Struct APU::apu_pulse</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="structAPU_1_1apu__pulse.html#nested-relationships">Nested Relationships</a></li>
+<li class="toctree-l2"><a class="reference internal" href="structAPU_1_1apu__pulse.html#struct-documentation">Struct Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="structAPU_1_1apu__triangle.html">Struct APU::apu_triangle</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="structAPU_1_1apu__triangle.html#nested-relationships">Nested Relationships</a></li>
+<li class="toctree-l2"><a class="reference internal" href="structAPU_1_1apu__triangle.html#struct-documentation">Struct Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="structDataInterface.html">Struct DataInterface</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="structDataInterface.html#struct-documentation">Struct Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="structEmulatorWindow.html">Struct EmulatorWindow</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="structEmulatorWindow.html#struct-documentation">Struct Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="structGamepak_1_1gamepakParams.html">Struct Gamepak::gamepakParams</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="structGamepak_1_1gamepakParams.html#nested-relationships">Nested Relationships</a></li>
+<li class="toctree-l2"><a class="reference internal" href="structGamepak_1_1gamepakParams.html#struct-documentation">Struct Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="structMOS6502_1_1instruction__t.html">Struct MOS6502::instruction_t</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="structMOS6502_1_1instruction__t.html#nested-relationships">Nested Relationships</a></li>
+<li class="toctree-l2"><a class="reference internal" href="structMOS6502_1_1instruction__t.html#struct-documentation">Struct Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="structMOS6502_1_1status__flags__t.html">Struct MOS6502::status_flags_t</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="structMOS6502_1_1status__flags__t.html#nested-relationships">Nested Relationships</a></li>
+<li class="toctree-l2"><a class="reference internal" href="structMOS6502_1_1status__flags__t.html#struct-documentation">Struct Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="structR2C02_1_1internalRegisters__t.html">Struct R2C02::internalRegisters_t</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="structR2C02_1_1internalRegisters__t.html#nested-relationships">Nested Relationships</a></li>
+<li class="toctree-l2"><a class="reference internal" href="structR2C02_1_1internalRegisters__t.html#struct-documentation">Struct Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="structR2C02_1_1registers__t.html">Struct R2C02::registers_t</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="structR2C02_1_1registers__t.html#nested-relationships">Nested Relationships</a></li>
+<li class="toctree-l2"><a class="reference internal" href="structR2C02_1_1registers__t.html#struct-documentation">Struct Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="structRGBPixel.html">Struct RGBPixel</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="structRGBPixel.html#struct-documentation">Struct Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="structSignalInterface.html">Struct SignalInterface</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="structSignalInterface.html#struct-documentation">Struct Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="structSoundStereoFrame.html">Struct SoundStereoFrame</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="structSoundStereoFrame.html#struct-documentation">Struct Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classAPU.html">Class APU</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="classAPU.html#nested-relationships">Nested Relationships</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="classAPU.html#nested-types">Nested Types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="classAPU.html#inheritance-relationships">Inheritance Relationships</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="classAPU.html#base-type">Base Type</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="classAPU.html#class-documentation">Class Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classBare6502.html">Class Bare6502</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="classBare6502.html#inheritance-relationships">Inheritance Relationships</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="classBare6502.html#base-type">Base Type</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="classBare6502.html#class-documentation">Class Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classBus.html">Class Bus</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="classBus.html#inheritance-relationships">Inheritance Relationships</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="classBus.html#base-type">Base Type</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="classBus.html#class-documentation">Class Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classComponent.html">Class Component</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="classComponent.html#inheritance-relationships">Inheritance Relationships</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="classComponent.html#derived-types">Derived Types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="classComponent.html#class-documentation">Class Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classConnector.html">Class Connector</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="classConnector.html#class-documentation">Class Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classDataPort.html">Class DataPort</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="classDataPort.html#inheritance-relationships">Inheritance Relationships</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="classDataPort.html#base-type">Base Type</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="classDataPort.html#class-documentation">Class Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classEmulator.html">Class Emulator</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="classEmulator.html#class-documentation">Class Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classGamepak.html">Class Gamepak</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="classGamepak.html#nested-relationships">Nested Relationships</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="classGamepak.html#nested-types">Nested Types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="classGamepak.html#inheritance-relationships">Inheritance Relationships</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="classGamepak.html#base-type">Base Type</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="classGamepak.html#class-documentation">Class Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classMapper.html">Class Mapper</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="classMapper.html#inheritance-relationships">Inheritance Relationships</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="classMapper.html#derived-types">Derived Types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="classMapper.html#class-documentation">Class Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classMapper000.html">Class Mapper000</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="classMapper000.html#inheritance-relationships">Inheritance Relationships</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="classMapper000.html#base-type">Base Type</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="classMapper000.html#class-documentation">Class Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classMapper001.html">Class Mapper001</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="classMapper001.html#inheritance-relationships">Inheritance Relationships</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="classMapper001.html#base-type">Base Type</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="classMapper001.html#class-documentation">Class Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classMemory.html">Class Memory</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="classMemory.html#inheritance-relationships">Inheritance Relationships</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="classMemory.html#base-type">Base Type</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="classMemory.html#class-documentation">Class Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classMOS6502.html">Class MOS6502</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="classMOS6502.html#nested-relationships">Nested Relationships</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="classMOS6502.html#nested-types">Nested Types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="classMOS6502.html#inheritance-relationships">Inheritance Relationships</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="classMOS6502.html#base-type">Base Type</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMOS6502.html#derived-type">Derived Type</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="classMOS6502.html#class-documentation">Class Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classNES.html">Class NES</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="classNES.html#inheritance-relationships">Inheritance Relationships</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="classNES.html#base-type">Base Type</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="classNES.html#class-documentation">Class Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classNESPeripherals.html">Class NESPeripherals</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="classNESPeripherals.html#nested-relationships">Nested Relationships</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="classNESPeripherals.html#nested-types">Nested Types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="classNESPeripherals.html#inheritance-relationships">Inheritance Relationships</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="classNESPeripherals.html#base-type">Base Type</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="classNESPeripherals.html#class-documentation">Class Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classNESPeripherals_1_1Controller.html">Class NESPeripherals::Controller</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="classNESPeripherals_1_1Controller.html#nested-relationships">Nested Relationships</a></li>
+<li class="toctree-l2"><a class="reference internal" href="classNESPeripherals_1_1Controller.html#class-documentation">Class Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classPort.html">Class Port</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="classPort.html#inheritance-relationships">Inheritance Relationships</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="classPort.html#derived-types">Derived Types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="classPort.html#class-documentation">Class Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classR2C02.html">Class R2C02</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="classR2C02.html#nested-relationships">Nested Relationships</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="classR2C02.html#nested-types">Nested Types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="classR2C02.html#inheritance-relationships">Inheritance Relationships</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="classR2C02.html#base-type">Base Type</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="classR2C02.html#class-documentation">Class Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classRP2A03.html">Class RP2A03</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="classRP2A03.html#inheritance-relationships">Inheritance Relationships</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="classRP2A03.html#base-type">Base Type</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="classRP2A03.html#class-documentation">Class Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classSignalPort.html">Class SignalPort</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="classSignalPort.html#inheritance-relationships">Inheritance Relationships</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="classSignalPort.html#base-type">Base Type</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="classSignalPort.html#class-documentation">Class Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classSound.html">Class Sound</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="classSound.html#class-documentation">Class Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classSystem.html">Class System</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="classSystem.html#inheritance-relationships">Inheritance Relationships</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="classSystem.html#derived-types">Derived Types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="classSystem.html#class-documentation">Class Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classTrigger.html">Class Trigger</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="classTrigger.html#inheritance-relationships">Inheritance Relationships</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="classTrigger.html#base-type">Base Type</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="classTrigger.html#class-documentation">Class Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="enums">
+<h3>Enums<a class="headerlink" href="#enums" title="Permalink to this headline"></a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="enum_Types_8h_1a6116b547a7a7786ba3daf4b375aa0f02.html">Enum DockSpace</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="enum_Types_8h_1a6116b547a7a7786ba3daf4b375aa0f02.html#enum-documentation">Enum Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="functions">
+<h3>Functions<a class="headerlink" href="#functions" title="Permalink to this headline"></a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_Tools_8h_1ae447c6b042bdf8f9041a410fc21ef76d.html">Function USETools::map</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_Tools_8h_1ae447c6b042bdf8f9041a410fc21ef76d.html#function-documentation">Function Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_Tools_8h_1adbc2820ea8905f707434d6f4bc697e7f.html">Function USETools::renderScalableBitmap</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_Tools_8h_1adbc2820ea8905f707434d6f4bc697e7f.html#function-documentation">Function Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="typedefs">
+<h3>Typedefs<a class="headerlink" href="#typedefs" title="Permalink to this headline"></a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="typedef_Types_8h_1a382822aac1503157bea48dba6caad4d5.html">Typedef SoundSampleSources</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="typedef_Types_8h_1a382822aac1503157bea48dba6caad4d5.html#typedef-documentation">Typedef Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../contr_manual.html" class="btn btn-neutral float-left" title="Contributor’s Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="namespace_USETools.html" class="btn btn-neutral float-right" title="Namespace USETools" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023 Ondrej Golasowski.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

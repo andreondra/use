@@ -1,0 +1,73 @@
+
+.. _program_listing_file__home_runner_work_use_use_include_Component.h:
+
+Program Listing for File Component.h
+====================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file__home_runner_work_use_use_include_Component.h>` (``/home/runner/work/use/use/include/Component.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   
+   #ifndef USE_COMPONENT_H
+   #define USE_COMPONENT_H
+   
+   #include <cstdint>
+   #include <string>
+   #include <map>
+   #include <set>
+   #include <memory>
+   #include "Types.h"
+   #include "Connector.h"
+   #include "Port.h"
+   #include "ImInputBinder.h"
+   
+   class Component{
+   protected:
+       std::string m_deviceName = "Default Component";
+   
+       std::map<std::string, std::shared_ptr<Connector>> m_connectors;
+   
+       std::map<std::string, Port *> m_ports;
+   
+       bool m_initRequested = false;
+   
+   public:
+   
+       Component() = default;
+       virtual ~Component() = default;
+   
+       virtual void init() = 0;
+   
+       [[nodiscard]] virtual uintptr_t getDeviceID() const final;
+   
+       [[nodiscard]] virtual std::string getDeviceName() const final;
+   
+       virtual void setDeviceName(const std::string & newName) final;
+   
+       virtual void connect(const std::string & toPort, std::weak_ptr<Connector> connector) final;
+   
+       virtual void disconnect(const std::string & fromPort) final;
+   
+       virtual std::weak_ptr<Connector> getConnector(const std::string & name) final;
+   
+       [[nodiscard]] virtual std::vector<std::string> listConnectors() const final;
+   
+       [[nodiscard]] virtual std::vector<std::string> listPorts() const final;
+   
+       virtual std::vector<EmulatorWindow> getGUIs() = 0;
+   
+       virtual SoundSampleSources getSoundSampleSources();
+   
+       virtual std::vector<ImInputBinder::action_t> getInputs();
+   
+       [[nodiscard]] virtual bool initRequested();
+   
+       // Prepared for future dynamic node editor.
+       // Note: Maybe provide default implementation using listConnectors...?
+       // virtual void renderNode();
+   };
+   
+   #endif //USE_COMPONENT_H

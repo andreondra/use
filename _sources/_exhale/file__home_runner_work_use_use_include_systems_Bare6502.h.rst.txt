@@ -1,0 +1,66 @@
+
+.. _file__home_runner_work_use_use_include_systems_Bare6502.h:
+
+File Bare6502.h
+===============
+
+|exhale_lsh| :ref:`Parent directory <dir__home_runner_work_use_use_include_systems>` (``/home/runner/work/use/use/include/systems``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+
+Bare 6502 CPU system. 
+
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``/home/runner/work/use/use/include/systems/Bare6502.h``)
+---------------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file__home_runner_work_use_use_include_systems_Bare6502.h.rst
+
+
+
+Detailed Description
+--------------------
+
+Ondrej Golasowski (golasowski.o@gmail.com) 
+
+Copyright (c) 2023 Ondrej Golasowski 
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``System.h`` (:ref:`file__home_runner_work_use_use_include_System.h`)
+
+- ``components/6502.h`` (:ref:`file__home_runner_work_use_use_include_components_6502.h`)
+
+- ``components/Bus.h`` (:ref:`file__home_runner_work_use_use_include_components_Bus.h`)
+
+- ``components/Memory.h`` (:ref:`file__home_runner_work_use_use_include_components_Memory.h`)
+
+
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classBare6502`
+

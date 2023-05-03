@@ -1,0 +1,76 @@
+
+.. _file__home_runner_work_use_use_include_System.h:
+
+File System.h
+=============
+
+|exhale_lsh| :ref:`Parent directory <dir__home_runner_work_use_use_include>` (``/home/runner/work/use/use/include``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+
+:ref:`exhale_class_classSystem` emulation abstraction. 
+
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``/home/runner/work/use/use/include/System.h``)
+-----------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file__home_runner_work_use_use_include_System.h.rst
+
+
+
+Detailed Description
+--------------------
+
+Ondrej Golasowski (golasowski.o@gmail.com) 
+
+Copyright (c) 2023 Ondrej Golasowski 
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``Component.h`` (:ref:`file__home_runner_work_use_use_include_Component.h`)
+
+- ``ImInputBinder.h``
+
+- ``Types.h`` (:ref:`file__home_runner_work_use_use_include_Types.h`)
+
+- ``vector``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file__home_runner_work_use_use_include_Emulator.h`
+
+- :ref:`file__home_runner_work_use_use_include_systems_Bare6502.h`
+
+- :ref:`file__home_runner_work_use_use_include_systems_NES.h`
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classSystem`
+

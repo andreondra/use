@@ -1,0 +1,59 @@
+
+.. _program_listing_file__home_runner_work_use_use_include_System.h:
+
+Program Listing for File System.h
+=================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file__home_runner_work_use_use_include_System.h>` (``/home/runner/work/use/use/include/System.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   
+   #ifndef USE_SYSTEM_H
+   #define USE_SYSTEM_H
+   
+   #include <vector>
+   #include "Types.h"
+   #include "Component.h"
+   #include "ImInputBinder.h"
+   
+   class System {
+   
+   protected:
+       std::string m_systemName = "Default System";
+       std::vector<Component *> m_components;
+       unsigned long m_systemClockRate = 0;
+       SoundSampleSources m_sampleSources;
+   
+   public:
+       System();
+       virtual ~System() = default;
+   
+       virtual void init();
+   
+       virtual void doClocks(unsigned int count)           = 0;
+   
+       virtual void doSteps(unsigned  int count)           = 0;
+   
+       virtual void doFrames(unsigned int count)           = 0;
+   
+       virtual void doRun(unsigned int updateFrequency)    = 0;
+   
+       virtual void onRefresh();
+   
+       virtual std::vector<EmulatorWindow> getGUIs();
+   
+       [[nodiscard]] virtual unsigned long getClockRate() const;
+   
+       [[nodiscard]] virtual size_t soundOutputCount() const;
+   
+       [[nodiscard]] virtual const SoundSampleSources & getSampleSources() const;
+   
+       virtual std::vector<ImInputBinder::action_t> getInputs();
+   
+       [[nodiscard]] virtual std::string getName() const final;
+   };
+   
+   #endif //USE_SYSTEM_H

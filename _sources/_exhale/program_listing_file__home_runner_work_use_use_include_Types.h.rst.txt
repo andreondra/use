@@ -1,0 +1,77 @@
+
+.. _program_listing_file__home_runner_work_use_use_include_Types.h:
+
+Program Listing for File Types.h
+================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file__home_runner_work_use_use_include_Types.h>` (``/home/runner/work/use/use/include/Types.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   
+   #ifndef USE_TYPES_H
+   #define USE_TYPES_H
+   
+   #include <cstdint>
+   #include <functional>
+   #include <string>
+   
+   struct DataInterface {
+   
+       std::function<bool(uint32_t address, uint32_t & buffer)> read;
+   
+       std::function<void(uint32_t address, uint32_t data)> write;
+   };
+   
+   struct SignalInterface {
+   
+       std::function<void(void)> send;
+   
+       std::function<void(bool active)> set;
+   };
+   
+   struct AddressRange {
+   
+       uint32_t from;
+       uint32_t to;
+   
+       [[nodiscard]] bool has(const uint32_t & value) const {
+           return (from <= value) && (value <= to);
+       }
+   };
+   
+   enum class DockSpace{
+       MAIN,
+       LEFT,
+       BOTTOM,
+       RIGHT
+   };
+   
+   struct EmulatorWindow{
+   
+       std::string category;
+       std::string title = "Default Window";
+   
+       uintptr_t id = 0;
+   
+       DockSpace dock    = DockSpace::MAIN;
+   
+       std::function<void(void)> guiFunction = [](){};
+   };
+   
+   struct RGBPixel{
+       uint8_t red;
+       uint8_t green;
+       uint8_t blue;
+   };
+   
+   struct SoundStereoFrame {
+       float left;
+       float right;
+   };
+   
+   typedef std::vector<std::function<SoundStereoFrame(void)>> SoundSampleSources;
+   
+   #endif //USE_TYPES_H

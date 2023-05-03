@@ -1,0 +1,26 @@
+.. _exhale_class_classNES:
+
+Class NES
+=========
+
+- Defined in :ref:`file__home_runner_work_use_use_include_systems_NES.h`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public System`` (:ref:`exhale_class_classSystem`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: NES
+   :project: Universal System Emulator
+   :members:
+   :protected-members:
+   :undoc-members:

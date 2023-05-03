@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Struct APU::apu_pulse &mdash; Universal System Emulator  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+    <link rel="canonical" href="./_exhale/structAPU_1_1apu__pulse.html" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Struct APU::apu_triangle" href="structAPU_1_1apu__triangle.html" />
+    <link rel="prev" title="Struct APU::apu_noise" href="structAPU_1_1apu__noise.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Universal System Emulator
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Universal System Emulator documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_manual.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_manual.html">Developer’s Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contr_manual.html">Contributor’s Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="api_docs_root.html">API docs</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="api_docs_root.html#class-hierarchy">Class Hierarchy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api_docs_root.html#file-hierarchy">File Hierarchy</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="api_docs_root.html#full-api">Full API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="api_docs_root.html#namespaces">Namespaces</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="api_docs_root.html#classes-and-structs">Classes and Structs</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="structAddressRange.html">Struct AddressRange</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structAPU_1_1apu__envelope.html">Struct APU::apu_envelope</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structAPU_1_1apu__lengthCounter.html">Struct APU::apu_lengthCounter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structAPU_1_1apu__noise.html">Struct APU::apu_noise</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Struct APU::apu_pulse</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structAPU_1_1apu__triangle.html">Struct APU::apu_triangle</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structDataInterface.html">Struct DataInterface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structEmulatorWindow.html">Struct EmulatorWindow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structGamepak_1_1gamepakParams.html">Struct Gamepak::gamepakParams</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structMOS6502_1_1instruction__t.html">Struct MOS6502::instruction_t</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structMOS6502_1_1status__flags__t.html">Struct MOS6502::status_flags_t</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structR2C02_1_1internalRegisters__t.html">Struct R2C02::internalRegisters_t</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structR2C02_1_1registers__t.html">Struct R2C02::registers_t</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structRGBPixel.html">Struct RGBPixel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structSignalInterface.html">Struct SignalInterface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structSoundStereoFrame.html">Struct SoundStereoFrame</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAPU.html">Class APU</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classBare6502.html">Class Bare6502</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classBus.html">Class Bus</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classComponent.html">Class Component</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classConnector.html">Class Connector</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classDataPort.html">Class DataPort</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classEmulator.html">Class Emulator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classGamepak.html">Class Gamepak</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classMapper.html">Class Mapper</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classMapper000.html">Class Mapper000</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classMapper001.html">Class Mapper001</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classMemory.html">Class Memory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classMOS6502.html">Class MOS6502</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classNES.html">Class NES</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classNESPeripherals.html">Class NESPeripherals</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classNESPeripherals_1_1Controller.html">Class NESPeripherals::Controller</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classPort.html">Class Port</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classR2C02.html">Class R2C02</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classRP2A03.html">Class RP2A03</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classSignalPort.html">Class SignalPort</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classSound.html">Class Sound</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classSystem.html">Class System</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classTrigger.html">Class Trigger</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api_docs_root.html#enums">Enums</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_docs_root.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_docs_root.html#typedefs">Typedefs</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Universal System Emulator</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="api_docs_root.html">API docs</a></li>
+      <li class="breadcrumb-item active">Struct APU::apu_pulse</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/_exhale/structAPU_1_1apu__pulse.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="struct-apu-apu-pulse">
+<span id="exhale-struct-structapu-1-1apu-pulse"></span><h1>Struct APU::apu_pulse<a class="headerlink" href="#struct-apu-apu-pulse" title="Permalink to this headline"></a></h1>
+<ul class="simple">
+<li><p>Defined in <a class="reference internal" href="file__home_runner_work_use_use_include_components_APU.h.html#file-home-runner-work-use-use-include-components-apu-h"><span class="std std-ref">File APU.h</span></a></p></li>
+</ul>
+<section id="nested-relationships">
+<h2>Nested Relationships<a class="headerlink" href="#nested-relationships" title="Permalink to this headline"></a></h2>
+<p>This struct is a nested type of <a class="reference internal" href="classAPU.html#exhale-class-classapu"><span class="std std-ref">Class APU</span></a>.</p>
+</section>
+<section id="struct-documentation">
+<h2>Struct Documentation<a class="headerlink" href="#struct-documentation" title="Permalink to this headline"></a></h2>
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv4N3APU9apu_pulseE">
+<span id="_CPPv3N3APU9apu_pulseE"></span><span id="_CPPv2N3APU9apu_pulseE"></span><span id="APU::apu_pulse"></span><span class="target" id="structAPU_1_1apu__pulse"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">apu_pulse</span></span></span><a class="headerlink" href="#_CPPv4N3APU9apu_pulseE" title="Permalink to this definition"></a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N3APU9apu_pulse9apu_pulseEb">
+<span id="_CPPv3N3APU9apu_pulse9apu_pulseEb"></span><span id="_CPPv2N3APU9apu_pulse9apu_pulseEb"></span><span id="APU::apu_pulse::apu_pulse__b"></span><span class="target" id="structAPU_1_1apu__pulse_1afc9be3f700a8285c689d1b6885d5de86"></span><span class="sig-name descname"><span class="n"><span class="pre">apu_pulse</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">useTwosComplement</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N3APU9apu_pulse9apu_pulseEb" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N3APU9apu_pulse10setupSweepE7uint8_t">
+<span id="_CPPv3N3APU9apu_pulse10setupSweepE7uint8_t"></span><span id="_CPPv2N3APU9apu_pulse10setupSweepE7uint8_t"></span><span id="APU::apu_pulse::setupSweep__uint8_t"></span><span class="target" id="structAPU_1_1apu__pulse_1a838ffba8037c5987150ed174cc5705be"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setupSweep</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">value</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N3APU9apu_pulse10setupSweepE7uint8_t" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N3APU9apu_pulse10clockSweepEv">
+<span id="_CPPv3N3APU9apu_pulse10clockSweepEv"></span><span id="_CPPv2N3APU9apu_pulse10clockSweepEv"></span><span id="APU::apu_pulse::clockSweep"></span><span class="target" id="structAPU_1_1apu__pulse_1a513ccb7c2f0b9085ec89f6741dbda586"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">clockSweep</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N3APU9apu_pulse10clockSweepEv" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N3APU9apu_pulse18updateTargetPeriodEv">
+<span id="_CPPv3N3APU9apu_pulse18updateTargetPeriodEv"></span><span id="_CPPv2N3APU9apu_pulse18updateTargetPeriodEv"></span><span id="APU::apu_pulse::updateTargetPeriod"></span><span class="target" id="structAPU_1_1apu__pulse_1ac8674ab8f93d5a1ee4970c18d93697cc"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">updateTargetPeriod</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N3APU9apu_pulse18updateTargetPeriodEv" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N3APU9apu_pulse5resetEv">
+<span id="_CPPv3N3APU9apu_pulse5resetEv"></span><span id="_CPPv2N3APU9apu_pulse5resetEv"></span><span id="APU::apu_pulse::reset"></span><span class="target" id="structAPU_1_1apu__pulse_1a033e430526ffc8f997eb3a3e0f6afe96"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">reset</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N3APU9apu_pulse5resetEv" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N3APU9apu_pulse5clockEv">
+<span id="_CPPv3N3APU9apu_pulse5clockEv"></span><span id="_CPPv2N3APU9apu_pulse5clockEv"></span><span id="APU::apu_pulse::clock"></span><span class="target" id="structAPU_1_1apu__pulse_1af38fd1480f49b336fd7ab2a4c385e70d"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">clock</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N3APU9apu_pulse5clockEv" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N3APU9apu_pulse6outputEv">
+<span id="_CPPv3N3APU9apu_pulse6outputEv"></span><span id="_CPPv2N3APU9apu_pulse6outputEv"></span><span id="APU::apu_pulse::output"></span><span class="target" id="structAPU_1_1apu__pulse_1ae1a2c1b42af9a225bafd173b2b0496ca"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">output</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N3APU9apu_pulse6outputEv" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N3APU9apu_pulse9oscOutputEv">
+<span id="_CPPv3N3APU9apu_pulse9oscOutputEv"></span><span id="_CPPv2N3APU9apu_pulse9oscOutputEv"></span><span id="APU::apu_pulse::oscOutput"></span><span class="target" id="structAPU_1_1apu__pulse_1a3fbfe95e981c8c467ae58509df342233"></span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">oscOutput</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N3APU9apu_pulse9oscOutputEv" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N3APU9apu_pulse9sequencesE">
+<span id="_CPPv3N3APU9apu_pulse9sequencesE"></span><span id="_CPPv2N3APU9apu_pulse9sequencesE"></span><span id="APU::apu_pulse::sequences__uint8_tCA"></span><span class="target" id="structAPU_1_1apu__pulse_1a4265cd37165d2b95b1375bccf28a03f5"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">sequences</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">4</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="p"><span class="pre">{</span></span><span class="m"><span class="pre">0x40</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">0x60</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">0x78</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">0x9F</span></span><span class="p"><span class="pre">}</span></span><a class="headerlink" href="#_CPPv4N3APU9apu_pulse9sequencesE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Duty Cycle Sequences This array contains sequencer output waveforms: 0: 0100 0000 (12.5 %) 1: 0110 0000 (25 %) 2: 0111 1000 (50 %) 3: 1001 1111 (25 % negated) </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N3APU9apu_pulse12sequencesOscE">
+<span id="_CPPv3N3APU9apu_pulse12sequencesOscE"></span><span id="_CPPv2N3APU9apu_pulse12sequencesOscE"></span><span id="APU::apu_pulse::sequencesOsc__doubleCA"></span><span class="target" id="structAPU_1_1apu__pulse_1a20ebbb4b00d9b764f81fce1d9353bffe"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">sequencesOsc</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">4</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="p"><span class="pre">{</span></span><span class="m"><span class="pre">0.125</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">0.25</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">0.5</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">0.75</span></span><span class="p"><span class="pre">}</span></span><a class="headerlink" href="#_CPPv4N3APU9apu_pulse12sequencesOscE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N3APU9apu_pulse12sequencerPosE">
+<span id="_CPPv3N3APU9apu_pulse12sequencerPosE"></span><span id="_CPPv2N3APU9apu_pulse12sequencerPosE"></span><span id="APU::apu_pulse::sequencerPos__uint8_t"></span><span class="target" id="structAPU_1_1apu__pulse_1abbce178f7c2906a6c38d201c928bc2d7"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">sequencerPos</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv4N3APU9apu_pulse12sequencerPosE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Current position in the sequence (value 0-7). The position is updated when the timer goes from 0 to t (underflows). </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N3APU9apu_pulse5timerE">
+<span id="_CPPv3N3APU9apu_pulse5timerE"></span><span id="_CPPv2N3APU9apu_pulse5timerE"></span><span id="APU::apu_pulse::timer__uint16_t"></span><span class="target" id="structAPU_1_1apu__pulse_1a95b7bdc82cc3dbcb0a1565600e408b54"></span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">timer</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv4N3APU9apu_pulse5timerE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>11-bit timer current value. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N3APU9apu_pulse11timerPeriodE">
+<span id="_CPPv3N3APU9apu_pulse11timerPeriodE"></span><span id="_CPPv2N3APU9apu_pulse11timerPeriodE"></span><span id="APU::apu_pulse::timerPeriod__uint16_t"></span><span class="target" id="structAPU_1_1apu__pulse_1a0885d0eff4db880dbde2bd8138525c3a"></span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">timerPeriod</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv4N3APU9apu_pulse11timerPeriodE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Timer reset value. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N3APU9apu_pulse9dutyCycleE">
+<span id="_CPPv3N3APU9apu_pulse9dutyCycleE"></span><span id="_CPPv2N3APU9apu_pulse9dutyCycleE"></span><span id="APU::apu_pulse::dutyCycle__uint8_t"></span><span class="target" id="structAPU_1_1apu__pulse_1a44ec5efb6d85329903054c1103d6f47c"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">dutyCycle</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv4N3APU9apu_pulse9dutyCycleE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Current duty cycle (sequences array 2-bit index). </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N3APU9apu_pulse8envelopeE">
+<span id="_CPPv3N3APU9apu_pulse8envelopeE"></span><span id="_CPPv2N3APU9apu_pulse8envelopeE"></span><span id="APU::apu_pulse::envelope__apu_envelope"></span><span class="target" id="structAPU_1_1apu__pulse_1aa21672bd91cd032f58c711b1ad065765"></span><a class="reference internal" href="structAPU_1_1apu__envelope.html#_CPPv4N3APU12apu_envelopeE" title="APU::apu_envelope"><span class="n"><span class="pre">apu_envelope</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">envelope</span></span></span><a class="headerlink" href="#_CPPv4N3APU9apu_pulse8envelopeE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Volume envelope. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N3APU9apu_pulse13lengthCounterE">
+<span id="_CPPv3N3APU9apu_pulse13lengthCounterE"></span><span id="_CPPv2N3APU9apu_pulse13lengthCounterE"></span><span id="APU::apu_pulse::lengthCounter__apu_lengthCounter"></span><span class="target" id="structAPU_1_1apu__pulse_1a52873e1b9515a3d7376591703c6904b4"></span><a class="reference internal" href="structAPU_1_1apu__lengthCounter.html#_CPPv4N3APU17apu_lengthCounterE" title="APU::apu_lengthCounter"><span class="n"><span class="pre">apu_lengthCounter</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">lengthCounter</span></span></span><a class="headerlink" href="#_CPPv4N3APU9apu_pulse13lengthCounterE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Length counter. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N3APU9apu_pulse17useTwosComplementE">
+<span id="_CPPv3N3APU9apu_pulse17useTwosComplementE"></span><span id="_CPPv2N3APU9apu_pulse17useTwosComplementE"></span><span id="APU::apu_pulse::useTwosComplement__b"></span><span class="target" id="structAPU_1_1apu__pulse_1a3334240ba77c8df5c269bc0a163a9828"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">useTwosComplement</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">false</span></span><a class="headerlink" href="#_CPPv4N3APU9apu_pulse17useTwosComplementE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Sweep unit. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N3APU9apu_pulse11sweepReloadE">
+<span id="_CPPv3N3APU9apu_pulse11sweepReloadE"></span><span id="_CPPv2N3APU9apu_pulse11sweepReloadE"></span><span id="APU::apu_pulse::sweepReload__b"></span><span class="target" id="structAPU_1_1apu__pulse_1a482e0f433ebabd94e718446c5f2cad82"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">sweepReload</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">false</span></span><a class="headerlink" href="#_CPPv4N3APU9apu_pulse11sweepReloadE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N3APU9apu_pulse12sweepEnabledE">
+<span id="_CPPv3N3APU9apu_pulse12sweepEnabledE"></span><span id="_CPPv2N3APU9apu_pulse12sweepEnabledE"></span><span id="APU::apu_pulse::sweepEnabled__b"></span><span class="target" id="structAPU_1_1apu__pulse_1ae926a75af19fa009bb0fb3e716850bd6"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">sweepEnabled</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">false</span></span><a class="headerlink" href="#_CPPv4N3APU9apu_pulse12sweepEnabledE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N3APU9apu_pulse11sweepNegateE">
+<span id="_CPPv3N3APU9apu_pulse11sweepNegateE"></span><span id="_CPPv2N3APU9apu_pulse11sweepNegateE"></span><span id="APU::apu_pulse::sweepNegate__b"></span><span class="target" id="structAPU_1_1apu__pulse_1a308550106ffc19f0aa295ab6a45a2d7c"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">sweepNegate</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">false</span></span><a class="headerlink" href="#_CPPv4N3APU9apu_pulse11sweepNegateE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N3APU9apu_pulse15sweepShiftCountE">
+<span id="_CPPv3N3APU9apu_pulse15sweepShiftCountE"></span><span id="_CPPv2N3APU9apu_pulse15sweepShiftCountE"></span><span id="APU::apu_pulse::sweepShiftCount__uint8_t"></span><span class="target" id="structAPU_1_1apu__pulse_1a7313fd56dacd98ff42fc4b1e745da74f"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">sweepShiftCount</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv4N3APU9apu_pulse15sweepShiftCountE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N3APU9apu_pulse11sweepPeriodE">
+<span id="_CPPv3N3APU9apu_pulse11sweepPeriodE"></span><span id="_CPPv2N3APU9apu_pulse11sweepPeriodE"></span><span id="APU::apu_pulse::sweepPeriod__uint8_t"></span><span class="target" id="structAPU_1_1apu__pulse_1ab792f7cea4597ce8a132bf41bc82ec36"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">sweepPeriod</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv4N3APU9apu_pulse11sweepPeriodE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N3APU9apu_pulse12sweepCounterE">
+<span id="_CPPv3N3APU9apu_pulse12sweepCounterE"></span><span id="_CPPv2N3APU9apu_pulse12sweepCounterE"></span><span id="APU::apu_pulse::sweepCounter__uint8_t"></span><span class="target" id="structAPU_1_1apu__pulse_1a56a202fc12f39d21cc7a305196a7cd9b"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">sweepCounter</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv4N3APU9apu_pulse12sweepCounterE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N3APU9apu_pulse12targetPeriodE">
+<span id="_CPPv3N3APU9apu_pulse12targetPeriodE"></span><span id="_CPPv2N3APU9apu_pulse12targetPeriodE"></span><span id="APU::apu_pulse::targetPeriod__uint16_t"></span><span class="target" id="structAPU_1_1apu__pulse_1a97b07973917d722e3df8ce8583746ebc"></span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">targetPeriod</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv4N3APU9apu_pulse12targetPeriodE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N3APU9apu_pulse10phaseIndexE">
+<span id="_CPPv3N3APU9apu_pulse10phaseIndexE"></span><span id="_CPPv2N3APU9apu_pulse10phaseIndexE"></span><span id="APU::apu_pulse::phaseIndex__double"></span><span class="target" id="structAPU_1_1apu__pulse_1acecea8174654cc5c15eb2c3a390f5b22"></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">phaseIndex</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv4N3APU9apu_pulse10phaseIndexE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Oscillator index in the generated pulse. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="structAPU_1_1apu__noise.html" class="btn btn-neutral float-left" title="Struct APU::apu_noise" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="structAPU_1_1apu__triangle.html" class="btn btn-neutral float-right" title="Struct APU::apu_triangle" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023 Ondrej Golasowski.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+.. _exhale_class_classTrigger:
+
+Class Trigger
+=============
+
+- Defined in :ref:`file__home_runner_work_use_use_include_components_Trigger.h`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public Component`` (:ref:`exhale_class_classComponent`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: Trigger
+   :project: Universal System Emulator
+   :members:
+   :protected-members:
+   :undoc-members:

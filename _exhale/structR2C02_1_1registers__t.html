@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Struct R2C02::registers_t &mdash; Universal System Emulator  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+    <link rel="canonical" href="./_exhale/structR2C02_1_1registers__t.html" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Struct RGBPixel" href="structRGBPixel.html" />
+    <link rel="prev" title="Struct R2C02::internalRegisters_t" href="structR2C02_1_1internalRegisters__t.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Universal System Emulator
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Universal System Emulator documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_manual.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_manual.html">Developer’s Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contr_manual.html">Contributor’s Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="api_docs_root.html">API docs</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="api_docs_root.html#class-hierarchy">Class Hierarchy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api_docs_root.html#file-hierarchy">File Hierarchy</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="api_docs_root.html#full-api">Full API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="api_docs_root.html#namespaces">Namespaces</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="api_docs_root.html#classes-and-structs">Classes and Structs</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="structAddressRange.html">Struct AddressRange</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structAPU_1_1apu__envelope.html">Struct APU::apu_envelope</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structAPU_1_1apu__lengthCounter.html">Struct APU::apu_lengthCounter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structAPU_1_1apu__noise.html">Struct APU::apu_noise</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structAPU_1_1apu__pulse.html">Struct APU::apu_pulse</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structAPU_1_1apu__triangle.html">Struct APU::apu_triangle</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structDataInterface.html">Struct DataInterface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structEmulatorWindow.html">Struct EmulatorWindow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structGamepak_1_1gamepakParams.html">Struct Gamepak::gamepakParams</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structMOS6502_1_1instruction__t.html">Struct MOS6502::instruction_t</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structMOS6502_1_1status__flags__t.html">Struct MOS6502::status_flags_t</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structR2C02_1_1internalRegisters__t.html">Struct R2C02::internalRegisters_t</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Struct R2C02::registers_t</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structRGBPixel.html">Struct RGBPixel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structSignalInterface.html">Struct SignalInterface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structSoundStereoFrame.html">Struct SoundStereoFrame</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAPU.html">Class APU</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classBare6502.html">Class Bare6502</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classBus.html">Class Bus</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classComponent.html">Class Component</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classConnector.html">Class Connector</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classDataPort.html">Class DataPort</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classEmulator.html">Class Emulator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classGamepak.html">Class Gamepak</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classMapper.html">Class Mapper</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classMapper000.html">Class Mapper000</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classMapper001.html">Class Mapper001</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classMemory.html">Class Memory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classMOS6502.html">Class MOS6502</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classNES.html">Class NES</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classNESPeripherals.html">Class NESPeripherals</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classNESPeripherals_1_1Controller.html">Class NESPeripherals::Controller</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classPort.html">Class Port</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classR2C02.html">Class R2C02</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classRP2A03.html">Class RP2A03</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classSignalPort.html">Class SignalPort</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classSound.html">Class Sound</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classSystem.html">Class System</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classTrigger.html">Class Trigger</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api_docs_root.html#enums">Enums</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_docs_root.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_docs_root.html#typedefs">Typedefs</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Universal System Emulator</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="api_docs_root.html">API docs</a></li>
+      <li class="breadcrumb-item active">Struct R2C02::registers_t</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/_exhale/structR2C02_1_1registers__t.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="struct-r2c02-registers-t">
+<span id="exhale-struct-structr2c02-1-1registers-t"></span><h1>Struct R2C02::registers_t<a class="headerlink" href="#struct-r2c02-registers-t" title="Permalink to this headline"></a></h1>
+<ul class="simple">
+<li><p>Defined in <a class="reference internal" href="file__home_runner_work_use_use_include_components_2C02.h.html#file-home-runner-work-use-use-include-components-2c02-h"><span class="std std-ref">File 2C02.h</span></a></p></li>
+</ul>
+<section id="nested-relationships">
+<h2>Nested Relationships<a class="headerlink" href="#nested-relationships" title="Permalink to this headline"></a></h2>
+<p>This struct is a nested type of <a class="reference internal" href="classR2C02.html#exhale-class-classr2c02"><span class="std std-ref">Class R2C02</span></a>.</p>
+</section>
+<section id="struct-documentation">
+<h2>Struct Documentation<a class="headerlink" href="#struct-documentation" title="Permalink to this headline"></a></h2>
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0211registers_tE">
+<span id="_CPPv3N5R2C0211registers_tE"></span><span id="_CPPv2N5R2C0211registers_tE"></span><span id="R2C02::registers_t"></span><span class="target" id="structR2C02_1_1registers__t"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">registers_t</span></span></span><br /></dt>
+<dd><p>“Public” registers accessible by the CPU. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0211registers_t5nameXE">
+<span id="_CPPv3N5R2C0211registers_t5nameXE"></span><span id="_CPPv2N5R2C0211registers_t5nameXE"></span><span id="R2C02::registers_t::nameX__uint8_t"></span><span class="target" id="structR2C02_1_1registers__t_1acc84071ed56f1961743888aca4bdfdfd"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nameX</span></span></span><br /></dt>
+<dd><p>Base nametable address, scroll X coordinate MSB. (1 = add 256) </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0211registers_t5nameYE">
+<span id="_CPPv3N5R2C0211registers_t5nameYE"></span><span id="_CPPv2N5R2C0211registers_t5nameYE"></span><span id="R2C02::registers_t::nameY__uint8_t"></span><span class="target" id="structR2C02_1_1registers__t_1aaa5f7a02692384eaace9bcd893b945ca"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nameY</span></span></span><br /></dt>
+<dd><p>Base nametable address, scroll Y coordinate MSB. (1 = add 240) </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0211registers_t7incModeE">
+<span id="_CPPv3N5R2C0211registers_t7incModeE"></span><span id="_CPPv2N5R2C0211registers_t7incModeE"></span><span id="R2C02::registers_t::incMode__uint8_t"></span><span class="target" id="structR2C02_1_1registers__t_1a3e9056ceacdcc15fcfca64ecedab2ef7"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">incMode</span></span></span><br /></dt>
+<dd><p>VRAM address increment per CPU R/W of PPUDATA. (0 = add 1, 1 = add 32). </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0211registers_t13spriteAddressE">
+<span id="_CPPv3N5R2C0211registers_t13spriteAddressE"></span><span id="_CPPv2N5R2C0211registers_t13spriteAddressE"></span><span id="R2C02::registers_t::spriteAddress__uint8_t"></span><span class="target" id="structR2C02_1_1registers__t_1a550c8345a91385961f5d5566e42de988"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">spriteAddress</span></span></span><br /></dt>
+<dd><p>Sprite pattern table address for 8x8 sprites. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0211registers_t17backgroundAddressE">
+<span id="_CPPv3N5R2C0211registers_t17backgroundAddressE"></span><span id="_CPPv2N5R2C0211registers_t17backgroundAddressE"></span><span id="R2C02::registers_t::backgroundAddress__uint8_t"></span><span class="target" id="structR2C02_1_1registers__t_1a3eef6474d5afd9a85ab099d065036f9b"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">backgroundAddress</span></span></span><br /></dt>
+<dd><p>Background pattern table address. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0211registers_t10spriteSizeE">
+<span id="_CPPv3N5R2C0211registers_t10spriteSizeE"></span><span id="_CPPv2N5R2C0211registers_t10spriteSizeE"></span><span id="R2C02::registers_t::spriteSize__uint8_t"></span><span class="target" id="structR2C02_1_1registers__t_1a7c4c9bfbd140c4161ed40b15fd4142f4"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">spriteSize</span></span></span><br /></dt>
+<dd><p>Sprite size (8x8, 8x16). </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0211registers_t11masterSlaveE">
+<span id="_CPPv3N5R2C0211registers_t11masterSlaveE"></span><span id="_CPPv2N5R2C0211registers_t11masterSlaveE"></span><span id="R2C02::registers_t::masterSlave__uint8_t"></span><span class="target" id="structR2C02_1_1registers__t_1a294433fd825d9686ab3e5be48fa7cc2f"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">masterSlave</span></span></span><br /></dt>
+<dd><p>PPU master/slave. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0211registers_t3nmiE">
+<span id="_CPPv3N5R2C0211registers_t3nmiE"></span><span id="_CPPv2N5R2C0211registers_t3nmiE"></span><span id="R2C02::registers_t::nmi__uint8_t"></span><span class="target" id="structR2C02_1_1registers__t_1a124bcb1e943921e29845d48bf66b7b38"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmi</span></span></span><br /></dt>
+<dd><p>Generate NMI on vblank. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0211registers_t4bitsE">
+<span id="_CPPv3N5R2C0211registers_t4bitsE"></span><span id="_CPPv2N5R2C0211registers_t4bitsE"></span><span class="target" id="structR2C02_1_1registers__t_1affc4109dda19dc88f13305cbad49e3d0"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><a class="reference internal" href="classR2C02.html#_CPPv45R2C02" title="R2C02"><span class="n"><span class="pre">R2C02</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="classR2C02.html#_CPPv4N5R2C0211registers_tE" title="R2C02::registers_t"><span class="n"><span class="pre">registers_t</span></span></a><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">[anonymous]</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">[anonymous]</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">bits</span></span></span><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0211registers_t4dataE">
+<span id="_CPPv3N5R2C0211registers_t4dataE"></span><span id="_CPPv2N5R2C0211registers_t4dataE"></span><span id="R2C02::registers_t::data__uint8_t"></span><span class="target" id="structR2C02_1_1registers__t_1af140f3b9a2b9fc7b6444f364df43c33c"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">data</span></span></span><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0211registers_t7ppuctrlE">
+<span id="_CPPv3N5R2C0211registers_t7ppuctrlE"></span><span id="_CPPv2N5R2C0211registers_t7ppuctrlE"></span><span class="target" id="structR2C02_1_1registers__t_1abb82cb86a4cd72a65a85e2396f8da667"></span><span class="k"><span class="pre">union</span></span><span class="w"> </span><a class="reference internal" href="classR2C02.html#_CPPv45R2C02" title="R2C02"><span class="n"><span class="pre">R2C02</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="classR2C02.html#_CPPv4N5R2C0211registers_tE" title="R2C02::registers_t"><span class="n"><span class="pre">registers_t</span></span></a><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">[anonymous]</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ppuctrl</span></span></span><br /></dt>
+<dd><p>Controller (0x2000) - PPUCTRL Access: write Controls PPU operation. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0211registers_t9grayscaleE">
+<span id="_CPPv3N5R2C0211registers_t9grayscaleE"></span><span id="_CPPv2N5R2C0211registers_t9grayscaleE"></span><span id="R2C02::registers_t::grayscale__uint8_t"></span><span class="target" id="structR2C02_1_1registers__t_1a8e2bd8851611dc2173b24795dca57f8f"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">grayscale</span></span></span><br /></dt>
+<dd><p>Enable grayscale. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0211registers_t18showBackgroundLeftE">
+<span id="_CPPv3N5R2C0211registers_t18showBackgroundLeftE"></span><span id="_CPPv2N5R2C0211registers_t18showBackgroundLeftE"></span><span id="R2C02::registers_t::showBackgroundLeft__uint8_t"></span><span class="target" id="structR2C02_1_1registers__t_1abcf611b0b06d1f7aef8e26a73ddebf64"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">showBackgroundLeft</span></span></span><br /></dt>
+<dd><p>Show background in leftmost 8 pixels. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0211registers_t15showSpritesLeftE">
+<span id="_CPPv3N5R2C0211registers_t15showSpritesLeftE"></span><span id="_CPPv2N5R2C0211registers_t15showSpritesLeftE"></span><span id="R2C02::registers_t::showSpritesLeft__uint8_t"></span><span class="target" id="structR2C02_1_1registers__t_1a9c460df4b11e2b9a1f6f3547507065f3"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">showSpritesLeft</span></span></span><br /></dt>
+<dd><p>Show sprites in leftmost 8 pixels. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0211registers_t14showBackgroundE">
+<span id="_CPPv3N5R2C0211registers_t14showBackgroundE"></span><span id="_CPPv2N5R2C0211registers_t14showBackgroundE"></span><span id="R2C02::registers_t::showBackground__uint8_t"></span><span class="target" id="structR2C02_1_1registers__t_1a8d54779f2e7b30af5c409e93c539cc47"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">showBackground</span></span></span><br /></dt>
+<dd><p>Show bg. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0211registers_t11showSpritesE">
+<span id="_CPPv3N5R2C0211registers_t11showSpritesE"></span><span id="_CPPv2N5R2C0211registers_t11showSpritesE"></span><span id="R2C02::registers_t::showSprites__uint8_t"></span><span class="target" id="structR2C02_1_1registers__t_1a75381177dfb748b69a0af9efdddde681"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">showSprites</span></span></span><br /></dt>
+<dd><p>Show sprites. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0211registers_t4eRedE">
+<span id="_CPPv3N5R2C0211registers_t4eRedE"></span><span id="_CPPv2N5R2C0211registers_t4eRedE"></span><span id="R2C02::registers_t::eRed__uint8_t"></span><span class="target" id="structR2C02_1_1registers__t_1ac7dbd084f79e183070649af07f329769"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">eRed</span></span></span><br /></dt>
+<dd><p>Enhance red. (Green on PAL/Dendy.) </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0211registers_t6eGreenE">
+<span id="_CPPv3N5R2C0211registers_t6eGreenE"></span><span id="_CPPv2N5R2C0211registers_t6eGreenE"></span><span id="R2C02::registers_t::eGreen__uint8_t"></span><span class="target" id="structR2C02_1_1registers__t_1a5710f052f6953e6a056caf8cae3e20d3"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">eGreen</span></span></span><br /></dt>
+<dd><p>Enhance green. (Red on PAL/Dendy.) </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0211registers_t5eBlueE">
+<span id="_CPPv3N5R2C0211registers_t5eBlueE"></span><span id="_CPPv2N5R2C0211registers_t5eBlueE"></span><span id="R2C02::registers_t::eBlue__uint8_t"></span><span class="target" id="structR2C02_1_1registers__t_1a3b52e050e10ee516e1a8cf80ab185a80"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">eBlue</span></span></span><br /></dt>
+<dd><p>Enhance blue. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp">
+<span class="target" id="structR2C02_1_1registers__t_1a2b2b1857e75eed84421211d1167bf11d"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><a class="reference internal" href="classR2C02.html#_CPPv45R2C02" title="R2C02"><span class="n"><span class="pre">R2C02</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="classR2C02.html#_CPPv4N5R2C0211registers_tE" title="R2C02::registers_t"><span class="n"><span class="pre">registers_t</span></span></a><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">[anonymous]</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">[anonymous]</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">bits</span></span></span><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0211registers_t7ppumaskE">
+<span id="_CPPv3N5R2C0211registers_t7ppumaskE"></span><span id="_CPPv2N5R2C0211registers_t7ppumaskE"></span><span class="target" id="structR2C02_1_1registers__t_1a65a0f988e9237131f05c7cb135563a27"></span><span class="k"><span class="pre">union</span></span><span class="w"> </span><a class="reference internal" href="classR2C02.html#_CPPv45R2C02" title="R2C02"><span class="n"><span class="pre">R2C02</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="classR2C02.html#_CPPv4N5R2C0211registers_tE" title="R2C02::registers_t"><span class="n"><span class="pre">registers_t</span></span></a><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">[anonymous]</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ppumask</span></span></span><br /></dt>
+<dd><p>Mask register (0x2001) - PPUMASK Access: write Controls the rendering of sprites and backgrounds and color effects. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0211registers_t7paddingE">
+<span id="_CPPv3N5R2C0211registers_t7paddingE"></span><span id="_CPPv2N5R2C0211registers_t7paddingE"></span><span id="R2C02::registers_t::padding__uint8_t"></span><span class="target" id="structR2C02_1_1registers__t_1a50640402a8b41e0506b5c2ff8fd148c2"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">padding</span></span></span><br /></dt>
+<dd><p>Least sig. bits of previous value written to PPU register. Some Vs. systems return a constant that game checks. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0211registers_t14spriteOverflowE">
+<span id="_CPPv3N5R2C0211registers_t14spriteOverflowE"></span><span id="_CPPv2N5R2C0211registers_t14spriteOverflowE"></span><span id="R2C02::registers_t::spriteOverflow__uint8_t"></span><span class="target" id="structR2C02_1_1registers__t_1a9fa92630bce187417c88e4af0435c058"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">spriteOverflow</span></span></span><br /></dt>
+<dd><p>Buggy detection of the existence of more than 8 sprites on a scanline. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0211registers_t13spriteZeroHitE">
+<span id="_CPPv3N5R2C0211registers_t13spriteZeroHitE"></span><span id="_CPPv2N5R2C0211registers_t13spriteZeroHitE"></span><span id="R2C02::registers_t::spriteZeroHit__uint8_t"></span><span class="target" id="structR2C02_1_1registers__t_1adc3859ee4faf2d605b646634d509790a"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">spriteZeroHit</span></span></span><br /></dt>
+<dd><p>Nonzero pixel of sprite 0 overlaps nonzero background. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0211registers_t6vBlankE">
+<span id="_CPPv3N5R2C0211registers_t6vBlankE"></span><span id="_CPPv2N5R2C0211registers_t6vBlankE"></span><span id="R2C02::registers_t::vBlank__uint8_t"></span><span class="target" id="structR2C02_1_1registers__t_1a22748a26cbb54af173440565f17bca30"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">vBlank</span></span></span><br /></dt>
+<dd><p>True if vblank started, cleared after reading this register. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp">
+<span class="target" id="structR2C02_1_1registers__t_1a703af9f38601e62766bd6613647e3705"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><a class="reference internal" href="classR2C02.html#_CPPv45R2C02" title="R2C02"><span class="n"><span class="pre">R2C02</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="classR2C02.html#_CPPv4N5R2C0211registers_tE" title="R2C02::registers_t"><span class="n"><span class="pre">registers_t</span></span></a><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">[anonymous]</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">[anonymous]</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">bits</span></span></span><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0211registers_t9ppustatusE">
+<span id="_CPPv3N5R2C0211registers_t9ppustatusE"></span><span id="_CPPv2N5R2C0211registers_t9ppustatusE"></span><span class="target" id="structR2C02_1_1registers__t_1a2dfdc5bcf94e307fd7c7047ef429e303"></span><span class="k"><span class="pre">union</span></span><span class="w"> </span><a class="reference internal" href="classR2C02.html#_CPPv45R2C02" title="R2C02"><span class="n"><span class="pre">R2C02</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="classR2C02.html#_CPPv4N5R2C0211registers_tE" title="R2C02::registers_t"><span class="n"><span class="pre">registers_t</span></span></a><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">[anonymous]</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ppustatus</span></span></span><br /></dt>
+<dd><p>Status register (0x2002) - PPUSTATUS Access: read Reflects the state of the PPU. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0211registers_t4byteE">
+<span id="_CPPv3N5R2C0211registers_t4byteE"></span><span id="_CPPv2N5R2C0211registers_t4byteE"></span><span id="R2C02::registers_t::byte__uint8_t"></span><span class="target" id="structR2C02_1_1registers__t_1a83f1d2d2a64a4c2d53e90ef66b8e86cf"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">byte</span></span></span><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0211registers_t5indexE">
+<span id="_CPPv3N5R2C0211registers_t5indexE"></span><span id="_CPPv2N5R2C0211registers_t5indexE"></span><span id="R2C02::registers_t::index__uint8_t"></span><span class="target" id="structR2C02_1_1registers__t_1a840ce8e138f809674c8d5cf1f0c7429d"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">index</span></span></span><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp">
+<span class="target" id="structR2C02_1_1registers__t_1a07c70cacb41fc334cd877a7f2767ebb1"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><a class="reference internal" href="classR2C02.html#_CPPv45R2C02" title="R2C02"><span class="n"><span class="pre">R2C02</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="classR2C02.html#_CPPv4N5R2C0211registers_tE" title="R2C02::registers_t"><span class="n"><span class="pre">registers_t</span></span></a><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">[anonymous]</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">[anonymous]</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">bits</span></span></span><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0211registers_t10oamAddressE">
+<span id="_CPPv3N5R2C0211registers_t10oamAddressE"></span><span id="_CPPv2N5R2C0211registers_t10oamAddressE"></span><span class="target" id="structR2C02_1_1registers__t_1aa5948da59abacf21f1e59c2014cdfb30"></span><span class="k"><span class="pre">union</span></span><span class="w"> </span><a class="reference internal" href="classR2C02.html#_CPPv45R2C02" title="R2C02"><span class="n"><span class="pre">R2C02</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="classR2C02.html#_CPPv4N5R2C0211registers_tE" title="R2C02::registers_t"><span class="n"><span class="pre">registers_t</span></span></a><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">[anonymous]</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">oamAddress</span></span></span><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="structR2C02_1_1internalRegisters__t.html" class="btn btn-neutral float-left" title="Struct R2C02::internalRegisters_t" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="structRGBPixel.html" class="btn btn-neutral float-right" title="Struct RGBPixel" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023 Ondrej Golasowski.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

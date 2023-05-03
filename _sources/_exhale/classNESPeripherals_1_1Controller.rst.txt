@@ -1,0 +1,23 @@
+.. _exhale_class_classNESPeripherals_1_1Controller:
+
+Class NESPeripherals::Controller
+================================
+
+- Defined in :ref:`file__home_runner_work_use_use_include_components_NESPeripherals.h`
+
+
+Nested Relationships
+--------------------
+
+This class is a nested type of :ref:`exhale_class_classNESPeripherals`.
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: NESPeripherals::Controller
+   :project: Universal System Emulator
+   :members:
+   :protected-members:
+   :undoc-members:

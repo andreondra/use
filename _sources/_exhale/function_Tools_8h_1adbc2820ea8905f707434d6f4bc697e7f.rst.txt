@@ -1,0 +1,14 @@
+.. _exhale_function_Tools_8h_1adbc2820ea8905f707434d6f4bc697e7f:
+
+Function USETools::renderScalableBitmap
+=======================================
+
+- Defined in :ref:`file__home_runner_work_use_use_include_Tools.h`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: USETools::renderScalableBitmap(const std::vector<std::vector<RGBPixel>>&, float)
+   :project: Universal System Emulator

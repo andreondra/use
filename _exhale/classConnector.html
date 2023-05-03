@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Class Connector &mdash; Universal System Emulator  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+    <link rel="canonical" href="./_exhale/classConnector.html" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Class DataPort" href="classDataPort.html" />
+    <link rel="prev" title="Class Component" href="classComponent.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Universal System Emulator
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Universal System Emulator documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_manual.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_manual.html">Developer’s Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contr_manual.html">Contributor’s Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="api_docs_root.html">API docs</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="api_docs_root.html#class-hierarchy">Class Hierarchy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api_docs_root.html#file-hierarchy">File Hierarchy</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="api_docs_root.html#full-api">Full API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="api_docs_root.html#namespaces">Namespaces</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="api_docs_root.html#classes-and-structs">Classes and Structs</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="structAddressRange.html">Struct AddressRange</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structAPU_1_1apu__envelope.html">Struct APU::apu_envelope</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structAPU_1_1apu__lengthCounter.html">Struct APU::apu_lengthCounter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structAPU_1_1apu__noise.html">Struct APU::apu_noise</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structAPU_1_1apu__pulse.html">Struct APU::apu_pulse</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structAPU_1_1apu__triangle.html">Struct APU::apu_triangle</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structDataInterface.html">Struct DataInterface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structEmulatorWindow.html">Struct EmulatorWindow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structGamepak_1_1gamepakParams.html">Struct Gamepak::gamepakParams</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structMOS6502_1_1instruction__t.html">Struct MOS6502::instruction_t</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structMOS6502_1_1status__flags__t.html">Struct MOS6502::status_flags_t</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structR2C02_1_1internalRegisters__t.html">Struct R2C02::internalRegisters_t</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structR2C02_1_1registers__t.html">Struct R2C02::registers_t</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structRGBPixel.html">Struct RGBPixel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structSignalInterface.html">Struct SignalInterface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structSoundStereoFrame.html">Struct SoundStereoFrame</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAPU.html">Class APU</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classBare6502.html">Class Bare6502</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classBus.html">Class Bus</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classComponent.html">Class Component</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Class Connector</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classDataPort.html">Class DataPort</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classEmulator.html">Class Emulator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classGamepak.html">Class Gamepak</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classMapper.html">Class Mapper</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classMapper000.html">Class Mapper000</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classMapper001.html">Class Mapper001</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classMemory.html">Class Memory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classMOS6502.html">Class MOS6502</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classNES.html">Class NES</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classNESPeripherals.html">Class NESPeripherals</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classNESPeripherals_1_1Controller.html">Class NESPeripherals::Controller</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classPort.html">Class Port</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classR2C02.html">Class R2C02</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classRP2A03.html">Class RP2A03</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classSignalPort.html">Class SignalPort</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classSound.html">Class Sound</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classSystem.html">Class System</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classTrigger.html">Class Trigger</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api_docs_root.html#enums">Enums</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_docs_root.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_docs_root.html#typedefs">Typedefs</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Universal System Emulator</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="api_docs_root.html">API docs</a></li>
+      <li class="breadcrumb-item active">Class Connector</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/_exhale/classConnector.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="class-connector">
+<span id="exhale-class-classconnector"></span><h1>Class Connector<a class="headerlink" href="#class-connector" title="Permalink to this headline"></a></h1>
+<ul class="simple">
+<li><p>Defined in <a class="reference internal" href="file__home_runner_work_use_use_include_Connector.h.html#file-home-runner-work-use-use-include-connector-h"><span class="std std-ref">File Connector.h</span></a></p></li>
+</ul>
+<section id="class-documentation">
+<h2>Class Documentation<a class="headerlink" href="#class-documentation" title="Permalink to this headline"></a></h2>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv49Connector">
+<span id="_CPPv39Connector"></span><span id="_CPPv29Connector"></span><span id="Connector"></span><span class="target" id="classConnector"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Connector</span></span></span><a class="headerlink" href="#_CPPv49Connector" title="Permalink to this definition"></a><br /></dt>
+<dd><p>An inter-component connection abstraction mechanism. <a class="reference internal" href="#classConnector"><span class="std std-ref">Connector</span></a> is exposed by a controlled <a class="reference internal" href="classComponent.html#classComponent"><span class="std std-ref">Component</span></a> and passed to a controlling <a class="reference internal" href="classComponent.html#classComponent"><span class="std std-ref">Component</span></a>’s <a class="reference internal" href="classPort.html#classPort"><span class="std std-ref">Port</span></a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It is meant to be passed around using a smart observing pointer, such as std::weak_ptr to keep track of “connections”. </p>
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N9Connector9ConnectorEv">
+<span id="_CPPv3N9Connector9ConnectorEv"></span><span id="_CPPv2N9Connector9ConnectorEv"></span><span id="Connector::Connector"></span><span class="target" id="classConnector_1ac71596d61d09146d79a6f748ab439e06"></span><span class="sig-name descname"><span class="n"><span class="pre">Connector</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">default</span></span><a class="headerlink" href="#_CPPv4N9Connector9ConnectorEv" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N9Connector9ConnectorE13DataInterface">
+<span id="_CPPv3N9Connector9ConnectorE13DataInterface"></span><span id="_CPPv2N9Connector9ConnectorE13DataInterface"></span><span id="Connector::Connector__DataInterface"></span><span class="target" id="classConnector_1aba7ed9a48cb4f1b394e0d7aeda37b094"></span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Connector</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="structDataInterface.html#_CPPv413DataInterface" title="DataInterface"><span class="n"><span class="pre">DataInterface</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">interface</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9Connector9ConnectorE13DataInterface" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N9Connector9ConnectorE15SignalInterface">
+<span id="_CPPv3N9Connector9ConnectorE15SignalInterface"></span><span id="_CPPv2N9Connector9ConnectorE15SignalInterface"></span><span id="Connector::Connector__SignalInterface"></span><span class="target" id="classConnector_1a7d5862d4f5690cd591fd8e11662ed9b2"></span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Connector</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="structSignalInterface.html#_CPPv415SignalInterface" title="SignalInterface"><span class="n"><span class="pre">SignalInterface</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">interface</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9Connector9ConnectorE15SignalInterface" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK9Connector16hasDataInterfaceEv">
+<span id="_CPPv3NK9Connector16hasDataInterfaceEv"></span><span id="_CPPv2NK9Connector16hasDataInterfaceEv"></span><span id="Connector::hasDataInterfaceC"></span><span class="target" id="classConnector_1a1c9705ed63fe624422d0fb139ed1fd3f"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">hasDataInterface</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK9Connector16hasDataInterfaceEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Check whether the <a class="reference internal" href="#classConnector"><span class="std std-ref">Connector</span></a> contains a data interface. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>true If there is a data interface. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK9Connector18hasSignalInterfaceEv">
+<span id="_CPPv3NK9Connector18hasSignalInterfaceEv"></span><span id="_CPPv2NK9Connector18hasSignalInterfaceEv"></span><span id="Connector::hasSignalInterfaceC"></span><span class="target" id="classConnector_1a9cda6b7fc5a7b537dad0d4e5e7071be6"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">hasSignalInterface</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK9Connector18hasSignalInterfaceEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Check whether the <a class="reference internal" href="#classConnector"><span class="std std-ref">Connector</span></a> contains a signal interface. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>true If there is a signal interface. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N9Connector16getDataInterfaceEv">
+<span id="_CPPv3N9Connector16getDataInterfaceEv"></span><span id="_CPPv2N9Connector16getDataInterfaceEv"></span><span id="Connector::getDataInterface"></span><span class="target" id="classConnector_1aa3c14f4f4519892afe1658b0a3fb4da8"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="structDataInterface.html#_CPPv413DataInterface" title="DataInterface"><span class="n"><span class="pre">DataInterface</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">getDataInterface</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9Connector16getDataInterfaceEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Get data interface reference. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Throws</dt>
+<dd class="field-odd"><p><span><span class="cpp-expr sig sig-inline cpp"><span class="n">std</span><span class="p">::</span><span class="n">logic_error</span></span></span> – There is not data interface stored. </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Data interface. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N9Connector18getSignalInterfaceEv">
+<span id="_CPPv3N9Connector18getSignalInterfaceEv"></span><span id="_CPPv2N9Connector18getSignalInterfaceEv"></span><span id="Connector::getSignalInterface"></span><span class="target" id="classConnector_1a5bb010e6d2592b24fd7c680a35cee626"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="structSignalInterface.html#_CPPv415SignalInterface" title="SignalInterface"><span class="n"><span class="pre">SignalInterface</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">getSignalInterface</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9Connector18getSignalInterfaceEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Get signal interface reference. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Throws</dt>
+<dd class="field-odd"><p><span><span class="cpp-expr sig sig-inline cpp"><span class="n">std</span><span class="p">::</span><span class="n">logic_error</span></span></span> – There is not signal interface stored. </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Signal interface. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N9Connector12setInterfaceE13DataInterface">
+<span id="_CPPv3N9Connector12setInterfaceE13DataInterface"></span><span id="_CPPv2N9Connector12setInterfaceE13DataInterface"></span><span id="Connector::setInterface__DataInterface"></span><span class="target" id="classConnector_1acde230adc90aff792f6fa012fdf3dc2e"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setInterface</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="structDataInterface.html#_CPPv413DataInterface" title="DataInterface"><span class="n"><span class="pre">DataInterface</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">interface</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9Connector12setInterfaceE13DataInterface" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Store a data interface. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>interface</strong> – Data interface to store. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N9Connector12setInterfaceE15SignalInterface">
+<span id="_CPPv3N9Connector12setInterfaceE15SignalInterface"></span><span id="_CPPv2N9Connector12setInterfaceE15SignalInterface"></span><span id="Connector::setInterface__SignalInterface"></span><span class="target" id="classConnector_1a9fcc6f172bfbb11986d5ddf02e1cda00"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setInterface</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="structSignalInterface.html#_CPPv415SignalInterface" title="SignalInterface"><span class="n"><span class="pre">SignalInterface</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">interface</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9Connector12setInterfaceE15SignalInterface" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Store a signal interface. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>interface</strong> – Signal interface to store. </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="classComponent.html" class="btn btn-neutral float-left" title="Class Component" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="classDataPort.html" class="btn btn-neutral float-right" title="Class DataPort" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023 Ondrej Golasowski.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

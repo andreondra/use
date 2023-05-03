@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Developer’s Guide &mdash; Universal System Emulator  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="_static/collapsible-lists/css/tree_view.css" type="text/css" />
+    <link rel="canonical" href="./dev_manual.html" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Contributor’s Guide" href="contr_manual.html" />
+    <link rel="prev" title="User Manual" href="user_manual.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Universal System Emulator
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index.html">Universal System Emulator documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_manual.html">User Manual</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Developer’s Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#internal-classes">Internal classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#component">Component</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#creating-your-own-component">Creating your own component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#keyboard-input-handling">Keyboard input handling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#playing-sounds">Playing sounds</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#port-and-connector">Port and Connector</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#port">Port</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#connector">Connector</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#system">System</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#interconnecting-the-components">Interconnecting the components</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#adding-the-system-to-the-plaform">Adding the system to the plaform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#that-s-it">🎉 THAT’S IT 🎉</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contr_manual.html">Contributor’s Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_exhale/api_docs_root.html">API docs</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Universal System Emulator</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Developer’s Guide</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/dev_manual.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="developer-s-guide">
+<h1>Developer’s Guide<a class="headerlink" href="#developer-s-guide" title="Permalink to this headline"></a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<p>This guide describes the structure and inner workings of the platform. After reading this guide, you
+will be able to create your own components and systems.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Class names are also links to their respective documentation; just click 🔘👈 them to be redirected. Or you can check
+out the <a class="reference internal" href="_exhale/api_docs_root.html#api-docs"><span class="std std-ref">API docs</span></a> yourself. The code documentation is always auto-generated from the latest commit to the main branch.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you understand Czech, you can read a <a class="reference external" href="https://github.com/andreondra/bachelor-thesis">bachelor’s thesis</a>
+for which the project was developed and describes not only the project, but also a matter of emulation
+and the NES console in a great depth.</p>
+</div>
+<p>USE as a platform consists of multiple classes.</p>
+<section id="internal-classes">
+<h2>Internal classes<a class="headerlink" href="#internal-classes" title="Permalink to this headline"></a></h2>
+<p>The main class represeting whole application is <a class="reference internal" href="_exhale/classEmulator.html#_CPPv48Emulator" title="Emulator"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">Emulator</span></code></a>.
+It takes care of configuring the rendering backend and other app configurations, renders global window,
+loads a chosen <a class="reference internal" href="_exhale/classSystem.html#_CPPv46System" title="System"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">System</span></code></a>, configures sound output (class <a class="reference internal" href="_exhale/classSound.html#_CPPv45Sound" title="Sound"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">Sound</span></code></a>), runs the emulation and
+passes sound output from <a class="reference internal" href="_exhale/classSystem.html#_CPPv46System" title="System"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">System</span></code></a> to <a class="reference internal" href="_exhale/classSound.html#_CPPv45Sound" title="Sound"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">Sound</span></code></a>. Class <a class="reference internal" href="_exhale/classSound.html#_CPPv45Sound" title="Sound"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">Sound</span></code></a> uses miniaudio library
+and handles all of the sound processing, including buffering and low-pass filtering – you do not have to worry about anything.
+There are also some tools included in the Tools.cpp file. These were the platform’s “internal” classes/files.</p>
+</section>
+<section id="component">
+<h2>Component<a class="headerlink" href="#component" title="Permalink to this headline"></a></h2>
+<p>The most important class, where implementation of all the emulated components takes place, is the <a class="reference internal" href="_exhale/classComponent.html#_CPPv49Component" title="Component"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">Component</span></code></a>.
+This abstract class is a common interface for all of the components – everything is a component: bus, memory, CPU…
+Before anything else, you usually want to implement a component, see <a class="reference internal" href="#creating-your-own-component"><span class="std std-ref">Creating your own component</span></a>.</p>
+<p>Every component usually needs to communicate with other components, so you will need to define an interface. Luckily for you,
+universal communication interface for every component is already present in the platform. The interface consists of
+two parts: <a class="reference internal" href="_exhale/classPort.html#_CPPv44Port" title="Port"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">Port</span></code></a> and <a class="reference internal" href="_exhale/classConnector.html#_CPPv49Connector" title="Connector"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">Connector</span></code></a>. See <a class="reference internal" href="#port-and-connector"><span class="std std-ref">Port and Connector</span></a> to understand how they work.</p>
+<section id="creating-your-own-component">
+<h3>Creating your own component<a class="headerlink" href="#creating-your-own-component" title="Permalink to this headline"></a></h3>
+<p>To create your own component, you need to inherit from the <a class="reference internal" href="_exhale/classComponent.html#_CPPv49Component" title="Component"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">Component</span></code></a> class. Do not forget to
+separate class declaration (belongs to header file) and definitions (belongs to cpp file). Then you need to implement
+these three methods:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="_exhale/classComponent.html#_CPPv4N9Component4initEv" title="Component::init"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">Component::init()</span></code></a>: this method is usually called on startup or reset of a system. Define a proper default power-on state of your component here.</p></li>
+<li><p><a class="reference internal" href="_exhale/classComponent.html#_CPPv4N9Component7getGUIsEv" title="Component::getGUIs"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">Component::getGUIs()</span></code></a>: in this method you implement a GUI for your component using Dear ImGui library. Do not worry, it is very easy.</p></li>
+<li><p>A constructor of your class. There you define ports and connectors, see <a class="reference internal" href="#port-and-connector"><span class="std std-ref">Port and Connector</span></a> and set a name your component: <code class="docutils literal notranslate"><span class="pre">m_deviceName</span> <span class="pre">=</span> <span class="pre">&quot;myName&quot;</span></code></p></li>
+</ul>
+<p>Optionally, you may override other methods, see <a class="reference internal" href="_exhale/classComponent.html#_CPPv49Component" title="Component"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">Component</span></code></a> to find out which are available. You may be also
+interested in <a class="reference internal" href="#keyboard-input-handling"><span class="std std-ref">Keyboard input handling</span></a> and <a class="reference internal" href="#playing-sounds"><span class="std std-ref">Playing sounds</span></a>.</p>
+<p>You can use this template for your component’s class declaration. Do not hesitate to check other components for inspiration.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">myComponent</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Component</span><span class="p">{</span>
+
+<span class="k">private</span><span class="o">:</span>
+<span class="w">    </span><span class="c1">// There you put your ports and internal data.</span>
+
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="n">myComponent</span><span class="p">(</span><span class="cm">/*here you can put some parameters*/</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Power-on state of your component is implemented here (resetting registers, memories...).</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">init</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// GUI rendering is defined here.</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">EmulatorWindow</span><span class="o">&gt;</span><span class="w"> </span><span class="n">getGUIs</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>And here’s a template for <a class="reference internal" href="_exhale/classComponent.html#_CPPv4N9Component7getGUIsEv" title="Component::getGUIs"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">Component::getGUIs()</span></code></a> method:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">EmulatorWindow</span><span class="o">&gt;</span><span class="w"> </span><span class="n">myComponent</span><span class="o">::</span><span class="n">getGUIs</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">function</span><span class="o">&lt;</span><span class="kt">void</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="o">&gt;</span><span class="w"> </span><span class="n">myWindow1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="k">this</span><span class="p">](){</span>
+
+<span class="w">        </span><span class="c1">// Window contents</span>
+<span class="w">        </span><span class="c1">// ===================================================================</span>
+<span class="w">        </span><span class="n">ImGui</span><span class="o">::</span><span class="n">SeparatorText</span><span class="p">(</span><span class="s">&quot;Registers&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">ImGui</span><span class="o">::</span><span class="n">Text</span><span class="p">(</span><span class="s">&quot;Register 1: 0x%x&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">m_reg1</span><span class="p">);</span>
+<span class="w">        </span><span class="n">ImGui</span><span class="o">::</span><span class="n">Text</span><span class="p">(</span><span class="s">&quot;Register 2: 0x%x&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">m_reg2</span><span class="p">);</span>
+<span class="w">        </span><span class="n">ImGui</span><span class="o">::</span><span class="n">Separator</span><span class="p">();</span>
+<span class="w">        </span><span class="n">ImGui</span><span class="o">::</span><span class="n">Checkbox</span><span class="p">(</span><span class="s">&quot;Allow writing&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">m_writingAllowed</span><span class="p">);</span>
+<span class="w">    </span><span class="p">};</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">EmulatorWindow</span><span class="p">{</span>
+<span class="w">                    </span><span class="c1">// This will be shown as a prefix in square brackets: [myComponentName].</span>
+<span class="w">                    </span><span class="c1">// Usually it is a name of your component.</span>
+<span class="w">                    </span><span class="p">.</span><span class="n">category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">m_deviceName</span><span class="p">,</span>
+<span class="w">                    </span><span class="c1">// Title which follows after the prefix.</span>
+<span class="w">                    </span><span class="p">.</span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;myWindow1&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="c1">// Unique ID, you can leave this default.</span>
+<span class="w">                    </span><span class="p">.</span><span class="n">id</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="n">getDeviceID</span><span class="p">(),</span>
+<span class="w">                    </span><span class="c1">// Where do you want your window to be docked. See Types.h for available docks.</span>
+<span class="w">                    </span><span class="p">.</span><span class="n">dock</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">DockSpace</span><span class="o">::</span><span class="n">LEFT</span><span class="p">,</span>
+<span class="w">                    </span><span class="c1">// Pass the rendering lambda you defined above.</span>
+<span class="w">                    </span><span class="p">.</span><span class="n">guiFunction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">myWindow1</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="cm">/*</span>
+<span class="cm">            optionally another EmulatorWindow {...} and another and another...</span>
+<span class="cm">            */</span>
+<span class="w">    </span><span class="p">};</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You can define as many lambdas as you wish, do not forget to add them to the return statement.
+More sophisticated examples are in the components, check for example Memory.cpp to see how to show
+modals and file pickers, or just check out Dear ImGui to see which widgets are available.</p>
+</div>
+</section>
+<section id="keyboard-input-handling">
+<h3>Keyboard input handling<a class="headerlink" href="#keyboard-input-handling" title="Permalink to this headline"></a></h3>
+<p>If your component wants to interact with any keys or gamepad buttons, you need to also override <a class="reference internal" href="_exhale/classComponent.html#_CPPv4N9Component9getInputsEv" title="Component::getInputs"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">Component::getInputs()</span></code></a> method.
+In this function, you return a vector of “actions”. For example, if your components represents a gamepad
+that contains two buttons (left and right), you define two actions:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">ImInputBinder</span><span class="o">::</span><span class="n">action_t</span><span class="o">&gt;</span><span class="w"> </span><span class="n">myComponent</span><span class="o">::</span><span class="n">getInputs</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">ImInputBinder</span><span class="o">::</span><span class="n">action_t</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="p">.</span><span class="n">name_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Left Button&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="p">.</span><span class="n">key</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="n">ImGuiKey_LeftArrow</span><span class="p">,</span>
+<span class="w">            </span><span class="p">.</span><span class="n">pressCallback</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="o">&amp;</span><span class="p">](){</span><span class="w"> </span><span class="n">m_controller</span><span class="p">.</span><span class="n">setLeft</span><span class="p">(</span><span class="nb">true</span><span class="p">);</span><span class="w"> </span><span class="p">},</span>
+<span class="w">            </span><span class="p">.</span><span class="n">releaseCallback</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="o">&amp;</span><span class="p">](){</span><span class="w"> </span><span class="n">m_controller</span><span class="p">.</span><span class="n">setLeft</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span><span class="w"> </span><span class="p">},</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="n">ImInputBinder</span><span class="o">::</span><span class="n">action_t</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="p">.</span><span class="n">name_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Right Button&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="p">.</span><span class="n">key</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="n">ImGuiKey_RightArrow</span><span class="p">,</span>
+<span class="w">            </span><span class="p">.</span><span class="n">pressCallback</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="o">&amp;</span><span class="p">](){</span><span class="w"> </span><span class="n">m_controller</span><span class="p">.</span><span class="n">setRight</span><span class="p">(</span><span class="nb">true</span><span class="p">);</span><span class="w"> </span><span class="p">},</span>
+<span class="w">            </span><span class="p">.</span><span class="n">releaseCallback</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="o">&amp;</span><span class="p">](){</span><span class="w"> </span><span class="n">m_controller</span><span class="p">.</span><span class="n">setRight</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span><span class="w"> </span><span class="p">},</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Assigned buttons can be changed later by the user, which is saved automatically to a configuration file.
+The platform uses <a class="reference external" href="https://github.com/andreondra/ImInputBinder">ImInputBinder</a> library to handle user inputs,
+check it out to find more. Also, keys and buttons are identified by the Dear ImGui’s names, check the
+ImGui’s documentation to find a list of the available keys.</p>
+</div>
+</section>
+<section id="playing-sounds">
+<h3>Playing sounds<a class="headerlink" href="#playing-sounds" title="Permalink to this headline"></a></h3>
+<p>If your component wants to play some sounds, you need to override <a class="reference internal" href="_exhale/classComponent.html#_CPPv4N9Component21getSoundSampleSourcesEv" title="Component::getSoundSampleSources"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">Component::getSoundSampleSources()</span></code></a>.
+This functions returns a vector of functions which return normalized float amplitude value [-1,1] (miniaudio’s <code class="docutils literal notranslate"><span class="pre">ma_format_f32</span></code>)
+for two channels (left and right). If your component has only a mono output, return the same value for both channels.
+Here is an example of the method of a component which has only a single sound source:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">SoundSampleSources</span><span class="w"> </span><span class="nf">myComponent::getSoundSampleSources</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="p">[</span><span class="o">&amp;</span><span class="p">](){</span>
+<span class="w">          </span><span class="n">SoundStereoFrame</span><span class="w"> </span><span class="n">frame</span><span class="w"> </span><span class="p">{</span><span class="n">leftOutput</span><span class="p">(),</span><span class="w"> </span><span class="n">rightOutput</span><span class="p">()};</span>
+<span class="w">          </span><span class="k">return</span><span class="w"> </span><span class="n">frame</span><span class="p">;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">};</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>There can be as many sound sources as you wish, they will be mixed automatically. Note that you
+only need to return two floats, that’s all. All synchronization, buffering and so on will be done automatically as well.
+Just don’t forget to define correct main clock value.</p>
+</div>
+</section>
+</section>
+<section id="port-and-connector">
+<h2>Port and Connector<a class="headerlink" href="#port-and-connector" title="Permalink to this headline"></a></h2>
+<p>When two components communicate, usually there is a component which controls the communication (active) and the other component
+which is communicated with (passive). For example, when a CPU wants to write something to the memory, the CPU is the active one
+and the memory passive. However, if there is for example a button connected directly to the CPU (for example to trigger an interrupt), the button is now the active
+and the CPU is the passive component. To sum up, in a communication, there is always one component (active) which sends something to the other one (passive).</p>
+<section id="port">
+<h3>Port<a class="headerlink" href="#port" title="Permalink to this headline"></a></h3>
+<p>If your component wants to control any other component, you have to provide a <a class="reference internal" href="_exhale/classPort.html#_CPPv44Port" title="Port"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">Port</span></code></a>. In the code you then
+interface with the port, which represents whatever component is connected to the port. To provide a port,
+you usually place a selected type of the port as a data member to your class:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">myComponent</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Component</span><span class="w"> </span><span class="p">{</span>
+<span class="c1">// ...</span>
+<span class="k">private</span><span class="o">:</span>
+<span class="w">    </span><span class="n">DataPort</span><span class="w"> </span><span class="n">m_mainBus</span><span class="p">;</span>
+<span class="w">    </span><span class="n">SignalPort</span><span class="w"> </span><span class="n">m_INT</span><span class="p">;</span>
+<span class="c1">// ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Then to make <em>magic happen</em> you have to place your ports to the internal port map in the constructor:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">myComponent</span><span class="o">::</span><span class="n">myComponent</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">m_ports</span><span class="p">[</span><span class="s">&quot;mainBus&quot;</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">m_mainBus</span><span class="p">;</span>
+<span class="w">    </span><span class="n">m_ports</span><span class="p">[</span><span class="s">&quot;INT&quot;</span><span class="p">]</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">m_INT</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>That it is. Now your component has a platform-compatible interface defined. To use the interface in your code,
+you can use functions which offers your selected port type.</p>
+<p><a class="reference internal" href="_exhale/classDataPort.html#_CPPv48DataPort" title="DataPort"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">DataPort</span></code></a> offers methods for reading and writing the data, <a class="reference internal" href="_exhale/classSignalPort.html#_CPPv410SignalPort" title="SignalPort"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">SignalPort</span></code></a> offers two methods: <a class="reference internal" href="_exhale/classSignalPort.html#_CPPv4N10SignalPort3setEb" title="SignalPort::set"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">SignalPort::set()</span></code></a>
+to set a logical voltage value (high, low) of a pin of a connected device, <a class="reference internal" href="_exhale/classSignalPort.html#_CPPv4N10SignalPort4sendEv" title="SignalPort::send"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">SignalPort::send()</span></code></a> is used to send a simple pulse (where a specific value
+is not important, e.g. clock pulses). Check classes <a class="reference internal" href="_exhale/classDataPort.html#_CPPv48DataPort" title="DataPort"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">DataPort</span></code></a> and <a class="reference internal" href="_exhale/classSignalPort.html#_CPPv410SignalPort" title="SignalPort"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">SignalPort</span></code></a> for signatures of available methods.</p>
+</section>
+<section id="connector">
+<h3>Connector<a class="headerlink" href="#connector" title="Permalink to this headline"></a></h3>
+<p>If you want to be your component controlled by any other, you have to specify a <a class="reference internal" href="_exhale/classConnector.html#_CPPv49Connector" title="Connector"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">Connector</span></code></a>. Connectors
+are usually declared and defined directly in the constructor of your component. There are two types of
+interfaces for your connector: <a class="reference internal" href="_exhale/structDataInterface.html#_CPPv413DataInterface" title="DataInterface"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">DataInterface</span></code></a> and <a class="reference internal" href="_exhale/structSignalInterface.html#_CPPv415SignalInterface" title="SignalInterface"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">SignalInterface</span></code></a>. Depending on chosen interface
+the connector will be compatible with different port types:</p>
+<table class="colwidths-given docutils align-default" id="id1">
+<caption><span class="caption-text">Connector interface and Port compabitility</span><a class="headerlink" href="#id1" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Connector interface</p></th>
+<th class="head"><p>Port</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="_exhale/structDataInterface.html#_CPPv413DataInterface" title="DataInterface"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">DataInterface</span></code></a></p></td>
+<td><p><a class="reference internal" href="_exhale/classDataPort.html#_CPPv48DataPort" title="DataPort"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">DataPort</span></code></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_exhale/structSignalInterface.html#_CPPv415SignalInterface" title="SignalInterface"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">SignalInterface</span></code></a></p></td>
+<td><p><a class="reference internal" href="_exhale/classSignalPort.html#_CPPv410SignalPort" title="SignalPort"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">SignalPort</span></code></a></p></td>
+</tr>
+</tbody>
+</table>
+<p>Here are some examples. First a demonstration of <a class="reference internal" href="_exhale/structSignalInterface.html#_CPPv415SignalInterface" title="SignalInterface"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">SignalInterface</span></code></a>.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">myComponent</span><span class="o">::</span><span class="n">myComponent</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">     </span><span class="n">m_connectors</span><span class="p">[</span><span class="s">&quot;myConnector1&quot;</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">Connector</span><span class="o">&gt;</span><span class="p">(</span><span class="n">SignalInterface</span><span class="p">{</span>
+<span class="w">         </span><span class="p">.</span><span class="n">send</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="k">this</span><span class="p">]()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">             </span><span class="c1">// Do something when someone sends a pulse.</span>
+<span class="w">         </span><span class="p">},</span>
+<span class="w">         </span><span class="p">.</span><span class="n">set</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="k">this</span><span class="p">](</span><span class="kt">bool</span><span class="w"> </span><span class="n">active</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">             </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">active</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                 </span><span class="c1">// Do something when someone sets a pin value to 1 (high).</span>
+<span class="w">             </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                 </span><span class="c1">// Do something when someone sets a pin value to 0 (low).</span>
+<span class="w">             </span><span class="p">}</span>
+<span class="w">         </span><span class="p">}</span>
+<span class="w">     </span><span class="p">});</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>As you can see, <a class="reference internal" href="_exhale/structSignalInterface.html#_CPPv415SignalInterface" title="SignalInterface"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">SignalInterface</span></code></a> offers two methods. Method <a class="reference internal" href="_exhale/structSignalInterface.html#_CPPv4N15SignalInterface3setE" title="SignalInterface::set"><code class="xref cpp cpp-member docutils literal notranslate"><span class="pre">SignalInterface::set</span></code></a> is meant to be used to
+set a logic level of a certain pin. Method <a class="reference internal" href="_exhale/structSignalInterface.html#_CPPv4N15SignalInterface4sendE" title="SignalInterface::send"><code class="xref cpp cpp-member docutils literal notranslate"><span class="pre">SignalInterface::send</span></code></a> is meant to send only a pulse of a “truthy” logic value where you
+only need to trigger an action and specific value is not important (e.g. clock pins). You can choose to implement
+only one method and leave the second unimplemented.</p>
+<p>Now an example of <a class="reference internal" href="_exhale/structDataInterface.html#_CPPv413DataInterface" title="DataInterface"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">DataInterface</span></code></a>:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// This example component has a single data interface represented by &quot;myConnector&quot;.</span>
+<span class="c1">// It contains register at 0x0020 available for reading and writing.</span>
+<span class="c1">// Register at 0x0021 is write-only.</span>
+<span class="n">m_connectors</span><span class="p">[</span><span class="s">&quot;myConnector&quot;</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">Connector</span><span class="o">&gt;</span><span class="p">(</span><span class="w"> </span><span class="n">DataInterface</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="p">.</span><span class="n">read</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="o">&amp;</span><span class="p">](</span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">address</span><span class="p">,</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">buffer</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">address</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mh">0x0020</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">buffer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">m_register20</span><span class="p">;</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">.</span><span class="n">write</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="o">&amp;</span><span class="p">](</span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">address</span><span class="p">,</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">data</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">address</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mh">0x0020</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">m_register20</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">address</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mh">0x0021</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">m_register21</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p><a class="reference internal" href="_exhale/structDataInterface.html#_CPPv413DataInterface" title="DataInterface"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">DataInterface</span></code></a> offers also two methods. First method <a class="reference internal" href="_exhale/structDataInterface.html#_CPPv4N13DataInterface4readE" title="DataInterface::read"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">DataInterface::read()</span></code></a> is used
+by other component to read something at specified address from your component. You either write value you want to respond with
+to the <code class="docutils literal notranslate"><span class="pre">buffer</span></code> parameter and return <code class="docutils literal notranslate"><span class="pre">true</span></code> or do not write anything and return false (when your component do not
+respond to that particular address). Second method <a class="reference internal" href="_exhale/structDataInterface.html#_CPPv4N13DataInterface5writeE" title="DataInterface::write"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">DataInterface::write()</span></code></a> is used to write something
+to your component. If your component is mapped to the address specified, you can take the value in <cite>data</cite> and do whatever with it,
+if your component is not mapped, do not do anything.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Please be aware that DataInterface’s method can be called even when the communication is not meant for your component.
+For example if your component is connected to a <a class="reference internal" href="_exhale/classBus.html#_CPPv43Bus" title="Bus"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">Bus</span></code></a>, everything is written to every component just like in a real
+bus and it is up to the component whether to care about the written data. It is the same with reading. In a case of
+a simple bus like <a class="reference internal" href="_exhale/classBus.html#_CPPv43Bus" title="Bus"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">Bus</span></code></a> class, every component is tried to read from and the first component which responds
+to the provided address “wins” and its value is taken for the next processing.</p>
+</div>
+</section>
+</section>
+<section id="system">
+<h2>System<a class="headerlink" href="#system" title="Permalink to this headline"></a></h2>
+<p>After you create required components, you may combine them into a system. To create a component, you need to inherit
+from <a class="reference internal" href="_exhale/classSystem.html#_CPPv46System" title="System"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">System</span></code></a> class. Then you implement five methods:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="_exhale/classSystem.html#_CPPv4N6System8doClocksEj" title="System::doClocks"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">System::doClocks()</span></code></a>: here you define what to do when a main clock signal is sent to your system.</p></li>
+<li><p><a class="reference internal" href="_exhale/classSystem.html#_CPPv4N6System7doStepsEj" title="System::doSteps"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">System::doSteps()</span></code></a>: here you proceed as many clock as needed to process a single CPU instruction (if CPU available, otherwise leave blank).</p></li>
+<li><p><a class="reference internal" href="_exhale/classSystem.html#_CPPv4N6System8doFramesEj" title="System::doFrames"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">System::doFrames()</span></code></a>: here you proceed as many clock as needed to process a single video frame (if video output available, otherwise leave blank).</p></li>
+<li><p><a class="reference internal" href="_exhale/classSystem.html#_CPPv4N6System5doRunEj" title="System::doRun"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">System::doRun()</span></code></a>: this is called when the user wants to keep the emulation running in the real time.</p></li>
+<li><p>A constructor of your class.</p></li>
+</ul>
+<p>In the constructor you need to define several things:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="_exhale/classSystem.html#_CPPv4N6System12m_systemNameE" title="System::m_systemName"><code class="xref cpp cpp-member docutils literal notranslate"><span class="pre">System::m_systemName</span></code></a>: system’s name,</p></li>
+<li><p><a class="reference internal" href="_exhale/classSystem.html#_CPPv4N6System17m_systemClockRateE" title="System::m_systemClockRate"><code class="xref cpp cpp-member docutils literal notranslate"><span class="pre">System::m_systemClockRate</span></code></a>: system’s main clock rate,</p></li>
+<li><p>interconnect your components,</p></li>
+<li><p>push all the components to the base class container: <code class="docutils literal notranslate"><span class="pre">m_components.push_back(&amp;m_myComponent);</span></code>,</p></li>
+<li><p>if there is any audio output, push it to the sample sources: <code class="docutils literal notranslate"><span class="pre">m_sampleSources.push_back(myComponent.getSoundSampleSources());</span></code></p></li>
+</ul>
+<p>To implement <code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">Component::doRun()</span></code> you can use this template to properly calculate how many clock to proceed:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">mySystem::doRun</span><span class="p">(</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">updateFrequency</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Calculate how many clocks to run based on function call interval.</span>
+<span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">remainingClocks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">m_systemClockRate</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">updateFrequency</span><span class="p">;</span>
+<span class="w">    </span><span class="n">doClocks</span><span class="p">(</span><span class="n">remainingClocks</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<section id="interconnecting-the-components">
+<h3>Interconnecting the components<a class="headerlink" href="#interconnecting-the-components" title="Permalink to this headline"></a></h3>
+<p>You can check out the NES systems constructor in NES.cpp to see an example.</p>
+</section>
+</section>
+<section id="adding-the-system-to-the-plaform">
+<h2>Adding the system to the plaform<a class="headerlink" href="#adding-the-system-to-the-plaform" title="Permalink to this headline"></a></h2>
+<p>When the system is finished, you can integrate it to the rest of the platform.</p>
+<p>At first, in the Emulator.h, add a new value to the <code class="xref cpp cpp-member docutils literal notranslate"><span class="pre">Emulator::SYSTEMS</span></code> enum.
+Then, in Emulator.cpp, include your new system at the top of the file: <code class="docutils literal notranslate"><span class="pre">#include</span> <span class="pre">&quot;systems/mySystem.h&quot;</span></code> and
+add a new row to the menu in <code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">Emulator::guiMenuItems()</span></code> like this:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// ... other systems ...</span>
+<span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="n">ImGui</span><span class="o">::</span><span class="n">MenuItem</span><span class="p">(</span><span class="s">&quot;mySystem&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">nullptr</span><span class="p">,</span><span class="w"> </span><span class="n">m_systemID</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">SYSTEMS</span><span class="o">::</span><span class="n">MYSYSTEM</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">            </span><span class="n">loadSystem</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">MYSYSTEM</span><span class="o">&gt;</span><span class="p">());</span>
+<span class="w">            </span><span class="n">m_systemID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SYSTEMS</span><span class="o">::</span><span class="n">MYSYSTEM</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="that-s-it">
+<h2>🎉 THAT’S IT 🎉<a class="headerlink" href="#that-s-it" title="Permalink to this headline"></a></h2>
+<p>Congratulations, you now have a working emulation of your system. Have fun!</p>
+<p>If everything is good, do not forget to leave a star ⭐ at GitHub. If something isn’t working 🪲, please create an issue.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="user_manual.html" class="btn btn-neutral float-left" title="User Manual" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="contr_manual.html" class="btn btn-neutral float-right" title="Contributor’s Guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023 Ondrej Golasowski.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

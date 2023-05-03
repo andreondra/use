@@ -1,0 +1,66 @@
+
+.. _program_listing_file__home_runner_work_use_use_include_Port.h:
+
+Program Listing for File Port.h
+===============================
+
+|exhale_lsh| :ref:`Return to documentation for file <file__home_runner_work_use_use_include_Port.h>` (``/home/runner/work/use/use/include/Port.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   
+   #ifndef USE_PORT_H
+   #define USE_PORT_H
+   
+   #include <memory>
+   #include "Connector.h"
+   
+   class Port {
+   
+   protected:
+       std::weak_ptr<Connector> m_connector;
+   
+   public:
+       Port() = default;
+       virtual ~Port() = default;
+   
+       virtual void connect(std::weak_ptr<Connector> connector) = 0;
+   
+       virtual void disconnect() final;
+   
+       [[nodiscard]] virtual bool empty() const final;
+   
+       virtual explicit operator bool() const final;
+   };
+   
+   class DataPort : public Port {
+   
+   public:
+       DataPort() = default;
+       ~DataPort() override = default;
+   
+       void connect(std::weak_ptr<Connector> connector) override;
+   
+       uint32_t read(uint32_t address);
+   
+       bool readConfirmed(uint32_t address, uint32_t & buffer);
+   
+       void write(uint32_t address, uint32_t data);
+   };
+   
+   class SignalPort : public Port {
+   
+   public:
+       SignalPort() = default;
+       ~SignalPort() override = default;
+   
+       void connect(std::weak_ptr<Connector> connector) override;
+   
+       void send();
+   
+       void set(bool active);
+   };
+   
+   #endif //USE_PORT_H

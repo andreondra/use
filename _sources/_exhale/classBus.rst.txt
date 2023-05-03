@@ -1,0 +1,26 @@
+.. _exhale_class_classBus:
+
+Class Bus
+=========
+
+- Defined in :ref:`file__home_runner_work_use_use_include_components_Bus.h`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public Component`` (:ref:`exhale_class_classComponent`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: Bus
+   :project: Universal System Emulator
+   :members:
+   :protected-members:
+   :undoc-members:

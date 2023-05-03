@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Class NESPeripherals::Controller &mdash; Universal System Emulator  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+    <link rel="canonical" href="./_exhale/classNESPeripherals_1_1Controller.html" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Class Port" href="classPort.html" />
+    <link rel="prev" title="Class NESPeripherals" href="classNESPeripherals.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Universal System Emulator
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Universal System Emulator documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_manual.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_manual.html">Developer’s Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contr_manual.html">Contributor’s Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="api_docs_root.html">API docs</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="api_docs_root.html#class-hierarchy">Class Hierarchy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api_docs_root.html#file-hierarchy">File Hierarchy</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="api_docs_root.html#full-api">Full API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="api_docs_root.html#namespaces">Namespaces</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="api_docs_root.html#classes-and-structs">Classes and Structs</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="structAddressRange.html">Struct AddressRange</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structAPU_1_1apu__envelope.html">Struct APU::apu_envelope</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structAPU_1_1apu__lengthCounter.html">Struct APU::apu_lengthCounter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structAPU_1_1apu__noise.html">Struct APU::apu_noise</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structAPU_1_1apu__pulse.html">Struct APU::apu_pulse</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structAPU_1_1apu__triangle.html">Struct APU::apu_triangle</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structDataInterface.html">Struct DataInterface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structEmulatorWindow.html">Struct EmulatorWindow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structGamepak_1_1gamepakParams.html">Struct Gamepak::gamepakParams</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structMOS6502_1_1instruction__t.html">Struct MOS6502::instruction_t</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structMOS6502_1_1status__flags__t.html">Struct MOS6502::status_flags_t</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structR2C02_1_1internalRegisters__t.html">Struct R2C02::internalRegisters_t</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structR2C02_1_1registers__t.html">Struct R2C02::registers_t</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structRGBPixel.html">Struct RGBPixel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structSignalInterface.html">Struct SignalInterface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structSoundStereoFrame.html">Struct SoundStereoFrame</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAPU.html">Class APU</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classBare6502.html">Class Bare6502</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classBus.html">Class Bus</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classComponent.html">Class Component</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classConnector.html">Class Connector</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classDataPort.html">Class DataPort</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classEmulator.html">Class Emulator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classGamepak.html">Class Gamepak</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classMapper.html">Class Mapper</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classMapper000.html">Class Mapper000</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classMapper001.html">Class Mapper001</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classMemory.html">Class Memory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classMOS6502.html">Class MOS6502</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classNES.html">Class NES</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classNESPeripherals.html">Class NESPeripherals</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Class NESPeripherals::Controller</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classPort.html">Class Port</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classR2C02.html">Class R2C02</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classRP2A03.html">Class RP2A03</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classSignalPort.html">Class SignalPort</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classSound.html">Class Sound</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classSystem.html">Class System</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classTrigger.html">Class Trigger</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api_docs_root.html#enums">Enums</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_docs_root.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_docs_root.html#typedefs">Typedefs</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Universal System Emulator</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="api_docs_root.html">API docs</a></li>
+      <li class="breadcrumb-item active">Class NESPeripherals::Controller</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/_exhale/classNESPeripherals_1_1Controller.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="class-nesperipherals-controller">
+<span id="exhale-class-classnesperipherals-1-1controller"></span><h1>Class NESPeripherals::Controller<a class="headerlink" href="#class-nesperipherals-controller" title="Permalink to this headline"></a></h1>
+<ul class="simple">
+<li><p>Defined in <a class="reference internal" href="file__home_runner_work_use_use_include_components_NESPeripherals.h.html#file-home-runner-work-use-use-include-components-nesperipherals-h"><span class="std std-ref">File NESPeripherals.h</span></a></p></li>
+</ul>
+<section id="nested-relationships">
+<h2>Nested Relationships<a class="headerlink" href="#nested-relationships" title="Permalink to this headline"></a></h2>
+<p>This class is a nested type of <a class="reference internal" href="classNESPeripherals.html#exhale-class-classnesperipherals"><span class="std std-ref">Class NESPeripherals</span></a>.</p>
+</section>
+<section id="class-documentation">
+<h2>Class Documentation<a class="headerlink" href="#class-documentation" title="Permalink to this headline"></a></h2>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4N14NESPeripherals10ControllerE">
+<span id="_CPPv3N14NESPeripherals10ControllerE"></span><span id="_CPPv2N14NESPeripherals10ControllerE"></span><span id="NESPeripherals::Controller"></span><span class="target" id="classNESPeripherals_1_1Controller"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Controller</span></span></span><a class="headerlink" href="#_CPPv4N14NESPeripherals10ControllerE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Standard <a class="reference internal" href="classNES.html#classNES"><span class="std std-ref">NES</span></a> controller. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-types">Public Types</p>
+<dl class="cpp enum-class">
+<dt class="sig sig-object cpp" id="_CPPv4N14NESPeripherals10Controller12inputButtonsE">
+<span id="_CPPv3N14NESPeripherals10Controller12inputButtonsE"></span><span id="_CPPv2N14NESPeripherals10Controller12inputButtonsE"></span><span class="target" id="classNESPeripherals_1_1Controller_1acbc3bdf26633e3af858ae32ecdf38ab9"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">inputButtons</span></span></span><a class="headerlink" href="#_CPPv4N14NESPeripherals10Controller12inputButtonsE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Bit positions in shifter. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N14NESPeripherals10Controller12inputButtons1AE">
+<span id="_CPPv3N14NESPeripherals10Controller12inputButtons1AE"></span><span id="_CPPv2N14NESPeripherals10Controller12inputButtons1AE"></span><span class="target" id="classNESPeripherals_1_1Controller_1acbc3bdf26633e3af858ae32ecdf38ab9a7fc56270e7a70fa81a5935b72eacbe29"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">A</span></span></span><a class="headerlink" href="#_CPPv4N14NESPeripherals10Controller12inputButtons1AE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N14NESPeripherals10Controller12inputButtons1BE">
+<span id="_CPPv3N14NESPeripherals10Controller12inputButtons1BE"></span><span id="_CPPv2N14NESPeripherals10Controller12inputButtons1BE"></span><span class="target" id="classNESPeripherals_1_1Controller_1acbc3bdf26633e3af858ae32ecdf38ab9a9d5ed678fe57bcca610140957afab571"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">B</span></span></span><a class="headerlink" href="#_CPPv4N14NESPeripherals10Controller12inputButtons1BE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N14NESPeripherals10Controller12inputButtons6SELECTE">
+<span id="_CPPv3N14NESPeripherals10Controller12inputButtons6SELECTE"></span><span id="_CPPv2N14NESPeripherals10Controller12inputButtons6SELECTE"></span><span class="target" id="classNESPeripherals_1_1Controller_1acbc3bdf26633e3af858ae32ecdf38ab9a63225f19fccb18e7c709f1fa11bc738e"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SELECT</span></span></span><a class="headerlink" href="#_CPPv4N14NESPeripherals10Controller12inputButtons6SELECTE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N14NESPeripherals10Controller12inputButtons5STARTE">
+<span id="_CPPv3N14NESPeripherals10Controller12inputButtons5STARTE"></span><span id="_CPPv2N14NESPeripherals10Controller12inputButtons5STARTE"></span><span class="target" id="classNESPeripherals_1_1Controller_1acbc3bdf26633e3af858ae32ecdf38ab9ab078ffd28db767c502ac367053f6e0ac"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">START</span></span></span><a class="headerlink" href="#_CPPv4N14NESPeripherals10Controller12inputButtons5STARTE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N14NESPeripherals10Controller12inputButtons2UPE">
+<span id="_CPPv3N14NESPeripherals10Controller12inputButtons2UPE"></span><span id="_CPPv2N14NESPeripherals10Controller12inputButtons2UPE"></span><span class="target" id="classNESPeripherals_1_1Controller_1acbc3bdf26633e3af858ae32ecdf38ab9afbaedde498cdead4f2780217646e9ba1"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">UP</span></span></span><a class="headerlink" href="#_CPPv4N14NESPeripherals10Controller12inputButtons2UPE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N14NESPeripherals10Controller12inputButtons4DOWNE">
+<span id="_CPPv3N14NESPeripherals10Controller12inputButtons4DOWNE"></span><span id="_CPPv2N14NESPeripherals10Controller12inputButtons4DOWNE"></span><span class="target" id="classNESPeripherals_1_1Controller_1acbc3bdf26633e3af858ae32ecdf38ab9ac4e0e4e3118472beeb2ae75827450f1f"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">DOWN</span></span></span><a class="headerlink" href="#_CPPv4N14NESPeripherals10Controller12inputButtons4DOWNE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N14NESPeripherals10Controller12inputButtons4LEFTE">
+<span id="_CPPv3N14NESPeripherals10Controller12inputButtons4LEFTE"></span><span id="_CPPv2N14NESPeripherals10Controller12inputButtons4LEFTE"></span><span class="target" id="classNESPeripherals_1_1Controller_1acbc3bdf26633e3af858ae32ecdf38ab9a684d325a7303f52e64011467ff5c5758"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">LEFT</span></span></span><a class="headerlink" href="#_CPPv4N14NESPeripherals10Controller12inputButtons4LEFTE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N14NESPeripherals10Controller12inputButtons5RIGHTE">
+<span id="_CPPv3N14NESPeripherals10Controller12inputButtons5RIGHTE"></span><span id="_CPPv2N14NESPeripherals10Controller12inputButtons5RIGHTE"></span><span class="target" id="classNESPeripherals_1_1Controller_1acbc3bdf26633e3af858ae32ecdf38ab9a21507b40c80068eda19865706fdc2403"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">RIGHT</span></span></span><a class="headerlink" href="#_CPPv4N14NESPeripherals10Controller12inputButtons5RIGHTE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N14NESPeripherals10Controller12inputButtons3MICE">
+<span id="_CPPv3N14NESPeripherals10Controller12inputButtons3MICE"></span><span id="_CPPv2N14NESPeripherals10Controller12inputButtons3MICE"></span><span class="target" id="classNESPeripherals_1_1Controller_1acbc3bdf26633e3af858ae32ecdf38ab9a9a321fcd051ed290173210220d9a12a5"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">MIC</span></span></span><a class="headerlink" href="#_CPPv4N14NESPeripherals10Controller12inputButtons3MICE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N14NESPeripherals10Controller6putBitE7uint8_tb">
+<span id="_CPPv3N14NESPeripherals10Controller6putBitE7uint8_tb"></span><span id="_CPPv2N14NESPeripherals10Controller6putBitE7uint8_tb"></span><span id="NESPeripherals::Controller::putBit__uint8_t.b"></span><span class="target" id="classNESPeripherals_1_1Controller_1a0d9c40a13ccb446a8122db3d28b8f0f1"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">putBit</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">pos</span></span>, <span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">value</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N14NESPeripherals10Controller6putBitE7uint8_tb" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Helper function to put bit to corresponding position. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N14NESPeripherals10Controller10ControllerEv">
+<span id="_CPPv3N14NESPeripherals10Controller10ControllerEv"></span><span id="_CPPv2N14NESPeripherals10Controller10ControllerEv"></span><span id="NESPeripherals::Controller::Controller"></span><span class="target" id="classNESPeripherals_1_1Controller_1a040da99e07cbb995c47b39071acc5320"></span><span class="sig-name descname"><span class="n"><span class="pre">Controller</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">default</span></span><a class="headerlink" href="#_CPPv4N14NESPeripherals10Controller10ControllerEv" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N14NESPeripherals10ControllerD0Ev">
+<span id="_CPPv3N14NESPeripherals10ControllerD0Ev"></span><span id="_CPPv2N14NESPeripherals10ControllerD0Ev"></span><span id="NESPeripherals::Controller::~Controller"></span><span class="target" id="classNESPeripherals_1_1Controller_1abcd5ebe71fab6c8229c0543e21690c4f"></span><span class="sig-name descname"><span class="n"><span class="pre">~Controller</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">default</span></span><a class="headerlink" href="#_CPPv4N14NESPeripherals10ControllerD0Ev" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N14NESPeripherals10Controller4DATAEv">
+<span id="_CPPv3N14NESPeripherals10Controller4DATAEv"></span><span id="_CPPv2N14NESPeripherals10Controller4DATAEv"></span><span id="NESPeripherals::Controller::DATA"></span><span class="target" id="classNESPeripherals_1_1Controller_1affc12edbe82dea3cd0efcfba49e65b1e"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">DATA</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N14NESPeripherals10Controller4DATAEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Get serial data from the controller. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N14NESPeripherals10Controller3OUTEb">
+<span id="_CPPv3N14NESPeripherals10Controller3OUTEb"></span><span id="_CPPv2N14NESPeripherals10Controller3OUTEb"></span><span id="NESPeripherals::Controller::OUT__b"></span><span class="target" id="classNESPeripherals_1_1Controller_1a69d338530c9a365dfb65865e1b370481"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">OUT</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">value</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N14NESPeripherals10Controller3OUTEb" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Set strobe latch. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N14NESPeripherals10Controller8setStateE12inputButtonsb">
+<span id="_CPPv3N14NESPeripherals10Controller8setStateE12inputButtonsb"></span><span id="_CPPv2N14NESPeripherals10Controller8setStateE12inputButtonsb"></span><span id="NESPeripherals::Controller::setState__inputButtons.b"></span><span class="target" id="classNESPeripherals_1_1Controller_1ab35252398031a6250f0fa5c2af685a70"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setState</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N14NESPeripherals10Controller12inputButtonsE" title="NESPeripherals::Controller::inputButtons"><span class="n"><span class="pre">inputButtons</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">button</span></span>, <span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">value</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N14NESPeripherals10Controller8setStateE12inputButtonsb" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Set the state of physical buttons. </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N14NESPeripherals10Controller14pressedButtonsE">
+<span id="_CPPv3N14NESPeripherals10Controller14pressedButtonsE"></span><span id="_CPPv2N14NESPeripherals10Controller14pressedButtonsE"></span><span id="NESPeripherals::Controller::pressedButtons__unsigned-i"></span><span class="target" id="classNESPeripherals_1_1Controller_1a34f259294bd2a156e4af51d360e33d84"></span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">pressedButtons</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv4N14NESPeripherals10Controller14pressedButtonsE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Status of physical buttons (which are pressed &amp;#8212; in emulator this corresponds to configured keys on keyboard or gamepad). Using int to be compatible with ImGui::CheckboxFlags. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N14NESPeripherals10Controller11dataShifterE">
+<span id="_CPPv3N14NESPeripherals10Controller11dataShifterE"></span><span id="_CPPv2N14NESPeripherals10Controller11dataShifterE"></span><span id="NESPeripherals::Controller::dataShifter__unsigned-i"></span><span class="target" id="classNESPeripherals_1_1Controller_1a44f4425bfc16225f79b753180c5eb24b"></span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">dataShifter</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv4N14NESPeripherals10Controller11dataShifterE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Status is copied to this shifter when the strobe latch is on. Using int to be compatible with ImGui::CheckboxFlags. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N14NESPeripherals10Controller3micE">
+<span id="_CPPv3N14NESPeripherals10Controller3micE"></span><span id="_CPPv2N14NESPeripherals10Controller3micE"></span><span id="NESPeripherals::Controller::mic__b"></span><span class="target" id="classNESPeripherals_1_1Controller_1a7b5a3df315f3e758f9615a5aead9a5f6"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">mic</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">false</span></span><a class="headerlink" href="#_CPPv4N14NESPeripherals10Controller3micE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Microphone status. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N14NESPeripherals10Controller11strobeLatchE">
+<span id="_CPPv3N14NESPeripherals10Controller11strobeLatchE"></span><span id="_CPPv2N14NESPeripherals10Controller11strobeLatchE"></span><span id="NESPeripherals::Controller::strobeLatch__b"></span><span class="target" id="classNESPeripherals_1_1Controller_1aded53715df9676fa1f70eb43a4751b4a"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">strobeLatch</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">false</span></span><a class="headerlink" href="#_CPPv4N14NESPeripherals10Controller11strobeLatchE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Latch which enables the status update of dataShifter. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="classNESPeripherals.html" class="btn btn-neutral float-left" title="Class NESPeripherals" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="classPort.html" class="btn btn-neutral float-right" title="Class Port" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023 Ondrej Golasowski.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

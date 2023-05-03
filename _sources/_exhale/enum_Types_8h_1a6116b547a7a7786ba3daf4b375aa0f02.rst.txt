@@ -1,0 +1,14 @@
+.. _exhale_enum_Types_8h_1a6116b547a7a7786ba3daf4b375aa0f02:
+
+Enum DockSpace
+==============
+
+- Defined in :ref:`file__home_runner_work_use_use_include_Types.h`
+
+
+Enum Documentation
+------------------
+
+
+.. doxygenenum:: DockSpace
+   :project: Universal System Emulator

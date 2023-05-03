@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Class R2C02 &mdash; Universal System Emulator  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+    <link rel="canonical" href="./_exhale/classR2C02.html" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Class RP2A03" href="classRP2A03.html" />
+    <link rel="prev" title="Class Port" href="classPort.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Universal System Emulator
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Universal System Emulator documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_manual.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_manual.html">Developer’s Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contr_manual.html">Contributor’s Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="api_docs_root.html">API docs</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="api_docs_root.html#class-hierarchy">Class Hierarchy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api_docs_root.html#file-hierarchy">File Hierarchy</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="api_docs_root.html#full-api">Full API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="api_docs_root.html#namespaces">Namespaces</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="api_docs_root.html#classes-and-structs">Classes and Structs</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="structAddressRange.html">Struct AddressRange</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structAPU_1_1apu__envelope.html">Struct APU::apu_envelope</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structAPU_1_1apu__lengthCounter.html">Struct APU::apu_lengthCounter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structAPU_1_1apu__noise.html">Struct APU::apu_noise</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structAPU_1_1apu__pulse.html">Struct APU::apu_pulse</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structAPU_1_1apu__triangle.html">Struct APU::apu_triangle</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structDataInterface.html">Struct DataInterface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structEmulatorWindow.html">Struct EmulatorWindow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structGamepak_1_1gamepakParams.html">Struct Gamepak::gamepakParams</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structMOS6502_1_1instruction__t.html">Struct MOS6502::instruction_t</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structMOS6502_1_1status__flags__t.html">Struct MOS6502::status_flags_t</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structR2C02_1_1internalRegisters__t.html">Struct R2C02::internalRegisters_t</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structR2C02_1_1registers__t.html">Struct R2C02::registers_t</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structRGBPixel.html">Struct RGBPixel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structSignalInterface.html">Struct SignalInterface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structSoundStereoFrame.html">Struct SoundStereoFrame</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classAPU.html">Class APU</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classBare6502.html">Class Bare6502</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classBus.html">Class Bus</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classComponent.html">Class Component</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classConnector.html">Class Connector</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classDataPort.html">Class DataPort</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classEmulator.html">Class Emulator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classGamepak.html">Class Gamepak</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classMapper.html">Class Mapper</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classMapper000.html">Class Mapper000</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classMapper001.html">Class Mapper001</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classMemory.html">Class Memory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classMOS6502.html">Class MOS6502</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classNES.html">Class NES</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classNESPeripherals.html">Class NESPeripherals</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classNESPeripherals_1_1Controller.html">Class NESPeripherals::Controller</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classPort.html">Class Port</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Class R2C02</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classRP2A03.html">Class RP2A03</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classSignalPort.html">Class SignalPort</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classSound.html">Class Sound</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classSystem.html">Class System</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classTrigger.html">Class Trigger</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api_docs_root.html#enums">Enums</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_docs_root.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_docs_root.html#typedefs">Typedefs</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Universal System Emulator</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="api_docs_root.html">API docs</a></li>
+      <li class="breadcrumb-item active">Class R2C02</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/_exhale/classR2C02.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="class-r2c02">
+<span id="exhale-class-classr2c02"></span><h1>Class R2C02<a class="headerlink" href="#class-r2c02" title="Permalink to this headline"></a></h1>
+<ul class="simple">
+<li><p>Defined in <a class="reference internal" href="file__home_runner_work_use_use_include_components_2C02.h.html#file-home-runner-work-use-use-include-components-2c02-h"><span class="std std-ref">File 2C02.h</span></a></p></li>
+</ul>
+<section id="nested-relationships">
+<h2>Nested Relationships<a class="headerlink" href="#nested-relationships" title="Permalink to this headline"></a></h2>
+<section id="nested-types">
+<h3>Nested Types<a class="headerlink" href="#nested-types" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p><a class="reference internal" href="structR2C02_1_1internalRegisters__t.html#exhale-struct-structr2c02-1-1internalregisters-t"><span class="std std-ref">Struct R2C02::internalRegisters_t</span></a></p></li>
+<li><p><a class="reference internal" href="structR2C02_1_1registers__t.html#exhale-struct-structr2c02-1-1registers-t"><span class="std std-ref">Struct R2C02::registers_t</span></a></p></li>
+</ul>
+</section>
+</section>
+<section id="inheritance-relationships">
+<h2>Inheritance Relationships<a class="headerlink" href="#inheritance-relationships" title="Permalink to this headline"></a></h2>
+<section id="base-type">
+<h3>Base Type<a class="headerlink" href="#base-type" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">Component</span></code> (<a class="reference internal" href="classComponent.html#exhale-class-classcomponent"><span class="std std-ref">Class Component</span></a>)</p></li>
+</ul>
+</section>
+</section>
+<section id="class-documentation">
+<h2>Class Documentation<a class="headerlink" href="#class-documentation" title="Permalink to this headline"></a></h2>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv45R2C02">
+<span id="_CPPv35R2C02"></span><span id="_CPPv25R2C02"></span><span id="R2C02"></span><span class="target" id="classR2C02"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">R2C02</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><a class="reference internal" href="classComponent.html#_CPPv49Component" title="Component"><span class="n"><span class="pre">Component</span></span></a><a class="headerlink" href="#_CPPv45R2C02" title="Permalink to this definition"></a><br /></dt>
+<dd><p><a class="reference internal" href="classNES.html#classNES"><span class="std std-ref">NES</span></a> PPU emulation. Both foreground and background cycle-accurate rendering implemented, sprite 0 bug and other quirks are also emulated.</p>
+<p>Ports: data “ppuBus” to control a communication on the PPU’s own bus; signal “INT” to send interrupts to the CPU (normally connected to the NMI). Connectors: data “cpuBus” to connect to the CPU, signal “CLK” to clock the PPU (standard rate is 21.477272 MHz ÷ 4). </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C025R2C02Ev">
+<span id="_CPPv3N5R2C025R2C02Ev"></span><span id="_CPPv2N5R2C025R2C02Ev"></span><span id="R2C02::R2C02"></span><span class="target" id="classR2C02_1a84331f15df61de874e7e0edbaedd2b50"></span><span class="sig-name descname"><span class="n"><span class="pre">R2C02</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5R2C025R2C02Ev" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Default constructor. Reset PPU status and rendering. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C02D0Ev">
+<span id="_CPPv3N5R2C02D0Ev"></span><span id="_CPPv2N5R2C02D0Ev"></span><span id="R2C02::~R2C02"></span><span class="target" id="classR2C02_1a437382f6e690ad36584988103014b4f5"></span><span class="sig-name descname"><span class="n"><span class="pre">~R2C02</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">default</span></span><a class="headerlink" href="#_CPPv4N5R2C02D0Ev" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Default destructor. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C024initEv">
+<span id="_CPPv3N5R2C024initEv"></span><span id="_CPPv2N5R2C024initEv"></span><span id="R2C02::init"></span><span class="target" id="classR2C02_1a774890fb63300c56a7b4670889a5f1ac"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">init</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5R2C024initEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Reset the PPU. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C025clockEv">
+<span id="_CPPv3N5R2C025clockEv"></span><span id="_CPPv2N5R2C025clockEv"></span><span id="R2C02::clock"></span><span class="target" id="classR2C02_1a293d85bf6e6529476daf11ea737dae22"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">clock</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5R2C025clockEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Proceed one clock further in emulation. Works as a physical CLK input. 1 PPU cycle = 186 ns </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C026OAMDMAE7uint8_t7uint8_t">
+<span id="_CPPv3N5R2C026OAMDMAE7uint8_t7uint8_t"></span><span id="_CPPv2N5R2C026OAMDMAE7uint8_t7uint8_t"></span><span id="R2C02::OAMDMA__uint8_t.uint8_t"></span><span class="target" id="classR2C02_1aecd329b9051868527cc4085b4ad05eeb"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">OAMDMA</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">addr</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">data</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5R2C026OAMDMAE7uint8_t7uint8_t" title="Permalink to this definition"></a><br /></dt>
+<dd><p>PPU OAM DMA. Used to write to the OAM during DMA proccess. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>addr</strong> – OAM address. </p></li>
+<li><p><strong>data</strong> – Data to write. </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0210getPaletteE7uint8_t">
+<span id="_CPPv3N5R2C0210getPaletteE7uint8_t"></span><span id="_CPPv2N5R2C0210getPaletteE7uint8_t"></span><span id="R2C02::getPalette__uint8_t"></span><span class="target" id="classR2C02_1ab1bf4606116a86646c45255d00284ff8"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="structRGBPixel.html#_CPPv48RGBPixel" title="RGBPixel"><span class="n"><span class="pre">RGBPixel</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getPalette</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">paletteId</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5R2C0210getPaletteE7uint8_t" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0213getPaletteRAMEv">
+<span id="_CPPv3N5R2C0213getPaletteRAMEv"></span><span id="_CPPv2N5R2C0213getPaletteRAMEv"></span><span id="R2C02::getPaletteRAM"></span><span class="target" id="classR2C02_1ad4ae797ab1aa7c79d55877d68787be38"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">getPaletteRAM</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5R2C0213getPaletteRAMEv" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0215getPatternTableE7uint8_t7uint8_t7uint8_tb">
+<span id="_CPPv3N5R2C0215getPatternTableE7uint8_t7uint8_t7uint8_tb"></span><span id="_CPPv2N5R2C0215getPatternTableE7uint8_t7uint8_t7uint8_tb"></span><span id="R2C02::getPatternTable__uint8_t.uint8_t.uint8_t.b"></span><span class="target" id="classR2C02_1a37829f6a4a2c8e8443c51ae2ba36e636"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="structRGBPixel.html#_CPPv48RGBPixel" title="RGBPixel"><span class="n"><span class="pre">RGBPixel</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getPatternTable</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">colorType</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">paletteId</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">index</span></span>, <span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">applyEffects</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">false</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5R2C0215getPatternTableE7uint8_t7uint8_t7uint8_tb" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Get a pattern table. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C029getScreenEv">
+<span id="_CPPv3N5R2C029getScreenEv"></span><span id="_CPPv2N5R2C029getScreenEv"></span><span id="R2C02::getScreen"></span><span class="target" id="classR2C02_1afda081dc175131bbf5ca81ee357e432c"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="structRGBPixel.html#_CPPv48RGBPixel" title="RGBPixel"><span class="n"><span class="pre">RGBPixel</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getScreen</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5R2C029getScreenEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Get a <a class="reference internal" href="classNES.html#classNES"><span class="std std-ref">NES</span></a> screen. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK5R2C0216scanlineFinishedEv">
+<span id="_CPPv3NK5R2C0216scanlineFinishedEv"></span><span id="_CPPv2NK5R2C0216scanlineFinishedEv"></span><span id="R2C02::scanlineFinishedC"></span><span class="target" id="classR2C02_1ad395bab1dfb9ccd9096ba630e2d9d1f0"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">scanlineFinished</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK5R2C0216scanlineFinishedEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Is a scanline finished? </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>true if clock index &gt;= 341 </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK5R2C0213frameFinishedEv">
+<span id="_CPPv3NK5R2C0213frameFinishedEv"></span><span id="_CPPv2NK5R2C0213frameFinishedEv"></span><span id="R2C02::frameFinishedC"></span><span class="target" id="classR2C02_1a3f7697c6f00351a647816fd276e5d310"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">frameFinished</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK5R2C0213frameFinishedEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Is a frame finished? </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>true if scanline index &gt;= 261 </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C027getGUIsEv">
+<span id="_CPPv3N5R2C027getGUIsEv"></span><span id="_CPPv2N5R2C027getGUIsEv"></span><span id="R2C02::getGUIs"></span><span class="target" id="classR2C02_1ad9288d62cd34fcc68cce393a7f62bf09"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="structEmulatorWindow.html#_CPPv414EmulatorWindow" title="EmulatorWindow"><span class="n"><span class="pre">EmulatorWindow</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getGUIs</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4N5R2C027getGUIsEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Get GUI windows: metadata and rendering functions.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For <a class="reference internal" href="classComponent.html#classComponent"><span class="std std-ref">Component</span></a> developer: If the component have a debugger or other GUI, return an arbitrary count of windows, they will be rendered on a load of a system which contains the component.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A vector of windows to be rendered. </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0210primaryOAME">
+<span id="_CPPv3N5R2C0210primaryOAME"></span><span id="_CPPv2N5R2C0210primaryOAME"></span><span id="R2C02::primaryOAM__uint8_tA"></span><span class="target" id="classR2C02_1a620b4836c9e87fdb56e178e43efea306"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">primaryOAM</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">256</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv4N5R2C0210primaryOAME" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0212secondaryOAME">
+<span id="_CPPv3N5R2C0212secondaryOAME"></span><span id="_CPPv2N5R2C0212secondaryOAME"></span><span id="R2C02::secondaryOAM__uint8_tA"></span><span class="target" id="classR2C02_1a72e1116cde040bb44758efe3aaf7ed91"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">secondaryOAM</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">32</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv4N5R2C0212secondaryOAME" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C029attrLatchE">
+<span id="_CPPv3N5R2C029attrLatchE"></span><span id="_CPPv2N5R2C029attrLatchE"></span><span id="R2C02::attrLatch__uint8_tA"></span><span class="target" id="classR2C02_1abcd81bc1c0298f5c5eee01d1d2b3c06a"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">attrLatch</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">8</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv4N5R2C029attrLatchE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C021xE">
+<span id="_CPPv3N5R2C021xE"></span><span id="_CPPv2N5R2C021xE"></span><span id="R2C02::x__uint8_tA"></span><span class="target" id="classR2C02_1ac0a89396442c7487bf0679551624c95e"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">x</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">8</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv4N5R2C021xE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C027shiftLoE">
+<span id="_CPPv3N5R2C027shiftLoE"></span><span id="_CPPv2N5R2C027shiftLoE"></span><span id="R2C02::shiftLo__uint8_tA"></span><span class="target" id="classR2C02_1a2df3914018829f28dbca0b6d17d8cbb4"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">shiftLo</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">8</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv4N5R2C027shiftLoE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>8 pairs of 8 bit shifters Pattern table data for up to 8 sprites to be rendered on the current scanline. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C027shiftHiE">
+<span id="_CPPv3N5R2C027shiftHiE"></span><span id="_CPPv2N5R2C027shiftHiE"></span><span id="R2C02::shiftHi__uint8_tA"></span><span class="target" id="classR2C02_1ab4448a6badcb258020579c2b0a15448a"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">shiftHi</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">8</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv4N5R2C027shiftHiE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0210allowShiftE">
+<span id="_CPPv3N5R2C0210allowShiftE"></span><span id="_CPPv2N5R2C0210allowShiftE"></span><span id="R2C02::allowShift__uint8_tA"></span><span class="target" id="classR2C02_1a2194dfbf861d1038de0b96994e4cff6c"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">allowShift</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">8</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv4N5R2C0210allowShiftE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0217secondarySpriteIdE">
+<span id="_CPPv3N5R2C0217secondarySpriteIdE"></span><span id="_CPPv2N5R2C0217secondarySpriteIdE"></span><span id="R2C02::secondarySpriteId__uint8_t"></span><span class="target" id="classR2C02_1ae0283fe22804652fc9463ae6d57faff6"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">secondarySpriteId</span></span></span><a class="headerlink" href="#_CPPv4N5R2C0217secondarySpriteIdE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C025feedYE">
+<span id="_CPPv3N5R2C025feedYE"></span><span id="_CPPv2N5R2C025feedYE"></span><span id="R2C02::feedY__uint8_t"></span><span class="target" id="classR2C02_1afeb6040dc40923b7a8efa53ee5e627a3"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">feedY</span></span></span><a class="headerlink" href="#_CPPv4N5R2C025feedYE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0215feedTileAddressE">
+<span id="_CPPv3N5R2C0215feedTileAddressE"></span><span id="_CPPv2N5R2C0215feedTileAddressE"></span><span id="R2C02::feedTileAddress__uint16_t"></span><span class="target" id="classR2C02_1a8a590b1c2821357fbde3d72d333e2fa9"></span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">feedTileAddress</span></span></span><a class="headerlink" href="#_CPPv4N5R2C0215feedTileAddressE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C029feedIndexE">
+<span id="_CPPv3N5R2C029feedIndexE"></span><span id="_CPPv2N5R2C029feedIndexE"></span><span id="R2C02::feedIndex__uint8_t"></span><span class="target" id="classR2C02_1a315a76b91a8597c90ffbb326ca9b370a"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">feedIndex</span></span></span><a class="headerlink" href="#_CPPv4N5R2C029feedIndexE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C026ntByteE">
+<span id="_CPPv3N5R2C026ntByteE"></span><span id="_CPPv2N5R2C026ntByteE"></span><span id="R2C02::ntByte__uint8_t"></span><span class="target" id="classR2C02_1ab08f03a438d8174d5e4b1a1772dafa4a"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ntByte</span></span></span><a class="headerlink" href="#_CPPv4N5R2C026ntByteE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C026atByteE">
+<span id="_CPPv3N5R2C026atByteE"></span><span id="_CPPv2N5R2C026atByteE"></span><span id="R2C02::atByte__uint8_t"></span><span class="target" id="classR2C02_1a6522b220a314c67b601095a06b733731"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">atByte</span></span></span><a class="headerlink" href="#_CPPv4N5R2C026atByteE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C028tileDataE">
+<span id="_CPPv3N5R2C028tileDataE"></span><span id="_CPPv2N5R2C028tileDataE"></span><span id="R2C02::tileData__uint16_t"></span><span class="target" id="classR2C02_1aeca9e8250cd20774e7bee263bfaecf69"></span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">tileData</span></span></span><a class="headerlink" href="#_CPPv4N5R2C028tileDataE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0211shiftTileLoE">
+<span id="_CPPv3N5R2C0211shiftTileLoE"></span><span id="_CPPv2N5R2C0211shiftTileLoE"></span><span id="R2C02::shiftTileLo__uint16_t"></span><span class="target" id="classR2C02_1ade566b7522628238a3fdde656c59e4bf"></span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">shiftTileLo</span></span></span><a class="headerlink" href="#_CPPv4N5R2C0211shiftTileLoE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0211shiftTileHiE">
+<span id="_CPPv3N5R2C0211shiftTileHiE"></span><span id="_CPPv2N5R2C0211shiftTileHiE"></span><span id="R2C02::shiftTileHi__uint16_t"></span><span class="target" id="classR2C02_1a379549b4f27bfb43ae294bd8a47508ca"></span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">shiftTileHi</span></span></span><a class="headerlink" href="#_CPPv4N5R2C0211shiftTileHiE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0211shiftAttrLoE">
+<span id="_CPPv3N5R2C0211shiftAttrLoE"></span><span id="_CPPv2N5R2C0211shiftAttrLoE"></span><span id="R2C02::shiftAttrLo__uint16_t"></span><span class="target" id="classR2C02_1aea170301c764accc8e33bd512e1e288d"></span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">shiftAttrLo</span></span></span><a class="headerlink" href="#_CPPv4N5R2C0211shiftAttrLoE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0211shiftAttrHiE">
+<span id="_CPPv3N5R2C0211shiftAttrHiE"></span><span id="_CPPv2N5R2C0211shiftAttrHiE"></span><span id="R2C02::shiftAttrHi__uint16_t"></span><span class="target" id="classR2C02_1a0cfabb2e32e9a37d78fef40dd439cf1e"></span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">shiftAttrHi</span></span></span><a class="headerlink" href="#_CPPv4N5R2C0211shiftAttrHiE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-protected-functions">Protected Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0217verticalIncrementEv">
+<span id="_CPPv3N5R2C0217verticalIncrementEv"></span><span id="_CPPv2N5R2C0217verticalIncrementEv"></span><span id="R2C02::verticalIncrement"></span><span class="target" id="classR2C02_1ad4179cdbbc6a08a01e774648e392254e"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">verticalIncrement</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5R2C0217verticalIncrementEv" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0219horizontalIncrementEv">
+<span id="_CPPv3N5R2C0219horizontalIncrementEv"></span><span id="_CPPv2N5R2C0219horizontalIncrementEv"></span><span id="R2C02::horizontalIncrement"></span><span class="target" id="classR2C02_1a86128261551b3527b5d4e7f584638195"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">horizontalIncrement</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5R2C0219horizontalIncrementEv" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0216verticalTransferEv">
+<span id="_CPPv3N5R2C0216verticalTransferEv"></span><span id="_CPPv2N5R2C0216verticalTransferEv"></span><span id="R2C02::verticalTransfer"></span><span class="target" id="classR2C02_1ac384cac0f8eef45b29a63998925e9fd6"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">verticalTransfer</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5R2C0216verticalTransferEv" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0218horizontalTransferEv">
+<span id="_CPPv3N5R2C0218horizontalTransferEv"></span><span id="_CPPv2N5R2C0218horizontalTransferEv"></span><span id="R2C02::horizontalTransfer"></span><span class="target" id="classR2C02_1a087a9362f4c3e34afee420b044e993a8"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">horizontalTransfer</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5R2C0218horizontalTransferEv" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C027fetchNTEv">
+<span id="_CPPv3N5R2C027fetchNTEv"></span><span id="_CPPv2N5R2C027fetchNTEv"></span><span id="R2C02::fetchNT"></span><span class="target" id="classR2C02_1a9c875a36906558614a445d42bd6eb7a5"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fetchNT</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5R2C027fetchNTEv" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C027fetchATEv">
+<span id="_CPPv3N5R2C027fetchATEv"></span><span id="_CPPv2N5R2C027fetchATEv"></span><span id="R2C02::fetchAT"></span><span class="target" id="classR2C02_1a4598f9608b3355e7ea81b97a8724d88d"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fetchAT</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5R2C027fetchATEv" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0211fetchTileLoEv">
+<span id="_CPPv3N5R2C0211fetchTileLoEv"></span><span id="_CPPv2N5R2C0211fetchTileLoEv"></span><span id="R2C02::fetchTileLo"></span><span class="target" id="classR2C02_1a0a42c0f97a233806eaead2cf09e2f138"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fetchTileLo</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5R2C0211fetchTileLoEv" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0211fetchTileHiEv">
+<span id="_CPPv3N5R2C0211fetchTileHiEv"></span><span id="_CPPv2N5R2C0211fetchTileHiEv"></span><span id="R2C02::fetchTileHi"></span><span class="target" id="classR2C02_1a120b98e965e4419615bcfbd2173a1fb4"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fetchTileHi</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5R2C0211fetchTileHiEv" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0212feedShiftersEv">
+<span id="_CPPv3N5R2C0212feedShiftersEv"></span><span id="_CPPv2N5R2C0212feedShiftersEv"></span><span id="R2C02::feedShifters"></span><span class="target" id="classR2C02_1a40638a07fee7753c195eaa8710c1ab37"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">feedShifters</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5R2C0212feedShiftersEv" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0213shiftShiftersEv">
+<span id="_CPPv3N5R2C0213shiftShiftersEv"></span><span id="_CPPv2N5R2C0213shiftShiftersEv"></span><span id="R2C02::shiftShifters"></span><span class="target" id="classR2C02_1a6547dc45d887213bf68fcb41b680a3be"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">shiftShifters</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5R2C0213shiftShiftersEv" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0215evaluateSpritesEv">
+<span id="_CPPv3N5R2C0215evaluateSpritesEv"></span><span id="_CPPv2N5R2C0215evaluateSpritesEv"></span><span id="R2C02::evaluateSprites"></span><span class="target" id="classR2C02_1a25b07c0d6b2f11936a07bb737fc4a7c9"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">evaluateSprites</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5R2C0215evaluateSpritesEv" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0211fetchSpriteE7uint8_t">
+<span id="_CPPv3N5R2C0211fetchSpriteE7uint8_t"></span><span id="_CPPv2N5R2C0211fetchSpriteE7uint8_t"></span><span id="R2C02::fetchSprite__uint8_t"></span><span class="target" id="classR2C02_1aa7fdca894ab6f0948f745fe6da1874ea"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fetchSprite</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">offset</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5R2C0211fetchSpriteE7uint8_t" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0210ppuBusReadE8uint16_t">
+<span id="_CPPv3N5R2C0210ppuBusReadE8uint16_t"></span><span id="_CPPv2N5R2C0210ppuBusReadE8uint16_t"></span><span id="R2C02::ppuBusRead__uint16_t"></span><span class="target" id="classR2C02_1a4288a53dd5ee8879792bfc66f8051846"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ppuBusRead</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">addr</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5R2C0210ppuBusReadE8uint16_t" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Read from the internal bus. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>addr</strong> – Address to read from. </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Data. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0211ppuBusWriteE8uint16_t7uint8_t">
+<span id="_CPPv3N5R2C0211ppuBusWriteE8uint16_t7uint8_t"></span><span id="_CPPv2N5R2C0211ppuBusWriteE8uint16_t7uint8_t"></span><span id="R2C02::ppuBusWrite__uint16_t.uint8_t"></span><span class="target" id="classR2C02_1a578fa0cf7103d2c40dd8139105d2608b"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ppuBusWrite</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">addr</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">data</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5R2C0211ppuBusWriteE8uint16_t7uint8_t" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Write to the internal bus. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>addr</strong> – Address to write to. </p></li>
+<li><p><strong>data</strong> – Data to write. </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0213getPixelColorE7uint8_t7uint8_t">
+<span id="_CPPv3N5R2C0213getPixelColorE7uint8_t7uint8_t"></span><span id="_CPPv2N5R2C0213getPixelColorE7uint8_t7uint8_t"></span><span id="R2C02::getPixelColor__uint8_t.uint8_t"></span><span class="target" id="classR2C02_1a18b1fd68e996407b4650d4f317bcad49"></span><a class="reference internal" href="structRGBPixel.html#_CPPv48RGBPixel" title="RGBPixel"><span class="n"><span class="pre">RGBPixel</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getPixelColor</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">paletteId</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">pixel</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5R2C0213getPixelColorE7uint8_t7uint8_t" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0219getColorFromPaletteE7uint8_t7uint8_t7uint8_t">
+<span id="_CPPv3N5R2C0219getColorFromPaletteE7uint8_t7uint8_t7uint8_t"></span><span id="_CPPv2N5R2C0219getColorFromPaletteE7uint8_t7uint8_t7uint8_t"></span><span id="R2C02::getColorFromPalette__uint8_t.uint8_t.uint8_t"></span><span class="target" id="classR2C02_1a4399c2dd21beab564cf120e93003a8bc"></span><a class="reference internal" href="structRGBPixel.html#_CPPv48RGBPixel" title="RGBPixel"><span class="n"><span class="pre">RGBPixel</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getColorFromPalette</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">bgFg</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">paletteNumber</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">pixelValue</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5R2C0219getColorFromPaletteE7uint8_t7uint8_t7uint8_t" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK5R2C0217applyPixelEffectsE8RGBPixel">
+<span id="_CPPv3NK5R2C0217applyPixelEffectsE8RGBPixel"></span><span id="_CPPv2NK5R2C0217applyPixelEffectsE8RGBPixel"></span><span id="R2C02::applyPixelEffects__RGBPixelC"></span><span class="target" id="classR2C02_1a38c7a45699be611b88ad237c4b333570"></span><a class="reference internal" href="structRGBPixel.html#_CPPv48RGBPixel" title="RGBPixel"><span class="n"><span class="pre">RGBPixel</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">applyPixelEffects</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="structRGBPixel.html#_CPPv48RGBPixel" title="RGBPixel"><span class="n"><span class="pre">RGBPixel</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">pixel</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK5R2C0217applyPixelEffectsE8RGBPixel" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-protected-attributes">Protected Attributes</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0212m_dataBufferE">
+<span id="_CPPv3N5R2C0212m_dataBufferE"></span><span id="_CPPv2N5R2C0212m_dataBufferE"></span><span id="R2C02::m_dataBuffer__uint8_t"></span><span class="target" id="classR2C02_1af73b8fb0a269e0dc9acc8c072887b81d"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_dataBuffer</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0x00</span></span><a class="headerlink" href="#_CPPv4N5R2C0212m_dataBufferE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Data lines sometimes act as a buffer because of their capacitance. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0219m_internalRegistersE">
+<span id="_CPPv3N5R2C0219m_internalRegistersE"></span><span id="_CPPv2N5R2C0219m_internalRegistersE"></span><span id="R2C02::m_internalRegisters__R2C02::internalRegisters_t"></span><span class="target" id="classR2C02_1a1c99ab10ebc84b280ce76b8eaaf2f1e4"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv45R2C02" title="R2C02"><span class="n"><span class="pre">R2C02</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="#_CPPv4N5R2C0219internalRegisters_tE" title="R2C02::internalRegisters_t"><span class="n"><span class="pre">internalRegisters_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_internalRegisters</span></span></span><a class="headerlink" href="#_CPPv4N5R2C0219m_internalRegistersE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0212m_spriteDataE">
+<span id="_CPPv3N5R2C0212m_spriteDataE"></span><span id="_CPPv2N5R2C0212m_spriteDataE"></span><span class="target" id="classR2C02_1a06cab611686558b16c201b090bc81682"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv45R2C02" title="R2C02"><span class="n"><span class="pre">R2C02</span></span></a><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">[anonymous]</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_spriteData</span></span></span><a class="headerlink" href="#_CPPv4N5R2C0212m_spriteDataE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0216m_backgroundDataE">
+<span id="_CPPv3N5R2C0216m_backgroundDataE"></span><span id="_CPPv2N5R2C0216m_backgroundDataE"></span><span class="target" id="classR2C02_1a863ceb0c5c55197842f6895fcdb90d9c"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv45R2C02" title="R2C02"><span class="n"><span class="pre">R2C02</span></span></a><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">[anonymous]</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_backgroundData</span></span></span><a class="headerlink" href="#_CPPv4N5R2C0216m_backgroundDataE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0211m_registersE">
+<span id="_CPPv3N5R2C0211m_registersE"></span><span id="_CPPv2N5R2C0211m_registersE"></span><span id="R2C02::m_registers__R2C02::registers_t"></span><span class="target" id="classR2C02_1a7c80cc04b6e0f0f195f2b988ce8e3fa0"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv45R2C02" title="R2C02"><span class="n"><span class="pre">R2C02</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="#_CPPv4N5R2C0211registers_tE" title="R2C02::registers_t"><span class="n"><span class="pre">registers_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_registers</span></span></span><a class="headerlink" href="#_CPPv4N5R2C0211m_registersE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0215m_scanlineReadyE">
+<span id="_CPPv3N5R2C0215m_scanlineReadyE"></span><span id="_CPPv2N5R2C0215m_scanlineReadyE"></span><span id="R2C02::m_scanlineReady__b"></span><span class="target" id="classR2C02_1a48b249ef21559e7c18aba1d6d4d53cdd"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_scanlineReady</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">false</span></span><a class="headerlink" href="#_CPPv4N5R2C0215m_scanlineReadyE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0212m_frameReadyE">
+<span id="_CPPv3N5R2C0212m_frameReadyE"></span><span id="_CPPv2N5R2C0212m_frameReadyE"></span><span id="R2C02::m_frameReady__b"></span><span class="target" id="classR2C02_1a0f3bb2c1956cd908fcec895b0301c976"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_frameReady</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">false</span></span><a class="headerlink" href="#_CPPv4N5R2C0212m_frameReadyE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C029m_oddScanE">
+<span id="_CPPv3N5R2C029m_oddScanE"></span><span id="_CPPv2N5R2C029m_oddScanE"></span><span id="R2C02::m_oddScan__b"></span><span class="target" id="classR2C02_1ab7ac4aa58067e06c69b0b2e64a7aef35"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_oddScan</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">false</span></span><a class="headerlink" href="#_CPPv4N5R2C029m_oddScanE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>True if the odd field of the frame is being rendered (see interlaced video). </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0226m_settingsEnableForegroundE">
+<span id="_CPPv3N5R2C0226m_settingsEnableForegroundE"></span><span id="_CPPv2N5R2C0226m_settingsEnableForegroundE"></span><span id="R2C02::m_settingsEnableForeground__b"></span><span class="target" id="classR2C02_1a330fdb1f34713fec6816e39cea4cde23"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_settingsEnableForeground</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">true</span></span><a class="headerlink" href="#_CPPv4N5R2C0226m_settingsEnableForegroundE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Foreground pixel placement enabled. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0226m_settingsEnableBackgroundE">
+<span id="_CPPv3N5R2C0226m_settingsEnableBackgroundE"></span><span id="_CPPv2N5R2C0226m_settingsEnableBackgroundE"></span><span id="R2C02::m_settingsEnableBackground__b"></span><span class="target" id="classR2C02_1ab8faefe5541c99ebe8d64fa4565f3736"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_settingsEnableBackground</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">true</span></span><a class="headerlink" href="#_CPPv4N5R2C0226m_settingsEnableBackgroundE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Background pixel placement enabled. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0210m_blockNMIE">
+<span id="_CPPv3N5R2C0210m_blockNMIE"></span><span id="_CPPv2N5R2C0210m_blockNMIE"></span><span id="R2C02::m_blockNMI__b"></span><span class="target" id="classR2C02_1a81b1b08322078d4ecfc56fbade86f9b1"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_blockNMI</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">false</span></span><a class="headerlink" href="#_CPPv4N5R2C0210m_blockNMIE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Suppress NMI generation and NMI flag setting. Used by a special case during reading NMI flag near the clock 1 of the scanline 241, which is when the NMI is supposed to generate. See read method for more information. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0212m_colors2C02E">
+<span id="_CPPv3N5R2C0212m_colors2C02E"></span><span id="_CPPv2N5R2C0212m_colors2C02E"></span><span id="R2C02::m_colors2C02__RGBPixelCA"></span><span class="target" id="classR2C02_1a20a3d184cf60c90ac63fafbc7994e866"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="structRGBPixel.html#_CPPv48RGBPixel" title="RGBPixel"><span class="n"><span class="pre">RGBPixel</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_colors2C02</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">64</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv4N5R2C0212m_colors2C02E" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Default 2C02 color pallete. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C028m_colorsE">
+<span id="_CPPv3N5R2C028m_colorsE"></span><span id="_CPPv2N5R2C028m_colorsE"></span><span id="R2C02::m_colors__RGBPixelCP"></span><span class="target" id="classR2C02_1ae40cac99b7ccf793f2c83d870447db63"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="structRGBPixel.html#_CPPv48RGBPixel" title="RGBPixel"><span class="n"><span class="pre">RGBPixel</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">m_colors</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N5R2C0212m_colors2C02E" title="R2C02::m_colors2C02"><span class="n"><span class="pre">m_colors2C02</span></span></a><a class="headerlink" href="#_CPPv4N5R2C028m_colorsE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0210m_palettesE">
+<span id="_CPPv3N5R2C0210m_palettesE"></span><span id="_CPPv2N5R2C0210m_palettesE"></span><span id="R2C02::m_palettes__uint8_tA"></span><span class="target" id="classR2C02_1a7c8f63ea28d156b931de1f7de000a164"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_palettes</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">32</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv4N5R2C0210m_palettesE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>2C02 bus components: 0x0000 - 0x1FFF Pattern memory (CHR ROM) - on cartridge (sprites) 0x2000 - 0x3EFF Nametable memory (VRAM) - on cartridge or built-in (sprite locations) 0x3F00 - 0x3FFF Palette memory - built-in (colors) </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C027m_clockE">
+<span id="_CPPv3N5R2C027m_clockE"></span><span id="_CPPv2N5R2C027m_clockE"></span><span id="R2C02::m_clock__i"></span><span class="target" id="classR2C02_1a27951e17876c09f028ad75946b7fb2fb"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_clock</span></span></span><a class="headerlink" href="#_CPPv4N5R2C027m_clockE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0210m_scanlineE">
+<span id="_CPPv3N5R2C0210m_scanlineE"></span><span id="_CPPv2N5R2C0210m_scanlineE"></span><span id="R2C02::m_scanline__i"></span><span class="target" id="classR2C02_1a71f04219652982ebe6dd0cf47323621b"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_scanline</span></span></span><a class="headerlink" href="#_CPPv4N5R2C0210m_scanlineE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C028m_screenE">
+<span id="_CPPv3N5R2C028m_screenE"></span><span id="_CPPv2N5R2C028m_screenE"></span><span id="R2C02::m_screen__std::vector:std::vector:RGBPixel::"></span><span class="target" id="classR2C02_1a5d5005eadc529e02772e17b7f823c4d1"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="structRGBPixel.html#_CPPv48RGBPixel" title="RGBPixel"><span class="n"><span class="pre">RGBPixel</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_screen</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="p"><span class="pre">{</span></span><a class="reference internal" href="#_CPPv4N5R2C0220OUTPUT_BITMAP_HEIGHTE" title="R2C02::OUTPUT_BITMAP_HEIGHT"><span class="n"><span class="pre">OUTPUT_BITMAP_HEIGHT</span></span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">{</span></span><a class="reference internal" href="#_CPPv4N5R2C0219OUTPUT_BITMAP_WIDTHE" title="R2C02::OUTPUT_BITMAP_WIDTH"><span class="n"><span class="pre">OUTPUT_BITMAP_WIDTH</span></span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">{</span></span><span class="m"><span class="pre">0</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><span class="p"><span class="pre">}</span></span><span class="p"><span class="pre">}</span></span><span class="p"><span class="pre">}</span></span><a class="headerlink" href="#_CPPv4N5R2C028m_screenE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C028m_ppuBusE">
+<span id="_CPPv3N5R2C028m_ppuBusE"></span><span id="_CPPv2N5R2C028m_ppuBusE"></span><span id="R2C02::m_ppuBus__DataPort"></span><span class="target" id="classR2C02_1af520228d5b38d96d0f7aa1bf20681063"></span><a class="reference internal" href="classDataPort.html#_CPPv48DataPort" title="DataPort"><span class="n"><span class="pre">DataPort</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_ppuBus</span></span></span><a class="headerlink" href="#_CPPv4N5R2C028m_ppuBusE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C025m_INTE">
+<span id="_CPPv3N5R2C025m_INTE"></span><span id="_CPPv2N5R2C025m_INTE"></span><span id="R2C02::m_INT__SignalPort"></span><span class="target" id="classR2C02_1a520bad3f949a795becac343cf00a4411"></span><a class="reference internal" href="classSignalPort.html#_CPPv410SignalPort" title="SignalPort"><span class="n"><span class="pre">SignalPort</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_INT</span></span></span><a class="headerlink" href="#_CPPv4N5R2C025m_INTE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-protected-static-functions">Protected Static Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C028saturateE7uint8_t7uint8_t">
+<span id="_CPPv3N5R2C028saturateE7uint8_t7uint8_t"></span><span id="_CPPv2N5R2C028saturateE7uint8_t7uint8_t"></span><span id="R2C02::saturate__uint8_t.uint8_t"></span><span class="target" id="classR2C02_1a54376bf4a1f8922d817594cb2a78285f"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">saturate</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">x</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">y</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5R2C028saturateE7uint8_t7uint8_t" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0210desaturateE7uint8_t7uint8_t">
+<span id="_CPPv3N5R2C0210desaturateE7uint8_t7uint8_t"></span><span id="_CPPv2N5R2C0210desaturateE7uint8_t7uint8_t"></span><span id="R2C02::desaturate__uint8_t.uint8_t"></span><span class="target" id="classR2C02_1a96447015a1dda6c9eda9d6c7e3d2a363"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">desaturate</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">x</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">y</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5R2C0210desaturateE7uint8_t7uint8_t" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-protected-static-attributes">Protected Static Attributes</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0219ADDR_PATTERN_TABLESE">
+<span id="_CPPv3N5R2C0219ADDR_PATTERN_TABLESE"></span><span id="_CPPv2N5R2C0219ADDR_PATTERN_TABLESE"></span><span id="R2C02::ADDR_PATTERN_TABLES__AddressRange"></span><span class="target" id="classR2C02_1adbf211b02619ddf7f9f19b2856b67ca9"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><a class="reference internal" href="structAddressRange.html#_CPPv412AddressRange" title="AddressRange"><span class="n"><span class="pre">AddressRange</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ADDR_PATTERN_TABLES</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="p"><span class="pre">{</span></span><span class="m"><span class="pre">0x0000</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">0x1FFF</span></span><span class="p"><span class="pre">}</span></span><a class="headerlink" href="#_CPPv4N5R2C0219ADDR_PATTERN_TABLESE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Frame rendering: 256 341 xxxxxxxxxxxxxxx &lt;- scanline -1 &#64;&#64;&#64;&#64;&#64;&#64;&#64;&amp;mdash; &#64;&#64;&#64;&#64;&#64;&#64;&#64;&amp;mdash; &#64;&#64;&#64;&#64;&#64;&#64;&#64;&amp;mdash; </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0215ADDR_NAMETABLESE">
+<span id="_CPPv3N5R2C0215ADDR_NAMETABLESE"></span><span id="_CPPv2N5R2C0215ADDR_NAMETABLESE"></span><span id="R2C02::ADDR_NAMETABLES__AddressRange"></span><span class="target" id="classR2C02_1a96ed22ebbed35e80f9b582465c686699"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><a class="reference internal" href="structAddressRange.html#_CPPv412AddressRange" title="AddressRange"><span class="n"><span class="pre">AddressRange</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ADDR_NAMETABLES</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="p"><span class="pre">{</span></span><span class="m"><span class="pre">0x2000</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">0x2FFF</span></span><span class="p"><span class="pre">}</span></span><a class="headerlink" href="#_CPPv4N5R2C0215ADDR_NAMETABLESE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0216ADDR_PALETTE_RAME">
+<span id="_CPPv3N5R2C0216ADDR_PALETTE_RAME"></span><span id="_CPPv2N5R2C0216ADDR_PALETTE_RAME"></span><span id="R2C02::ADDR_PALETTE_RAM__AddressRange"></span><span class="target" id="classR2C02_1aff4838faa8035da98f919483adcf1b18"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><a class="reference internal" href="structAddressRange.html#_CPPv412AddressRange" title="AddressRange"><span class="n"><span class="pre">AddressRange</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ADDR_PALETTE_RAM</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="p"><span class="pre">{</span></span><span class="m"><span class="pre">0x3F00</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">0x3FFF</span></span><span class="p"><span class="pre">}</span></span><a class="headerlink" href="#_CPPv4N5R2C0216ADDR_PALETTE_RAME" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0219OUTPUT_BITMAP_WIDTHE">
+<span id="_CPPv3N5R2C0219OUTPUT_BITMAP_WIDTHE"></span><span id="_CPPv2N5R2C0219OUTPUT_BITMAP_WIDTHE"></span><span id="R2C02::OUTPUT_BITMAP_WIDTH__uint16_tC"></span><span class="target" id="classR2C02_1a038ecade0a85214c4fca9f9e682bd87b"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">OUTPUT_BITMAP_WIDTH</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">256</span></span><a class="headerlink" href="#_CPPv4N5R2C0219OUTPUT_BITMAP_WIDTHE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0220OUTPUT_BITMAP_HEIGHTE">
+<span id="_CPPv3N5R2C0220OUTPUT_BITMAP_HEIGHTE"></span><span id="_CPPv2N5R2C0220OUTPUT_BITMAP_HEIGHTE"></span><span id="R2C02::OUTPUT_BITMAP_HEIGHT__uint16_tC"></span><span class="target" id="classR2C02_1a6744780aeae7573df6d43fa1eaf9e37e"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">OUTPUT_BITMAP_HEIGHT</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">240</span></span><a class="headerlink" href="#_CPPv4N5R2C0220OUTPUT_BITMAP_HEIGHTE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0228PATTERN_TABLE_TILE_ROW_COUNTE">
+<span id="_CPPv3N5R2C0228PATTERN_TABLE_TILE_ROW_COUNTE"></span><span id="_CPPv2N5R2C0228PATTERN_TABLE_TILE_ROW_COUNTE"></span><span id="R2C02::PATTERN_TABLE_TILE_ROW_COUNT__uint16_tC"></span><span class="target" id="classR2C02_1a326d9eae27fc2e76365e455b52b981d4"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PATTERN_TABLE_TILE_ROW_COUNT</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">16</span></span><a class="headerlink" href="#_CPPv4N5R2C0228PATTERN_TABLE_TILE_ROW_COUNTE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0231PATTERN_TABLE_TILE_COLUMN_COUNTE">
+<span id="_CPPv3N5R2C0231PATTERN_TABLE_TILE_COLUMN_COUNTE"></span><span id="_CPPv2N5R2C0231PATTERN_TABLE_TILE_COLUMN_COUNTE"></span><span id="R2C02::PATTERN_TABLE_TILE_COLUMN_COUNT__uint16_tC"></span><span class="target" id="classR2C02_1aba45f2495a1a0b55537b4fddb8efbe09"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PATTERN_TABLE_TILE_COLUMN_COUNT</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">16</span></span><a class="headerlink" href="#_CPPv4N5R2C0231PATTERN_TABLE_TILE_COLUMN_COUNTE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0224PATTERN_TABLE_PLANE_SIZEE">
+<span id="_CPPv3N5R2C0224PATTERN_TABLE_PLANE_SIZEE"></span><span id="_CPPv2N5R2C0224PATTERN_TABLE_PLANE_SIZEE"></span><span id="R2C02::PATTERN_TABLE_PLANE_SIZE__uint16_tC"></span><span class="target" id="classR2C02_1abb4a895ca9116c28b8fe3466fbcea6ba"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PATTERN_TABLE_PLANE_SIZE</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">8</span></span><a class="headerlink" href="#_CPPv4N5R2C0224PATTERN_TABLE_PLANE_SIZEE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0219internalRegisters_tE">
+<span id="_CPPv3N5R2C0219internalRegisters_tE"></span><span id="_CPPv2N5R2C0219internalRegisters_tE"></span><span id="R2C02::internalRegisters_t"></span><span class="target" id="structR2C02_1_1internalRegisters__t"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">internalRegisters_t</span></span></span><a class="headerlink" href="#_CPPv4N5R2C0219internalRegisters_tE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Internal registers of the PPU for the rendering purposes. These are not exposed. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0219internalRegisters_t7coarseXE">
+<span id="_CPPv3N5R2C0219internalRegisters_t7coarseXE"></span><span id="_CPPv2N5R2C0219internalRegisters_t7coarseXE"></span><span id="R2C02::internalRegisters_t::coarseX__uint16_t"></span><span class="target" id="structR2C02_1_1internalRegisters__t_1ad8e8fc8ee4d831f7e98da6e175ca731c"></span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">coarseX</span></span></span><a class="headerlink" href="#_CPPv4N5R2C0219internalRegisters_t7coarseXE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0219internalRegisters_t7coarseYE">
+<span id="_CPPv3N5R2C0219internalRegisters_t7coarseYE"></span><span id="_CPPv2N5R2C0219internalRegisters_t7coarseYE"></span><span id="R2C02::internalRegisters_t::coarseY__uint16_t"></span><span class="target" id="structR2C02_1_1internalRegisters__t_1a80b306b91b281a19ee6745704a8854a1"></span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">coarseY</span></span></span><a class="headerlink" href="#_CPPv4N5R2C0219internalRegisters_t7coarseYE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0219internalRegisters_t5nameXE">
+<span id="_CPPv3N5R2C0219internalRegisters_t5nameXE"></span><span id="_CPPv2N5R2C0219internalRegisters_t5nameXE"></span><span id="R2C02::internalRegisters_t::nameX__uint16_t"></span><span class="target" id="structR2C02_1_1internalRegisters__t_1a9bde766970298879d09e665de2d8f751"></span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nameX</span></span></span><a class="headerlink" href="#_CPPv4N5R2C0219internalRegisters_t5nameXE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0219internalRegisters_t5nameYE">
+<span id="_CPPv3N5R2C0219internalRegisters_t5nameYE"></span><span id="_CPPv2N5R2C0219internalRegisters_t5nameYE"></span><span id="R2C02::internalRegisters_t::nameY__uint16_t"></span><span class="target" id="structR2C02_1_1internalRegisters__t_1a80b951cd514d78bfb3d326a3f3eff775"></span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nameY</span></span></span><a class="headerlink" href="#_CPPv4N5R2C0219internalRegisters_t5nameYE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0219internalRegisters_t5fineYE">
+<span id="_CPPv3N5R2C0219internalRegisters_t5fineYE"></span><span id="_CPPv2N5R2C0219internalRegisters_t5fineYE"></span><span id="R2C02::internalRegisters_t::fineY__uint16_t"></span><span class="target" id="structR2C02_1_1internalRegisters__t_1a629f059ea0963320554ea5517585643d"></span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fineY</span></span></span><a class="headerlink" href="#_CPPv4N5R2C0219internalRegisters_t5fineYE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0219internalRegisters_t7paddingE">
+<span id="_CPPv3N5R2C0219internalRegisters_t7paddingE"></span><span id="_CPPv2N5R2C0219internalRegisters_t7paddingE"></span><span id="R2C02::internalRegisters_t::padding__uint16_t"></span><span class="target" id="structR2C02_1_1internalRegisters__t_1a2e3780f8c1c7c7bd579a0702a435d90f"></span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">padding</span></span></span><a class="headerlink" href="#_CPPv4N5R2C0219internalRegisters_t7paddingE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0219internalRegisters_t4bitsE">
+<span id="_CPPv3N5R2C0219internalRegisters_t4bitsE"></span><span id="_CPPv2N5R2C0219internalRegisters_t4bitsE"></span><span class="target" id="structR2C02_1_1internalRegisters__t_1ad1900e5523e91ca9523d7389ff83dcd2"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv45R2C02" title="R2C02"><span class="n"><span class="pre">R2C02</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="#_CPPv4N5R2C0219internalRegisters_tE" title="R2C02::internalRegisters_t"><span class="n"><span class="pre">internalRegisters_t</span></span></a><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">[anonymous]</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">STR</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">bits</span></span></span><a class="headerlink" href="#_CPPv4N5R2C0219internalRegisters_t4bitsE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0219internalRegisters_t4dataE">
+<span id="_CPPv3N5R2C0219internalRegisters_t4dataE"></span><span id="_CPPv2N5R2C0219internalRegisters_t4dataE"></span><span id="R2C02::internalRegisters_t::data__uint16_t"></span><span class="target" id="structR2C02_1_1internalRegisters__t_1aa6e4a00dc1cf6147d889c7e80d98fa98"></span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">data</span></span></span><a class="headerlink" href="#_CPPv4N5R2C0219internalRegisters_t4dataE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0219internalRegisters_t1vE">
+<span id="_CPPv3N5R2C0219internalRegisters_t1vE"></span><span id="_CPPv2N5R2C0219internalRegisters_t1vE"></span><span class="target" id="structR2C02_1_1internalRegisters__t_1a994a4c7a52df10de358ad7c6ad3450eb"></span><span class="k"><span class="pre">union</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv45R2C02" title="R2C02"><span class="n"><span class="pre">R2C02</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="#_CPPv4N5R2C0219internalRegisters_tE" title="R2C02::internalRegisters_t"><span class="n"><span class="pre">internalRegisters_t</span></span></a><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">[anonymous]</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">v</span></span></span><a class="headerlink" href="#_CPPv4N5R2C0219internalRegisters_t1vE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>v = current VRAM address t = temporary VRAM address </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0219internalRegisters_t1tE">
+<span id="_CPPv3N5R2C0219internalRegisters_t1tE"></span><span id="_CPPv2N5R2C0219internalRegisters_t1tE"></span><span class="target" id="structR2C02_1_1internalRegisters__t_1a2f38dbc89e8f10e719aa3d07cb000970"></span><span class="k"><span class="pre">union</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv45R2C02" title="R2C02"><span class="n"><span class="pre">R2C02</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="#_CPPv4N5R2C0219internalRegisters_tE" title="R2C02::internalRegisters_t"><span class="n"><span class="pre">internalRegisters_t</span></span></a><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">[anonymous]</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">t</span></span></span><a class="headerlink" href="#_CPPv4N5R2C0219internalRegisters_t1tE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0219internalRegisters_t1xE">
+<span id="_CPPv3N5R2C0219internalRegisters_t1xE"></span><span id="_CPPv2N5R2C0219internalRegisters_t1xE"></span><span id="R2C02::internalRegisters_t::x__uint8_t"></span><span class="target" id="structR2C02_1_1internalRegisters__t_1a0c9eebe025b0c6247ccda7b268e6456b"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">x</span></span></span><a class="headerlink" href="#_CPPv4N5R2C0219internalRegisters_t1xE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Fine X scroll. 3 bits. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0219internalRegisters_t1wE">
+<span id="_CPPv3N5R2C0219internalRegisters_t1wE"></span><span id="_CPPv2N5R2C0219internalRegisters_t1wE"></span><span id="R2C02::internalRegisters_t::w__b"></span><span class="target" id="structR2C02_1_1internalRegisters__t_1ae119b5c18293a00ac62d025acc4f26d3"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">w</span></span></span><a class="headerlink" href="#_CPPv4N5R2C0219internalRegisters_t1wE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>First or second write toggle. Shared by 0x2005 and 0x2006 register. 1 bit. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0211registers_tE">
+<span id="_CPPv3N5R2C0211registers_tE"></span><span id="_CPPv2N5R2C0211registers_tE"></span><span id="R2C02::registers_t"></span><span class="target" id="structR2C02_1_1registers__t"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">registers_t</span></span></span><a class="headerlink" href="#_CPPv4N5R2C0211registers_tE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>“Public” registers accessible by the CPU. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0211registers_t5nameXE">
+<span id="_CPPv3N5R2C0211registers_t5nameXE"></span><span id="_CPPv2N5R2C0211registers_t5nameXE"></span><span id="R2C02::registers_t::nameX__uint8_t"></span><span class="target" id="structR2C02_1_1registers__t_1acc84071ed56f1961743888aca4bdfdfd"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nameX</span></span></span><a class="headerlink" href="#_CPPv4N5R2C0211registers_t5nameXE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Base nametable address, scroll X coordinate MSB. (1 = add 256) </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0211registers_t5nameYE">
+<span id="_CPPv3N5R2C0211registers_t5nameYE"></span><span id="_CPPv2N5R2C0211registers_t5nameYE"></span><span id="R2C02::registers_t::nameY__uint8_t"></span><span class="target" id="structR2C02_1_1registers__t_1aaa5f7a02692384eaace9bcd893b945ca"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nameY</span></span></span><a class="headerlink" href="#_CPPv4N5R2C0211registers_t5nameYE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Base nametable address, scroll Y coordinate MSB. (1 = add 240) </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0211registers_t7incModeE">
+<span id="_CPPv3N5R2C0211registers_t7incModeE"></span><span id="_CPPv2N5R2C0211registers_t7incModeE"></span><span id="R2C02::registers_t::incMode__uint8_t"></span><span class="target" id="structR2C02_1_1registers__t_1a3e9056ceacdcc15fcfca64ecedab2ef7"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">incMode</span></span></span><a class="headerlink" href="#_CPPv4N5R2C0211registers_t7incModeE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>VRAM address increment per CPU R/W of PPUDATA. (0 = add 1, 1 = add 32). </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0211registers_t13spriteAddressE">
+<span id="_CPPv3N5R2C0211registers_t13spriteAddressE"></span><span id="_CPPv2N5R2C0211registers_t13spriteAddressE"></span><span id="R2C02::registers_t::spriteAddress__uint8_t"></span><span class="target" id="structR2C02_1_1registers__t_1a550c8345a91385961f5d5566e42de988"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">spriteAddress</span></span></span><a class="headerlink" href="#_CPPv4N5R2C0211registers_t13spriteAddressE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Sprite pattern table address for 8x8 sprites. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0211registers_t17backgroundAddressE">
+<span id="_CPPv3N5R2C0211registers_t17backgroundAddressE"></span><span id="_CPPv2N5R2C0211registers_t17backgroundAddressE"></span><span id="R2C02::registers_t::backgroundAddress__uint8_t"></span><span class="target" id="structR2C02_1_1registers__t_1a3eef6474d5afd9a85ab099d065036f9b"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">backgroundAddress</span></span></span><a class="headerlink" href="#_CPPv4N5R2C0211registers_t17backgroundAddressE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Background pattern table address. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0211registers_t10spriteSizeE">
+<span id="_CPPv3N5R2C0211registers_t10spriteSizeE"></span><span id="_CPPv2N5R2C0211registers_t10spriteSizeE"></span><span id="R2C02::registers_t::spriteSize__uint8_t"></span><span class="target" id="structR2C02_1_1registers__t_1a7c4c9bfbd140c4161ed40b15fd4142f4"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">spriteSize</span></span></span><a class="headerlink" href="#_CPPv4N5R2C0211registers_t10spriteSizeE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Sprite size (8x8, 8x16). </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0211registers_t11masterSlaveE">
+<span id="_CPPv3N5R2C0211registers_t11masterSlaveE"></span><span id="_CPPv2N5R2C0211registers_t11masterSlaveE"></span><span id="R2C02::registers_t::masterSlave__uint8_t"></span><span class="target" id="structR2C02_1_1registers__t_1a294433fd825d9686ab3e5be48fa7cc2f"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">masterSlave</span></span></span><a class="headerlink" href="#_CPPv4N5R2C0211registers_t11masterSlaveE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>PPU master/slave. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0211registers_t3nmiE">
+<span id="_CPPv3N5R2C0211registers_t3nmiE"></span><span id="_CPPv2N5R2C0211registers_t3nmiE"></span><span id="R2C02::registers_t::nmi__uint8_t"></span><span class="target" id="structR2C02_1_1registers__t_1a124bcb1e943921e29845d48bf66b7b38"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmi</span></span></span><a class="headerlink" href="#_CPPv4N5R2C0211registers_t3nmiE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Generate NMI on vblank. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0211registers_t4bitsE">
+<span id="_CPPv3N5R2C0211registers_t4bitsE"></span><span id="_CPPv2N5R2C0211registers_t4bitsE"></span><span class="target" id="structR2C02_1_1registers__t_1affc4109dda19dc88f13305cbad49e3d0"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv45R2C02" title="R2C02"><span class="n"><span class="pre">R2C02</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="#_CPPv4N5R2C0211registers_tE" title="R2C02::registers_t"><span class="n"><span class="pre">registers_t</span></span></a><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">[anonymous]</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">[anonymous]</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">bits</span></span></span><a class="headerlink" href="#_CPPv4N5R2C0211registers_t4bitsE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0211registers_t4dataE">
+<span id="_CPPv3N5R2C0211registers_t4dataE"></span><span id="_CPPv2N5R2C0211registers_t4dataE"></span><span id="R2C02::registers_t::data__uint8_t"></span><span class="target" id="structR2C02_1_1registers__t_1af140f3b9a2b9fc7b6444f364df43c33c"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">data</span></span></span><a class="headerlink" href="#_CPPv4N5R2C0211registers_t4dataE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0211registers_t7ppuctrlE">
+<span id="_CPPv3N5R2C0211registers_t7ppuctrlE"></span><span id="_CPPv2N5R2C0211registers_t7ppuctrlE"></span><span class="target" id="structR2C02_1_1registers__t_1abb82cb86a4cd72a65a85e2396f8da667"></span><span class="k"><span class="pre">union</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv45R2C02" title="R2C02"><span class="n"><span class="pre">R2C02</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="#_CPPv4N5R2C0211registers_tE" title="R2C02::registers_t"><span class="n"><span class="pre">registers_t</span></span></a><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">[anonymous]</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ppuctrl</span></span></span><a class="headerlink" href="#_CPPv4N5R2C0211registers_t7ppuctrlE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Controller (0x2000) - PPUCTRL Access: write Controls PPU operation. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0211registers_t9grayscaleE">
+<span id="_CPPv3N5R2C0211registers_t9grayscaleE"></span><span id="_CPPv2N5R2C0211registers_t9grayscaleE"></span><span id="R2C02::registers_t::grayscale__uint8_t"></span><span class="target" id="structR2C02_1_1registers__t_1a8e2bd8851611dc2173b24795dca57f8f"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">grayscale</span></span></span><a class="headerlink" href="#_CPPv4N5R2C0211registers_t9grayscaleE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Enable grayscale. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0211registers_t18showBackgroundLeftE">
+<span id="_CPPv3N5R2C0211registers_t18showBackgroundLeftE"></span><span id="_CPPv2N5R2C0211registers_t18showBackgroundLeftE"></span><span id="R2C02::registers_t::showBackgroundLeft__uint8_t"></span><span class="target" id="structR2C02_1_1registers__t_1abcf611b0b06d1f7aef8e26a73ddebf64"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">showBackgroundLeft</span></span></span><a class="headerlink" href="#_CPPv4N5R2C0211registers_t18showBackgroundLeftE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Show background in leftmost 8 pixels. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0211registers_t15showSpritesLeftE">
+<span id="_CPPv3N5R2C0211registers_t15showSpritesLeftE"></span><span id="_CPPv2N5R2C0211registers_t15showSpritesLeftE"></span><span id="R2C02::registers_t::showSpritesLeft__uint8_t"></span><span class="target" id="structR2C02_1_1registers__t_1a9c460df4b11e2b9a1f6f3547507065f3"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">showSpritesLeft</span></span></span><a class="headerlink" href="#_CPPv4N5R2C0211registers_t15showSpritesLeftE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Show sprites in leftmost 8 pixels. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0211registers_t14showBackgroundE">
+<span id="_CPPv3N5R2C0211registers_t14showBackgroundE"></span><span id="_CPPv2N5R2C0211registers_t14showBackgroundE"></span><span id="R2C02::registers_t::showBackground__uint8_t"></span><span class="target" id="structR2C02_1_1registers__t_1a8d54779f2e7b30af5c409e93c539cc47"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">showBackground</span></span></span><a class="headerlink" href="#_CPPv4N5R2C0211registers_t14showBackgroundE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Show bg. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0211registers_t11showSpritesE">
+<span id="_CPPv3N5R2C0211registers_t11showSpritesE"></span><span id="_CPPv2N5R2C0211registers_t11showSpritesE"></span><span id="R2C02::registers_t::showSprites__uint8_t"></span><span class="target" id="structR2C02_1_1registers__t_1a75381177dfb748b69a0af9efdddde681"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">showSprites</span></span></span><a class="headerlink" href="#_CPPv4N5R2C0211registers_t11showSpritesE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Show sprites. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0211registers_t4eRedE">
+<span id="_CPPv3N5R2C0211registers_t4eRedE"></span><span id="_CPPv2N5R2C0211registers_t4eRedE"></span><span id="R2C02::registers_t::eRed__uint8_t"></span><span class="target" id="structR2C02_1_1registers__t_1ac7dbd084f79e183070649af07f329769"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">eRed</span></span></span><a class="headerlink" href="#_CPPv4N5R2C0211registers_t4eRedE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Enhance red. (Green on PAL/Dendy.) </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0211registers_t6eGreenE">
+<span id="_CPPv3N5R2C0211registers_t6eGreenE"></span><span id="_CPPv2N5R2C0211registers_t6eGreenE"></span><span id="R2C02::registers_t::eGreen__uint8_t"></span><span class="target" id="structR2C02_1_1registers__t_1a5710f052f6953e6a056caf8cae3e20d3"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">eGreen</span></span></span><a class="headerlink" href="#_CPPv4N5R2C0211registers_t6eGreenE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Enhance green. (Red on PAL/Dendy.) </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0211registers_t5eBlueE">
+<span id="_CPPv3N5R2C0211registers_t5eBlueE"></span><span id="_CPPv2N5R2C0211registers_t5eBlueE"></span><span id="R2C02::registers_t::eBlue__uint8_t"></span><span class="target" id="structR2C02_1_1registers__t_1a3b52e050e10ee516e1a8cf80ab185a80"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">eBlue</span></span></span><a class="headerlink" href="#_CPPv4N5R2C0211registers_t5eBlueE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Enhance blue. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp">
+<span class="target" id="structR2C02_1_1registers__t_1a2b2b1857e75eed84421211d1167bf11d"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv45R2C02" title="R2C02"><span class="n"><span class="pre">R2C02</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="#_CPPv4N5R2C0211registers_tE" title="R2C02::registers_t"><span class="n"><span class="pre">registers_t</span></span></a><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">[anonymous]</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">[anonymous]</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">bits</span></span></span><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0211registers_t7ppumaskE">
+<span id="_CPPv3N5R2C0211registers_t7ppumaskE"></span><span id="_CPPv2N5R2C0211registers_t7ppumaskE"></span><span class="target" id="structR2C02_1_1registers__t_1a65a0f988e9237131f05c7cb135563a27"></span><span class="k"><span class="pre">union</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv45R2C02" title="R2C02"><span class="n"><span class="pre">R2C02</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="#_CPPv4N5R2C0211registers_tE" title="R2C02::registers_t"><span class="n"><span class="pre">registers_t</span></span></a><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">[anonymous]</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ppumask</span></span></span><a class="headerlink" href="#_CPPv4N5R2C0211registers_t7ppumaskE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Mask register (0x2001) - PPUMASK Access: write Controls the rendering of sprites and backgrounds and color effects. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0211registers_t7paddingE">
+<span id="_CPPv3N5R2C0211registers_t7paddingE"></span><span id="_CPPv2N5R2C0211registers_t7paddingE"></span><span id="R2C02::registers_t::padding__uint8_t"></span><span class="target" id="structR2C02_1_1registers__t_1a50640402a8b41e0506b5c2ff8fd148c2"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">padding</span></span></span><a class="headerlink" href="#_CPPv4N5R2C0211registers_t7paddingE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Least sig. bits of previous value written to PPU register. Some Vs. systems return a constant that game checks. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0211registers_t14spriteOverflowE">
+<span id="_CPPv3N5R2C0211registers_t14spriteOverflowE"></span><span id="_CPPv2N5R2C0211registers_t14spriteOverflowE"></span><span id="R2C02::registers_t::spriteOverflow__uint8_t"></span><span class="target" id="structR2C02_1_1registers__t_1a9fa92630bce187417c88e4af0435c058"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">spriteOverflow</span></span></span><a class="headerlink" href="#_CPPv4N5R2C0211registers_t14spriteOverflowE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Buggy detection of the existence of more than 8 sprites on a scanline. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0211registers_t13spriteZeroHitE">
+<span id="_CPPv3N5R2C0211registers_t13spriteZeroHitE"></span><span id="_CPPv2N5R2C0211registers_t13spriteZeroHitE"></span><span id="R2C02::registers_t::spriteZeroHit__uint8_t"></span><span class="target" id="structR2C02_1_1registers__t_1adc3859ee4faf2d605b646634d509790a"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">spriteZeroHit</span></span></span><a class="headerlink" href="#_CPPv4N5R2C0211registers_t13spriteZeroHitE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Nonzero pixel of sprite 0 overlaps nonzero background. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0211registers_t6vBlankE">
+<span id="_CPPv3N5R2C0211registers_t6vBlankE"></span><span id="_CPPv2N5R2C0211registers_t6vBlankE"></span><span id="R2C02::registers_t::vBlank__uint8_t"></span><span class="target" id="structR2C02_1_1registers__t_1a22748a26cbb54af173440565f17bca30"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">vBlank</span></span></span><a class="headerlink" href="#_CPPv4N5R2C0211registers_t6vBlankE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>True if vblank started, cleared after reading this register. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp">
+<span class="target" id="structR2C02_1_1registers__t_1a703af9f38601e62766bd6613647e3705"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv45R2C02" title="R2C02"><span class="n"><span class="pre">R2C02</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="#_CPPv4N5R2C0211registers_tE" title="R2C02::registers_t"><span class="n"><span class="pre">registers_t</span></span></a><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">[anonymous]</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">[anonymous]</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">bits</span></span></span><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0211registers_t9ppustatusE">
+<span id="_CPPv3N5R2C0211registers_t9ppustatusE"></span><span id="_CPPv2N5R2C0211registers_t9ppustatusE"></span><span class="target" id="structR2C02_1_1registers__t_1a2dfdc5bcf94e307fd7c7047ef429e303"></span><span class="k"><span class="pre">union</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv45R2C02" title="R2C02"><span class="n"><span class="pre">R2C02</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="#_CPPv4N5R2C0211registers_tE" title="R2C02::registers_t"><span class="n"><span class="pre">registers_t</span></span></a><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">[anonymous]</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ppustatus</span></span></span><a class="headerlink" href="#_CPPv4N5R2C0211registers_t9ppustatusE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Status register (0x2002) - PPUSTATUS Access: read Reflects the state of the PPU. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0211registers_t4byteE">
+<span id="_CPPv3N5R2C0211registers_t4byteE"></span><span id="_CPPv2N5R2C0211registers_t4byteE"></span><span id="R2C02::registers_t::byte__uint8_t"></span><span class="target" id="structR2C02_1_1registers__t_1a83f1d2d2a64a4c2d53e90ef66b8e86cf"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">byte</span></span></span><a class="headerlink" href="#_CPPv4N5R2C0211registers_t4byteE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0211registers_t5indexE">
+<span id="_CPPv3N5R2C0211registers_t5indexE"></span><span id="_CPPv2N5R2C0211registers_t5indexE"></span><span id="R2C02::registers_t::index__uint8_t"></span><span class="target" id="structR2C02_1_1registers__t_1a840ce8e138f809674c8d5cf1f0c7429d"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">index</span></span></span><a class="headerlink" href="#_CPPv4N5R2C0211registers_t5indexE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp">
+<span class="target" id="structR2C02_1_1registers__t_1a07c70cacb41fc334cd877a7f2767ebb1"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv45R2C02" title="R2C02"><span class="n"><span class="pre">R2C02</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="#_CPPv4N5R2C0211registers_tE" title="R2C02::registers_t"><span class="n"><span class="pre">registers_t</span></span></a><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">[anonymous]</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">[anonymous]</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">bits</span></span></span><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5R2C0211registers_t10oamAddressE">
+<span id="_CPPv3N5R2C0211registers_t10oamAddressE"></span><span id="_CPPv2N5R2C0211registers_t10oamAddressE"></span><span class="target" id="structR2C02_1_1registers__t_1aa5948da59abacf21f1e59c2014cdfb30"></span><span class="k"><span class="pre">union</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv45R2C02" title="R2C02"><span class="n"><span class="pre">R2C02</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="#_CPPv4N5R2C0211registers_tE" title="R2C02::registers_t"><span class="n"><span class="pre">registers_t</span></span></a><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">[anonymous]</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">oamAddress</span></span></span><a class="headerlink" href="#_CPPv4N5R2C0211registers_t10oamAddressE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="classPort.html" class="btn btn-neutral float-left" title="Class Port" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="classRP2A03.html" class="btn btn-neutral float-right" title="Class RP2A03" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023 Ondrej Golasowski.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,14 @@
+.. _exhale_function_Tools_8h_1ae447c6b042bdf8f9041a410fc21ef76d:
+
+Function USETools::map
+======================
+
+- Defined in :ref:`file__home_runner_work_use_use_include_Tools.h`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: USETools::map(double, double, double, double, double)
+   :project: Universal System Emulator

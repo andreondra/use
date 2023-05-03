@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Program Listing for File 2C02.h &mdash; Universal System Emulator  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+    <link rel="canonical" href="./_exhale/program_listing_file__home_runner_work_use_use_include_components_2C02.h.html" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Universal System Emulator
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Universal System Emulator documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_manual.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_manual.html">Developer’s Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contr_manual.html">Contributor’s Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_docs_root.html">API docs</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Universal System Emulator</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Program Listing for File 2C02.h</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/_exhale/program_listing_file__home_runner_work_use_use_include_components_2C02.h.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="program-listing-for-file-2c02-h">
+<span id="program-listing-file-home-runner-work-use-use-include-components-2c02-h"></span><h1>Program Listing for File 2C02.h<a class="headerlink" href="#program-listing-for-file-2c02-h" title="Permalink to this headline"></a></h1>
+<p>↰ <a class="reference internal" href="file__home_runner_work_use_use_include_components_2C02.h.html#file-home-runner-work-use-use-include-components-2c02-h"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">/home/runner/work/use/use/include/components/2C02.h</span></code>)</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifndef USE_2C02_H</span>
+<span class="cp">#define USE_2C02_H</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cstdint&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cstring&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Port.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Component.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Types.h&quot;</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">R2C02</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Component</span><span class="w"> </span><span class="p">{</span>
+
+<span class="k">protected</span><span class="o">:</span>
+
+<span class="w">    </span><span class="c1">// ===========================================</span>
+<span class="w">    </span><span class="c1">// PPU memory addresses</span>
+<span class="w">    </span><span class="c1">// ===========================================</span>
+<span class="w">    </span><span class="k">constexpr</span><span class="w"> </span><span class="k">static</span><span class="w"> </span><span class="n">AddressRange</span><span class="w"> </span><span class="n">ADDR_PATTERN_TABLES</span><span class="p">{</span><span class="mh">0x0000</span><span class="p">,</span><span class="w"> </span><span class="mh">0x1FFF</span><span class="p">};</span>
+<span class="w">    </span><span class="k">constexpr</span><span class="w"> </span><span class="k">static</span><span class="w"> </span><span class="n">AddressRange</span><span class="w"> </span><span class="n">ADDR_NAMETABLES</span><span class="p">{</span><span class="mh">0x2000</span><span class="p">,</span><span class="w"> </span><span class="mh">0x2FFF</span><span class="p">};</span>
+<span class="w">    </span><span class="k">constexpr</span><span class="w"> </span><span class="k">static</span><span class="w"> </span><span class="n">AddressRange</span><span class="w"> </span><span class="n">ADDR_PALETTE_RAM</span><span class="p">{</span><span class="mh">0x3F00</span><span class="p">,</span><span class="w"> </span><span class="mh">0x3FFF</span><span class="p">};</span>
+
+<span class="w">    </span><span class="c1">// ===========================================</span>
+<span class="w">    </span><span class="c1">// Sizes</span>
+<span class="w">    </span><span class="c1">// ===========================================</span>
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">OUTPUT_BITMAP_WIDTH</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">256</span><span class="p">;</span>
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">OUTPUT_BITMAP_HEIGHT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">240</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">PATTERN_TABLE_TILE_ROW_COUNT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">16</span><span class="p">;</span>
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">PATTERN_TABLE_TILE_COLUMN_COUNT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">16</span><span class="p">;</span>
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">PATTERN_TABLE_PLANE_SIZE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">8</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">m_dataBuffer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x00</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">internalRegisters_t</span><span class="p">{</span>
+
+<span class="w">        </span><span class="k">union</span><span class="p">{</span>
+
+<span class="w">            </span><span class="k">struct</span><span class="w"> </span><span class="nc">STR</span><span class="p">{</span>
+
+<span class="w">                </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">coarseX</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
+<span class="w">                </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">coarseY</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
+<span class="w">                </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">nameX</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">                </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">nameY</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">                </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">fineY</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span>
+<span class="w">                </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">padding</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="n">bits</span><span class="p">;</span>
+<span class="w">            </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">data</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="n">v</span><span class="p">,</span><span class="n">t</span><span class="p">;</span>
+
+<span class="w">        </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="n">w</span><span class="p">;</span>
+
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="n">m_internalRegisters</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">struct</span><span class="p">{</span>
+
+<span class="w">        </span><span class="c1">// 64 sprites for the frame.</span>
+<span class="w">        </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">primaryOAM</span><span class="p">[</span><span class="mi">256</span><span class="p">];</span>
+<span class="w">        </span><span class="c1">// 8 sprites for the current scanline.</span>
+<span class="w">        </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">secondaryOAM</span><span class="p">[</span><span class="mi">32</span><span class="p">];</span>
+<span class="w">        </span><span class="c1">// Attributes.</span>
+<span class="w">        </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">attrLatch</span><span class="p">[</span><span class="mi">8</span><span class="p">];</span>
+<span class="w">        </span><span class="c1">// X positions.</span>
+<span class="w">        </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">x</span><span class="p">[</span><span class="mi">8</span><span class="p">];</span>
+
+<span class="w">        </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">shiftLo</span><span class="p">[</span><span class="mi">8</span><span class="p">];</span>
+<span class="w">        </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">shiftHi</span><span class="p">[</span><span class="mi">8</span><span class="p">];</span>
+<span class="w">        </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">allowShift</span><span class="p">[</span><span class="mi">8</span><span class="p">];</span>
+
+<span class="w">        </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">secondarySpriteId</span><span class="p">;</span>
+
+<span class="w">        </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">feedY</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">feedTileAddress</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">feedIndex</span><span class="p">;</span>
+
+<span class="w">        </span><span class="kt">void</span><span class="w"> </span><span class="nf">renderInit</span><span class="p">(){</span>
+
+<span class="w">            </span><span class="n">memset</span><span class="p">(</span><span class="n">secondaryOAM</span><span class="p">,</span><span class="w"> </span><span class="mh">0xFF</span><span class="p">,</span><span class="w"> </span><span class="mi">32</span><span class="p">);</span>
+
+<span class="w">            </span><span class="n">secondarySpriteId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">            </span><span class="n">feedIndex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="kt">void</span><span class="w"> </span><span class="nf">shiftClear</span><span class="p">(){</span>
+
+<span class="w">            </span><span class="n">memset</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">);</span>
+<span class="w">            </span><span class="n">memset</span><span class="p">(</span><span class="n">shiftHi</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">);</span>
+<span class="w">            </span><span class="n">memset</span><span class="p">(</span><span class="n">shiftLo</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">);</span>
+<span class="w">            </span><span class="n">memset</span><span class="p">(</span><span class="n">attrLatch</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">);</span>
+<span class="w">            </span><span class="n">memset</span><span class="p">(</span><span class="n">allowShift</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="kt">void</span><span class="w"> </span><span class="nf">shift</span><span class="p">(){</span>
+
+<span class="w">            </span><span class="k">for</span><span class="p">(</span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">8</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">                </span><span class="k">if</span><span class="p">(</span><span class="n">allowShift</span><span class="p">[</span><span class="n">i</span><span class="p">]){</span>
+<span class="w">                    </span><span class="k">if</span><span class="p">((</span><span class="n">attrLatch</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mh">0x40</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">){</span>
+
+<span class="w">                        </span><span class="n">shiftHi</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&gt;&gt;=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">                        </span><span class="n">shiftLo</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&gt;&gt;=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">                    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">                        </span><span class="n">shiftHi</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">                        </span><span class="n">shiftLo</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">                    </span><span class="p">}</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="kt">void</span><span class="w"> </span><span class="nf">clear</span><span class="p">(){</span>
+
+<span class="w">            </span><span class="n">memset</span><span class="p">(</span><span class="n">primaryOAM</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">256</span><span class="p">);</span>
+<span class="w">            </span><span class="n">shiftClear</span><span class="p">();</span>
+<span class="w">            </span><span class="n">renderInit</span><span class="p">();</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span><span class="n">m_spriteData</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">struct</span><span class="p">{</span>
+
+<span class="w">        </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">ntByte</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">atByte</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">tileData</span><span class="p">;</span>
+
+<span class="w">        </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">shiftTileLo</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">shiftTileHi</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">shiftAttrLo</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">shiftAttrHi</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="n">m_backgroundData</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">registers_t</span><span class="p">{</span>
+
+<span class="w">        </span><span class="k">union</span><span class="p">{</span>
+
+<span class="w">            </span><span class="k">struct</span><span class="p">{</span>
+<span class="w">                </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">nameX</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">                </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">nameY</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">                </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">incMode</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">                </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">spriteAddress</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">                </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">backgroundAddress</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">                </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">spriteSize</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">                </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">masterSlave</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">                </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">nmi</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="n">bits</span><span class="p">;</span>
+
+<span class="w">            </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">data</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="n">ppuctrl</span><span class="p">;</span>
+
+<span class="w">        </span><span class="k">union</span><span class="p">{</span>
+
+<span class="w">            </span><span class="k">struct</span><span class="p">{</span>
+<span class="w">                </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">grayscale</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">                </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">showBackgroundLeft</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">                </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">showSpritesLeft</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">                </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">showBackground</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">                </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">showSprites</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">                </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">eRed</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">                </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">eGreen</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">                </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">eBlue</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="n">bits</span><span class="p">;</span>
+
+<span class="w">            </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">data</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="n">ppumask</span><span class="p">;</span>
+
+<span class="w">        </span><span class="k">union</span><span class="p">{</span>
+
+<span class="w">            </span><span class="k">struct</span><span class="p">{</span>
+<span class="w">                </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">padding</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
+<span class="w">                </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">spriteOverflow</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">                </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">spriteZeroHit</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">                </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">vBlank</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="n">bits</span><span class="p">;</span>
+
+<span class="w">            </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">data</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="n">ppustatus</span><span class="p">;</span>
+
+<span class="w">        </span><span class="k">union</span><span class="p">{</span>
+
+<span class="w">            </span><span class="k">struct</span><span class="p">{</span>
+<span class="w">                </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">byte</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+<span class="w">                </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">6</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="n">bits</span><span class="p">;</span>
+
+<span class="w">            </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">data</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="n">oamAddress</span><span class="p">;</span>
+
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="n">m_registers</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">m_scanlineReady</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">m_frameReady</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">m_oddScan</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">m_settingsEnableForeground</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">m_settingsEnableBackground</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">m_blockNMI</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">RGBPixel</span><span class="w"> </span><span class="n">m_colors2C02</span><span class="p">[</span><span class="mi">64</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">            </span><span class="p">{</span><span class="mi">84</span><span class="p">,</span><span class="w"> </span><span class="mi">84</span><span class="p">,</span><span class="w"> </span><span class="mi">84</span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w"> </span><span class="mi">116</span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span><span class="w"> </span><span class="mi">144</span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span><span class="mi">48</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">136</span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span><span class="mi">68</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span><span class="mi">92</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">48</span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span><span class="mi">84</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span><span class="mi">60</span><span class="p">,</span><span class="w"> </span><span class="mi">24</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span><span class="mi">32</span><span class="p">,</span><span class="w"> </span><span class="mi">42</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="mi">58</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">64</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">60</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span><span class="w"> </span><span class="mi">60</span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span><span class="mi">152</span><span class="p">,</span><span class="w"> </span><span class="mi">150</span><span class="p">,</span><span class="w"> </span><span class="mi">152</span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="mi">76</span><span class="p">,</span><span class="w"> </span><span class="mi">196</span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span><span class="mi">48</span><span class="p">,</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span><span class="w"> </span><span class="mi">236</span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span><span class="mi">92</span><span class="p">,</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w"> </span><span class="mi">228</span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span><span class="mi">136</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w"> </span><span class="mi">176</span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span><span class="mi">160</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span><span class="mi">152</span><span class="p">,</span><span class="w"> </span><span class="mi">34</span><span class="p">,</span><span class="w"> </span><span class="mi">32</span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span><span class="mi">120</span><span class="p">,</span><span class="w"> </span><span class="mi">60</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span><span class="mi">84</span><span class="p">,</span><span class="w"> </span><span class="mi">90</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span><span class="mi">40</span><span class="p">,</span><span class="w"> </span><span class="mi">114</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="mi">124</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">118</span><span class="p">,</span><span class="w"> </span><span class="mi">40</span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">102</span><span class="p">,</span><span class="w"> </span><span class="mi">120</span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span><span class="mi">236</span><span class="p">,</span><span class="w"> </span><span class="mi">238</span><span class="p">,</span><span class="w"> </span><span class="mi">236</span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span><span class="mi">76</span><span class="p">,</span><span class="w"> </span><span class="mi">154</span><span class="p">,</span><span class="w"> </span><span class="mi">236</span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span><span class="mi">120</span><span class="p">,</span><span class="w"> </span><span class="mi">124</span><span class="p">,</span><span class="w"> </span><span class="mi">236</span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span><span class="mi">176</span><span class="p">,</span><span class="w"> </span><span class="mi">98</span><span class="p">,</span><span class="w"> </span><span class="mi">236</span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span><span class="mi">228</span><span class="p">,</span><span class="w"> </span><span class="mi">84</span><span class="p">,</span><span class="w"> </span><span class="mi">236</span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span><span class="mi">236</span><span class="p">,</span><span class="w"> </span><span class="mi">88</span><span class="p">,</span><span class="w"> </span><span class="mi">180</span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span><span class="mi">236</span><span class="p">,</span><span class="w"> </span><span class="mi">106</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span><span class="mi">212</span><span class="p">,</span><span class="w"> </span><span class="mi">136</span><span class="p">,</span><span class="w"> </span><span class="mi">32</span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span><span class="mi">160</span><span class="p">,</span><span class="w"> </span><span class="mi">170</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span><span class="mi">116</span><span class="p">,</span><span class="w"> </span><span class="mi">196</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span><span class="mi">76</span><span class="p">,</span><span class="w"> </span><span class="mi">208</span><span class="p">,</span><span class="w"> </span><span class="mi">32</span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span><span class="mi">56</span><span class="p">,</span><span class="w"> </span><span class="mi">204</span><span class="p">,</span><span class="w"> </span><span class="mi">108</span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span><span class="mi">56</span><span class="p">,</span><span class="w"> </span><span class="mi">180</span><span class="p">,</span><span class="w"> </span><span class="mi">204</span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span><span class="mi">60</span><span class="p">,</span><span class="w"> </span><span class="mi">60</span><span class="p">,</span><span class="w"> </span><span class="mi">60</span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span><span class="mi">236</span><span class="p">,</span><span class="w"> </span><span class="mi">238</span><span class="p">,</span><span class="w"> </span><span class="mi">236</span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span><span class="mi">168</span><span class="p">,</span><span class="w"> </span><span class="mi">204</span><span class="p">,</span><span class="w"> </span><span class="mi">236</span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span><span class="mi">188</span><span class="p">,</span><span class="w"> </span><span class="mi">188</span><span class="p">,</span><span class="w"> </span><span class="mi">236</span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span><span class="mi">212</span><span class="p">,</span><span class="w"> </span><span class="mi">178</span><span class="p">,</span><span class="w"> </span><span class="mi">236</span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span><span class="mi">236</span><span class="p">,</span><span class="w"> </span><span class="mi">174</span><span class="p">,</span><span class="w"> </span><span class="mi">236</span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span><span class="mi">236</span><span class="p">,</span><span class="w"> </span><span class="mi">174</span><span class="p">,</span><span class="w"> </span><span class="mi">212</span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span><span class="mi">236</span><span class="p">,</span><span class="w"> </span><span class="mi">180</span><span class="p">,</span><span class="w"> </span><span class="mi">176</span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span><span class="mi">228</span><span class="p">,</span><span class="w"> </span><span class="mi">196</span><span class="p">,</span><span class="w"> </span><span class="mi">144</span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span><span class="mi">204</span><span class="p">,</span><span class="w"> </span><span class="mi">210</span><span class="p">,</span><span class="w"> </span><span class="mi">120</span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span><span class="mi">180</span><span class="p">,</span><span class="w"> </span><span class="mi">222</span><span class="p">,</span><span class="w"> </span><span class="mi">120</span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span><span class="mi">168</span><span class="p">,</span><span class="w"> </span><span class="mi">226</span><span class="p">,</span><span class="w"> </span><span class="mi">144</span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span><span class="mi">152</span><span class="p">,</span><span class="w"> </span><span class="mi">226</span><span class="p">,</span><span class="w"> </span><span class="mi">180</span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span><span class="mi">160</span><span class="p">,</span><span class="w"> </span><span class="mi">214</span><span class="p">,</span><span class="w"> </span><span class="mi">228</span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span><span class="mi">160</span><span class="p">,</span><span class="w"> </span><span class="mi">162</span><span class="p">,</span><span class="w"> </span><span class="mi">160</span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">}</span>
+<span class="w">    </span><span class="p">};</span>
+
+<span class="w">    </span><span class="c1">//External PPU colors.</span>
+
+<span class="w">    </span><span class="c1">// Current PPU rendering colors.</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">RGBPixel</span><span class="w"> </span><span class="o">*</span><span class="n">m_colors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">m_colors2C02</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// ===============================================</span>
+<span class="w">    </span><span class="c1">// Background rendering procedures.</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">verticalIncrement</span><span class="p">();</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">horizontalIncrement</span><span class="p">();</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">verticalTransfer</span><span class="p">();</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">horizontalTransfer</span><span class="p">();</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">fetchNT</span><span class="p">();</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">fetchAT</span><span class="p">();</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">fetchTileLo</span><span class="p">();</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">fetchTileHi</span><span class="p">();</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">feedShifters</span><span class="p">();</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">shiftShifters</span><span class="p">();</span>
+<span class="w">    </span><span class="c1">// ===============================================</span>
+<span class="w">    </span><span class="c1">// Foreground rendering procedures.</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">evaluateSprites</span><span class="p">();</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">fetchSprite</span><span class="p">(</span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">offset</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// ===============================================</span>
+<span class="w">    </span><span class="c1">// Color palletes.</span>
+<span class="w">    </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">m_palettes</span><span class="p">[</span><span class="mi">32</span><span class="p">];</span>
+<span class="w">    </span><span class="c1">// ===============================================</span>
+<span class="w">    </span><span class="c1">// Current rendering coordinates.</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">m_clock</span><span class="p">,</span><span class="w"> </span><span class="n">m_scanline</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// ===============================================</span>
+<span class="w">    </span><span class="c1">// NES screen.</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">RGBPixel</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">m_screen</span><span class="p">{</span><span class="n">OUTPUT_BITMAP_HEIGHT</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="n">OUTPUT_BITMAP_WIDTH</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">}}};</span>
+
+<span class="w">    </span><span class="c1">// Internal PPU bus I/O.</span>
+<span class="w">    </span><span class="kt">uint8_t</span><span class="w"> </span><span class="nf">ppuBusRead</span><span class="p">(</span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">addr</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">ppuBusWrite</span><span class="p">(</span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">addr</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">data</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// ===============================================</span>
+
+<span class="w">    </span><span class="c1">// ===========================================</span>
+<span class="w">    </span><span class="c1">// Helpers</span>
+<span class="w">    </span><span class="c1">// ===========================================</span>
+<span class="w">    </span><span class="n">RGBPixel</span><span class="w"> </span><span class="nf">getPixelColor</span><span class="p">(</span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">paletteId</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">pixel</span><span class="p">);</span>
+<span class="w">    </span><span class="n">RGBPixel</span><span class="w"> </span><span class="nf">getColorFromPalette</span><span class="p">(</span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">bgFg</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">paletteNumber</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">pixelValue</span><span class="p">);</span>
+<span class="w">    </span><span class="n">RGBPixel</span><span class="w"> </span><span class="nf">applyPixelEffects</span><span class="p">(</span><span class="n">RGBPixel</span><span class="w"> </span><span class="n">pixel</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="nf">saturate</span><span class="p">(</span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">y</span><span class="p">);</span>
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="nf">desaturate</span><span class="p">(</span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">y</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// ===========================================</span>
+<span class="w">    </span><span class="c1">// I/O</span>
+<span class="w">    </span><span class="c1">// ===========================================</span>
+<span class="w">    </span><span class="c1">// Connection to the PPU bus (controlled by the PPU).</span>
+<span class="w">    </span><span class="n">DataPort</span><span class="w"> </span><span class="n">m_ppuBus</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// Interrupt generator. Normally connected to the 6502&#39;s NMI pin.</span>
+<span class="w">    </span><span class="n">SignalPort</span><span class="w"> </span><span class="n">m_INT</span><span class="p">;</span>
+
+<span class="k">public</span><span class="o">:</span>
+
+<span class="w">    </span><span class="n">R2C02</span><span class="p">();</span>
+<span class="w">    </span><span class="o">~</span><span class="n">R2C02</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">default</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// ===============================================</span>
+<span class="w">    </span><span class="c1">// PPU control.</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">init</span><span class="p">();</span>
+
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">clock</span><span class="p">();</span>
+
+<span class="w">    </span><span class="c1">// ===============================================</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">OAMDMA</span><span class="p">(</span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">addr</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">data</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// ===============================================</span>
+<span class="w">    </span><span class="c1">// Output</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">RGBPixel</span><span class="o">&gt;</span><span class="w"> </span><span class="n">getPalette</span><span class="p">(</span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">paletteId</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">uint8_t</span><span class="w"> </span><span class="o">*</span><span class="nf">getPaletteRAM</span><span class="p">();</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">RGBPixel</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">getPatternTable</span><span class="p">(</span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">colorType</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">paletteId</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">index</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">applyEffects</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">);</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">RGBPixel</span><span class="o">&gt;</span><span class="w"> </span><span class="n">getScreen</span><span class="p">();</span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nf">scanlineFinished</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nf">frameFinished</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">EmulatorWindow</span><span class="o">&gt;</span><span class="w"> </span><span class="n">getGUIs</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>
+
+<span class="p">};</span>
+
+<span class="cp">#endif </span><span class="c1">//USE_2C02_H</span>
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023 Ondrej Golasowski.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

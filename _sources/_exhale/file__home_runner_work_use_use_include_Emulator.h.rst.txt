@@ -1,0 +1,68 @@
+
+.. _file__home_runner_work_use_use_include_Emulator.h:
+
+File Emulator.h
+===============
+
+|exhale_lsh| :ref:`Parent directory <dir__home_runner_work_use_use_include>` (``/home/runner/work/use/use/include``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+
+Main platform class. 
+
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``/home/runner/work/use/use/include/Emulator.h``)
+-------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file__home_runner_work_use_use_include_Emulator.h.rst
+
+
+
+Detailed Description
+--------------------
+
+Ondrej Golasowski (golasowski.o@gmail.com) 
+
+Copyright (c) 2023 Ondrej Golasowski 
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``ImInputBinder.h``
+
+- ``Sound.h`` (:ref:`file__home_runner_work_use_use_include_Sound.h`)
+
+- ``System.h`` (:ref:`file__home_runner_work_use_use_include_System.h`)
+
+- ``map``
+
+- ``memory``
+
+
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classEmulator`
+

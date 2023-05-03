@@ -1,0 +1,27 @@
+
+.. _program_listing_file__home_runner_work_use_use_include_Tools.h:
+
+Program Listing for File Tools.h
+================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file__home_runner_work_use_use_include_Tools.h>` (``/home/runner/work/use/use/include/Tools.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   
+   #ifndef USE_TOOLS_H
+   #define USE_TOOLS_H
+   
+   #include "imgui.h"
+   #include "Types.h"
+   
+   namespace USETools {
+   
+       void renderScalableBitmap(const std::vector<std::vector<RGBPixel>> & pixelData, float scale = 1.0f);
+   
+       double map(double val, double iStart, double iEnd, double oStart, double oEnd);
+   }
+   
+   #endif //USE_TOOLS_H

@@ -1,0 +1,27 @@
+.. _exhale_class_classPort:
+
+Class Port
+==========
+
+- Defined in :ref:`file__home_runner_work_use_use_include_Port.h`
+
+
+Inheritance Relationships
+-------------------------
+
+Derived Types
+*************
+
+- ``public DataPort`` (:ref:`exhale_class_classDataPort`)
+- ``public SignalPort`` (:ref:`exhale_class_classSignalPort`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: Port
+   :project: Universal System Emulator
+   :members:
+   :protected-members:
+   :undoc-members:

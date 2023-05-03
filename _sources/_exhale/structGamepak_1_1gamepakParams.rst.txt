@@ -1,0 +1,23 @@
+.. _exhale_struct_structGamepak_1_1gamepakParams:
+
+Struct Gamepak::gamepakParams
+=============================
+
+- Defined in :ref:`file__home_runner_work_use_use_include_components_Gamepak_Gamepak.h`
+
+
+Nested Relationships
+--------------------
+
+This struct is a nested type of :ref:`exhale_class_classGamepak`.
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: Gamepak::gamepakParams
+   :project: Universal System Emulator
+   :members:
+   :protected-members:
+   :undoc-members:

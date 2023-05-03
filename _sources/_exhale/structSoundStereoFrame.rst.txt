@@ -1,0 +1,17 @@
+.. _exhale_struct_structSoundStereoFrame:
+
+Struct SoundStereoFrame
+=======================
+
+- Defined in :ref:`file__home_runner_work_use_use_include_Types.h`
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: SoundStereoFrame
+   :project: Universal System Emulator
+   :members:
+   :protected-members:
+   :undoc-members:

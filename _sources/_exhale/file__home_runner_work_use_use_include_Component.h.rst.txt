@@ -1,0 +1,98 @@
+
+.. _file__home_runner_work_use_use_include_Component.h:
+
+File Component.h
+================
+
+|exhale_lsh| :ref:`Parent directory <dir__home_runner_work_use_use_include>` (``/home/runner/work/use/use/include``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+
+Abstract :ref:`exhale_class_classComponent` interface. 
+
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``/home/runner/work/use/use/include/Component.h``)
+--------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file__home_runner_work_use_use_include_Component.h.rst
+
+
+
+Detailed Description
+--------------------
+
+Ondrej Golasowski (golasowski.o@gmail.com) 
+
+Copyright (c) 2023 Ondrej Golasowski 
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``Connector.h`` (:ref:`file__home_runner_work_use_use_include_Connector.h`)
+
+- ``ImInputBinder.h``
+
+- ``Port.h`` (:ref:`file__home_runner_work_use_use_include_Port.h`)
+
+- ``Types.h`` (:ref:`file__home_runner_work_use_use_include_Types.h`)
+
+- ``cstdint``
+
+- ``map``
+
+- ``memory``
+
+- ``set``
+
+- ``string``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file__home_runner_work_use_use_include_components_2C02.h`
+
+- :ref:`file__home_runner_work_use_use_include_components_6502.h`
+
+- :ref:`file__home_runner_work_use_use_include_components_APU.h`
+
+- :ref:`file__home_runner_work_use_use_include_components_Bus.h`
+
+- :ref:`file__home_runner_work_use_use_include_components_Gamepak_Gamepak.h`
+
+- :ref:`file__home_runner_work_use_use_include_components_Memory.h`
+
+- :ref:`file__home_runner_work_use_use_include_components_NESPeripherals.h`
+
+- :ref:`file__home_runner_work_use_use_include_components_Trigger.h`
+
+- :ref:`file__home_runner_work_use_use_include_System.h`
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classComponent`
+

@@ -1,0 +1,80 @@
+
+.. _file__home_runner_work_use_use_include_components_2C02.h:
+
+File 2C02.h
+===========
+
+|exhale_lsh| :ref:`Parent directory <dir__home_runner_work_use_use_include_components>` (``/home/runner/work/use/use/include/components``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+
+Ricoh 2C02 (PPU) software implementation. 
+
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``/home/runner/work/use/use/include/components/2C02.h``)
+--------------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file__home_runner_work_use_use_include_components_2C02.h.rst
+
+
+
+Detailed Description
+--------------------
+
+Ondrej Golasowski (golasowski.o@gmail.com) 
+
+Copyright (c) 2023 Ondrej Golasowski 
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``Component.h`` (:ref:`file__home_runner_work_use_use_include_Component.h`)
+
+- ``Port.h`` (:ref:`file__home_runner_work_use_use_include_Port.h`)
+
+- ``Types.h`` (:ref:`file__home_runner_work_use_use_include_Types.h`)
+
+- ``cstdint``
+
+- ``cstring``
+
+- ``vector``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file__home_runner_work_use_use_include_systems_NES.h`
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structR2C02_1_1internalRegisters__t`
+
+- :ref:`exhale_struct_structR2C02_1_1registers__t`
+
+- :ref:`exhale_class_classR2C02`
+

@@ -1,0 +1,74 @@
+
+.. _file__home_runner_work_use_use_include_systems_NES.h:
+
+File NES.h
+==========
+
+|exhale_lsh| :ref:`Parent directory <dir__home_runner_work_use_use_include_systems>` (``/home/runner/work/use/use/include/systems``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+
+Nintendo Entertainment :ref:`exhale_class_classSystem` SW emulator. 
+
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``/home/runner/work/use/use/include/systems/NES.h``)
+----------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file__home_runner_work_use_use_include_systems_NES.h.rst
+
+
+
+Detailed Description
+--------------------
+
+Ondrej Golasowski (golasowski.o@gmail.com) 
+
+Copyright (c) 2023 Ondrej Golasowski 
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``System.h`` (:ref:`file__home_runner_work_use_use_include_System.h`)
+
+- ``components/2A03.h`` (:ref:`file__home_runner_work_use_use_include_components_2A03.h`)
+
+- ``components/2C02.h`` (:ref:`file__home_runner_work_use_use_include_components_2C02.h`)
+
+- ``components/APU.h`` (:ref:`file__home_runner_work_use_use_include_components_APU.h`)
+
+- ``components/Bus.h`` (:ref:`file__home_runner_work_use_use_include_components_Bus.h`)
+
+- ``components/Gamepak/Gamepak.h`` (:ref:`file__home_runner_work_use_use_include_components_Gamepak_Gamepak.h`)
+
+- ``components/Memory.h`` (:ref:`file__home_runner_work_use_use_include_components_Memory.h`)
+
+- ``components/NESPeripherals.h`` (:ref:`file__home_runner_work_use_use_include_components_NESPeripherals.h`)
+
+
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classNES`
+

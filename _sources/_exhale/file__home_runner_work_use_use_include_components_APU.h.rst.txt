@@ -1,0 +1,78 @@
+
+.. _file__home_runner_work_use_use_include_components_APU.h:
+
+File APU.h
+==========
+
+|exhale_lsh| :ref:`Parent directory <dir__home_runner_work_use_use_include_components>` (``/home/runner/work/use/use/include/components``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+
+:ref:`exhale_class_classNES` Audio Processing Unit emulation. 
+
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``/home/runner/work/use/use/include/components/APU.h``)
+-------------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file__home_runner_work_use_use_include_components_APU.h.rst
+
+
+
+Detailed Description
+--------------------
+
+Ondrej Golasowski (golasowski.o@gmail.com) 
+
+Copyright (c) 2023 Ondrej Golasowski 
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``Component.h`` (:ref:`file__home_runner_work_use_use_include_Component.h`)
+
+- ``cstdint``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file__home_runner_work_use_use_include_systems_NES.h`
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structAPU_1_1apu__envelope`
+
+- :ref:`exhale_struct_structAPU_1_1apu__lengthCounter`
+
+- :ref:`exhale_struct_structAPU_1_1apu__noise`
+
+- :ref:`exhale_struct_structAPU_1_1apu__pulse`
+
+- :ref:`exhale_struct_structAPU_1_1apu__triangle`
+
+- :ref:`exhale_class_classAPU`
+

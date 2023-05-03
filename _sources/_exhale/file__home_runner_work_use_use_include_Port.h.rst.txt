@@ -1,0 +1,67 @@
+
+.. _file__home_runner_work_use_use_include_Port.h:
+
+File Port.h
+===========
+
+|exhale_lsh| :ref:`Parent directory <dir__home_runner_work_use_use_include>` (``/home/runner/work/use/use/include``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``/home/runner/work/use/use/include/Port.h``)
+---------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file__home_runner_work_use_use_include_Port.h.rst
+
+
+
+Detailed Description
+--------------------
+
+:ref:`exhale_class_classPort` abstract interface and specializations. 
+
+
+
+
+Includes
+--------
+
+
+- ``Connector.h`` (:ref:`file__home_runner_work_use_use_include_Connector.h`)
+
+- ``memory``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file__home_runner_work_use_use_include_Component.h`
+
+- :ref:`file__home_runner_work_use_use_include_components_2C02.h`
+
+- :ref:`file__home_runner_work_use_use_include_components_Gamepak_Gamepak.h`
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classDataPort`
+
+- :ref:`exhale_class_classPort`
+
+- :ref:`exhale_class_classSignalPort`
+

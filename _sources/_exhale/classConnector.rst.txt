@@ -1,0 +1,17 @@
+.. _exhale_class_classConnector:
+
+Class Connector
+===============
+
+- Defined in :ref:`file__home_runner_work_use_use_include_Connector.h`
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: Connector
+   :project: Universal System Emulator
+   :members:
+   :protected-members:
+   :undoc-members:

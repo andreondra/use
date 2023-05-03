@@ -1,0 +1,70 @@
+
+.. _program_listing_file__home_runner_work_use_use_include_Emulator.h:
+
+Program Listing for File Emulator.h
+===================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file__home_runner_work_use_use_include_Emulator.h>` (``/home/runner/work/use/use/include/Emulator.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   
+   #ifndef USE_EMULATOR_H
+   #define USE_EMULATOR_H
+   
+   #include <memory>
+   #include <map>
+   #include "Sound.h"
+   #include "System.h"
+   #include "ImInputBinder.h"
+   
+   class Emulator{
+   private:
+       // ===========================================
+       // States
+       // ===========================================
+       enum class SYSTEMS { NONE, BARE6502, NES } m_systemID = SYSTEMS::NONE;
+       enum class STATE { STOPPED, RUNNING } m_runState = STATE::STOPPED;
+   
+       // ===========================================
+       // Widgets, plug-ins and other components
+       // ===========================================
+       std::unique_ptr<System> m_system;
+       std::unique_ptr<Sound> m_sound;
+       ImInputBinder m_inputs;
+       bool m_showBindingsWindow = false;
+   
+       // ===========================================
+       // Helpers
+       // ===========================================
+       unsigned long long m_clockCounter = 0;
+       static std::string dockSpaceToString(DockSpace dockSpace);
+   
+       void setIdling(bool enabled);
+   
+       std::string getKeybindingsSaveFileName() const;
+   
+       // ===========================================
+       // System handling
+       // ===========================================
+       void loadSystem(std::unique_ptr<System> system);
+   
+       void runSystem();
+   
+       // ===========================================
+       // GUI callbacks
+       // ===========================================
+       void guiMain();
+       void guiStatusBar();
+       void guiToolbar();
+       void guiMenuItems();
+   
+   public:
+       Emulator() = default;
+   
+       int run();
+   };
+   
+   #endif //USE_EMULATOR_H

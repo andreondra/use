@@ -1,0 +1,33 @@
+.. _dir__home_runner_work_use_use_include_components:
+
+
+Directory components
+====================
+
+
+|exhale_lsh| :ref:`Parent directory <dir__home_runner_work_use_use_include>` (``/home/runner/work/use/use/include``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+*Directory path:* ``/home/runner/work/use/use/include/components``
+
+Subdirectories
+--------------
+
+- :ref:`dir__home_runner_work_use_use_include_components_Gamepak`
+
+
+Files
+-----
+
+- :ref:`file__home_runner_work_use_use_include_components_2A03.h`
+- :ref:`file__home_runner_work_use_use_include_components_2C02.h`
+- :ref:`file__home_runner_work_use_use_include_components_6502.h`
+- :ref:`file__home_runner_work_use_use_include_components_APU.h`
+- :ref:`file__home_runner_work_use_use_include_components_Bus.h`
+- :ref:`file__home_runner_work_use_use_include_components_Memory.h`
+- :ref:`file__home_runner_work_use_use_include_components_NESPeripherals.h`
+- :ref:`file__home_runner_work_use_use_include_components_Trigger.h`
+
+

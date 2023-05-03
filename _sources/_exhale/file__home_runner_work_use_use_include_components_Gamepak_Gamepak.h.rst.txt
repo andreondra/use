@@ -1,0 +1,82 @@
+
+.. _file__home_runner_work_use_use_include_components_Gamepak_Gamepak.h:
+
+File Gamepak.h
+==============
+
+|exhale_lsh| :ref:`Parent directory <dir__home_runner_work_use_use_include_components_Gamepak>` (``/home/runner/work/use/use/include/components/Gamepak``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+
+:ref:`exhale_class_classNES` :ref:`exhale_class_classGamepak` emulation. 
+
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``/home/runner/work/use/use/include/components/Gamepak/Gamepak.h``)
+-------------------------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file__home_runner_work_use_use_include_components_Gamepak_Gamepak.h.rst
+
+
+
+Detailed Description
+--------------------
+
+Ondrej Golasowski (golasowski.o@gmail.com) 
+
+Copyright (c) 2022 Ondrej Golasowski 
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``Component.h`` (:ref:`file__home_runner_work_use_use_include_Component.h`)
+
+- ``Mapper.h`` (:ref:`file__home_runner_work_use_use_include_components_Gamepak_Mapper.h`)
+
+- ``Port.h`` (:ref:`file__home_runner_work_use_use_include_Port.h`)
+
+- ``Types.h`` (:ref:`file__home_runner_work_use_use_include_Types.h`)
+
+- ``fstream``
+
+- ``istream``
+
+- ``memory``
+
+- ``vector``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file__home_runner_work_use_use_include_systems_NES.h`
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structGamepak_1_1gamepakParams`
+
+- :ref:`exhale_class_classGamepak`
+

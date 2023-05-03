@@ -1,0 +1,17 @@
+.. _exhale_struct_structAddressRange:
+
+Struct AddressRange
+===================
+
+- Defined in :ref:`file__home_runner_work_use_use_include_Types.h`
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: AddressRange
+   :project: Universal System Emulator
+   :members:
+   :protected-members:
+   :undoc-members:

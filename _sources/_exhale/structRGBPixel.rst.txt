@@ -1,0 +1,17 @@
+.. _exhale_struct_structRGBPixel:
+
+Struct RGBPixel
+===============
+
+- Defined in :ref:`file__home_runner_work_use_use_include_Types.h`
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: RGBPixel
+   :project: Universal System Emulator
+   :members:
+   :protected-members:
+   :undoc-members:

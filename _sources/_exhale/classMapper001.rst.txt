@@ -1,0 +1,26 @@
+.. _exhale_class_classMapper001:
+
+Class Mapper001
+===============
+
+- Defined in :ref:`file__home_runner_work_use_use_include_components_Gamepak_Mapper001.h`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public Mapper`` (:ref:`exhale_class_classMapper`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: Mapper001
+   :project: Universal System Emulator
+   :members:
+   :protected-members:
+   :undoc-members:

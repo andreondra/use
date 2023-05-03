@@ -1,0 +1,71 @@
+
+.. _file__home_runner_work_use_use_include_Tools.h:
+
+File Tools.h
+============
+
+|exhale_lsh| :ref:`Parent directory <dir__home_runner_work_use_use_include>` (``/home/runner/work/use/use/include``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+
+Helper functions. 
+
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``/home/runner/work/use/use/include/Tools.h``)
+----------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file__home_runner_work_use_use_include_Tools.h.rst
+
+
+
+Detailed Description
+--------------------
+
+Ondrej Golasowski (golasowski.o@gmail.com) 
+
+Copyright (c) 2023 Ondrej Golasowski 
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``Types.h`` (:ref:`file__home_runner_work_use_use_include_Types.h`)
+
+- ``imgui.h``
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_USETools`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_Tools_8h_1ae447c6b042bdf8f9041a410fc21ef76d`
+
+- :ref:`exhale_function_Tools_8h_1adbc2820ea8905f707434d6f4bc697e7f`
+

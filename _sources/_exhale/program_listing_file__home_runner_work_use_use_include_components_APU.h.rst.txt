@@ -1,0 +1,187 @@
+
+.. _program_listing_file__home_runner_work_use_use_include_components_APU.h:
+
+Program Listing for File APU.h
+==============================
+
+|exhale_lsh| :ref:`Return to documentation for file <file__home_runner_work_use_use_include_components_APU.h>` (``/home/runner/work/use/use/include/components/APU.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   
+   #ifndef USE_APU_H
+   #define USE_APU_H
+   
+   #include <cstdint>
+   #include "Component.h"
+   
+   class APU : public Component {
+   
+   private:
+       bool m_internalIRQState = false;
+   
+       uint16_t m_clock = 0;
+   
+       bool frameCounterModeFlag = false;
+   
+       bool disableFrameInterruptFlag = false;
+   
+       struct apu_lengthCounter{
+       private:
+           uint8_t lengths[0x20] = {
+                   10, 254, 20, 2, 40, 4, 80, 6, 160, 8, 60, 10, 14, 12, 26, 14,
+                   12, 16, 24, 18, 48, 20, 96, 22, 192, 24, 72, 26, 16, 28, 32, 30
+           };
+           bool haltFlag = false;
+           bool enableFlag = false;
+   
+       public:
+           uint8_t counterValue = 0;
+           void reset();
+           void clock();
+           void setLength(uint8_t lengthBits);
+           void setEnableFlag(bool value);
+           void setHaltFlag(bool value);
+       };
+   
+       struct apu_envelope{
+   
+       private:
+   
+           uint8_t decayLevelCounter = 0;
+   
+           uint8_t divider = 0;
+           bool startFlag = false;
+           bool loopFlag = false;
+           bool constantVolumeFlag = false;
+   
+       public:
+   
+           uint8_t dividerPeriodReloadValue = 0;
+   
+           void reset();
+   
+           void configure(uint8_t configuration);
+   
+           void setStart(bool value);
+   
+           void clock();
+   
+           uint8_t output();
+       };
+   
+       // ================================================================================================
+       // APU sound channels
+       // Modify volume envelope to create a unique sound.
+   
+       // ====================== APU Pulse ======================
+       //                  Sweep -----> Timer
+       //                    |            |
+       //                    |            |
+       //                    |            v
+       //                    |        Sequencer   Length Counter
+       //                    |            |             |
+       //                    |            |             |
+       //                    v            v             v
+       // Envelope -------> Gate -----> Gate -------> Gate --->(to mixer)
+       // Envelope generates the signal, then it is passed through 3 gates.
+       // First gate...
+       // Second gate is controlled by sequencer, which opens/closes the gate
+       // according to the selected sequence (sequence controls the duty cycle of the signal),
+       // which is shifted by the timer (timer controls the frequency of the signal).
+       // Third gate is controlled by the length counter.
+       // Finally, the signal is passed to the mixer.
+       struct apu_pulse{
+   
+           apu_pulse(bool useTwosComplement);
+   
+           const uint8_t sequences[4] = {0x40, 0x60, 0x78, 0x9F};
+           const double sequencesOsc[4] = {0.125, 0.25, 0.5, 0.75};
+   
+           uint8_t sequencerPos = 0;
+   
+           uint16_t timer = 0;
+           uint16_t timerPeriod = 0;
+   
+           uint8_t dutyCycle = 0;
+   
+           apu_envelope envelope;
+   
+           apu_lengthCounter lengthCounter;
+   
+           bool useTwosComplement = false;
+           bool sweepReload = false;
+           bool sweepEnabled = false;
+           bool sweepNegate = false;
+           uint8_t sweepShiftCount = 0;
+           uint8_t sweepPeriod = 0;
+           uint8_t sweepCounter = 0;
+           uint16_t targetPeriod = 0;
+   
+           void setupSweep(uint8_t value);
+           void clockSweep();
+           void updateTargetPeriod();
+   
+           double phaseIndex = 0;
+   
+           void reset();
+           void clock();
+           uint8_t output();
+           float oscOutput();
+       } m_pulse1, m_pulse2;
+   
+       struct apu_noise{
+   
+       private:
+           uint8_t periodIndex = 0;
+           const uint16_t periods[0x10] = {
+                   4, 8, 16, 32, 64, 96, 128, 160, 202, 254, 380, 508, 762, 1016, 2034, 4068
+           };
+           uint16_t timer = 0;
+           uint16_t shiftRegister = 1;
+   
+       public:
+   
+           apu_envelope envelope;
+           apu_lengthCounter lengthCounter;
+           bool modeFlag = false;
+   
+           void reset();
+           void setPeriod(uint8_t bits);
+           void clock();
+           uint8_t output();
+       } m_noise;
+   
+       struct apu_triangle{
+       public:
+           uint16_t timerPeriod;
+           uint16_t timer;
+           uint8_t linearCounter;
+   
+           apu_envelope envelope;
+           apu_lengthCounter lengthCounter;
+   
+           void reset();
+       } m_triangle;
+   
+       SignalPort m_IRQ;
+   
+   public:
+       APU();
+       ~APU() override = default;
+   
+       void init() override;
+   
+       void clock();
+   
+       double output();
+   
+       float oscOutput();
+   
+       std::vector<EmulatorWindow> getGUIs() override;
+       SoundSampleSources  getSoundSampleSources() override;
+   };
+   
+   #endif //USE_APU_H
