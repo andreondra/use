@@ -16,6 +16,13 @@
 #include "Component.h"
 #include "Types.h"
 
+/**
+ * MOS 6502 CPU emulation. It is cycle-accurate, interrupts are implemented as precisely as possible but
+ * there is no decimal mode.
+ *
+ * Ports: data "mainBus" to control a communication with other components.
+ * Connectors: signal "IRQ" (maskable interrupt), "NMI" (non-maskable interrupt), "CLK" (clock input, standard rate is 1.789773 MHz).
+ * */
 class MOS6502 : public Component{
 protected:
     // ===========================================

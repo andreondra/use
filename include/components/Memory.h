@@ -1,6 +1,9 @@
-//
-// Created by golas on 2.3.23.
-//
+/**
+ * @file Memory.h
+ * @author Ondrej Golasowski (golasowski.o@gmail.com)
+ * @brief Universal memory.
+ * @copyright Copyright (c) 2023 Ondrej Golasowski
+ */
 
 #ifndef USE_MEMORY_H
 #define USE_MEMORY_H
@@ -10,6 +13,16 @@
 #include "Component.h"
 #include "Types.h"
 
+/**
+ * @brief This component is an universal software model of a rewritable memory.
+ *
+ * The memory can have a size specified, a range to which it will be mapped to and a default value.
+ * Ports: none
+ * Connectors: data connector "data" to access the memory.
+ *
+ * @note Please note that the address range can be larger than the size, then the memory will be mirrored
+ * across the whole range.
+ * */
 class Memory : public Component{
 
 private:
@@ -20,6 +33,13 @@ private:
     void memoryInit();
 
 public:
+    /**
+     * Construct a memory.
+     *
+     * @param size Size of the memory in bytes.
+     * @param addressRange Range to which the memory to.
+     * @param defaultValue Default value of the memory on init.
+     * */
     Memory(
         size_t size,
         AddressRange addressRange,

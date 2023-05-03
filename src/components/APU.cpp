@@ -260,7 +260,6 @@ SoundSampleSources APU::getSoundSampleSources() {
       [&](){
 
           float sample =  output();
-          m_samples.push_back(sample);
           SoundStereoFrame frame{sample, sample};
           return frame;
       }

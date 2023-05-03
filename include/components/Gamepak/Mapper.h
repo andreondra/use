@@ -27,6 +27,8 @@
  * a) use CIRAM with fixed mirroring mode (the mode is specified in the header of ROM dump),
  * b) use CIRAM and handle mirroring mode change itself (the mode in ROM dump is then ignored),
  * c) not use CIRAM and handle VRAM itself altogether.
+ *
+ * @note Mapper is not a standalone component. It is meant to be used with the Gamepak component.
 */
 class Mapper {
 public:

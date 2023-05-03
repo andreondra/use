@@ -107,3 +107,9 @@ exhale_args = {
     "exhaleExecutesDoxygen": False,
 #    "exhaleDoxygenStdin":    "INPUT = ../include"
 }
+
+# Tell sphinx what the primary language being documented is.
+primary_domain = 'cpp'
+
+# Tell sphinx what the pygments highlight language should be.
+highlight_language = 'cpp'

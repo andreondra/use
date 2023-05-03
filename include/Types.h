@@ -1,7 +1,10 @@
 /**
  * @file Types.h
- * Emulator helper types.
- * */
+ * @author Ondrej Golasowski (golasowski.o@gmail.com)
+ * @brief Emulator helper types.
+ * @copyright Copyright (c) 2023 Ondrej Golasowski
+ *
+ */
 
 #ifndef USE_TYPES_H
 #define USE_TYPES_H
