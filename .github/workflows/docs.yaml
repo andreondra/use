@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Dependencies
-      run: sudo apt install doxygen
+      run: sudo apt-get install -y libxrandr-dev libxinerama-dev libxcursor-dev libxi-dev libgl-dev doxygen
         && sudo apt install sphinx-doc
         && pip3 install sphinx-rtd-theme
         && pip3 install breathe
