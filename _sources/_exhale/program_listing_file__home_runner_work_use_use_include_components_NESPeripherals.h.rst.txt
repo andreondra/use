@@ -20,13 +20,19 @@ Program Listing for File NESPeripherals.h
    private:
        class Controller{
        public:
-           unsigned int pressedButtons = 0;
-           unsigned int dataShifter = 0;
+   
+           union {
+               unsigned int debug = 0;
+               uint8_t data;
+           } pressedButtons;
+   
+           uint8_t dataShifter = 0;
+           int shiftedCount = 0;
            bool mic = false;
            bool strobeLatch = false;
            void putBit(uint8_t pos, bool value){
-               pressedButtons &= ~(0x1 << pos);
-               pressedButtons |= value << pos;
+               pressedButtons.data &= ~(0x1 << pos);
+               pressedButtons.data |= value << pos;
            }
    
            enum class inputButtons{

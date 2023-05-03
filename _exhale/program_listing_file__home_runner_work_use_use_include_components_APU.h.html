@@ -137,7 +137,7 @@
 
 <span class="w">        </span><span class="kt">void</span><span class="w"> </span><span class="nf">clock</span><span class="p">();</span>
 
-<span class="w">        </span><span class="kt">uint8_t</span><span class="w"> </span><span class="nf">output</span><span class="p">();</span>
+<span class="w">        </span><span class="p">[[</span><span class="n">nodiscard</span><span class="p">]]</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">output</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
 <span class="w">    </span><span class="p">};</span>
 
 <span class="w">    </span><span class="c1">// ================================================================================================</span>
@@ -219,7 +219,7 @@
 <span class="w">        </span><span class="kt">void</span><span class="w"> </span><span class="nf">reset</span><span class="p">();</span>
 <span class="w">        </span><span class="kt">void</span><span class="w"> </span><span class="nf">setPeriod</span><span class="p">(</span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">bits</span><span class="p">);</span>
 <span class="w">        </span><span class="kt">void</span><span class="w"> </span><span class="nf">clock</span><span class="p">();</span>
-<span class="w">        </span><span class="kt">uint8_t</span><span class="w"> </span><span class="nf">output</span><span class="p">();</span>
+<span class="w">        </span><span class="kt">uint8_t</span><span class="w"> </span><span class="nf">output</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="n">m_noise</span><span class="p">;</span>
 
 <span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">apu_triangle</span><span class="p">{</span>
@@ -244,9 +244,7 @@
 
 <span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">clock</span><span class="p">();</span>
 
-<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="nf">output</span><span class="p">();</span>
-
-<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="nf">oscOutput</span><span class="p">();</span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="nf">output</span><span class="p">();</span>
 
 <span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">EmulatorWindow</span><span class="o">&gt;</span><span class="w"> </span><span class="n">getGUIs</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>
 <span class="w">    </span><span class="n">SoundSampleSources</span><span class="w">  </span><span class="nf">getSoundSampleSources</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>

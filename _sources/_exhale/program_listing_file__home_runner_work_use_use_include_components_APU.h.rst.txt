@@ -69,7 +69,7 @@ Program Listing for File APU.h
    
            void clock();
    
-           uint8_t output();
+           [[nodiscard]] uint8_t output() const;
        };
    
        // ================================================================================================
@@ -151,7 +151,7 @@ Program Listing for File APU.h
            void reset();
            void setPeriod(uint8_t bits);
            void clock();
-           uint8_t output();
+           uint8_t output() const;
        } m_noise;
    
        struct apu_triangle{
@@ -176,9 +176,7 @@ Program Listing for File APU.h
    
        void clock();
    
-       double output();
-   
-       float oscOutput();
+       float output();
    
        std::vector<EmulatorWindow> getGUIs() override;
        SoundSampleSources  getSoundSampleSources() override;
