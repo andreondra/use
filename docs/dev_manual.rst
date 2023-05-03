@@ -320,7 +320,7 @@ To implement :func:`Component::doRun()` you can use this template to properly ca
 
 Interconnecting the components
 ********************************
-
+You can check out the NES systems constructor in NES.cpp to see an example.
 
 
 Adding the system to the plaform
