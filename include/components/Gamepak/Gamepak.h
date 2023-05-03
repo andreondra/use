@@ -23,6 +23,10 @@
  *
  * This class handles parsing of supported cartridge dump formats,
  * loads an appropriate mapper and handles PPU's built in VRAM (CIRAM) if requested.
+ * There are two virtual connectors, this corresponds to the real hardware, where the
+ * cartridge is directly connected to the CPU's and PPU's buses.
+ *
+ * Connectors: data "cpuBus" for CPU and data "ppuBus" for PPU.
 */
 class Gamepak : public Component {
 

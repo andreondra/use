@@ -16,9 +16,8 @@
 /**
  * @brief A simple bus abstraction class with a primitive arbitration mechanism.
  *
- * Available ports: "slot x" where x is in range [0, portCount].
- *
- * Available connectors: "master" to access all devices on the bus.
+ * Available ports: data "slot x" where x is in range [0, portCount].
+ * Available connectors: data "master" to access all devices on the bus.
  * */
 class Bus : public Component{
 

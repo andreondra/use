@@ -11,27 +11,31 @@
 #include <cstdint>
 #include "Component.h"
 
+/**
+ * NES APU emulator. APU is normally a part of 2A03 but for the sake of modularity it is separated
+ * in this project.
+ *
+ * Available ports: signal "IRQ", which periodically sends an interrupt request to the CPU if enabled.
+ * Available connectors:
+ *   - data "CPU", which is meant to be used by the CPU to control the APU via registers,
+ *   - signal "CLK", which is used to clock the APU, standard clock rate is 1.789773 MHz / 2 (half of CPU's clock rate).
+ * */
 class APU : public Component {
 
 private:
-
-    std::vector<float> m_samples;
-
     bool m_internalIRQState = false;
-    /**
-     * Main APU clock.
-    */
+
+    /// Main APU clock.
     uint16_t m_clock = 0;
 
-    // Toggles between 4 and 5 step FC sequences.
+    /// Toggles between 4 and 5 step FC sequences.
     bool frameCounterModeFlag = false;
 
-    // Disables IRQ.
+    /// Disables IRQ.
     bool disableFrameInterruptFlag = false;
 
-    // Decremented on every APU cycle, except when == 0 or halted.
+    /// Decremented on every APU cycle, except when == 0 or halted.
     struct apu_lengthCounter{
-
     private:
         uint8_t lengths[0x20] = {
                 10, 254, 20, 2, 40, 4, 80, 6, 160, 8, 60, 10, 14, 12, 26, 14,
@@ -57,10 +61,10 @@ private:
 
     private:
 
-        // A value of the output during fade-out.
+        /// A value of the output during fade-out.
         uint8_t decayLevelCounter = 0;
 
-        // Fade-out contdown timer.
+        /// Fade-out contdown timer.
         uint8_t divider = 0;
         bool startFlag = false;
         bool loopFlag = false;
@@ -68,7 +72,7 @@ private:
 
     public:
 
-        // Divider restore value and also a constant volume value.
+        /// Divider restore value and also a constant volume value.
         uint8_t dividerPeriodReloadValue = 0;
 
         /**
@@ -147,21 +151,21 @@ private:
         */
         uint8_t sequencerPos = 0;
 
-        // 11-bit timer current value.
+        /// 11-bit timer current value.
         uint16_t timer = 0;
-        // Timer reset value.
+        /// Timer reset value.
         uint16_t timerPeriod = 0;
 
-        // Current duty cycle (sequences array 2-bit index).
+        /// Current duty cycle (sequences array 2-bit index).
         uint8_t dutyCycle = 0;
 
-        // Volume envelope.
+        /// Volume envelope.
         apu_envelope envelope;
 
-        // Length counter.
+        /// Length counter.
         apu_lengthCounter lengthCounter;
 
-        // Sweep unit.
+        /// Sweep unit.
         bool useTwosComplement = false;
         bool sweepReload = false;
         bool sweepEnabled = false;
@@ -175,7 +179,7 @@ private:
         void clockSweep();
         void updateTargetPeriod();
 
-        // Oscillator index in the generated pulse.
+        /// Oscillator index in the generated pulse.
         double phaseIndex = 0;
 
         void reset();
@@ -184,6 +188,7 @@ private:
         float oscOutput();
     } m_pulse1, m_pulse2;
 
+    /// Noise channel.
     struct apu_noise{
 
     private:
@@ -209,11 +214,8 @@ private:
         uint8_t output();
     } m_noise;
 
+    /// Triangle channel.
     struct apu_triangle{
-
-    private:
-
-
     public:
         uint16_t timerPeriod;
         uint16_t timer;
@@ -223,13 +225,12 @@ private:
         apu_lengthCounter lengthCounter;
 
         void reset();
-    }m_triangle;
+    } m_triangle;
 
-public:
-
-    // Outbound interrupt request flag.
+    /// Outbound interrupt request flag.
     SignalPort m_IRQ;
 
+public:
     APU();
     ~APU() override = default;
 
@@ -258,7 +259,6 @@ public:
     float oscOutput();
 
     std::vector<EmulatorWindow> getGUIs() override;
-
     SoundSampleSources  getSoundSampleSources() override;
 };
 

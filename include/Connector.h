@@ -1,7 +1,10 @@
 /**
  * @file Connector.h
- * Connector classes and specializations.
- * */
+ * @author Ondrej Golasowski (golasowski.o@gmail.com)
+ * @brief Connector classes and specializations.
+ * @copyright Copyright (c) 2023 Ondrej Golasowski
+ *
+ */
 
 #ifndef USE_CONNECTOR_H
 #define USE_CONNECTOR_H

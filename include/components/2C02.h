@@ -17,12 +17,14 @@
 #include "Types.h"
 
 /**
+ * NES PPU emulation. Both foreground and background cycle-accurate rendering implemented, sprite 0 bug
+ * and other quirks are also emulated.
  *
- *
+ * Ports: data "ppuBus" to control a communication on the PPU's own bus; signal "INT" to send interrupts to the CPU (normally connected to the NMI).
+ * Connectors: data "cpuBus" to connect to the CPU, signal "CLK" to clock the PPU (standard rate is 21.477272 MHz ÷ 4).
 */
 class R2C02 : public Component {
 
-// Notes.
 /**
  * Frame rendering:
  *                  256   341
@@ -52,26 +54,12 @@ protected:
     static const uint16_t OUTPUT_BITMAP_WIDTH = 256;
     static const uint16_t OUTPUT_BITMAP_HEIGHT = 240;
 
-    static const uint16_t PATTERN_TABLE_COUNT = 2;
     static const uint16_t PATTERN_TABLE_TILE_ROW_COUNT = 16;
     static const uint16_t PATTERN_TABLE_TILE_COLUMN_COUNT = 16;
     static const uint16_t PATTERN_TABLE_PLANE_SIZE = 8;
 
+    /// Data lines sometimes act as a buffer because of their capacitance.
     uint8_t m_dataBuffer = 0x00;
-
-    /**
-     * Object attribute memory.
-     * OAM is used to store sprite data.
-    */
-    // union OAM_t{
-    //     struct STR{
-    //         uint8_t y;          //!< Y position of the top side.
-    //         uint8_t tileIndex;  //!< Tile index. See wiki.
-    //         uint8_t attributes; //!< Tile attributes.
-    //         uint8_t x;          //!< X position of the left side.
-    //     } bits;
-    //     uint32_t data;
-    // } m_OAM[64];
 
     /**
      * Internal registers of the PPU for the rendering purposes.
@@ -180,6 +168,7 @@ protected:
         uint16_t shiftAttrHi;
     } m_backgroundData;
 
+    /// "Public" registers accessible by the CPU.
     struct registers_t{
 
         /**
@@ -254,12 +243,15 @@ protected:
 
     } m_registers;
 
-    uint8_t m_nametables[2048];
-    int m_clock, m_scanline;
     bool m_scanlineReady = false;
     bool m_frameReady = false;
+
+    /// True if the odd field of the frame is being rendered (see interlaced video).
     bool m_oddScan = false;
+
+    /// Foreground pixel placement enabled.
     bool m_settingsEnableForeground = true;
+    /// Background pixel placement enabled.
     bool m_settingsEnableBackground = true;
 
     /**
@@ -369,16 +361,13 @@ protected:
      * 0x2000 - 0x3EFF Nametable memory (VRAM) - on cartridge or built-in (sprite locations)
      * 0x3F00 - 0x3FFF Palette memory - built-in (colors)
     */
-    // 2 KiB of built-in VRAM.
-    //uint8_t m_nametables[2048]; // moved to public
     // Color palletes.
     uint8_t m_palettes[32];
     // ===============================================
     // Current rendering coordinates.
-    //int m_clock, m_scanline; // public
+    int m_clock, m_scanline;
     // ===============================================
     // NES screen.
-    //RGBPixel m_screen[NESSCREENWIDTH][NESSCREENHEIGHT] = {0,0,0};
     std::vector<std::vector<RGBPixel>> m_screen{OUTPUT_BITMAP_HEIGHT, {OUTPUT_BITMAP_WIDTH, {0, 0, 0}}};
 
     // Internal PPU bus I/O.

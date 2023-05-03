@@ -1,6 +1,9 @@
-//
-// Created by golas on 22.2.23.
-//
+/**
+ * @file Bare6502.h
+ * @author Ondrej Golasowski (golasowski.o@gmail.com)
+ * @brief Bare 6502 CPU system.
+ * @copyright Copyright (c) 2023 Ondrej Golasowski
+ */
 
 #ifndef USE_BARE6502_H
 #define USE_BARE6502_H
@@ -10,6 +13,9 @@
 #include "components/Memory.h"
 #include "components/Bus.h"
 
+/**
+ * Bare 6502 system. Unfinished.
+ * */
 class Bare6502 : public System{
 protected:
     MOS6502 m_cpu;
