@@ -1,0 +1,31 @@
+name: Generate and publish Sphinx documentation
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Dependencies
+      run: apt install doxygen
+        && apt install sphinx-doc
+        && apt install sphinx-rtd-theme
+        && apt install breathe
+        && apt install sphinx-sitemap
+    - name: Checkout repo
+      uses: actions/checkout@1.0.0
+    - name: Configure CMake
+      run: cmake -B ${{github.workspace}}/build
+    - name: Build docs
+      run: cmake --build ${{github.workspace}}/build -t sphinxdocs
+        && touch docs/_build/docs_sphinx/.nojekyll
+    - name: Deploy
+      uses: JamesIves/github-pages-deploy-action@releases/v3
+      with:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        BRANCH: gh-pages
+        FOLDER: docs/_build/docs_sphinx/
