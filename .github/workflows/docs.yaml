@@ -13,9 +13,10 @@ jobs:
     - name: Dependencies
       run: sudo apt install doxygen
         && sudo apt install sphinx-doc
-        && sudo apt install sphinx-rtd-theme
-        && sudo apt install breathe
-        && sudo apt install sphinx-sitemap
+        && pip3 install sphinx-rtd-theme
+        && pip3 install breathe
+        && pip3 install sphinx-sitemap
+        && pip3 install exhale
     - name: Checkout repo
       uses: actions/checkout@1.0.0
     - name: Configure CMake
