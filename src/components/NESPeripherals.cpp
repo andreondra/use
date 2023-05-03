@@ -29,15 +29,17 @@ NESPeripherals::NESPeripherals() {
 }
 
 void NESPeripherals::init() {
-    m_controller1.pressedButtons = 0;
+    m_controller1.pressedButtons.debug = 0;
     m_controller1.dataShifter    = 0;
     m_controller1.mic            = false;
     m_controller1.strobeLatch    = false;
+    m_controller1.shiftedCount   = 0;
 
-    m_controller2.pressedButtons = 0;
+    m_controller2.pressedButtons.debug = 0;
     m_controller2.dataShifter    = 0;
     m_controller2.mic            = false;
     m_controller2.strobeLatch    = false;
+    m_controller2.shiftedCount   = 0;
 }
 
 std::vector<EmulatorWindow> NESPeripherals::getGUIs() {
@@ -48,24 +50,37 @@ std::vector<EmulatorWindow> NESPeripherals::getGUIs() {
         // ===================================================================
         int playerId = 1;
         ImGui::SeparatorText("Pressed buttons");
-        for(unsigned int *shifter : {&m_controller1.pressedButtons, &m_controller2.pressedButtons}) {
+        for(unsigned int *shifter : {&m_controller1.pressedButtons.debug, &m_controller2.pressedButtons.debug}) {
 
-            ImGui::Text("Player %d", playerId);
-            ImGui::CheckboxFlags("A", shifter, 0x1 << (int)Controller::inputButtons::A);
-            ImGui::CheckboxFlags("B", shifter, 0x1 << (int)Controller::inputButtons::B);
-            ImGui::CheckboxFlags("Select", shifter, 0x1 << (int)Controller::inputButtons::SELECT);
-            ImGui::CheckboxFlags("Start", shifter, 0x1 << (int)Controller::inputButtons::START);
-            ImGui::CheckboxFlags("Up", shifter, 0x1 << (int)Controller::inputButtons::UP);
-            ImGui::CheckboxFlags("Down", shifter, 0x1 << (int)Controller::inputButtons::DOWN);
-            ImGui::CheckboxFlags("Left", shifter, 0x1 << (int)Controller::inputButtons::LEFT);
-            ImGui::CheckboxFlags("Right", shifter, 0x1 << (int)Controller::inputButtons::RIGHT);
+            ImGui::BeginGroup();
+                ImGui::Text("Player %d", playerId);
+                ImGui::CheckboxFlags("A", shifter, 0x1 << (int)Controller::inputButtons::A);
+                ImGui::CheckboxFlags("B", shifter, 0x1 << (int)Controller::inputButtons::B);
+                ImGui::CheckboxFlags("Select", shifter, 0x1 << (int)Controller::inputButtons::SELECT);
+                ImGui::CheckboxFlags("Start", shifter, 0x1 << (int)Controller::inputButtons::START);
+                ImGui::CheckboxFlags("Up", shifter, 0x1 << (int)Controller::inputButtons::UP);
+                ImGui::CheckboxFlags("Down", shifter, 0x1 << (int)Controller::inputButtons::DOWN);
+                ImGui::CheckboxFlags("Left", shifter, 0x1 << (int)Controller::inputButtons::LEFT);
+                ImGui::CheckboxFlags("Right", shifter, 0x1 << (int)Controller::inputButtons::RIGHT);
+            ImGui::EndGroup();
+            if(playerId == 1) ImGui::SameLine();
 
             playerId++;
         }
 
         ImGui::SeparatorText("State shifters");
+
         ImGui::Text("Player 1: 0x%u", m_controller1.dataShifter);
+        if(m_controller1.shiftedCount >= 8) {
+            ImGui::SameLine();
+            ImGui::Text("(all read, returning 1)");
+        }
+
         ImGui::Text("Player 2: 0x%u", m_controller2.dataShifter);
+        if(m_controller2.shiftedCount >= 8) {
+            ImGui::SameLine();
+            ImGui::Text("(all read, returning 1)");
+        }
 
         ImGui::SeparatorText("Microphone (P2)");
         ImGui::Checkbox("Sound detected", &m_controller2.mic);
@@ -199,13 +214,19 @@ uint8_t NESPeripherals::Controller::DATA() {
 
     uint8_t data;
 
-    if(strobeLatch)
-        dataShifter = pressedButtons;
+    if(strobeLatch) {
+        shiftedCount = 0;
+        dataShifter = pressedButtons.data;
+    }
 
-    data = (dataShifter & 0x1) | (mic << 2);
+    if(shiftedCount >= 8)
+        data = 0x1 | (mic << 2);
+    else
+        data = (dataShifter & 0x1) | (mic << 2);
 
-    if(!strobeLatch){
+    if(!strobeLatch && shiftedCount < 8){
         dataShifter >>= 1;
+        shiftedCount++;
     }
 
     return data;
@@ -215,7 +236,8 @@ void NESPeripherals::Controller::OUT(bool value) {
 
     if(value){
         strobeLatch = true;
-        dataShifter = pressedButtons;
+        dataShifter = pressedButtons.data;
+        shiftedCount = 0;
     } else {
         strobeLatch = false;
     }

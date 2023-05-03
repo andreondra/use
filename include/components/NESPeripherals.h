@@ -9,23 +9,34 @@
 
 #include "Component.h"
 
+/**
+ * NES Peripherals emulation. For now, there is only emulation of two standard controllers implemented.
+ *
+ * Connectors: data cpuBus to interface with the main NES bus.
+ * */
 class NESPeripherals : public Component {
 private:
     /// Standard NES controller.
     class Controller{
     public:
         /// Status of physical buttons (which are pressed -- in emulator this corresponds to configured keys on keyboard or gamepad). Using int to be compatible with ImGui::CheckboxFlags.
-        unsigned int pressedButtons = 0;
+
+        union {
+            unsigned int debug = 0;
+            uint8_t data;
+        } pressedButtons;
+
         /// Status is copied to this shifter when the strobe latch is on. Using int to be compatible with ImGui::CheckboxFlags.
-        unsigned int dataShifter = 0;
+        uint8_t dataShifter = 0;
+        int shiftedCount = 0;
         /// Microphone status.
         bool mic = false;
         /// Latch which enables the status update of dataShifter.
         bool strobeLatch = false;
         /// Helper function to put bit to corresponding position.
         void putBit(uint8_t pos, bool value){
-            pressedButtons &= ~(0x1 << pos);
-            pressedButtons |= value << pos;
+            pressedButtons.data &= ~(0x1 << pos);
+            pressedButtons.data |= value << pos;
         }
 
         /// Bit positions in shifter.
