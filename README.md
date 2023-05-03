@@ -10,7 +10,8 @@ Are you an user? Check user guide (TODO link).
 Are you a developer? Check development guide (TODO link).
 
 ## Prebuilt binaries
-TODO
+For Windows there is a prebuilt-binary built from the latest commit to the main branch in
+[🗞️ Releases](https://github.com/andreondra/use/releases/tag/latest).
 
 ## Quick start on Linux/macOS/Windows
 This is a quick start guide on how to prepare the platform either for development of your own emulator or just testing.
