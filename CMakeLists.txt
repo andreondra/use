@@ -10,6 +10,18 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O1")
 message("Setting up project...")
 project(use)
 
+# Windows target specifics ================================================
+if (${CMAKE_SYSTEM_NAME} MATCHES "Windows")
+    set(BUILD_FOR_WIN TRUE)
+endif()
+option(STATIC_BUILD "Build a static binary." ${BUILD_FOR_WIN})
+
+if (STATIC_BUILD)
+    set(CMAKE_EXE_LINKER_FLAGS "-static")
+    set(CMAKE_FIND_LIBRARY_SUFFIXES ".a" CONFIG)
+    set(BUILD_SHARED_LIBS OFF)
+endif()
+
 # Project descriptions =====================================================
 set(PROJECT_FULL_NAME "Universal System Emulator")
 set(PROJECT_FULL_COPYRIGHT "2023 Ondrej Golasowski")
