@@ -30,10 +30,10 @@ jobs:
       run: sudo apt-get install -y libxrandr-dev libxinerama-dev libxcursor-dev libxi-dev libgl-dev
       
     - name: Configure CMake
-      run: mingw64-cmake -DCMAKE_TOOLCHAIN_FILE=${{github.workspace}}/cmake_src/mingw-w64-x86_64.cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
+      run: cmake -DCMAKE_TOOLCHAIN_FILE=${{github.workspace}}/cmake_src/mingw-w64-x86_64.cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
 
     - name: Build for Windows
-      run: mingw64-cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}} -t use
+      run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}} -t use
     
     - name: Publish the release 
       uses: "marvinpinto/action-automatic-releases@latest"
