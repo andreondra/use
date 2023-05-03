@@ -180,7 +180,7 @@ void APU::clock(){
         m_pulse2.envelope.clock();
         m_noise.envelope.clock();
 
-    } else if(m_clock == 14914){
+    } else if(m_clock == 14914 && !frameCounterModeFlag){
 
         m_pulse1.envelope.clock();
         m_pulse2.envelope.clock();
@@ -210,6 +210,13 @@ void APU::clock(){
         m_pulse1.envelope.clock();
         m_pulse2.envelope.clock();
         m_noise.envelope.clock();
+
+        m_pulse1.lengthCounter.clock();
+        m_pulse2.lengthCounter.clock();
+        m_noise.lengthCounter.clock();
+
+        m_pulse1.clockSweep();
+        m_pulse2.clockSweep();
     }
 
     m_pulse1.clock();
@@ -229,25 +236,17 @@ void APU::clock(){
         m_clock++;
 }
 
-double APU::output(){
+float APU::output(){
 
-
-    double pulse;
+    float pulse;
     if(m_pulse1.output() + m_pulse2.output()  == 0)
         pulse = 0;
     else
-        pulse = 95.88 / ((8128.0 / (m_pulse1.output() + m_pulse2.output())) + 100);
+        pulse = 95.88f / ((8128.0f / (m_pulse1.output() + m_pulse2.output())) + 100);
 
-    double tnd = 159.79 / ( (1.0 / (m_noise.output() / 12241.0)) + 100 );
+    float tnd = 159.79f / ( (1.0f / (m_noise.output() / 12241.0f)) + 100.0f );
 
     return pulse + tnd;
-}
-
-float APU::oscOutput(){
-
-
-    int16_t noise = 0;//USETools::map(m_noise.output(), 0, 15, -1, 1);
-    return m_pulse1.oscOutput() / 3 + m_pulse2.oscOutput() / 3 + noise / 8;
 }
 
 std::vector<EmulatorWindow> APU::getGUIs() {
@@ -259,7 +258,7 @@ SoundSampleSources APU::getSoundSampleSources() {
     return {
       [&](){
 
-          float sample =  output();
+          float sample = output();
           SoundStereoFrame frame{sample, sample};
           return frame;
       }
@@ -348,7 +347,7 @@ void APU::apu_envelope::clock(){
     }
 }
 
-uint8_t APU::apu_envelope::output(){
+uint8_t APU::apu_envelope::output() const{
 
     if(constantVolumeFlag)
         return dividerPeriodReloadValue;
@@ -431,12 +430,6 @@ void APU::apu_pulse::clock(){
     } else {
         timer--;
     }
-
-    // Oscilator phase index. Emulator helper variable.
-    if(phaseIndex >= 1000000)
-        phaseIndex -= 1000000;
-    else
-        phaseIndex += (1789773 / (16 * (timerPeriod + 1))) / 894886.5;
 }
 
 uint8_t APU::apu_pulse::output(){
@@ -453,34 +446,11 @@ uint8_t APU::apu_pulse::output(){
     }
 }
 
-float APU::apu_pulse::oscOutput(){
-
-    if(
-            targetPeriod > 0x7FF ||
-            lengthCounter.counterValue == 0 ||
-            timerPeriod < 8
-            )
-        return 0;
-    else{
-
-        // Mapping envelope output from [0, 15] to [0, max amplitude] range.
-        float amplitude = (envelope.output() / 7.5f) - 1;
-        float sum = 0;
-        for(int i = 1; i < 25; i++){
-            sum += (1.0f/(float)i)*sin(M_PI*i*sequencesOsc[dutyCycle])*cos(i*2*M_PI*phaseIndex);
-        }
-
-        float sample = /*amplitude * sequencesOsc[dutyCycle]*/ + (2*amplitude)/(M_PI) * sum;
-        //outputValue += ((int16_t)(amplitude * sin(2.0f * M_PI * f * time)) - outputValue) / 2; // sine
-        return sample; // pulse
-    }
-}
-
 void APU::apu_noise::reset(){
 
     periodIndex = 0;
     timer = 0;
-    shiftRegister = 0;
+    shiftRegister = 1;
     envelope.reset();
     lengthCounter.reset();
     modeFlag = false;
@@ -498,7 +468,7 @@ void APU::apu_noise::clock(){
         timer = periods[periodIndex];
 
         // Shift register clock.
-        uint8_t feedback = (shiftRegister & 0x1) ^ (( shiftRegister >> (1 + (modeFlag * 5)) ) & 0x1);
+        uint16_t feedback = ((shiftRegister & 0x1) ^ (( shiftRegister >> (1 + (modeFlag * 5)) ) & 0x1)) & 0x1;
         shiftRegister >>= 1;
         shiftRegister &= 0x3FFF;
         shiftRegister |= (uint16_t)feedback << 14;
@@ -507,7 +477,7 @@ void APU::apu_noise::clock(){
     }
 }
 
-uint8_t APU::apu_noise::output(){
+uint8_t APU::apu_noise::output() const{
 
     if(lengthCounter.counterValue == 0 || shiftRegister & 0x1)
         return 0;
