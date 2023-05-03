@@ -1,0 +1,44 @@
+name: Build and Release
+
+on:
+  push:
+    branches: [ "main" ]
+
+env:
+  # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
+  BUILD_TYPE: Release
+
+jobs:
+  build:
+    # The CMake configure and build commands are platform agnostic and should work equally well on Windows or Mac.
+    # You can convert this to a matrix build if you need cross-platform coverage.
+    # See: https://docs.github.com/en/free-pro-team@latest/actions/learn-github-actions/managing-complex-workflows#using-a-build-matrix
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Set up MinGW
+      uses: egor-tensin/setup-mingw@v2
+      with:
+        platform: x64
+        
+    - name: Checkout repo
+      uses: actions/checkout@v3
+      
+    - name: Install required packages
+      run: sudo apt-get install -y libxrandr-dev libxinerama-dev libxcursor-dev libxi-dev libgl-dev
+      
+    - name: Configure CMake
+      run: cmake -DCMAKE_TOOLCHAIN_FILE=${{github.workspace}}/cmake_src/mingw-w64-x86_64.cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
+
+    - name: Build for Windows
+      run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}} -t use
+    
+    - name: Publish the release 
+      uses: "marvinpinto/action-automatic-releases@latest"
+      with:
+        repo_token: "${{ secrets.GITHUB_TOKEN }}"
+        automatic_release_tag: "latest"
+        prerelease: false
+        title: "Development Build"
+        files: |
+          ${{github.workspace}}/build/use.exe
