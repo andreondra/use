@@ -25,8 +25,7 @@ jobs:
       run: cmake --build ${{github.workspace}}/build -t sphinxdocs
         && touch docs/_build/docs_sphinx/.nojekyll
     - name: Deploy
-      uses: JamesIves/github-pages-deploy-action@releases/v3
+      uses: JamesIves/github-pages-deploy-action@v4
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}
         branch: gh-pages
         folder: docs/_build/docs_sphinx/
