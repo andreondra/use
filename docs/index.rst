@@ -45,7 +45,7 @@ Table of Contents
     :maxdepth: 2
 
     self
-    dev_manual
     user_manual
+    dev_manual
     contr_manual
     _exhale/api_docs_root
