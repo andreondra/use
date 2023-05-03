@@ -8,11 +8,12 @@ Developer's Guide
 This guide describes the structure and inner workings of the platform. After reading this guide, you
 will be able to create your own components and systems.
 
-.. note::
+.. tip::
    Class names are also links to their respective documentation; just click 🔘👈 them to be redirected. Or you can check
    out the :ref:`API docs` yourself. The code documentation is always auto-generated from the latest commit to the main branch.
 
-   Also, if you understand Czech, you can read a `bachelor's thesis <https://github.com/andreondra/bachelor-thesis>`_
+.. note::
+   If you understand Czech, you can read a `bachelor's thesis <https://github.com/andreondra/bachelor-thesis>`_
    for which the project was developed and describes not only the project, but also a matter of emulation
    and the NES console in a great depth.
 
@@ -68,9 +69,7 @@ You can use this template for your component's class declaration. Do not hesitat
         std::vector<EmulatorWindow> getGUIs() override;
     };
 
-And here's a template for :func:`Component::getGUIs()` method. Note that you can define as many lambdas as you wish, do not forget
-to add them to the return statement. More sophisticated examples are in the components, check for example
-Memory.cpp to see how to show modals and file pickers, or just check out Dear ImGui to see which widgets are available.
+And here's a template for :func:`Component::getGUIs()` method:
 
 .. code-block:: cpp
 
@@ -107,6 +106,11 @@ Memory.cpp to see how to show modals and file pickers, or just check out Dear Im
         };
     }
 
+.. tip::
+    You can define as many lambdas as you wish, do not forget to add them to the return statement.
+    More sophisticated examples are in the components, check for example Memory.cpp to see how to show
+    modals and file pickers, or just check out Dear ImGui to see which widgets are available.
+
 Keyboard input handling
 *************************
 If your component wants to interact with any keys or gamepad buttons, you need to also override :func:`Component::getInputs()` method.
@@ -140,10 +144,10 @@ that contains two buttons (left and right), you define two actions:
 
 Playing sounds
 ****************
-If your component want to play some sounds, you need to override :func:`Component::getSoundSampleSources()`.
-This functions returns a vector of function which return normalized float amplitude value [-1,1] (miniaudio's ``ma_format_f32``)
+If your component wants to play some sounds, you need to override :func:`Component::getSoundSampleSources()`.
+This functions returns a vector of functions which return normalized float amplitude value [-1,1] (miniaudio's ``ma_format_f32``)
 for two channels (left and right). If your component has only a mono output, return the same value for both channels.
-Here is an example of a component which has only a single sound source:
+Here is an example of the method of a component which has only a single sound source:
 
 .. code-block:: cpp
 
@@ -156,13 +160,14 @@ Here is an example of a component which has only a single sound source:
         };
     }
 
-Note that there can be as many sound sources as you wish, they will be mixed automatically. Also note that you
-only need to return two floats, that's all. All synchronization, buffering and so on will be done automatically as well.
-Just don't forget to define correct main clock value.
+.. tip::
+    There can be as many sound sources as you wish, they will be mixed automatically. Note that you
+    only need to return two floats, that's all. All synchronization, buffering and so on will be done automatically as well.
+    Just don't forget to define correct main clock value.
 
 Port and Connector
 ===================
-When two components communicate, usually there is a component who controls the communication (active) and the other component
+When two components communicate, usually there is a component which controls the communication (active) and the other component
 which is communicated with (passive). For example, when a CPU wants to write something to the memory, the CPU is the active one
 and the memory passive. However, if there is for example a button connected directly to the CPU (for example to trigger an interrupt), the button is now the active
 and the CPU is the passive component. To sum up, in a communication, there is always one component (active) which sends something to the other one (passive).
@@ -195,8 +200,8 @@ Then to make *magic happen* you have to place your ports to the internal port ma
 That it is. Now your component has a platform-compatible interface defined. To use the interface in your code,
 you can use functions which offers your selected port type.
 
-:class:`DataPort` offers methods for reading and writing the data, :class:`SignalPort` offers two methods: `set(bool active)`
-to set a logical voltage value (high, low) of a pin of a connected device, `send()` is used to send a simple pulse (where a specific value
+:class:`DataPort` offers methods for reading and writing the data, :class:`SignalPort` offers two methods: :func:`SignalPort::set`
+to set a logical voltage value (high, low) of a pin of a connected device, :func:`SignalPort::send` is used to send a simple pulse (where a specific value
 is not important, e.g. clock pulses). Check classes :class:`DataPort` and :class:`SignalPort` for signatures of available methods.
 
 Connector
@@ -217,7 +222,7 @@ the connector will be compatible with different port types:
    * - :class:`SignalInterface`
      - :class:`SignalPort`
 
-Here are some examples how to create connectors with different interfaces.
+Here are some examples. First a demonstration of :class:`SignalInterface`.
 
 .. code-block:: cpp
 
@@ -235,18 +240,14 @@ Here are some examples how to create connectors with different interfaces.
                 }
             }
         });
-
-        m_connectors["connectorName2"] = std::make_shared<Connector>(SignalInterface{
-            .set = [this](bool active) {
-                IRQ(active);
-            }
-        });
    }
 
-As you can see, :class:`SignalInterface` offers two methods. Method :func:`SignalInterface::set(bool active)` is meant to be used to
-set a logic level of a certain pin. Method :func:`SignalInterface::send()` is meant to send only a pulse of a "truthy" logic value where you
+As you can see, :class:`SignalInterface` offers two methods. Method :member:`SignalInterface::set` is meant to be used to
+set a logic level of a certain pin. Method :member:`SignalInterface::send` is meant to send only a pulse of a "truthy" logic value where you
 only need to trigger an action and specific value is not important (e.g. clock pins). You can choose to implement
 only one method and leave the second unimplemented.
+
+Now an example of :class:`DataInterface`:
 
 .. code-block:: cpp
 
@@ -273,10 +274,10 @@ only one method and leave the second unimplemented.
         }
     });
 
-:class:`DataInterface` offers also two methods. First method :func:`DataInterface::read(uint32_t address, uint32_t & buffer)` is used
+:class:`DataInterface` offers also two methods. First method :func:`DataInterface::read` is used
 by other component to read something at specified address from your component. You either write value you want to respond with
 to the ``buffer`` parameter and return ``true`` or do not write anything and return false (when your component do not
-respond to that particular address). Second method :func:`DataInterface::write(uint32_t address, uint32_t data)` is used to write something
+respond to that particular address). Second method :func:`DataInterface::write` is used to write something
 to your component. If your component is mapped to the address specified, you can take the value in `data` and do whatever with it,
 if your component is not mapped, do not do anything.
 
@@ -293,16 +294,16 @@ System
 After you create required components, you may combine them into a system. To create a component, you need to inherit
 from :class:`System` class. Then you implement five methods:
 
-* doClocks(unsigned int count): here you define what to do when a main clock signal is sent to your system.
-* doSteps(unsigned int count): here you proceed as many clock as needed to process a single CPU instruction (if CPU available, otherwise leave blank).
-* doFrames(unsigned int count): here you proceed as many clock as needed to process a single video frame (if video output available, otherwise leave blank).
-* doRun(unsigned int updateFrequency): this is called when the user wants to keep the emulation running in the real time.
+* :func:`System::doClocks`: here you define what to do when a main clock signal is sent to your system.
+* :func:`System::doSteps`: here you proceed as many clock as needed to process a single CPU instruction (if CPU available, otherwise leave blank).
+* :func:`System::doFrames`: here you proceed as many clock as needed to process a single video frame (if video output available, otherwise leave blank).
+* :func:`System::doRun`: this is called when the user wants to keep the emulation running in the real time.
 * A constructor of your class.
 
 In the constructor you need to define several things:
 
-* :member:`m_systemName`: system's name,
-* :member:`m_systemClockRate`: system's main clock rate,
+* :member:`System::m_systemName`: system's name,
+* :member:`System::m_systemClockRate`: system's main clock rate,
 * interconnect your components,
 * push all the components to the base class container: ``m_components.push_back(&m_myComponent);``,
 * if there is any audio output, push it to the sample sources: ``m_sampleSources.push_back(myComponent.getSoundSampleSources());``
@@ -317,12 +318,17 @@ To implement :func:`Component::doRun()` you can use this template to properly ca
         doClocks(remainingClocks);
     }
 
+Interconnecting the components
+********************************
+
+
+
 Adding the system to the plaform
 ===================================
 When the system is finished, you can integrate it to the rest of the platform.
 
 At first, in the Emulator.h, add a new value to the :member:`Emulator::SYSTEMS` enum.
-Then, in Emulator.cpp, include your new system at the top of the file: ``#include "systems/NES.h"`` and
+Then, in Emulator.cpp, include your new system at the top of the file: ``#include "systems/mySystem.h"`` and
 add a new row to the menu in :func:`Emulator::guiMenuItems()` like this:
 
 .. code-block:: cpp
