@@ -15,6 +15,7 @@
 #include "Connector.h"
 #include "components/Gamepak/Mapper.h"
 #include "components/Gamepak/Mapper000.h"
+#include "components/Gamepak/Mapper001.h"
 
 Gamepak::Gamepak() {
 
@@ -247,8 +248,10 @@ void Gamepak::load(std::ifstream & ifs){
     switch(m_params.mapperNumber){
 
         case 0x0000: m_mapper = std::make_unique<Mapper000>(m_PRGROM, m_CHRROM, m_params.mirroringType); break;
-        // case 0x0001: m_mapper.reset(new Mapper001(&m_meta, &m_PRGROM, &m_CHRROM)); break;
-        default: throw std::invalid_argument("Mapper not supported.");
+        case 0x0001: m_mapper = std::make_unique<Mapper001>(m_PRGROM, m_CHRROM, m_params.PRGRAMsize); break;
+
+        using namespace std::literals;
+        default: throw std::runtime_error("Mapper "s + std::to_string(m_params.mapperNumber) + " is not supported.");
     }
 
     // Get mapper's VRAM mode.
@@ -265,7 +268,7 @@ std::vector<EmulatorWindow> Gamepak::getGUIs() {
 
         // Local data
         // ===================================================================
-        std::string modalText;
+        static std::string modalText;
 
         // Window contents
         // ===================================================================
